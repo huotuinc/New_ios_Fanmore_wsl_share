@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2HJ-27-2U0">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <scenes>
+        <!--Loader Controller-->
+        <scene sceneID="w3X-e7-OFZ">
+            <objects>
+                <viewController storyboardIdentifier="LoaderController" id="2HJ-27-2U0" customClass="LoaderController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cgc-lF-3is"/>
+                        <viewControllerLayoutGuide type="bottom" id="lUP-Tl-3Uu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1Hq-M8-BaY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rze-AL-2Vm">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <animations/>
+                            </imageView>
+                            <view hidden="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8qq-qe-6Gr" customClass="FFCircularProgressView">
+                                <rect key="frame" x="80" y="94" width="160" height="112"/>
+                                <animations/>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="rze-AL-2Vm" secondAttribute="bottom" id="AhK-QC-8LG"/>
+                            <constraint firstItem="rze-AL-2Vm" firstAttribute="top" secondItem="1Hq-M8-BaY" secondAttribute="top" id="ihh-zv-pyz"/>
+                            <constraint firstAttribute="trailing" secondItem="rze-AL-2Vm" secondAttribute="trailing" id="m6k-IJ-UDT"/>
+                            <constraint firstItem="rze-AL-2Vm" firstAttribute="leading" secondItem="1Hq-M8-BaY" secondAttribute="leading" id="wIQ-wK-8Kr"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundImage" destination="rze-AL-2Vm" id="m0N-7p-Xul"/>
+                        <outlet property="pview" destination="8qq-qe-6Gr" id="NMK-vo-WCo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Mr-7a-p8h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="34" y="-148"/>
+        </scene>
+    </scenes>
+</document>

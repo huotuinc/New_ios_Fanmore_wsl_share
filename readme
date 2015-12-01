@@ -1,0 +1,15 @@
+
+Fanmore使用cocoapods 管理依赖包
+详见 http://cocoapods.org/
+
+1) 安装 cocoapods
+
+sudo gem install cocoapods
+
+
+2) 安装依赖包
+首先你已经进入项目目录(podfile)所在目录
+
+pod install
+open Fanmore.xcworkspace
+

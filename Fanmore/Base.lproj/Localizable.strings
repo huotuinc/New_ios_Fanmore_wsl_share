@@ -1,0 +1,47 @@
+/* 
+  Localizable.strings
+  Fanmore
+
+  Created by Cai Jiang on 3/20/14.
+  Copyright (c) 2014 Cai Jiang. All rights reserved.
+*/
+
+"com.huotu.fanmore.button.cancel"="取消";
+
+"com.huotu.fanmore.hint.wrongpassword" = "请输入正确的密码";
+"com.huotu.fanmore.hint.password.valid" = "请输入有效的密码";
+"com.huotu.fanmore.hint.password.changesuccess" = "您的登录密码修改成功！";
+"com.huotu.fanmore.hint.cashpassword.changesuccess" = "您的提现密码修改成功！";
+
+"com.huotu.fanmore.code.recevie"="获取验证码";
+"com.huotu.fanmore.code.recevielater"="%d秒后重新获取";
+"com.huotu.fanmore.msg.service.agree"="请阅读并且勾选同意我们的隐私保护政策。";
+"com.huotu.fanmore.bingdingmobilefirst"="请先绑定手机号码。";
+"com.huotu.fanmore.unbingdingmobilefirst"="请先解除绑定原手机号码。";
+
+//
+"com.huotu.fanmore.mm.account"="我的账号";
+"com.huotu.fanmore.mm.dologin"="登录/注册";
+"com.huotu.fanmore.mm.nologin"="未登录";
+
+"com.huotu.fanmore.gender.title"="性别修改";
+"com.huotu.fanmore.gender.male"="男";
+"com.huotu.fanmore.gender.female"="女";
+
+//score flow
+
+"com.huotu.fanmore.browses.today"="浏览量";
+"com.huotu.fanmore.income.today"="实际收益";
+"com.huotu.fanmore.income.noaccount"="未结算";
+"com.huotu.fanmore.browses.history"="浏览量";
+"com.huotu.fanmore.income.history"="实际收益";
+"com.huotu.fanmore.browses.yesterday"="浏览量";
+"com.huotu.fanmore.income.yesterday"="实际收益";
+
+
+//
+"StudioView.choosePicture"="选取图片";
+"Delete"="删除";
+"StudioView.fromAlbum"="照片";
+"StudioView.fromCamera"="拍摄";
+"Cancel"="取消";

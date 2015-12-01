@@ -1,0 +1,70 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import <ConciseKit.h>
+    #import <BlocksKit/BlocksKit.h>
+    #import "FanmoreUI.h"
+#import "NSString+Fanmore.h"
+#import "NSDate+Fanmore.h"
+#import "NSNumber+Fanmore.h"
+#import "MobClick.h"
+#import "NSError+Fanmore.h"
+#import "Base64.h"
+
+typedef long CityCode;
+#import "FanmoreDeploy.h"
+
+//#define fmMainColor [UIColor colorWithRed:75.0/255.0 green:193.0/255.0 blue:210.0/255.0 alpha:1]
+#define fmMainColor [UIColor colorWithRed:21.0/255.0 green:194.0/255.0 blue:210.0/255.0 alpha:1]
+#define fmTableBorderColor [UIColor colorWithRed:219.0/255.0 green:219.0/255.0 blue:219.0/255.0 alpha:1]
+//#define fmTableBorderColor [UIColor colorWithRed:234.0/255.0 green:234.0/255.0 blue:234.0/255.0 alpha:1]
+
+#define safeController(c) $safe(c) && $safe(c.view) && $safe(c.view.superview)
+
+#define SuppressPerformSelectorLeakWarning(Stuff) \
+do { \
+_Pragma("clang diagnostic push") \
+_Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"") \
+Stuff; \
+_Pragma("clang diagnostic pop") \
+} while (0)
+
+#define HashAdd(dest,obj) if ([dest indexOfObject:obj]==NSNotFound){ \
+[dest addObject:obj];  \
+}
+
+#define HashAddArray(dest,src) for(id obj in src){ \
+HashAdd(dest,obj) \
+}
+
+#ifdef FanmoreDebug
+#  define LOG(fmt, ...) do {                                            \
+NSString* file = [[NSString alloc] initWithFormat:@"%s", __FILE__]; \
+NSLog((@"%@(%d) " fmt), [file lastPathComponent], __LINE__, ##__VA_ARGS__); \
+} while(0)
+#  define LOG_METHOD NSLog(@"%s", __func__)
+#  define LOG_CMETHOD NSLog(@"%@/%@", NSStringFromClass([self class]), NSStringFromSelector(_cmd))
+#  define COUNT(p) NSLog(@"%s(%d): count = %d\n", __func__, __LINE__, [p retainCount]);
+#  define LOG_TRACE(x) do {printf x; putchar('\n'); fflush(stdout);} while (0)
+#else
+#  define LOG(...)
+#  define LOG_METHOD
+#  define LOG_CMETHOD
+#  define COUNT(p)
+#  define LOG_TRACE(x)
+#endif
+
+#endif
