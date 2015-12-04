@@ -3783,10 +3783,6 @@
                                 <rect key="frame" x="27" y="36" width="77" height="77"/>
                                 <animations/>
                             </imageView>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="masktouxiangC" translatesAutoresizingMaskIntoConstraints="NO" id="nkM-fW-CuS">
-                                <rect key="frame" x="27" y="36" width="77" height="77"/>
-                                <animations/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="名字" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6DS-ac-3I7">
                                 <rect key="frame" x="113" y="50" width="132" height="21"/>
                                 <animations/>
@@ -3839,6 +3835,10 @@
                                 <rect key="frame" x="20" y="342" width="32" height="32"/>
                                 <animations/>
                             </imageView>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="masktouxiangC" translatesAutoresizingMaskIntoConstraints="NO" id="nkM-fW-CuS">
+                                <rect key="frame" x="27" y="36" width="77" height="77"/>
+                                <animations/>
+                            </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.29411764709999999" green="0.75686274509999996" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
@@ -3848,8 +3848,8 @@
                     <connections>
                         <outlet property="accounti" destination="3k4-aa-5W8" id="Unv-g5-hXX"/>
                         <outlet property="accountl" destination="rVc-4X-2p5" id="4T7-JB-2Wd"/>
-                        <outlet property="homei" destination="YwN-uK-au2" id="77b-uD-wRB"/>
-                        <outlet property="homel" destination="YwN-uK-au2" id="2UM-jA-YLi"/>
+                        <outlet property="homei" destination="YwN-uK-au2" id="1fb-st-dHL"/>
+                        <outlet property="homel" destination="XUD-Qx-Dss" id="rNS-8C-erY"/>
                         <outlet property="imagePicture" destination="pFm-uT-m29" id="HVu-bA-ZIb"/>
                         <outlet property="labelBrowses" destination="wgi-VY-04J" id="LPp-Bi-Ecj"/>
                         <outlet property="labelExp" destination="uKI-Ek-mQa" id="zek-N6-KXi"/>
@@ -3882,7 +3882,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tg0-Es-Hb5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-397" y="272"/>
+            <point key="canvasLocation" x="-381" y="378"/>
         </scene>
         <!--修改密码-->
         <scene sceneID="YLd-7Z-pC8">

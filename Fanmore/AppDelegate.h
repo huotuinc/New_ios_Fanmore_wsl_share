@@ -20,7 +20,12 @@
 #import "CacheResource.h"
 #import "iVersion.h"
 
+
+
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate,CLLocationManagerDelegate,iVersionDelegate>
+
+
 
 @property(weak) UINavigationController* mineNav;
 

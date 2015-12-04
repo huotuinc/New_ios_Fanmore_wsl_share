@@ -340,7 +340,8 @@
     }
     
     if ([self.task isFlashMall]) {
-        [self showGuide:@"guidsgdetail21" on:nil];
+#warning luohaibo 2015/12/2
+//        [self showGuide:@"guidsgdetail21" on:nil];
     }
     
 //    self.web.translatesAutoresizingMaskIntoConstraints = YES;

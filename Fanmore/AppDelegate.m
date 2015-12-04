@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+
+#import "WeiChatAuthorize.h"
+
+
 #import "NSDictionary+RemotePush.h"
 #import "RemoteMessageController.h"
 #import "ASIHTTPRequest.h"
@@ -182,6 +186,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+//    UIStoryboard * mainS = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    WeiChatAuthorize * WeiChart = [mainS instantiateViewControllerWithIdentifier:@"WeiChatAuthorize"];
+//    self.window.rootViewController = WeiChart;
+//    [self.window makeKeyAndVisible];
+    
+    
 //    [iVersion sharedInstance].delegate = self;
     self.launchTime = [[NSDate date] timeIntervalSince1970];
     
@@ -270,6 +281,57 @@
     
     return YES;
 }
+
+-(void) onResp:(BaseResp*)resp
+{
+    
+    /*ErrCode ERR_OK = 0(用户同意)
+     ERR_AUTH_DENIED = -4（用户拒绝授权）
+     ERR_USER_CANCEL = -2（用户取消）
+     code    用户换取access_token的code，仅在ErrCode为0时有效                         state   第三方程序发送时用来标识其请求的唯一性的标志，由第三方程序调用sendReq时传入，由微信终端回传，state字符串长度不能超过1K
+     lang    微信客户端当前语言
+     country 微信用户当前国家信息
+     */
+    if ([resp isKindOfClass:[SendAuthResp class]]) {
+        SendAuthResp *aresp = (SendAuthResp *)resp;
+        if (aresp.errCode== 0) {
+            NSString *code = aresp.code;
+            NSLog(@"----%@",code);
+           
+            //授权成功的code
+            NSDictionary * dict = @{@"code":code};
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"ToGetUserInfo" object:nil userInfo:dict];
+            return;
+        }
+    }
+    NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
+    NSString *strTitle = nil;
+    if([resp isKindOfClass:[SendMessageToWXResp class]])
+    {
+        strTitle = [NSString stringWithFormat:@"发送媒体消息结果"];
+        return;
+    }
+    if([resp isKindOfClass:[PayResp class]]){
+        //支付返回结果，实际支付结果需要去微信服务器端查询
+        strTitle = [NSString stringWithFormat:@"支付结果"];
+        switch (resp.errCode) {
+            case WXSuccess:
+                strMsg = @"支付结果：成功！";
+                NSLog(@"支付成功－PaySuccess，retcode = %d", resp.errCode);
+                break;
+                
+            default:
+                strMsg = [NSString stringWithFormat:@"支付结果：失败"];
+                //                strMsg = [NSString stringWithFormat:@"支付结果：失败！retcode = %d, retstr = %@", resp.errCode,resp.errStr];
+                NSLog(@"错误，retcode = %d, retstr = %@", resp.errCode,resp.errStr);
+                break;
+        }
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
+
+
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {

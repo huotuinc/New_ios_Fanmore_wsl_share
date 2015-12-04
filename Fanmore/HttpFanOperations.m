@@ -1384,6 +1384,17 @@
     } parameters:p];
 }
 
+
+#warning luohaibo 提交微信授权信息
+- (void)toWeiChatLogin:(id<FanOpertationDelegate>)delegate block:(void(^)(NSString* result,NSError* error))block WithParam:(NSMutableDictionary *)parame{
+    [self loginCode:parame];
+    [self doConnect:nil interface:@"LoginAuthorize" errorBlocker:^(NSError *error) {
+        block(nil,error);
+    } resultBlocker:^(id data) {
+        block(data,nil);
+    } parameters:parame];
+}
+
 #pragma mark 核心连接
 
 -(void)doConnect:(id<FanOpertationDelegate>)delegate interface:(NSString*)interface errorBlocker:(void (^)(NSError*))errorBlocker resultBlocker:(void (^)(id))resultBlocker parameters:(NSDictionary*)parameters urlBlocker:(void (^)(NSMutableString*))urlBlocker post:(BOOL)post{

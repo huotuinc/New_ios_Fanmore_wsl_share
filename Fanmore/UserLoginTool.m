@@ -19,7 +19,6 @@
 @implementation UserLoginTool
 
 + (void)loginRequestGet:(NSString *)urlStr parame:(NSMutableDictionary *)params success:(void (^)(id json))success failure:(void (^)(NSError *error))failure{
-    
     AFHTTPRequestOperationManager * manager  = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     [manager GET:urlStr parameters:params success:^void(AFHTTPRequestOperation * request, id json) {

@@ -212,8 +212,11 @@
 //    [self.homei bk_whenTapped:^{
 //       [wself clickHome];
 //    }];
-//    [self.homei bk_whenTapped:homeWorker];
-    [self.homel bk_whenTapped:homeWorker];
+    [self.homei bk_whenTapped:^{
+        
+        NSLog(@"xxxx");
+    }];
+//    [self.homel bk_whenTapped:homeWorker];
     
     self.tnoticeI.userInteractionEnabled = YES;
     self.tnoticeL.userInteractionEnabled = YES;
@@ -326,10 +329,12 @@
     self.imageMall.userInteractionEnabled = YES;
     [self.labelMall bk_whenTapped:toMalWorker];
     [self.imageMall bk_whenTapped:toMalWorker];
-    
+
     if ([UIScreen mainScreen].bounds.size.height!=568.0f){
+#warning luohaibo 2015/12/2
         [self showGuide:@"guidemm35" on:nil];
     }else
+#warning luohaibo 2015/12/2
         [self showGuide:@"guidemm" on:nil];
     
     void(^ToSign)() = ^(){
@@ -352,7 +357,7 @@
     [self.imageItem bk_whenTapped:toItem];
     self.labelItem.userInteractionEnabled = YES;
     [self.labelItem bk_whenTapped:toItem];
-    
+
 //    [self.view addGestureRecognizer:[UISwipeGestureRecognizer bk_recognizerWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
 //        UISwipeGestureRecognizer* ssender = (UISwipeGestureRecognizer*)sender;
 //        if (ssender.direction==UISwipeGestureRecognizerDirectionRight){

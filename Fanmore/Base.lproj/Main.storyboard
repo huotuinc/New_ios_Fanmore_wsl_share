@@ -270,7 +270,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SendRecordCell" id="fLy-Jm-K8c" customClass="SendRecordCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="49"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="49"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fLy-Jm-K8c" id="C2r-11-AtA">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="48"/>
@@ -355,6 +355,48 @@
             </objects>
             <point key="canvasLocation" x="1406" y="-719"/>
         </scene>
+        <!--Wei Chat Authorize-->
+        <scene sceneID="rNv-po-khT">
+            <objects>
+                <viewController storyboardIdentifier="WeiChatAuthorize" id="MtT-xd-3ty" customClass="WeiChatAuthorize" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qaP-GW-CJV"/>
+                        <viewControllerLayoutGuide type="bottom" id="Fnv-6j-a34"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6vE-Ne-lrU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_bg_414x736" translatesAutoresizingMaskIntoConstraints="NO" id="Wam-g2-t1c">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <animations/>
+                            </imageView>
+                            <button opaque="NO" alpha="0.050000000000000003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mHs-8K-EZQ">
+                                <rect key="frame" x="59" y="270" width="203" height="34"/>
+                                <animations/>
+                                <connections>
+                                    <action selector="WeiChatAQuthLogin:" destination="MtT-xd-3ty" eventType="touchUpInside" id="xLr-eT-JKJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="mHs-8K-EZQ" secondAttribute="trailing" constant="58" id="3yT-F2-pxc"/>
+                            <constraint firstAttribute="trailing" secondItem="Wam-g2-t1c" secondAttribute="trailing" id="470-lq-yAD"/>
+                            <constraint firstItem="Wam-g2-t1c" firstAttribute="top" secondItem="qaP-GW-CJV" secondAttribute="bottom" id="Ibm-ky-kNM"/>
+                            <constraint firstItem="mHs-8K-EZQ" firstAttribute="top" secondItem="qaP-GW-CJV" secondAttribute="bottom" constant="250" id="Jhq-uf-jDv"/>
+                            <constraint firstItem="Fnv-6j-a34" firstAttribute="top" secondItem="Wam-g2-t1c" secondAttribute="bottom" id="Mpp-Oa-447"/>
+                            <constraint firstItem="Wam-g2-t1c" firstAttribute="leading" secondItem="6vE-Ne-lrU" secondAttribute="leading" id="Tj7-91-slS"/>
+                            <constraint firstItem="Fnv-6j-a34" firstAttribute="top" secondItem="mHs-8K-EZQ" secondAttribute="bottom" constant="264" id="YdA-DU-nTb"/>
+                            <constraint firstItem="mHs-8K-EZQ" firstAttribute="leading" secondItem="6vE-Ne-lrU" secondAttribute="leading" constant="59" id="zWq-SK-FOZ"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F9z-3q-905" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1993" y="-741"/>
+        </scene>
         <!--Disaster Send Controller-->
         <scene sceneID="gCb-ZC-7Fo">
             <objects>
@@ -414,7 +456,7 @@
                                 <animations/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="25" text="此商品可以推荐销售" lineBreakMode="characterWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="qjx-sC-lgk" customClass="UIInsetLabel">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="25" text="此商品可以推荐销售" lineBreakMode="characterWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="qjx-sC-lgk" customClass="UIInsetLabel">
                                 <rect key="frame" x="0.0" y="20" width="320" height="25"/>
                                 <animations/>
                                 <color key="backgroundColor" red="1" green="0.99607843137254903" blue="0.80392156862745101" alpha="1" colorSpace="deviceRGB"/>
@@ -425,7 +467,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vac-zK-1it">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vac-zK-1it">
                                 <rect key="frame" x="0.0" y="45" width="320" height="30"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="awardzhuanfa" translatesAutoresizingMaskIntoConstraints="NO" id="Gho-BC-ISR">
@@ -554,42 +596,6 @@
             </objects>
             <point key="canvasLocation" x="1555" y="287"/>
         </scene>
-        <!--Wei Chat Authorize-->
-        <scene sceneID="M81-Hs-QuK">
-            <objects>
-                <viewController storyboardIdentifier="WeiChatAuthorize" id="kmB-6g-JQg" customClass="WeiChatAuthorize" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="AR6-iT-HO0"/>
-                        <viewControllerLayoutGuide type="bottom" id="l7o-s2-hha"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Sb7-On-fJS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mxE-qS-cIj">
-                                <rect key="frame" x="71" y="472" width="179" height="44"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="3r1-rf-v8a"/>
-                                </constraints>
-                                <state key="normal" title="微信授权登录">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                            </button>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="mxE-qS-cIj" secondAttribute="trailing" constant="70" id="Iea-TP-6HY"/>
-                            <constraint firstItem="mxE-qS-cIj" firstAttribute="leading" secondItem="Sb7-On-fJS" secondAttribute="leading" constant="71" id="MDc-vw-p9o"/>
-                            <constraint firstItem="l7o-s2-hha" firstAttribute="top" secondItem="mxE-qS-cIj" secondAttribute="bottom" constant="52" id="dXb-hf-nP6"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kpC-xY-tV6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2034" y="-28"/>
-        </scene>
         <!--Remote Message Controller-->
         <scene sceneID="vso-6a-tmt">
             <objects>
@@ -689,6 +695,7 @@
         <image name="indextabbg" width="184" height="28"/>
         <image name="lefttab" width="93" height="28"/>
         <image name="list" width="311" height="49"/>
+        <image name="login_bg_414x736" width="414" height="736"/>
         <image name="more" width="35" height="35"/>
         <image name="righttab" width="93" height="28"/>
         <image name="shouchangyo" width="35" height="35"/>
@@ -699,10 +706,10 @@
         <image name="zhuanfabutton_down" width="300" height="38"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Nqe-hW-MBm"/>
-        <segue reference="mpK-f8-5DH"/>
-        <segue reference="uze-aJ-xbR"/>
-        <segue reference="CFJ-Mz-LaS"/>
+        <segue reference="Oh2-Hu-nIK"/>
+        <segue reference="vvb-QF-ciT"/>
+        <segue reference="Gwj-Zx-8yP"/>
+        <segue reference="aLf-L4-r7M"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

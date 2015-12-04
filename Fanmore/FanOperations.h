@@ -289,4 +289,14 @@
 -(void)moneyStoreURL:(id<FanOpertationDelegate>)delegate block:(void (^)(NSString* des,NSError* error))block;
 -(void)walletHistory:(id<FanOpertationDelegate>)delegate block:(void (^)(NSArray* history,NSError* error))block paging:(Paging*)paging;
 
+
+
+/**
+ *  提交微信授权返回的用户信息
+ *  luohaibo
+ *  @param delegate <#delegate description#>
+ *  @param block    <#block description#>
+ */
+- (void)toWeiChatLogin:(id<FanOpertationDelegate>)delegate block:(void(^)(NSString* result,NSError* error))block WithParam:(NSMutableDictionary *)parame;
+
 @end

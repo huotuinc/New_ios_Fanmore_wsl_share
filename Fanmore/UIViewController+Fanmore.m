@@ -78,10 +78,14 @@ extern NSString const *CWBlurViewKey;
                                                                 0,
                                                                 [[UIScreen mainScreen] applicationFrame].size.width,
                                                                 [[UIScreen mainScreen] applicationFrame].size.height+40)];
+    //luohaibo
+    baseView.backgroundColor = [UIColor lightGrayColor];
         //self.view = baseView;
     if (!view) {
         view = self.navigationController.view;
     }
+    
+    view.backgroundColor = [UIColor redColor];
     [view addSubview:baseView];
     //[baseView setBackgroundColor:[UIColor blackColor]];
     //baseView.alpha = 0.7;
@@ -99,8 +103,10 @@ extern NSString const *CWBlurViewKey;
 
     [baseView bk_whenTapped:^{
         
-        callback(NO);
-        callback(YES);
+        [baseView removeFromSuperview];
+//        NSLog(@"xxx");
+//        callback(NO);
+//        callback(YES);
     }];
     
     [[AppDelegate getInstance] showedThisGuide:imageName];

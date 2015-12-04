@@ -79,6 +79,12 @@
     [self.popupMenu popInView:self.nTitleView andPadding:170];
 }
 
+
+/**
+ *  屏幕拖拽方法
+ *
+ *  @param gestureRecognizer <#gestureRecognizer description#>
+ */
 -(void)handleGesture:(UIGestureRecognizer*)gestureRecognizer{
     UISwipeGestureRecognizer* ssender = (UISwipeGestureRecognizer*)gestureRecognizer;
     if (ssender.direction==UISwipeGestureRecognizerDirectionLeft){
@@ -297,9 +303,11 @@
     }]];
     
     if ([UIScreen mainScreen].bounds.size.height!=568.0f){
-        [self showGuide:@"guidelist35" on:nil];
+#warning luohaibo 2015/12/2
+//        [self showGuide:@"guidelist35" on:nil];
     }else
-        [self showGuide:@"guidelist" on:nil];
+#warning luohaibo 2015/12/2
+//        [self showGuide:@"guidelist" on:nil];
     
     [self changeSelection:1];
     
