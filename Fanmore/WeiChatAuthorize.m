@@ -17,7 +17,7 @@
 #import "NSObject+JSON.h"
 #import "AppDelegate.h"
 #import "Paging.h"
-
+#import "WeiXinBackViewController.h"
 
 @interface WeiChatAuthorize ()<WXApiDelegate>
 
@@ -29,6 +29,14 @@
 
 
 @implementation WeiChatAuthorize
+
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBarHidden = YES;
+    
+}
 
 
 - (void)viewDidLoad{
@@ -101,11 +109,14 @@
     [UserLoginTool loginRequestGet:@"https://api.weixin.qq.com/sns/userinfo" parame:parame success:^(id json) {
         NSLog(@"getUserInfo%@",json);
         UserInfo * userInfo = [UserInfo objectWithKeyValues:json];
-        [wself toPostWeiXinMessageToServerForLogin:userInfo];
-//        NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-//        NSString *fileName = [path stringByAppendingPathComponent:WeiXinUserInfo];
-//        [NSKeyedArchiver archiveRootObject:userInfo toFile:fileName];
         
+        NSLog(@"%@-----%@",userInfo.nickname,userInfo.headimgurl);
+        NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        NSString *fileName = [path stringByAppendingPathComponent:WXQAuthBringBackUserInfo];
+        [NSKeyedArchiver archiveRootObject:userInfo toFile:fileName];
+        
+        /**控制器跳转*/
+        [wself WeiXinQAuthSuccess:userInfo];
         
     } failure:^(NSError *error) {
         NSLog(@"%@",error.description);
@@ -114,30 +125,44 @@
 }
 
 
-- (void)toPostWeiXinMessageToServerForLogin:(UserInfo *)userInfo{
+/**
+ *  微信授权登录成功
+ *
+ *  @param user <#user description#>
+ */
+- (void)WeiXinQAuthSuccess:(UserInfo *)user{
     
-    NSMutableDictionary * parame = [NSMutableDictionary dictionary];
-    parame[@"sex"] = [NSString stringWithFormat:@"%ld",(long)[userInfo.sex integerValue]];
-    parame[@"nickname"] = userInfo.nickname;
-    parame[@"openid"] = userInfo.openid;
-    parame[@"city"] = userInfo.city;
-    parame[@"country"] = userInfo.country;
-    parame[@"province"] = userInfo.province;
-    parame[@"headimgurl"] = userInfo.headimgurl;
-    parame[@"unionid"] = userInfo.unionid;
-    id<FanOperations> fos = [[AppDelegate getInstance] getFanOperations];
-    [fos toWeiChatLogin:nil block:^(NSString *result, NSError *error) {
-        if (result.length) {
-            NSLog(@"%@--",result);
-        }else{
-            
-            NSLog(@"%@--",error.description);
-        }
-        
-    } WithParam:parame];
-    
+    UIStoryboard * main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    WeiXinBackViewController  *next = [main instantiateViewControllerWithIdentifier:@"WeiXinBackViewController"];
+    [self.navigationController pushViewController:next animated:YES];
     
 }
+
+//
+//- (void)toPostWeiXinMessageToServerForLogin:(UserInfo *)userInfo{
+//    
+//    NSMutableDictionary * parame = [NSMutableDictionary dictionary];
+//    parame[@"sex"] = [NSString stringWithFormat:@"%ld",(long)[userInfo.sex integerValue]];
+//    parame[@"nickname"] = userInfo.nickname;
+//    parame[@"openid"] = userInfo.openid;
+//    parame[@"city"] = userInfo.city;
+//    parame[@"country"] = userInfo.country;
+//    parame[@"province"] = userInfo.province;
+//    parame[@"headimgurl"] = userInfo.headimgurl;
+//    parame[@"unionid"] = userInfo.unionid;
+//    id<FanOperations> fos = [[AppDelegate getInstance] getFanOperations];
+//    [fos toWeiChatLogin:nil block:^(NSString *result, NSError *error) {
+//        if (result.length) {
+//            NSLog(@"%@--",result);
+//        }else{
+//            
+//            NSLog(@"%@--",error.description);
+//        }
+//        
+//    } WithParam:parame];
+//    
+//    
+//}
 
 
 /**

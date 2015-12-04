@@ -67,7 +67,7 @@ NSLog((@"%@(%d) " fmt), [file lastPathComponent], __LINE__, ##__VA_ARGS__); \
 #  define LOG_TRACE(x)
 #endif
 
-
+#define WXQAuthBringBackUserInfo @"WXQAuthBringBackUserInfo"
 #define WSLInterfaceAdresseUrl @"http://taskapi.fancat.cn"
 #define WeiXinAppKey @"wxaeda2d5603b12302"
 #define WeiXinAppSecret @"8c3b660de36a3b3fb678ca865e31f0f3"

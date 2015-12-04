@@ -18,6 +18,21 @@
 
 @implementation UserLoginTool
 
+/**
+ *  读取沙盒数据
+ *
+ *  @param identify <#identify description#>
+ *
+ *  @return <#return value description#>
+ */
++ (id)ReadDateFromShaohe:(NSString * )identify{
+    
+    NSString * filePath = [NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES) lastObject];
+    NSString * file = [filePath stringByAppendingPathComponent:identify];
+    return  [NSKeyedUnarchiver unarchiveObjectWithFile:file];
+}
+
+
 + (void)loginRequestGet:(NSString *)urlStr parame:(NSMutableDictionary *)params success:(void (^)(id json))success failure:(void (^)(NSError *error))failure{
     AFHTTPRequestOperationManager * manager  = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];

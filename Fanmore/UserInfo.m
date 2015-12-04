@@ -9,6 +9,9 @@
 #import "UserInfo.h"
 #import "MJExtension.h"
 @implementation UserInfo
+
+
+
 MJCodingImplementation
 
 - (NSDictionary *)objectClassInArray

@@ -187,99 +187,101 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-//    UIStoryboard * mainS = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    WeiChatAuthorize * WeiChart = [mainS instantiateViewControllerWithIdentifier:@"WeiChatAuthorize"];
-//    self.window.rootViewController = WeiChart;
-//    [self.window makeKeyAndVisible];
-    
-    
-//    [iVersion sharedInstance].delegate = self;
-    self.launchTime = [[NSDate date] timeIntervalSince1970];
-    
-    NSString *sversion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    [MobClick setAppVersion:sversion];
-    //91ios weiphone fanmore
-    NSString* qd = nil;
-#ifdef FM_QD
-    qd = $str(@"%@ios",@FM_QD);
-#endif
-    [MobClick startWithAppkey:@"52faffcf56240bc21a023179" reportPolicy:SEND_INTERVAL   channelId:qd];
-#ifdef FanmoreDebug
-//    [MobClick setLogEnabled:YES];
-#endif
-    
-#ifndef FMShareTool
-//    [ShareSDK importWeChatClass:[WXApi class]];
-//    [ShareSDK importQQClass:[QQApiInterface class] tencentOAuthCls:[TencentOAuth class]];
-    
-    BOOL useAppTrusteeship = NO;
-    [ShareSDK registerApp:@"19b4b4d45192" useAppTrusteeship:useAppTrusteeship];
-    if (useAppTrusteeship) {
-        [self initializePlatForTrusteeship];
-        [ShareSDK waitAppSettingComplete:^{
-            NSLog(@"注册完成！");
-        }];
-    }else{
-        [AppDelegate connectAllShareManly];
-    }
-//    [ShareSDK registerApp:@"1782a62f5430" useAppTrusteeship:useAppTrusteeship];
-    
-#endif
-
-    [self startLocate:[[LocatedHelper alloc] init]];
-    // Override point for customization after application launch.
-    double version = [[UIDevice currentDevice].systemVersion doubleValue];
-    UINavigationBar* tnb = [UINavigationBar appearance];
-    if (version>=7) {
-        [tnb setBarTintColor:fmMainColor];
-    }else{
-        [tnb setTintColor:fmMainColor];
-    }
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
-#ifdef FMShareTool
-    [[ShareTool toolWithType:TShareTypeWeixiTimeline identification:@"wx1424e93fb903ef33"] checkSupport:YES];
-#endif
-
-//    UIRemoteNotificationTypeBadge   = 1 << 0,
-//    UIRemoteNotificationTypeSound   = 1 << 1,
-//    UIRemoteNotificationTypeAlert   = 1 << 2,
-//    UIRemoteNotificationTypeNewsstandContentAvailability = 1 << 3,
-    if (version>=8) {
-#if __IPHONE_8_0
-        [application registerForRemoteNotifications];
-//        [application currentUserNotificationSettings].types
-        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:
-                                                       (UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeAlert)  categories:nil]];
-#endif
-    }else
-        [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert];
-    
-    UILocalNotification *localNotif =
-    [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
-    if (localNotif) {
-        //处理本地通知
-        NSLog(@"localnotif");
-    }
-    
-#ifdef FanmoreDebugMockRemoteURL
-    NSMutableDictionary* myo = [NSMutableDictionary dictionary];
-    [myo setRemotePushURL:FanmoreDebugMockRemoteURL];
-    
-    launchOptions = @{UIApplicationLaunchOptionsRemoteNotificationKey: myo};
-#endif
-    
-#ifdef FanmoreDebugMockRemoteTask
-    NSMutableDictionary* myo = [NSMutableDictionary dictionary];
-    [myo setRemotePushTaskId:FanmoreDebugMockRemoteTask];
-    
-    launchOptions = @{UIApplicationLaunchOptionsRemoteNotificationKey: myo};
-#endif
-    
-    self.launchOptions = launchOptions;
-    application.applicationIconBadgeNumber = 0;
-    
+    UIStoryboard * mainS = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    WeiChatAuthorize * WeiChart = [mainS instantiateViewControllerWithIdentifier:@"WeiChatAuthorize"];
+    UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:WeiChart];
+    self.window.rootViewController = nav;
+    [self.window makeKeyAndVisible];
     return YES;
+    
+    
+////    [iVersion sharedInstance].delegate = self;
+//    self.launchTime = [[NSDate date] timeIntervalSince1970];
+//    
+//    NSString *sversion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+//    [MobClick setAppVersion:sversion];
+//    //91ios weiphone fanmore
+//    NSString* qd = nil;
+//#ifdef FM_QD
+//    qd = $str(@"%@ios",@FM_QD);
+//#endif
+//    [MobClick startWithAppkey:@"52faffcf56240bc21a023179" reportPolicy:SEND_INTERVAL   channelId:qd];
+//#ifdef FanmoreDebug
+////    [MobClick setLogEnabled:YES];
+//#endif
+//    
+//#ifndef FMShareTool
+////    [ShareSDK importWeChatClass:[WXApi class]];
+////    [ShareSDK importQQClass:[QQApiInterface class] tencentOAuthCls:[TencentOAuth class]];
+//    
+//    BOOL useAppTrusteeship = NO;
+//    [ShareSDK registerApp:@"19b4b4d45192" useAppTrusteeship:useAppTrusteeship];
+//    if (useAppTrusteeship) {
+//        [self initializePlatForTrusteeship];
+//        [ShareSDK waitAppSettingComplete:^{
+//            NSLog(@"注册完成！");
+//        }];
+//    }else{
+//        [AppDelegate connectAllShareManly];
+//    }
+////    [ShareSDK registerApp:@"1782a62f5430" useAppTrusteeship:useAppTrusteeship];
+//    
+//#endif
+//
+//    [self startLocate:[[LocatedHelper alloc] init]];
+//    // Override point for customization after application launch.
+//    double version = [[UIDevice currentDevice].systemVersion doubleValue];
+//    UINavigationBar* tnb = [UINavigationBar appearance];
+//    if (version>=7) {
+//        [tnb setBarTintColor:fmMainColor];
+//    }else{
+//        [tnb setTintColor:fmMainColor];
+//    }
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+//    
+//#ifdef FMShareTool
+//    [[ShareTool toolWithType:TShareTypeWeixiTimeline identification:@"wx1424e93fb903ef33"] checkSupport:YES];
+//#endif
+//
+////    UIRemoteNotificationTypeBadge   = 1 << 0,
+////    UIRemoteNotificationTypeSound   = 1 << 1,
+////    UIRemoteNotificationTypeAlert   = 1 << 2,
+////    UIRemoteNotificationTypeNewsstandContentAvailability = 1 << 3,
+//    if (version>=8) {
+//#if __IPHONE_8_0
+//        [application registerForRemoteNotifications];
+////        [application currentUserNotificationSettings].types
+//        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:
+//                                                       (UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeAlert)  categories:nil]];
+//#endif
+//    }else
+//        [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert];
+//    
+//    UILocalNotification *localNotif =
+//    [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+//    if (localNotif) {
+//        //处理本地通知
+//        NSLog(@"localnotif");
+//    }
+//    
+//#ifdef FanmoreDebugMockRemoteURL
+//    NSMutableDictionary* myo = [NSMutableDictionary dictionary];
+//    [myo setRemotePushURL:FanmoreDebugMockRemoteURL];
+//    
+//    launchOptions = @{UIApplicationLaunchOptionsRemoteNotificationKey: myo};
+//#endif
+//    
+//#ifdef FanmoreDebugMockRemoteTask
+//    NSMutableDictionary* myo = [NSMutableDictionary dictionary];
+//    [myo setRemotePushTaskId:FanmoreDebugMockRemoteTask];
+//    
+//    launchOptions = @{UIApplicationLaunchOptionsRemoteNotificationKey: myo};
+//#endif
+//    
+//    self.launchOptions = launchOptions;
+//    application.applicationIconBadgeNumber = 0;
+//    
+//    return YES;
 }
 
 -(void) onResp:(BaseResp*)resp
