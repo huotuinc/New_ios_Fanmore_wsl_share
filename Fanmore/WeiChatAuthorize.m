@@ -1,3 +1,4 @@
+
 //
 //  WeiChatAuthorize.m
 //  Fanmore
@@ -56,6 +57,7 @@
 - (IBAction)WeiChatAQuthLogin:(id)sender {
     
     [self WeiXinLog];
+
 }
 
 

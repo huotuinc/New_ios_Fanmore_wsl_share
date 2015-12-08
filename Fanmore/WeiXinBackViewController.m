@@ -10,6 +10,7 @@
 #import "UserInfo.h"
 #import "UserLoginTool.h"
 #import "UIImageView+WebCache.h"
+#import "LoginViewController.h"
 
 @interface WeiXinBackViewController ()
 
@@ -44,14 +45,17 @@
     [self.weiXInIconView sd_setImageWithURL:[NSURL URLWithString:user.headimgurl] placeholderImage:nil options:SDWebImageRetryFailed];
     
     self.WeiXinUserName.text = user.nickname;
-    
-    
-    
 }
+
+/**
+ *  微信后注册
+ *
+ *  @param sender <#sender description#>
+ */
 - (IBAction)NetActionStep:(id)sender {
-    
-    
-    NSLog(@"sssss");
+    LoginViewController * Register = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    [self.navigationController pushViewController:Register animated:YES];
+   
 }
 
 

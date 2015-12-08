@@ -34,7 +34,7 @@
 
 #import "iRate.h"
 
-@interface AppDelegate()<UIAlertViewDelegate>
+@interface AppDelegate()<UIAlertViewDelegate,WXApiDelegate>
 
 //@property(weak) UINavigationController* lastNavigation;
 @property UIWindow* lastKeyWindow;
@@ -187,6 +187,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
+    [WXApi registerApp:@"wxaeda2d5603b12302" withDescription:@"wsl"];
     UIStoryboard * mainS = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     WeiChatAuthorize * WeiChart = [mainS instantiateViewControllerWithIdentifier:@"WeiChatAuthorize"];
     UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:WeiChart];
@@ -334,7 +335,6 @@
 }
 
 
-							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -612,12 +612,21 @@
 
 #pragma mark 一般行为
 
+
+
+
 - (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
 {
     return UIInterfaceOrientationMaskPortrait;
 }
 
 #pragma mark weixin
+
+
+
+
+
+
 
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
     LOG(@"handleOpenURL %@",url);
@@ -633,6 +642,16 @@
 //                 sourceApplication:sourceApplication
 //                        annotation:annotation
 //                        wxDelegate:self];
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options{
+    
+    LOG(@"handleOpenURL %@",url);
+//    NSString *string =[url absoluteString];
+//    NSLog(@"%@",string);
+//    
+    return [WXApi handleOpenURL:url delegate:self];
+    
 }
 
 #pragma mark network Utils

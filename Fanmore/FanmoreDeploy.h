@@ -19,10 +19,12 @@
 
 //#define FMROOT "http://192.168.0.208:100"
 //#define FMROOT "http://192.168.0.208:99"
-#define FMROOT  "http://api.fanmore.cn"
+#define FMROOT  "http://192.168.1.56:8050"
+//"http://taskapi.fancat.cn"
+//"http://api.fanmore.cn"
 
 //
-//#define FanmoreDebug 1
+#define FanmoreDebug 1
 
 //#define FanmoreMockLocalDate 1
 // 模拟 存在今日预告任务
