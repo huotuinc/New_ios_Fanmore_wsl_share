@@ -184,7 +184,7 @@
  *  @param block    <#block description#>
  *  @param paging   pageTag
  */
--(void)masterIndex:(id<FanOpertationDelegate>)delegate block:(void(^)(NSString* code,NSString* desc,NSString* shareDesc,NSString* shareURL,NSNumber* numbersOfFollowers,NSNumber* totalDevoteYes,NSNumber* totalDevote,NSArray* list,NSError* error))block paging:(Paging*)paging;
+-(void)masterIndex:(id<FanOpertationDelegate>)delegate block:(void(^)(NSString* code,NSString* desc,NSString* shareDesc,NSString* shareURL,NSNumber* numbersOfFollowers,NSNumber* totalDevoteYes,NSNumber* totalDevote, NSNumber *todaySafe,NSNumber *lisiSafe,NSNumber *todayShare,NSNumber *lisiShare,NSArray* list,NSError* error))block paging:(Paging*)paging;
 
 /**
  *  徒弟列表

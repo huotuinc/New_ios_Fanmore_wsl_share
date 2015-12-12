@@ -28,8 +28,8 @@ typedef long CityCode;
 #import "FanmoreDeploy.h"
 
 //#define fmMainColor [UIColor colorWithRed:75.0/255.0 green:193.0/255.0 blue:210.0/255.0 alpha:1]
-#define fmMainColor [UIColor colorWithRed:21.0/255.0 green:194.0/255.0 blue:210.0/255.0 alpha:1]
-#define fmTableBorderColor [UIColor colorWithRed:219.0/255.0 green:219.0/255.0 blue:219.0/255.0 alpha:1]
+#define fmMainColor [UIColor colorWithRed:236.0/255.0 green:134.0/255.0 blue:36.0/255.0 alpha:1]
+#define fmTableBorderColor [UIColor colorWithRed:221.0/255.0 green:221.0/255.0 blue:221.0/255.0 alpha:1]
 //#define fmTableBorderColor [UIColor colorWithRed:234.0/255.0 green:234.0/255.0 blue:234.0/255.0 alpha:1]
 
 #define safeController(c) $safe(c) && $safe(c.view) && $safe(c.view.superview)

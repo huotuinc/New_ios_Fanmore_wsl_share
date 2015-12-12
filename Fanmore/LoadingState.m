@@ -9,7 +9,7 @@
 #import "LoadingState.h"
 #import "LoginState.h"
 #import "NSString+SSToolkitAdditions.h"
-
+#import "MJExtension.h"
 
 @implementation LoadingState
 
@@ -96,5 +96,7 @@
 }
 
 
+
+MJCodingImplementation
 
 @end

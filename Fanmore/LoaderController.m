@@ -12,8 +12,11 @@
 #import "MBProgressHUD.h"
 #import "FMUtils.h"
 #import "LoadingState+Ext.h"
+#import "WeiChatAuthorize.h"
 
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+
+
 
 
 @interface LoaderController ()
@@ -35,7 +38,10 @@
     __weak LoaderController* wself = self;
     AppDelegate* ad = [AppDelegate getInstance];
     [[ad getFanOperations]loading:[FFFanOpertationDelegate DelegateForFFCircularProgressView:self.pview] block:^(UIImage *image,NSError* error) {
+        
+        NSLog(@"========%@",error);
         if (error!=Nil) {
+            
             LOG(@"on loading %@",error);
             [FMUtils alertMessage:wself.view msg:[error FMDescription] block:^{
                 //每次+3 10以后每次+ 5 30以后每次+10 50以后每次60
@@ -53,7 +59,7 @@
             }];
             return;
         }
-        LOG(@"Response from init");
+        LOG(@"zzzzzzzzzz   Response from init");
         //        LOG(@"return %@ image:%@",ls,ls.image);
         if ([ad.loadingState fmShowCurrent]) {
             wself.backgroundImage.image = image;
@@ -62,15 +68,25 @@
             wself.backgroundImage.image = nil;
         }
         
-        UIStoryboard* main = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        UIViewController* vc = [main instantiateInitialViewController];
-        [wself presentViewController:vc animated:YES completion:^(){
-            [wself removeFromParentViewController];
-//            [wself.backgroundImage removeFromSuperview];
-//            wself.backgroundImage = nil;
-//            [wself.view removeFromSuperview];
-//            wself.view = nil;
-        }];
+        
+        if ([ad.loadingState.loginStatus integerValue]) {
+            UIStoryboard* main = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+            UIViewController* vc = [main instantiateInitialViewController];
+            [wself presentViewController:vc animated:YES completion:^(){
+                [wself removeFromParentViewController];
+                [wself.backgroundImage removeFromSuperview];
+                wself.backgroundImage = nil;
+                [wself.view removeFromSuperview];
+                wself.view = nil;
+            }];
+        }else{
+            UIStoryboard * mainS = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            WeiChatAuthorize * WeiChart = [mainS instantiateViewControllerWithIdentifier:@"WeiChatAuthorize"];
+            UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:WeiChart];
+            [wself presentViewController:nav animated:YES completion:nil];
+            
+        }
+        
     } userName:[ad getLastUsername] password:[ad getLastPassword]];
 
 }

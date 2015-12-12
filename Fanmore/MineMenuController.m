@@ -22,6 +22,7 @@
 #import "SignController.h"
 #import "UIView+SSToolkitAdditions.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import "MasterAndTudiViewController.h"
 
 #define MMImageWidthRate 0.8f
 #define MMImageHeightRate 0.8f
@@ -30,6 +31,26 @@
 @interface MineMenuController ()
 @property BOOL shaking;
 @property UIImageView* mainImage;
+
+//
+////luohaibo
+///**首页*/
+//- (IBAction)homeButtonClick:(id)sender;
+///**我的账号点击*/
+//- (IBAction)myAccountClick:(id)sender;
+///**今日预告*/
+//- (IBAction)todayCaveat:(id)sender;
+///**师徒联盟*/
+//- (IBAction)masterAlliance:(id)sender;
+///**规则说明*/
+//- (IBAction)ruleSade:(id)sender;
+///**更多说明*/
+//- (IBAction)moreoption:(id)sender;
+///**头像*/
+//@property (weak, nonatomic) IBOutlet UIButton *iconViewBtn;
+///**头像按钮点击*/
+//- (IBAction)iconViewBtnClick:(id)sender;
+
 @end
 
 @implementation MineMenuController
@@ -138,13 +159,12 @@
     
     redt.image = [UIImage imageNamed:@"renyuan"];
     [self.view addSubview:redt];
-    self.redTip = redt;
-    self.redTip.backgroundColor = [UIColor blueColor];
+   
     
     redt = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 6, 6)];
     redt.image = [UIImage imageNamed:@"renyuan"];
     [self.view addSubview:redt];
-    self.redTip2 = redt;
+ 
     
     __weak MineMenuController* wself = self;
     void(^shareAppWorker)() = ^(){
@@ -184,8 +204,8 @@
     
     self.myYesterdayRewards.userInteractionEnabled = YES;
     [self.myYesterdayRewards bk_whenTapped:yesScoreWorker];
-    self.redTip.userInteractionEnabled = YES;
-    [self.redTip bk_whenTapped:yesScoreWorker];
+
+
     self.labelStaticYesScore.userInteractionEnabled = YES;
     [self.labelStaticYesScore bk_whenTapped:yesScoreWorker];
     
@@ -204,7 +224,7 @@
     self.homel.userInteractionEnabled = YES;
     
     
-    UIGestureRecognizer *gs = [[UIGestureRecognizer alloc] initWithTarget:self action:@selector(homeIconClick)];
+    UIGestureRecognizer *gs = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(homeIconClick)];
     [self.homei addGestureRecognizer:gs];
     
     
@@ -277,9 +297,6 @@
 //        } completion:NULL];
 //    }];
     
-    
-    UIGestureRecognizer * ges = [[UIGestureRecognizer alloc] initWithTarget:self action:@selector(test:)];
-    [self.mytestImaheview addGestureRecognizer:ges];
     
     self.mainImage.userInteractionEnabled = YES;
     [self.mainImage bk_whenTapped:homeWorker];
@@ -390,18 +407,10 @@
 
 }
 
--(void)test:(UIGestureRecognizer *)ges{
-    
-    
-    
-    NSLog(@"xxxx");
-    
-}
 - (void)viewWillAppear:(BOOL)animated{
     [self.navigationController setNavigationBarHidden:YES];
     [AppDelegate getInstance].mineNav = self.navigationController;
     
-    self.redTip2.hidden  = YES;
     __weak MineMenuController* wself = self;
     
     NSNumberFormatter* nsf1 = $new(NSNumberFormatter);
@@ -461,18 +470,18 @@
         self.totalTaskRewards.text = @"0";
     }
     
-    self.redTip.autoresizingMask = 0;
-    CGPoint lastPoint = [FMUtils pointToRightTop:self.myYesterdayRewards];
-    [self.redTip setFrame:CGRectMake(lastPoint.x+0, lastPoint.y, self.redTip.frame.size.width, self.redTip.frame.size.height)];
-    [self.redTip hidenme];
-    
-    if ([ls hasLogined] && [ls.userData hasNewFeedBack]) {
-        self.redTip2.autoresizingMask = 0;
-        self.redTip2.hidden = NO;
-        lastPoint = [FMUtils pointToRightTop:self.morel];
-        [self.redTip2 setFrame:CGRectMake(lastPoint.x+1, lastPoint.y-1, self.redTip.frame.size.width, self.redTip.frame.size.height)];
-    }
-    [self.redTip2 hidenme];
+//    self.redTip.autoresizingMask = 0;
+//    CGPoint lastPoint = [FMUtils pointToRightTop:self.myYesterdayRewards];
+//    [self.redTip setFrame:CGRectMake(lastPoint.x+0, lastPoint.y, self.redTip.frame.size.width, self.redTip.frame.size.height)];
+//    [self.redTip hidenme];
+//    
+//    if ([ls hasLogined] && [ls.userData hasNewFeedBack]) {
+//        self.redTip2.autoresizingMask = 0;
+//        self.redTip2.hidden = NO;
+//        lastPoint = [FMUtils pointToRightTop:self.morel];
+//        [self.redTip2 setFrame:CGRectMake(lastPoint.x+1, lastPoint.y-1, self.redTip.frame.size.width, self.redTip.frame.size.height)];
+//    }
+//    [self.redTip2 hidenme];
     
     if ([ls hasLogined]) {
 //        UserInformation* ui =[AppDelegate getInstance].currentUser;
@@ -547,11 +556,7 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 
 @end

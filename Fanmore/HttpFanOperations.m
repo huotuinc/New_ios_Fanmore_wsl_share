@@ -33,6 +33,8 @@
 #endif
 #import "NSObject+JSON.h"
 #import "ExpReceiveView.h"
+#import "UserInfo.h"
+
 
 @interface HttpFanOperations ()
 
@@ -106,28 +108,46 @@
 }
 
 -(void)registerUser:(id<FanOpertationDelegate>)delegate block:(void (^)(LoginState*,NSError*))block userName:(NSString*)userName password:(NSString*)password code:(NSString*)code invitationCode:(NSString*)invitationCode{
-    if (userName==Nil) {
-        userName = @"";
-    }
-    if(password==Nil){
-        password = @"";
-    }
-    if(code==Nil){
-        code = @"";
-    }
-    if(invitationCode==Nil){
-        invitationCode = @"";
-    }
-    NSDictionary* p = @{@"userName":userName,
-                        @"pwd":[password MD5Sum],
-                        @"code":code,
-                        @"invitationCode":invitationCode};
+    
+    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *fileName = [path stringByAppendingPathComponent:WXQAuthBringBackUserInfo];
+    UserInfo * user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+    
+    NSMutableDictionary *parame = [NSMutableDictionary dictionary];
+    parame[@"sex"] = [NSString stringWithFormat:@"%ld",(long)[user.sex integerValue]];
+    parame[@"nickname"] = user.nickname;
+    parame[@"openid"] = user.openid;
+    parame[@"city"] = user.city;
+    parame[@"country"] = user.country;
+    parame[@"province"] = user.province;
+    parame[@"headimgurl"] = user.headimgurl;
+    parame[@"unionId"] = user.unionid;
+    parame[@"invitationCode"] = invitationCode;
+    
+//    if (userName==Nil) {
+//        userName = @"";
+//    }
+//    if(password==Nil){
+//        password = @"";
+//    }
+//    if(code==Nil){
+//        code = @"";
+//    }
+//    if(invitationCode==Nil){
+//        invitationCode = @"";
+//    }
+//    NSDictionary* p = @{@"userName":userName,
+//                        @"pwd":[password MD5Sum],
+//                        @"code":code,
+//                        @"invitationCode":invitationCode};
     
     [self doConnect:delegate interface:@"register" errorBlocker:^(NSError *error) {
         block(nil,error);
     } resultBlocker:^(NSDictionary *data) {
-        [self login:delegate block:block userName:userName password:password];
-    } parameters:p];
+        NSString * passwd =  data[@"loginCode"];
+        NSArray * arra =  [passwd componentsSeparatedByString:@"^"];
+        [self login:delegate block:block userName:data[@"userName"] password:arra[1]];
+    } parameters:parame];
 }
 
 -(void)register:(id<FanOpertationDelegate>)delegate block:(void (^)(LoginState*,NSError*))block userName:(NSString*)userName password:(NSString*)password code:(NSString*)code{
@@ -171,7 +191,7 @@
     
     NSDictionary* p = @{
                         @"userName":userName,
-                        @"pwd":[password MD5Sum]
+                        @"pwd":password
 //                        ,
 //                        @"latitude":$double(c2d.latitude),
 //                        @"longitude":$double(c2d.longitude)
@@ -467,6 +487,9 @@
     } parameters:@{@"token": token}];
 }
 
+
+//luohaibo 2015/12/8
+
 -(void)loading:(id<FanOpertationDelegate>)delegate block:(void (^)(UIImage*,NSError*))block userName:(NSString*)userName password:(NSString*)password{
     //[self fakeTimeCost:delegate];
     [delegate foStartSpin];
@@ -479,11 +502,11 @@
     }
 //    password = @"111111";
     CGSize size = [UIScreen mainScreen].bounds.size;
-    LOG(@"%f,%f",size.width,size.height);
-    
+    LOG(@"xxxxxx %f,%f",size.width,size.height);
+//luohaibo 2015/12/8
     NSDictionary* p = @{
                         @"userName":userName,
-                        @"pwd":[password MD5Sum],
+                        @"pwd":password,
                         @"width":$float(size.width),
                         @"height":$float(size.height)
 //                        ,
@@ -504,14 +527,20 @@
             [AppDelegate getInstance].loadingState = ls;
         }
         [LoadingState modelFromDict:data model:ls];
+        //luohaibo 2015/12/8
+//        NSString *documentsDirectory= [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+//        NSString * file = [documentsDirectory stringByAppendingPathComponent:@"initDate"];
+//        [NSKeyedArchiver archiveRootObject:ls toFile:file];
+//        NSLog(@"%@-----%@",ls,ls.loginStatus);
         
-        NSMutableArray* arry = [NSMutableArray array];
-        
-        for (NSString* abc in [data[@"checkExps"] componentsSeparatedByString:@"|"]) {
-            [arry addObject:abc];
-        }
-        
-        ls.checkinExps = [NSMutableArray arrayWithArray:arry];
+//        NSMutableArray* arry = [NSMutableArray array];
+//        
+//        LOG([data[@"checkExps"] class]);
+//        for (NSString* abc in [data[@"checkExps"] componentsSeparatedByString:@"|"]) {
+//            [arry addObject:abc];
+//        }
+//        
+//        ls.checkinExps = [NSMutableArray arrayWithArray:arry];
         
         NSArray* groups = data[@"groups"];
 #ifdef FanmoreDebug
@@ -769,7 +798,7 @@
  *  @param block    <#block description#>
  *  @param paging   pageTag
  */
--(void)masterIndex:(id<FanOpertationDelegate>)delegate block:(void(^)(NSString* code,NSString* desc,NSString* shareDesc,NSString* shareURL,NSNumber* numbersOfFollowers,NSNumber* totalDevoteYes,NSNumber* totalDevote,NSArray* list,NSError* error))block paging:(Paging*)paging{
+-(void)masterIndex:(id<FanOpertationDelegate>)delegate block:(void(^)(NSString* code,NSString* desc,NSString* shareDesc,NSString* shareURL,NSNumber* numbersOfFollowers,NSNumber* totalDevoteYes,NSNumber* totalDevote, NSNumber *todaySafe,NSNumber *lisiSafe,NSNumber *todayShare,NSNumber *lisiShare,NSArray* list,NSError* error))block paging:(Paging*)paging{
 #ifdef FanmoreMockMaster
     NSNumber* max = $long(random()%40);
     int number = MAX([max intValue],paging.pageSize);
@@ -785,9 +814,9 @@
     [paging toParameters:p];
     
     [self doConnect:delegate interface:@"ScorePrentice" errorBlocker:^(NSError *error) {
-        block(nil,nil,nil,nil,nil,nil,nil,nil,error);
+        block(nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,error);
     } resultBlocker:^(NSDictionary* data) {
-        block(data[@"inviteCode"],data[@"desc"],data[@"shareDesc"],data[@"shareUrl"],data[@"prenticeAmount"],data[@"yesterdayTotalScore"],data[@"totalScore"],data[@"list"],nil);
+        block(data[@"inviteCode"],data[@"desc"],data[@"shareDesc"],data[@"shareUrl"],data[@"prenticeAmount"],data[@"yesterdayTotalScore"],data[@"totalScore"],data[@"yesterdayBrowseAmount"],data[@"yesterdayBrowseAmount"],data[@"yesterdayTurnAmount"],data[@"historyTotalTurnAmount"],data[@"list"],nil);
     } parameters:p];
 #endif
 }

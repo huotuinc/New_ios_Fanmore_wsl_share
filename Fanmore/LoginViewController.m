@@ -9,7 +9,7 @@
 #import "LoginViewController.h"
 #import "UserInfo.h"
 #import "AppDelegate.h"
-
+#import "MJExtension.h"
 @interface LoginViewController ()
 
 
@@ -42,36 +42,21 @@
 }
 
 /**
- *  注册
+ *  注册 luohaibo
  *
  *  @param sender <#sender description#>
  */
 - (IBAction)login:(id)sender {
-    
-    
-    if (self.InviteCode.text.length > 0) {
-        NSMutableDictionary * parame = [NSMutableDictionary dictionary];
-        parame[@"sex"] = [NSString stringWithFormat:@"%ld",(long)[self.user.sex integerValue]];
-        parame[@"nickname"] = self.user.nickname;
-        parame[@"openid"] = self.user.openid;
-        parame[@"city"] = self.user.city;
-        parame[@"country"] = self.user.country;
-        parame[@"province"] = self.user.province;
-        parame[@"headimgurl"] = self.user.headimgurl;
-        parame[@"unionId"] = self.user.unionid;
-        parame[@"invitationCode"] = @"WSL0LOVE";
-        [[[AppDelegate getInstance] getFanOperations] toWeiChatLogin:nil block:^(NSString *result, NSError *error) {
-            if (result) {//注册成功
-                NSLog(@"%@",result);
-            }else{//失败
-                NSLog(@"%@",error.description);
-            }
-        } WithParam:parame];
-    }else{
+
+    [[[AppDelegate getInstance] getFanOperations] registerUser:nil block:^(LoginState * model, NSError *error) {
+        if (!error) {
+            UIStoryboard* main = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+            UIViewController* vc = [main instantiateInitialViewController];
+            self.view.window.rootViewController = vc;
+        }
         
-        
-    }
-    
+    } userName:nil password:nil code:nil invitationCode:@"WSL0LOVE"];
+
     
 }
 

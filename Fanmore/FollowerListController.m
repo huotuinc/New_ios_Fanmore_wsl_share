@@ -148,7 +148,7 @@
         [self.followers removeAllObjects];
     }
     
-    
+//luohaibo
     MJRefreshFooterView *footer = [MJRefreshFooterView footer];
     footer.scrollView = self.tableView;
     footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView){

@@ -33,7 +33,7 @@
 #import "ShareSDK/Extend/QQConnectSDK/TencentOpenAPI.framework/Headers/TencentOAuth.h"
 
 #import "iRate.h"
-
+#import "MJExtension.h"
 @interface AppDelegate()<UIAlertViewDelegate,WXApiDelegate>
 
 //@property(weak) UINavigationController* lastNavigation;
@@ -187,12 +187,33 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
+    
+
     [WXApi registerApp:@"wxaeda2d5603b12302" withDescription:@"wsl"];
-    UIStoryboard * mainS = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    WeiChatAuthorize * WeiChart = [mainS instantiateViewControllerWithIdentifier:@"WeiChatAuthorize"];
-    UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:WeiChart];
-    self.window.rootViewController = nav;
-    [self.window makeKeyAndVisible];
+    
+    
+//    if ([self.loadingState.loginStatus  integerValue] == 1) {
+//        
+//        [[self getFanOperations] loading:nil block:^(UIImage *image, NSError *error) {
+//            
+//        } userName:nil password:nil];
+//        
+//        
+//        UIStoryboard* main = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+//        UIViewController* vc = [main instantiateInitialViewController];
+//        self.window.rootViewController = vc;
+//        [self.window makeKeyAndVisible];
+//    }else{
+//        
+//        UIStoryboard * mainS = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//        WeiChatAuthorize * WeiChart = [mainS instantiateViewControllerWithIdentifier:@"WeiChatAuthorize"];
+//        UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:WeiChart];
+//        self.window.rootViewController = nav;
+//        [self.window makeKeyAndVisible];
+//    }
+//    
+//    
+    
     return YES;
     
     
@@ -361,7 +382,21 @@
     if ([[NSDate date] timeIntervalSince1970]-self.launchTime>300){
 #endif
         [self.fanOperations loading:nil block:^(UIImage *state, NSError *error) {
-//            wself.loadingState = state;
+            
+//            if ([wself.loadingState.loginStatus integerValue] == 0) {
+//                UIStoryboard * mainS = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//                WeiChatAuthorize * WeiChart = [mainS instantiateViewControllerWithIdentifier:@"WeiChatAuthorize"];
+//                UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:WeiChart];
+//                wself.window.rootViewController = nav;
+////                [self.window makeKeyAndVisible];
+//            }else{
+//                UIStoryboard* main = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+//                UIViewController* vc = [main instantiateInitialViewController];
+//                wself.window.rootViewController = vc;
+//                
+//            }
+            
+            
             if ($safe(error)) {
                 [FMUtils alertMessage:wself.window.viewForBaselineLayout msg:error.FMDescription];
             }

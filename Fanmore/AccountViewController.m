@@ -16,14 +16,38 @@
 #import "CommonPasswordController.h"
 #import "VerificationCodeController.h"
 #import <CoreText/CoreText.h>
+#import "MJExtension.h"
 
-@interface AccountViewController ()
+#import "UIImageView+WebCache.h"
+@interface AccountViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(weak) TextChangeController* tccontroller;
 @property BOOL doCash;
 @property BOOL doCash2;
 #ifdef FanmoreDebug
 @property BOOL debugCashPswdDoing;
 #endif
+
+
+
+//luohaibo
+/**账号头像*/
+@property (weak, nonatomic) IBOutlet UIImageView *iconView;
+/**今日转发*/
+@property (weak, nonatomic) IBOutlet UILabel *todayTurn;
+/**提出申请*/
+@property (weak, nonatomic) IBOutlet UILabel *callApply;
+/**可用积分*/
+@property (weak, nonatomic) IBOutlet UILabel *canUseIntegral;
+/**进入商城*/
+- (IBAction)goToMartkeyClick:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UITableView *itemTableView;
+/**绑定手机*/
+@property (weak, nonatomic) IBOutlet UIButton *bingDingIphone;
+/**绑定手机*/
+- (IBAction)bingDingIphoneBtnClick:(id)sender;
+/**账号信息*/
+@property (weak, nonatomic) IBOutlet UILabel *accoutInfo;
+
 @end
 
 @implementation AccountViewController
@@ -64,12 +88,40 @@
     [self performSegueWithIdentifier:@"ToALP" sender:nil];
 }
 
+
+
+/** luohaibo
+ *  初始化
+ */
+- (void)setUp{
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    self.itemTableView.dataSource = self;
+    self.itemTableView.delegate = self;
+    self.itemTableView.tableFooterView = [[UIView alloc] init];
+    self.itemTableView.scrollEnabled = NO;
+    
+    self.bingDingIphone.layer.cornerRadius = 2;
+    self.bingDingIphone.layer.masksToBounds = YES;
+    
+    /**用户个人信息*/
+    LoginState * userData = [[AppDelegate getInstance].loadingState userData];
+    [userData.isBindMobile integerValue] == 0?[self.bingDingIphone setTitle:@"绑定手机" forState:UIControlStateNormal]:[self.bingDingIphone setTitle:userData.mobile forState:UIControlStateNormal];
+        
+    
+    
+    NSString * headUrl =  [[[AppDelegate getInstance].loadingState userData] picUrl];
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:headUrl] placeholderImage:[UIImage imageNamed:@"WeiXinIIconViewDefaule"] options:SDWebImageRetryFailed];
+    
+}
+
 - (void)viewDidLoad
 {
-    [self.navigationController setNavigationBarHidden:NO];
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:NO];
     self.doCash = NO;
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
     self.navigationItem.leftBarButtonItems = @[[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(doBack)]];
 //    
 //    double version = [[UIDevice currentDevice].systemVersion doubleValue];
@@ -82,255 +134,279 @@
 //        }
 //    }
     
-    __weak AccountViewController* wself = self;
     
-    [self.btlogout bk_whenTapped:^{
-        [ConfirmController confirm:wself message:@"确实要注销么？" block:^{
-            AppDelegate* ad = [AppDelegate  getInstance];
-            [ad logout:wself];
-            [ad storeLastUserInformation:@"" password:@""];
-            [wself.parentViewController dismissViewControllerAnimated:YES completion:NULL];
-        }];
-    }];
     
-    [self.buttonMobile addTarget:self action:@selector(clickMobile) forControlEvents:UIControlEventTouchUpInside];
-    [self.buttonZfb addTarget:self action:@selector(clickZfb) forControlEvents:UIControlEventTouchUpInside];
-//    self.zfbLabel.userInteractionEnabled = YES;
-//    [self.zfbLabel bk_whenTapped:^{
-//        wself.doCash = NO;
-//        wself.doCash2 = NO;
-//        [wself performSegueWithIdentifier:@"ToALP" sender:wself.zfbLabel];
+    //luohaibo
+    [self setUp];
+    
+//    __weak AccountViewController* wself = self;
+//    
+//    [self.btlogout bk_whenTapped:^{
+//        [ConfirmController confirm:wself message:@"确实要注销么？" block:^{
+//            AppDelegate* ad = [AppDelegate  getInstance];
+//            [ad logout:wself];
+//            [ad storeLastUserInformation:@"" password:@""];
+//            [wself.parentViewController dismissViewControllerAnimated:YES completion:NULL];
+//        }];
 //    }];
-//    self.label.userInteractionEnabled = YES;
-//    [self.label bk_whenTapped:^{
-//        wself.doCash = NO;
-//        wself.doCash2 = NO;
-//        [wself performSegueWithIdentifier:@"ToMobile" sender:wself.label];
+//    
+//    [self.buttonMobile addTarget:self action:@selector(clickMobile) forControlEvents:UIControlEventTouchUpInside];
+//    [self.buttonZfb addTarget:self action:@selector(clickZfb) forControlEvents:UIControlEventTouchUpInside];
+////    self.zfbLabel.userInteractionEnabled = YES;
+////    [self.zfbLabel bk_whenTapped:^{
+////        wself.doCash = NO;
+////        wself.doCash2 = NO;
+////        [wself performSegueWithIdentifier:@"ToALP" sender:wself.zfbLabel];
+////    }];
+////    self.label.userInteractionEnabled = YES;
+////    [self.label bk_whenTapped:^{
+////        wself.doCash = NO;
+////        wself.doCash2 = NO;
+////        [wself performSegueWithIdentifier:@"ToMobile" sender:wself.label];
+////    }];
+//    
+//    
+//    self.imagePicture.userInteractionEnabled = YES;
+//    [self.imagePicture bk_whenTapped:^{
+//        [wself performSegueWithIdentifier:@"ToInformation" sender:nil];
 //    }];
-    
-    
-    self.imagePicture.userInteractionEnabled = YES;
-    [self.imagePicture bk_whenTapped:^{
-        [wself performSegueWithIdentifier:@"ToInformation" sender:nil];
-    }];
-    
-    if ([[AppDelegate getInstance].loadingState useNewCash]){
-        [self.viewMain setContentSize:CGSizeMake(320, 630-65-25)];
-    }else
-        [self.viewMain setContentSize:CGSizeMake(320, 630)];
-    self.viewMain.showsHorizontalScrollIndicator = NO;
-    self.viewMain.showsVerticalScrollIndicator = NO;
-//    [self.viewMain setScrollEnabled:YES];
-//    double version = [[UIDevice currentDevice].systemVersion doubleValue];
-//    self.automaticallyAdjustsScrollViewInsets = NO;
+//    
+//    if ([[AppDelegate getInstance].loadingState useNewCash]){
+//        [self.viewMain setContentSize:CGSizeMake(320, 630-65-25)];
+//    }else
+//        [self.viewMain setContentSize:CGSizeMake(320, 630)];
+//    self.viewMain.showsHorizontalScrollIndicator = NO;
+//    self.viewMain.showsVerticalScrollIndicator = NO;
+////    [self.viewMain setScrollEnabled:YES];
+////    double version = [[UIDevice currentDevice].systemVersion doubleValue];
+////    self.automaticallyAdjustsScrollViewInsets = NO;
     
 
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if ([[AppDelegate getInstance].loadingState useNewCash]) {
-        return 6;
-    }
-    return 7;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if (indexPath.row<1) {
-    NSInteger row = indexPath.row;
-    if ([[AppDelegate getInstance].loadingState useNewCash] && row>=4)
-        row += 1;
-    return [tableView dequeueReusableCellWithIdentifier:$str(@"aCell%d",row) forIndexPath:indexPath];    
-//    }else if (indexPath.row==1){
-//        return [tableView dequeueReusableCellWithIdentifier:$str(@"aCell5") forIndexPath:indexPath];
-//    }else
-//        return [tableView dequeueReusableCellWithIdentifier:$str(@"aCell%d",indexPath.row-1) forIndexPath:indexPath];
+    
+    static NSString * CellId = @"CellId";
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CellId];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellId];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    if (indexPath.row == 0) {
+        cell.imageView.image = [UIImage imageNamed:@"my_safe"];
+        cell.textLabel.text = @"账户安全";
+        
+    }else{
+        cell.imageView.image = [UIImage imageNamed:@"jibenxinxiicon."];
+        cell.textLabel.text = @"基本信息";
+    }
+    return cell;
 }
 
 
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.row == 0) {
+        
+         NSLog(@"xxxxx");
+    }else{
+        
+        
+        NSLog(@"xxxxx");
+    }
+    
+}
 
 - (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
-    [self viewDidLoadGestureRecognizer];
-//    UserInformation* ui = [AppDelegate  getInstance].currentUser;
-    LoginState* ls = [AppDelegate getInstance].loadingState.userData;
     
     
+    [self.view layoutIfNeeded];
     
-    if ([ls.isBindMobile boolValue] && $safe(ls.mobile)){
-        NSString* strtoattr =ls.mobile;
-        CGFloat fontSize = 19.0f;
-        while(true){
-            CGSize size = [strtoattr sizeWithFont:[UIFont systemFontOfSize:fontSize]];
-            if(size.width<self.buttonMobile.frame.size.width)
-                break;
-            fontSize--;
-        }
-        
-        NSMutableAttributedString* mobile = [[NSMutableAttributedString alloc] initWithString:strtoattr];
-        
-//        [mobile addAttribute:(NSString *)kCTFontAttributeName value:(id)CFBridgingRelease(CTFontCreateWithName((CFStringRef)[UIFont systemFontOfSize:fontSize].fontName,fontSize,NULL)) range:NSMakeRange(0, [strtoattr length])];
-        
-        [self.buttonMobile setAttributedTitle:mobile forState:UIControlStateNormal];
-//        [self.buttonMobile setTitle:strtoattr forState:UIControlStateNormal];
-        [self.buttonMobile.titleLabel setFont:[UIFont systemFontOfSize:fontSize]];
-//        [self.buttonMobile.titleLabel setText:strtoattr];
-        [self.labelMobile setText:@"(取消/修改绑定手机)"];
-    }else{
-        NSString* strtoattr =@"绑定手机号码";
-        NSMutableAttributedString* mobile = [[NSMutableAttributedString alloc] initWithString:strtoattr];
-        
-//        [mobile addAttribute:(NSString *)kCTFontAttributeName value:(id)CFBridgingRelease(CTFontCreateWithName((CFStringRef)[UIFont systemFontOfSize:17.0f].fontName,17.0f,NULL)) range:NSMakeRange(0, [strtoattr length])];
-        
-        [self.buttonMobile setAttributedTitle:mobile forState:UIControlStateNormal];
-//        [self.buttonMobile setTitle:strtoattr forState:UIControlStateNormal];
-        [self.buttonMobile.titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
-//        [self.buttonMobile.titleLabel setText:strtoattr];
-        [self.labelMobile setText:@"(未绑定)"];
-    }
     
-    if ($safe(ls.alipayId) && ls.alipayId.length>2){
-        NSString* strtoattr =ls.alipayId;
-        CGFloat fontSize = 19.0f;
-        while(true){
-            CGSize size = [strtoattr sizeWithFont:[UIFont systemFontOfSize:fontSize]];
-            if(size.width<self.buttonMobile.frame.size.width)
-                break;
-            fontSize--;
-        }
-        
-        NSMutableAttributedString* mobile = [[NSMutableAttributedString alloc] initWithString:strtoattr];
-        
-//        [mobile addAttribute:(NSString *)kCTFontAttributeName value:(id)CFBridgingRelease(CTFontCreateWithName((CFStringRef)[UIFont systemFontOfSize:fontSize].fontName,fontSize,NULL)) range:NSMakeRange(0, [strtoattr length])];
-        
-        [self.buttonZfb setAttributedTitle:mobile forState:UIControlStateNormal];
-//        [self.buttonZfb setTitle:strtoattr forState:UIControlStateNormal];
-        [self.buttonZfb.titleLabel setFont:[UIFont systemFontOfSize:fontSize]];
-//        [self.buttonZfb.titleLabel setText:strtoattr];
-        [self.labelZfb setText:@"(修改绑定支付宝)"];
-    }else{
-        NSString* strtoattr =@"绑定支付宝";
-        NSMutableAttributedString* mobile = [[NSMutableAttributedString alloc] initWithString:strtoattr];
-        
-//        [mobile addAttribute:(NSString *)kCTFontAttributeName value:(id)CFBridgingRelease(CTFontCreateWithName((CFStringRef)[UIFont systemFontOfSize:17.0f].fontName,17.0f,NULL)) range:NSMakeRange(0, [strtoattr length])];
-        
-        [self.buttonZfb setAttributedTitle:mobile forState:UIControlStateNormal];
-//        [self.buttonZfb setTitle:strtoattr forState:UIControlStateNormal];
-        [self.buttonZfb.titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
-//        [self.buttonZfb.titleLabel setText:strtoattr];
-        [self.labelZfb setText:@"(未绑定)"];
-    }
-    
-//    self.nameLabel.text = ls.userName;
+//    [self viewDidLoadGestureRecognizer];
+////    UserInformation* ui = [AppDelegate  getInstance].currentUser;
+//    LoginState* ls = [AppDelegate getInstance].loadingState.userData;
 //    
-//    CGFloat fontSize = 19.0f;
-//    while ([self.nameLabel.text sizeWithFont:self.nameLabel.font].width>CGRectGetWidth(self.nameLabel.frame)) {
-//        fontSize -= 1.0f;
-//        self.nameLabel.font = [UIFont systemFontOfSize:fontSize];
-//    }
 //    
-//    if ($safe(ls.alipayId) && ls.alipayId.length>5){
-//        self.zfbLabel.text = ls.alipayId;
-//    }else{
-//        self.zfbLabel.text = @"(我的支付宝未绑定)";
-//    }
 //    
 //    if ([ls.isBindMobile boolValue] && $safe(ls.mobile)){
-//        self.label.text = ls.mobile;
+//        NSString* strtoattr =ls.mobile;
+//        CGFloat fontSize = 19.0f;
+//        while(true){
+//            CGSize size = [strtoattr sizeWithFont:[UIFont systemFontOfSize:fontSize]];
+//            if(size.width<self.buttonMobile.frame.size.width)
+//                break;
+//            fontSize--;
+//        }
+//        
+//        NSMutableAttributedString* mobile = [[NSMutableAttributedString alloc] initWithString:strtoattr];
+//        
+////        [mobile addAttribute:(NSString *)kCTFontAttributeName value:(id)CFBridgingRelease(CTFontCreateWithName((CFStringRef)[UIFont systemFontOfSize:fontSize].fontName,fontSize,NULL)) range:NSMakeRange(0, [strtoattr length])];
+//        
+//        [self.buttonMobile setAttributedTitle:mobile forState:UIControlStateNormal];
+////        [self.buttonMobile setTitle:strtoattr forState:UIControlStateNormal];
+//        [self.buttonMobile.titleLabel setFont:[UIFont systemFontOfSize:fontSize]];
+////        [self.buttonMobile.titleLabel setText:strtoattr];
+//        [self.labelMobile setText:@"(取消/修改绑定手机)"];
 //    }else{
-//        self.label.text = @"(我的手机号码未绑定)";
+//        NSString* strtoattr =@"绑定手机号码";
+//        NSMutableAttributedString* mobile = [[NSMutableAttributedString alloc] initWithString:strtoattr];
+//        
+////        [mobile addAttribute:(NSString *)kCTFontAttributeName value:(id)CFBridgingRelease(CTFontCreateWithName((CFStringRef)[UIFont systemFontOfSize:17.0f].fontName,17.0f,NULL)) range:NSMakeRange(0, [strtoattr length])];
+//        
+//        [self.buttonMobile setAttributedTitle:mobile forState:UIControlStateNormal];
+////        [self.buttonMobile setTitle:strtoattr forState:UIControlStateNormal];
+//        [self.buttonMobile.titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
+////        [self.buttonMobile.titleLabel setText:strtoattr];
+//        [self.labelMobile setText:@"(未绑定)"];
 //    }
 //    
-    
-    self.scoreLabel.text = [ls.score currencyStringMax2Digits];
-//    self.tickedScoreLabel.text = [ls.lockScore currencyString:@"" fractionDigits:0];
-    
-//    ls.lockScore = @10000;
-    if ([[AppDelegate getInstance].loadingState useNewCash]) {
-        [self.bttixian setBackgroundColor:fmMainColor];
-        [self.bttixian setTitle:@"我的钱包" forState:UIControlStateNormal];
-        [self.bttixian setImage:nil forState:UIControlStateDisabled];
-        [self.bttixian setImage:nil forState:UIControlStateNormal];
-        [self.bttixian setEnabled:YES];
-    }else if ([ls.lockScore intValue]>0) {
-        [self.bttixian setBackgroundColor:fmMainColor];
-        [self.bttixian setTitle:$str(@"%@积分提现中",ls.lockScore) forState:UIControlStateDisabled];
-        [self.bttixian setImage:nil forState:UIControlStateDisabled];
-        [self.bttixian setImage:nil forState:UIControlStateNormal];
-        [self.bttixian setEnabled:NO];
-    }else{
-        [self.bttixian setBackgroundColor:[UIColor clearColor]];
-        [self.bttixian setTitle:nil forState:UIControlStateDisabled];
-        [self.bttixian setImage:[UIImage imageNamed:@"tixiananniu"] forState:UIControlStateNormal];
-        [self.bttixian setEnabled:YES];
-    }
-    
-    self.tickedScoreLabel.text = [ls.totalScore currencyString:@"" fractionDigits:2];
-    self.todaySendLabel.text = $str(@"%@/%@",ls.completeTaskCount,ls.totalTaskCount);
-    
-    
-    [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].detailTextLabel.text = [ls.turnAmount stringValue];
-    [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]].detailTextLabel.text = [ls.favoriteAmount stringValue];
-    
-    [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]].detailTextLabel.text = [ls.crashCount currencyString:@"￥" fractionDigits:1];
-    
-    [self.tableView selectRowAtIndexPath:Nil animated:YES scrollPosition:UITableViewScrollPositionNone];
-    
-    if (self.doCash && self.doCash2) {
-        [self bk_performBlock:^(id obj) {
-            if ([obj shouldPerformSegueWithIdentifier:@"ToCash" sender:nil]) {
-                [obj performSegueWithIdentifier:@"ToCash" sender:nil];
-            }
-        } afterDelay:0.5f];
-    }
-    
-    self.doCash = NO;
-    self.doCash2 = NO;
-    
-//    __weak AccountViewController* wself = self;
-    
-//    UserInformation* ui =[AppDelegate getInstance].currentUser;
-    
-    [ls updateUserPicture:self.imagePicture];
-        
-//    if ($safe(ui.name) && ui.name.length>0) {
-//        [self.labelName setText:ui.name];
-//    }else
-        [self.labelName setText:ls.userName];
-    
-    [self.labelExp setText:$str(@"%@Exp.",ls.exp)];
-    
-    [self showNoshadowNavigationBar];
-    
-    [self.imageInformationHinter setHidden:[ls.completeInfo boolValue]];
-    
-    if ([[AppDelegate getInstance].loadingState useNewCash]) {
-        [self.innerButtonView hidenme];
-        for (NSLayoutConstraint* lc in self.innerButtonView.constraints) {
-            if (lc.firstItem==self.innerButtonView && lc.firstAttribute == NSLayoutAttributeHeight) {
-                lc.constant = 0;
-            }
-        }
-//
-//        [self.buttonZfb hidenme];
-//        [self.labelZfb hidenme];
-//        for (NSLayoutConstraint* lc in self.innerButtonView.constraints) {
-//            if (lc.firstAttribute==NSLayoutAttributeLeading
-//                && (
-//                    lc.firstItem==self.buttonMobile || lc.firstItem == self.labelMobile
-//                    )) {
-//                    lc.constant = 70;
-//                }
+//    if ($safe(ls.alipayId) && ls.alipayId.length>2){
+//        NSString* strtoattr =ls.alipayId;
+//        CGFloat fontSize = 19.0f;
+//        while(true){
+//            CGSize size = [strtoattr sizeWithFont:[UIFont systemFontOfSize:fontSize]];
+//            if(size.width<self.buttonMobile.frame.size.width)
+//                break;
+//            fontSize--;
 //        }
-    }
-    
+//        
+//        NSMutableAttributedString* mobile = [[NSMutableAttributedString alloc] initWithString:strtoattr];
+//        
+////        [mobile addAttribute:(NSString *)kCTFontAttributeName value:(id)CFBridgingRelease(CTFontCreateWithName((CFStringRef)[UIFont systemFontOfSize:fontSize].fontName,fontSize,NULL)) range:NSMakeRange(0, [strtoattr length])];
+//        
+//        [self.buttonZfb setAttributedTitle:mobile forState:UIControlStateNormal];
+////        [self.buttonZfb setTitle:strtoattr forState:UIControlStateNormal];
+//        [self.buttonZfb.titleLabel setFont:[UIFont systemFontOfSize:fontSize]];
+////        [self.buttonZfb.titleLabel setText:strtoattr];
+//        [self.labelZfb setText:@"(修改绑定支付宝)"];
+//    }else{
+//        NSString* strtoattr =@"绑定支付宝";
+//        NSMutableAttributedString* mobile = [[NSMutableAttributedString alloc] initWithString:strtoattr];
+//        
+////        [mobile addAttribute:(NSString *)kCTFontAttributeName value:(id)CFBridgingRelease(CTFontCreateWithName((CFStringRef)[UIFont systemFontOfSize:17.0f].fontName,17.0f,NULL)) range:NSMakeRange(0, [strtoattr length])];
+//        
+//        [self.buttonZfb setAttributedTitle:mobile forState:UIControlStateNormal];
+////        [self.buttonZfb setTitle:strtoattr forState:UIControlStateNormal];
+//        [self.buttonZfb.titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
+////        [self.buttonZfb.titleLabel setText:strtoattr];
+//        [self.labelZfb setText:@"(未绑定)"];
+//    }
+//    
+////    self.nameLabel.text = ls.userName;
+////    
+////    CGFloat fontSize = 19.0f;
+////    while ([self.nameLabel.text sizeWithFont:self.nameLabel.font].width>CGRectGetWidth(self.nameLabel.frame)) {
+////        fontSize -= 1.0f;
+////        self.nameLabel.font = [UIFont systemFontOfSize:fontSize];
+////    }
+////    
+////    if ($safe(ls.alipayId) && ls.alipayId.length>5){
+////        self.zfbLabel.text = ls.alipayId;
+////    }else{
+////        self.zfbLabel.text = @"(我的支付宝未绑定)";
+////    }
+////    
+////    if ([ls.isBindMobile boolValue] && $safe(ls.mobile)){
+////        self.label.text = ls.mobile;
+////    }else{
+////        self.label.text = @"(我的手机号码未绑定)";
+////    }
+////    
+//    
+//    self.scoreLabel.text = [ls.score currencyStringMax2Digits];
+////    self.tickedScoreLabel.text = [ls.lockScore currencyString:@"" fractionDigits:0];
+//    
+////    ls.lockScore = @10000;
+//    if ([[AppDelegate getInstance].loadingState useNewCash]) {
+//        [self.bttixian setBackgroundColor:fmMainColor];
+//        [self.bttixian setTitle:@"我的钱包" forState:UIControlStateNormal];
+//        [self.bttixian setImage:nil forState:UIControlStateDisabled];
+//        [self.bttixian setImage:nil forState:UIControlStateNormal];
+//        [self.bttixian setEnabled:YES];
+//    }else if ([ls.lockScore intValue]>0) {
+//        [self.bttixian setBackgroundColor:fmMainColor];
+//        [self.bttixian setTitle:$str(@"%@积分提现中",ls.lockScore) forState:UIControlStateDisabled];
+//        [self.bttixian setImage:nil forState:UIControlStateDisabled];
+//        [self.bttixian setImage:nil forState:UIControlStateNormal];
+//        [self.bttixian setEnabled:NO];
+//    }else{
+//        [self.bttixian setBackgroundColor:[UIColor clearColor]];
+//        [self.bttixian setTitle:nil forState:UIControlStateDisabled];
+//        [self.bttixian setImage:[UIImage imageNamed:@"tixiananniu"] forState:UIControlStateNormal];
+//        [self.bttixian setEnabled:YES];
+//    }
+//    
+//    self.tickedScoreLabel.text = [ls.totalScore currencyString:@"" fractionDigits:2];
+//    self.todaySendLabel.text = $str(@"%@/%@",ls.completeTaskCount,ls.totalTaskCount);
+//    
+//    
+//    [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].detailTextLabel.text = [ls.turnAmount stringValue];
+//    [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]].detailTextLabel.text = [ls.favoriteAmount stringValue];
+//    
+//    [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]].detailTextLabel.text = [ls.crashCount currencyString:@"￥" fractionDigits:1];
+//    
+//    [self.tableView selectRowAtIndexPath:Nil animated:YES scrollPosition:UITableViewScrollPositionNone];
+//    
+//    if (self.doCash && self.doCash2) {
+//        [self bk_performBlock:^(id obj) {
+//            if ([obj shouldPerformSegueWithIdentifier:@"ToCash" sender:nil]) {
+//                [obj performSegueWithIdentifier:@"ToCash" sender:nil];
+//            }
+//        } afterDelay:0.5f];
+//    }
+//    
+//    self.doCash = NO;
+//    self.doCash2 = NO;
+//    
+////    __weak AccountViewController* wself = self;
+//    
+////    UserInformation* ui =[AppDelegate getInstance].currentUser;
+//    
+//    [ls updateUserPicture:self.imagePicture];
+//        
+////    if ($safe(ui.name) && ui.name.length>0) {
+////        [self.labelName setText:ui.name];
+////    }else
+//        [self.labelName setText:ls.userName];
+//    
+//    [self.labelExp setText:$str(@"%@Exp.",ls.exp)];
+//    
+//    [self showNoshadowNavigationBar];
+//    
+//    [self.imageInformationHinter setHidden:[ls.completeInfo boolValue]];
+//    
+//    if ([[AppDelegate getInstance].loadingState useNewCash]) {
+//        [self.innerButtonView hidenme];
+//        for (NSLayoutConstraint* lc in self.innerButtonView.constraints) {
+//            if (lc.firstItem==self.innerButtonView && lc.firstAttribute == NSLayoutAttributeHeight) {
+//                lc.constant = 0;
+//            }
+//        }
+////
+////        [self.buttonZfb hidenme];
+////        [self.labelZfb hidenme];
+////        for (NSLayoutConstraint* lc in self.innerButtonView.constraints) {
+////            if (lc.firstAttribute==NSLayoutAttributeLeading
+////                && (
+////                    lc.firstItem==self.buttonMobile || lc.firstItem == self.labelMobile
+////                    )) {
+////                    lc.constant = 70;
+////                }
+////        }
+//    }
+//    
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 #pragma mark storyboard
 
@@ -487,5 +563,10 @@
         }
         [self viewWillAppear:YES];
     } userName:[ad getLastUsername] password:[ad getLastPassword]];
+}
+- (IBAction)goToMartkeyClick:(id)sender {
+}
+- (IBAction)bingDingIphoneBtnClick:(id)sender {
+    [self performSegueWithIdentifier:@"ToMobile" sender:nil];
 }
 @end

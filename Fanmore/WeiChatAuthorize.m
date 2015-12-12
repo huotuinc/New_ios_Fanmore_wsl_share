@@ -19,6 +19,7 @@
 #import "AppDelegate.h"
 #import "Paging.h"
 #import "WeiXinBackViewController.h"
+#import "IphoneLoginViewController.h"
 
 @interface WeiChatAuthorize ()<WXApiDelegate>
 
@@ -66,12 +67,21 @@
  */
 - (void)WeiXinLog{
     
-    //构造SendAuthReq结构体
-    SendAuthReq* req =[[SendAuthReq alloc ] init];
-    req.scope = @"snsapi_userinfo" ;
-    req.state = @"123" ;
-    //第三方向微信终端发送一个SendAuthReq消息结构
-    [WXApi sendAuthReq:req viewController:self delegate:self];
+    if ([WXApi isWXAppInstalled]) {
+        //构造SendAuthReq结构体
+        SendAuthReq* req =[[SendAuthReq alloc ] init];
+        req.scope = @"snsapi_userinfo" ;
+        req.state = @"123" ;
+        //第三方向微信终端发送一个SendAuthReq消息结构
+        [WXApi sendAuthReq:req viewController:self delegate:self];
+    }else{
+        
+        UIStoryboard * sto = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        IphoneLoginViewController * iphone =  [sto instantiateViewControllerWithIdentifier:@"IphoneLoginViewController"];
+        [self presentViewController:iphone animated:YES completion:nil];
+    }
+    
+    
 }
 
 

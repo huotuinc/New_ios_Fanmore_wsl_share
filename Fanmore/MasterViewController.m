@@ -462,7 +462,7 @@
     footer.scrollView = self.tableView;
     footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView){
         id<FanOperations> fos = [[AppDelegate getInstance]getFanOperations];
-        [fos masterIndex:nil block:^(NSString *code, NSString *desc, NSString *shareDesc, NSString *shareURL, NSNumber *numbersOfFollowers, NSNumber *totalDevoteYes, NSNumber *totalDevote, NSArray *list, NSError *error) {
+        [fos masterIndex:nil block:^(NSString *code, NSString *desc, NSString *shareDesc, NSString *shareURL, NSNumber *numbersOfFollowers, NSNumber *totalDevoteYes, NSNumber *totalDevote, NSNumber *todaySafe,NSNumber *lisiSafe,NSNumber *todayShare,NSNumber *lisiShare,NSArray *list, NSError *error) {
             if ($safe(error)) {
                 [FMUtils alertMessage:wself.view msg:[error FMDescription]];
                 [refreshView endRefreshing];

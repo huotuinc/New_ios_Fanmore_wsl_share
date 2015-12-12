@@ -216,6 +216,9 @@
 		EF2736401C1190CE00D8C4BB /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EF27362E1C1190CE00D8C4BB /* UIImageView+HighlightedWebCache.m */; };
 		EF2736411C1190CE00D8C4BB /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2736301C1190CE00D8C4BB /* UIImageView+WebCache.m */; };
 		EF2736421C1190CE00D8C4BB /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2736321C1190CE00D8C4BB /* UIView+WebCacheOperation.m */; };
+		EF27E8111C1A6C0C00C0A65E /* FollowListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF27E8101C1A6C0C00C0A65E /* FollowListTableViewController.m */; };
+		EF27E8141C1A793C00C0A65E /* FollowList.m in Sources */ = {isa = PBXBuildFile; fileRef = EF27E8131C1A793C00C0A65E /* FollowList.m */; };
+		EF27E8171C1A7AC200C0A65E /* FollowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF27E8161C1A7AC200C0A65E /* FollowModel.m */; };
 		EF42C07D1C07F60700602E60 /* UserLoginTool.m in Sources */ = {isa = PBXBuildFile; fileRef = EF42C07C1C07F60700602E60 /* UserLoginTool.m */; };
 		EF42C0A91C07F65B00602E60 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EF42C0821C07F65B00602E60 /* AFHTTPRequestOperation.m */; };
 		EF42C0AA1C07F65B00602E60 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EF42C0841C07F65B00602E60 /* AFHTTPRequestOperationManager.m */; };
@@ -273,6 +276,9 @@
 		EF8E69F41C1669C5004ACB5A /* ShareSDKFlatShareViewUI.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EF8E69DC1C1669C5004ACB5A /* ShareSDKFlatShareViewUI.bundle */; };
 		EF8E69F51C1669C5004ACB5A /* ShareSDKFlatShareViewUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF8E69DD1C1669C5004ACB5A /* ShareSDKFlatShareViewUI.framework */; };
 		EF8E69F61C1669C5004ACB5A /* ShareSDKShareActionSheet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF8E69DE1C1669C5004ACB5A /* ShareSDKShareActionSheet.framework */; };
+		EF8E69FC1C16DA12004ACB5A /* IphoneLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8E69FB1C16DA12004ACB5A /* IphoneLoginViewController.m */; };
+		EF8E69FF1C17C138004ACB5A /* Register.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8E69FE1C17C138004ACB5A /* Register.m */; };
+		EF8E6A081C1974E7004ACB5A /* MasterAndTudiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8E6A071C1974E7004ACB5A /* MasterAndTudiViewController.m */; };
 		EFE90FE51C06DAE40058ABC1 /* WeiChatAuthorize.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE90FE41C06DAE40058ABC1 /* WeiChatAuthorize.m */; };
 		EFE910301C06E5200058ABC1 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EFE9102F1C06E5200058ABC1 /* libicucore.tbd */; };
 		EFE910321C06E5440058ABC1 /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EFE910311C06E5440058ABC1 /* libz.1.2.5.tbd */; };
@@ -697,6 +703,12 @@
 		EF2736301C1190CE00D8C4BB /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		EF2736311C1190CE00D8C4BB /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		EF2736321C1190CE00D8C4BB /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		EF27E80F1C1A6C0C00C0A65E /* FollowListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowListTableViewController.h; sourceTree = "<group>"; };
+		EF27E8101C1A6C0C00C0A65E /* FollowListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowListTableViewController.m; sourceTree = "<group>"; };
+		EF27E8121C1A793C00C0A65E /* FollowList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowList.h; sourceTree = "<group>"; };
+		EF27E8131C1A793C00C0A65E /* FollowList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowList.m; sourceTree = "<group>"; };
+		EF27E8151C1A7AC200C0A65E /* FollowModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowModel.h; sourceTree = "<group>"; };
+		EF27E8161C1A7AC200C0A65E /* FollowModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowModel.m; sourceTree = "<group>"; };
 		EF42C07B1C07F60700602E60 /* UserLoginTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLoginTool.h; sourceTree = "<group>"; };
 		EF42C07C1C07F60700602E60 /* UserLoginTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginTool.m; sourceTree = "<group>"; };
 		EF42C0811C07F65B00602E60 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -805,6 +817,12 @@
 		EF8E69DC1C1669C5004ACB5A /* ShareSDKFlatShareViewUI.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDKFlatShareViewUI.bundle; sourceTree = "<group>"; };
 		EF8E69DD1C1669C5004ACB5A /* ShareSDKFlatShareViewUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKFlatShareViewUI.framework; sourceTree = "<group>"; };
 		EF8E69DE1C1669C5004ACB5A /* ShareSDKShareActionSheet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKShareActionSheet.framework; sourceTree = "<group>"; };
+		EF8E69FA1C16DA12004ACB5A /* IphoneLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IphoneLoginViewController.h; sourceTree = "<group>"; };
+		EF8E69FB1C16DA12004ACB5A /* IphoneLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IphoneLoginViewController.m; sourceTree = "<group>"; };
+		EF8E69FD1C17C138004ACB5A /* Register.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Register.h; sourceTree = "<group>"; };
+		EF8E69FE1C17C138004ACB5A /* Register.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Register.m; sourceTree = "<group>"; };
+		EF8E6A061C1974E7004ACB5A /* MasterAndTudiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterAndTudiViewController.h; sourceTree = "<group>"; };
+		EF8E6A071C1974E7004ACB5A /* MasterAndTudiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterAndTudiViewController.m; sourceTree = "<group>"; };
 		EFE90FE31C06DAE40058ABC1 /* WeiChatAuthorize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiChatAuthorize.h; sourceTree = "<group>"; };
 		EFE90FE41C06DAE40058ABC1 /* WeiChatAuthorize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiChatAuthorize.m; sourceTree = "<group>"; };
 		EFE9102F1C06E5200058ABC1 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
@@ -1895,6 +1913,18 @@
 				EF27360D1C11675C00D8C4BB /* WeiXinBackViewController.m */,
 				EF27360F1C116F0900D8C4BB /* LoginViewController.h */,
 				EF2736101C116F0900D8C4BB /* LoginViewController.m */,
+				EF8E69FA1C16DA12004ACB5A /* IphoneLoginViewController.h */,
+				EF8E69FB1C16DA12004ACB5A /* IphoneLoginViewController.m */,
+				EF8E69FD1C17C138004ACB5A /* Register.h */,
+				EF8E69FE1C17C138004ACB5A /* Register.m */,
+				EF8E6A061C1974E7004ACB5A /* MasterAndTudiViewController.h */,
+				EF8E6A071C1974E7004ACB5A /* MasterAndTudiViewController.m */,
+				EF27E80F1C1A6C0C00C0A65E /* FollowListTableViewController.h */,
+				EF27E8101C1A6C0C00C0A65E /* FollowListTableViewController.m */,
+				EF27E8121C1A793C00C0A65E /* FollowList.h */,
+				EF27E8131C1A793C00C0A65E /* FollowList.m */,
+				EF27E8151C1A7AC200C0A65E /* FollowModel.h */,
+				EF27E8161C1A7AC200C0A65E /* FollowModel.m */,
 			);
 			name = WeiChatAuthorize;
 			sourceTree = "<group>";
@@ -2089,6 +2119,7 @@
 				239193F218AE146300BBD3E9 /* UserInformation.m in Sources */,
 				2301D804190F445600B48EAB /* NSDictionary+FeedbackFeedback.m in Sources */,
 				237880B719EF96BB004BA417 /* ExpHistoryController.m in Sources */,
+				EF8E69FC1C16DA12004ACB5A /* IphoneLoginViewController.m in Sources */,
 				236874D419766DDB00ED559A /* FollowerDetailController.m in Sources */,
 				23224FF1196E6AA100C4F88A /* FollowerCell.m in Sources */,
 				EF527D4C1C0FD51D00C9DCB7 /* MJMethod.m in Sources */,
@@ -2195,6 +2226,7 @@
 				EF42C0B31C07F65B00602E60 /* README.md in Sources */,
 				EF2736421C1190CE00D8C4BB /* UIView+WebCacheOperation.m in Sources */,
 				23224FF4196E6AC500C4F88A /* ContributionCell.m in Sources */,
+				EF8E6A081C1974E7004ACB5A /* MasterAndTudiViewController.m in Sources */,
 				23F896E519010DCA0003EA78 /* NSError+Fanmore.m in Sources */,
 				EF527D471C0FD51D00C9DCB7 /* MJArgument.m in Sources */,
 				EF42C0BA1C07F65B00602E60 /* UIRefreshControl+AFNetworking.m in Sources */,
@@ -2213,6 +2245,7 @@
 				EF2736361C1190CE00D8C4BB /* SDImageCache.m in Sources */,
 				2305230518B33E5C000C62DA /* HttpFanOperations.m in Sources */,
 				238A45371A43CA36009612DE /* NewCashCell.m in Sources */,
+				EF27E8171C1A7AC200C0A65E /* FollowModel.m in Sources */,
 				23224FFD196E6BD300C4F88A /* MasterSystem.m in Sources */,
 				231B503318D2A6C0004615F6 /* ScoreFlowSelection.m in Sources */,
 				23AC287E18F7AF8800C7C869 /* SecureHelper.m in Sources */,
@@ -2246,7 +2279,9 @@
 				23224FEA196CE29E00C4F88A /* LocatedHelper.m in Sources */,
 				23AAFFA219472A1E0079A010 /* FakeNavigationBar.m in Sources */,
 				23049AD81951AC900052962E /* TaskListCell.m in Sources */,
+				EF27E8111C1A6C0C00C0A65E /* FollowListTableViewController.m in Sources */,
 				235ADE7818EE837E005072A1 /* UIImage+Fanmore.m in Sources */,
+				EF27E8141C1A793C00C0A65E /* FollowList.m in Sources */,
 				23FBFDE718B1E645005BE96F /* CashingListController.m in Sources */,
 				23FBFDE418B1E5D5005BE96F /* FavStoresController.m in Sources */,
 				2360B39018CF0FBC00E1534E /* FavStoreDetailController.m in Sources */,
@@ -2278,6 +2313,7 @@
 				237880BA19EF96D8004BA417 /* ExpHistoryCell.m in Sources */,
 				EF27363B1C1190CE00D8C4BB /* SDWebImageManager.m in Sources */,
 				2303CD7618C0205300918E72 /* UIViewController+Fanmore.m in Sources */,
+				EF8E69FF1C17C138004ACB5A /* Register.m in Sources */,
 				230651481915DAD600B9CC84 /* MessageCell.m in Sources */,
 				23374BD6187A4B7700F80A34 /* main.m in Sources */,
 				23FCBE6218BB35BD00631ADE /* NSNumber+Fanmore.m in Sources */,
@@ -2525,7 +2561,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fanmore/Fanmore-Prefix.pch";
 				INFOPLIST_FILE = "Fanmore/Fanmore-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					./Fanmore,
@@ -2566,7 +2602,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fanmore/Fanmore-Prefix.pch";
 				INFOPLIST_FILE = "Fanmore/Fanmore-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					./Fanmore,

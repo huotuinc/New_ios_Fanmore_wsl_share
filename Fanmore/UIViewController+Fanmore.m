@@ -95,18 +95,20 @@ extern NSString const *CWBlurViewKey;
 //    [baseView addSubview:imageView];
     //    baseView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 #warning 2015年11/27 --luohaibo --- toFixit
-    void(^callback)(BOOL) = (id)[baseView bk_performAfterDelay:5 usingBlock:^(id obj) {
+    
+    void(^callback)(BOOL) = [baseView bk_performBlock:^(id obj) {
         if ($safe(obj) && $safe([obj superview])) {
             [obj removeFromSuperview];
         }
-    }];
+    } afterDelay:1];
+
 
     [baseView bk_whenTapped:^{
         
         [baseView removeFromSuperview];
 //        NSLog(@"xxx");
-//        callback(NO);
-//        callback(YES);
+        callback(NO);
+        callback(YES);
     }];
     
     [[AppDelegate getInstance] showedThisGuide:imageName];
