@@ -23,6 +23,8 @@
 #import "UIView+SSToolkitAdditions.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import "MasterAndTudiViewController.h"
+#import "UIImageView+WebCache.h"
+
 
 #define MMImageWidthRate 0.8f
 #define MMImageHeightRate 0.8f
@@ -108,7 +110,10 @@
         [FMUtils afterLogin:@selector(clickShareApp) invoker:self];
         return;
     }
-    [MasterViewController pushMaster:self];
+    
+    UIStoryboard* mine = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    MasterAndTudiViewController * master = [mine instantiateViewControllerWithIdentifier:@"MasterAndTudiViewController"];
+    [self.navigationController pushViewController:master animated:YES];
 //    [self performSegueWithIdentifier:@"ToShareApp" sender:self.sharei];
 }
 
@@ -139,13 +144,6 @@
     }
 }
 
-
-- (void)homeIconClick{
-    
-    
-    
-    NSLog(@"xxxx");
-}
 
 
 - (void)viewDidLoad
@@ -220,23 +218,11 @@
         [self.view addGestureRecognizer:swipeRecognizer];
     }
     
+    //首页点击
     self.homei.userInteractionEnabled = YES;
     self.homel.userInteractionEnabled = YES;
-    
-    
-    UIGestureRecognizer *gs = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(homeIconClick)];
-    [self.homei addGestureRecognizer:gs];
-    
-    
-    
-//    [self.homei bk_whenTapped:^{
-//       [wself clickHome];
-//    }];
-    [self.homei bk_whenTapped:^{
-        
-        NSLog(@"xxxx");
-    }];
-//    [self.homel bk_whenTapped:homeWorker];
+    [self.homei bk_whenTapped:homeWorker];
+    [self.homel bk_whenTapped:homeWorker];
     
     self.tnoticeI.userInteractionEnabled = YES;
     self.tnoticeL.userInteractionEnabled = YES;
@@ -432,6 +418,7 @@
             self.myYesterdayRewards.text = @"0";
         }
         
+        [self.imagePicture sd_setImageWithURL:[NSURL URLWithString:ls.userData.picUrl] placeholderImage:nil];
 //        NSNumber* totalScore = ls.userData.totalScore;
         NSNumber* totalScore = ls.userData.score;
         if ($safe(totalScore)) {
@@ -482,7 +469,6 @@
 //        [self.redTip2 setFrame:CGRectMake(lastPoint.x+1, lastPoint.y-1, self.redTip.frame.size.width, self.redTip.frame.size.height)];
 //    }
 //    [self.redTip2 hidenme];
-    
     if ([ls hasLogined]) {
 //        UserInformation* ui =[AppDelegate getInstance].currentUser;
         

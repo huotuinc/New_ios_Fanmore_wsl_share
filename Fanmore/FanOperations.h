@@ -297,6 +297,16 @@
  *  @param delegate <#delegate description#>
  *  @param block    <#block description#>
  */
-- (void)toWeiChatLogin:(id<FanOpertationDelegate>)delegate block:(void(^)(NSString* result,NSError* error))block WithParam:(NSMutableDictionary *)parame;
+- (void)toSouji:(id<FanOpertationDelegate>)delegate block:(void (^)(LoginState*,NSError*))block WithParam:(NSString *)phone withYanzhen:(NSString *)yanzhenma withYaoqingma:(NSString *)yaoqingma;
 
+
+/**
+ *  获取邀请码
+ *
+ *  @param delegate <#delegate description#>
+ *  @param block    <#block description#>
+ *  @param parame   <#parame description#>
+ */
+
+- (void)ToGetYaoqing:(id<FanOpertationDelegate>)delegate block:(void(^)(NSString* result,NSError* error))block WithParam:(NSString *)iphone;
 @end

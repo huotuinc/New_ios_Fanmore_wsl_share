@@ -201,6 +201,7 @@
     [self doConnect:delegate interface:@"Login" errorBlocker:^(NSError *error) {
         block(nil,error);
     } resultBlocker:^(NSDictionary *data) {
+        
         LoginState* ls = [LoginState modelFromDict:data];        
         AppDelegate* ad = [AppDelegate getInstance];
         [ad.loadingState loginAs:ls];
@@ -448,6 +449,8 @@
     [self doConnect:delegate interface:@"TodayBrowseList" errorBlocker:^(NSError *error) {
         block(nil,error);
     } resultBlocker:^(NSArray* jsonTasks) {
+        
+        LOG("TodayBrowseList---%@",jsonTasks);
         NSMutableArray* tasks = $marrnew;
         for (int i=0; i<jsonTasks.count; i++) {
             tasks[i] = [Task modelFromDict:jsonTasks[i]];
@@ -1413,14 +1416,40 @@
     } parameters:p];
 }
 
+/**
+ *  获取邀请码
+ *
+ *  @param delegate <#delegate description#>
+ *  @param block    <#block description#>
+ *  @param parame   <#parame description#>
+ */
 
-#warning luohaibo 提交微信授权信息
-- (void)toWeiChatLogin:(id<FanOpertationDelegate>)delegate block:(void(^)(NSString* result,NSError* error))block WithParam:(NSMutableDictionary *)parame{
-    [self loginCode:parame];
-    [self doConnect:nil interface:@"register" errorBlocker:^(NSError *error) {
+- (void)ToGetYaoqing:(id<FanOpertationDelegate>)delegate block:(void(^)(NSString* result,NSError* error))block WithParam:(NSString *)iphone{
+    NSMutableDictionary* p = [NSMutableDictionary dictionary];
+    p[@"mobile"] = iphone;
+    [self loginCode:p];
+    
+    [self doConnect:delegate interface:@"sms" errorBlocker:^(NSError *error) {
         block(nil,error);
     } resultBlocker:^(id data) {
         block(data,nil);
+    } parameters:p];
+}
+
+#warning luohaibo 提交微信授权信息
+- (void)toSouji:(id<FanOpertationDelegate>)delegate block:(void (^)(LoginState*,NSError*))block WithParam:(NSString *)phone withYanzhen:(NSString *)yanzhenma withYaoqingma:(NSString *)yaoqingma{
+    NSMutableDictionary * parame = [NSMutableDictionary dictionary];
+    parame[@"mobile"] = phone;
+    parame[@"verifyCode"] = yanzhenma;
+    parame[@"invitationCode"] =yaoqingma;
+    [self loginCode:parame];
+    [self doConnect:delegate interface:@"MobileRegister" errorBlocker:^(NSError *error) {
+        block(nil,error);
+    } resultBlocker:^(id data) {
+        LOG(@"%@",data);
+        NSString * passwd =  data[@"loginCode"];
+        NSArray * arra =  [passwd componentsSeparatedByString:@"^"];
+        [self login:delegate block:block userName:data[@"userName"] password:arra[1]];
     } parameters:parame];
 }
 

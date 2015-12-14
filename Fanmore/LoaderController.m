@@ -37,9 +37,11 @@
 - (void)doLoad:(NSNumber*)delay{
     __weak LoaderController* wself = self;
     AppDelegate* ad = [AppDelegate getInstance];
+    
+    NSLog(@"%@",ad.loadingState.userData.loginCode);
     [[ad getFanOperations]loading:[FFFanOpertationDelegate DelegateForFFCircularProgressView:self.pview] block:^(UIImage *image,NSError* error) {
         
-        NSLog(@"========%@",error);
+        LOG(@"========%@",error);
         if (error!=Nil) {
             
             LOG(@"on loading %@",error);

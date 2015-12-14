@@ -10,4 +10,6 @@
 
 @interface MasterAndTudiViewController : UIViewController
 
+
++(instancetype)pushMaster:(UIViewController*)controller;
 @end

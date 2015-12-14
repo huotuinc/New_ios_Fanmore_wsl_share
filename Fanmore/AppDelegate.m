@@ -192,31 +192,6 @@
     [WXApi registerApp:@"wxaeda2d5603b12302" withDescription:@"wsl"];
     
     
-//    if ([self.loadingState.loginStatus  integerValue] == 1) {
-//        
-//        [[self getFanOperations] loading:nil block:^(UIImage *image, NSError *error) {
-//            
-//        } userName:nil password:nil];
-//        
-//        
-//        UIStoryboard* main = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-//        UIViewController* vc = [main instantiateInitialViewController];
-//        self.window.rootViewController = vc;
-//        [self.window makeKeyAndVisible];
-//    }else{
-//        
-//        UIStoryboard * mainS = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//        WeiChatAuthorize * WeiChart = [mainS instantiateViewControllerWithIdentifier:@"WeiChatAuthorize"];
-//        UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:WeiChart];
-//        self.window.rootViewController = nav;
-//        [self.window makeKeyAndVisible];
-//    }
-//    
-//    
-    
-    return YES;
-    
-    
 ////    [iVersion sharedInstance].delegate = self;
 //    self.launchTime = [[NSDate date] timeIntervalSince1970];
 //    
@@ -249,61 +224,61 @@
 ////    [ShareSDK registerApp:@"1782a62f5430" useAppTrusteeship:useAppTrusteeship];
 //    
 //#endif
-//
-//    [self startLocate:[[LocatedHelper alloc] init]];
-//    // Override point for customization after application launch.
-//    double version = [[UIDevice currentDevice].systemVersion doubleValue];
-//    UINavigationBar* tnb = [UINavigationBar appearance];
-//    if (version>=7) {
-//        [tnb setBarTintColor:fmMainColor];
-//    }else{
-//        [tnb setTintColor:fmMainColor];
-//    }
-//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-//    
-//#ifdef FMShareTool
-//    [[ShareTool toolWithType:TShareTypeWeixiTimeline identification:@"wx1424e93fb903ef33"] checkSupport:YES];
-//#endif
-//
-////    UIRemoteNotificationTypeBadge   = 1 << 0,
-////    UIRemoteNotificationTypeSound   = 1 << 1,
-////    UIRemoteNotificationTypeAlert   = 1 << 2,
-////    UIRemoteNotificationTypeNewsstandContentAvailability = 1 << 3,
-//    if (version>=8) {
-//#if __IPHONE_8_0
-//        [application registerForRemoteNotifications];
-////        [application currentUserNotificationSettings].types
-//        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:
-//                                                       (UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeAlert)  categories:nil]];
-//#endif
-//    }else
-//        [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert];
-//    
-//    UILocalNotification *localNotif =
-//    [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
-//    if (localNotif) {
-//        //处理本地通知
-//        NSLog(@"localnotif");
-//    }
-//    
-//#ifdef FanmoreDebugMockRemoteURL
-//    NSMutableDictionary* myo = [NSMutableDictionary dictionary];
-//    [myo setRemotePushURL:FanmoreDebugMockRemoteURL];
-//    
-//    launchOptions = @{UIApplicationLaunchOptionsRemoteNotificationKey: myo};
-//#endif
-//    
-//#ifdef FanmoreDebugMockRemoteTask
-//    NSMutableDictionary* myo = [NSMutableDictionary dictionary];
-//    [myo setRemotePushTaskId:FanmoreDebugMockRemoteTask];
-//    
-//    launchOptions = @{UIApplicationLaunchOptionsRemoteNotificationKey: myo};
-//#endif
-//    
-//    self.launchOptions = launchOptions;
-//    application.applicationIconBadgeNumber = 0;
-//    
-//    return YES;
+
+    [self startLocate:[[LocatedHelper alloc] init]];
+    // Override point for customization after application launch.
+    double version = [[UIDevice currentDevice].systemVersion doubleValue];
+    UINavigationBar* tnb = [UINavigationBar appearance];
+    if (version>=7) {
+        [tnb setBarTintColor:fmMainColor];
+    }else{
+        [tnb setTintColor:fmMainColor];
+    }
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+#ifdef FMShareTool
+    [[ShareTool toolWithType:TShareTypeWeixiTimeline identification:@"wx1424e93fb903ef33"] checkSupport:YES];
+#endif
+
+//    UIRemoteNotificationTypeBadge   = 1 << 0,
+//    UIRemoteNotificationTypeSound   = 1 << 1,
+//    UIRemoteNotificationTypeAlert   = 1 << 2,
+//    UIRemoteNotificationTypeNewsstandContentAvailability = 1 << 3,
+    if (version>=8) {
+#if __IPHONE_8_0
+        [application registerForRemoteNotifications];
+//        [application currentUserNotificationSettings].types
+        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:
+                                                       (UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeAlert)  categories:nil]];
+#endif
+    }else
+        [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert];
+    
+    UILocalNotification *localNotif =
+    [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if (localNotif) {
+        //处理本地通知
+        NSLog(@"localnotif");
+    }
+    
+#ifdef FanmoreDebugMockRemoteURL
+    NSMutableDictionary* myo = [NSMutableDictionary dictionary];
+    [myo setRemotePushURL:FanmoreDebugMockRemoteURL];
+    
+    launchOptions = @{UIApplicationLaunchOptionsRemoteNotificationKey: myo};
+#endif
+    
+#ifdef FanmoreDebugMockRemoteTask
+    NSMutableDictionary* myo = [NSMutableDictionary dictionary];
+    [myo setRemotePushTaskId:FanmoreDebugMockRemoteTask];
+    
+    launchOptions = @{UIApplicationLaunchOptionsRemoteNotificationKey: myo};
+#endif
+    
+    self.launchOptions = launchOptions;
+    application.applicationIconBadgeNumber = 0;
+    
+    return YES;
 }
 
 -(void) onResp:(BaseResp*)resp

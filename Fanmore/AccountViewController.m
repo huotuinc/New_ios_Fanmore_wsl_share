@@ -124,62 +124,62 @@
     
     self.navigationItem.leftBarButtonItems = @[[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(doBack)]];
 //    
-//    double version = [[UIDevice currentDevice].systemVersion doubleValue];
-//    if (version>=7.0) {
-//        for (UIView* v in self.view.subviews) {
-//            LOG(@"%@",v);
-//            v.autoresizingMask =UIViewAutoresizingNone;
-//            v.frame = CGRectMake(v.frame.origin.x, v.frame.origin.y+50.0f, v.frame.size.width, v.frame.size.height);
-//            LOG(@"%@",v);
-//        }
-//    }
+    double version = [[UIDevice currentDevice].systemVersion doubleValue];
+    if (version>=7.0) {
+        for (UIView* v in self.view.subviews) {
+            LOG(@"%@",v);
+            v.autoresizingMask =UIViewAutoresizingNone;
+            v.frame = CGRectMake(v.frame.origin.x, v.frame.origin.y+50.0f, v.frame.size.width, v.frame.size.height);
+            LOG(@"%@",v);
+        }
+    }
     
     
     
     //luohaibo
     [self setUp];
     
-//    __weak AccountViewController* wself = self;
-//    
-//    [self.btlogout bk_whenTapped:^{
-//        [ConfirmController confirm:wself message:@"确实要注销么？" block:^{
-//            AppDelegate* ad = [AppDelegate  getInstance];
-//            [ad logout:wself];
-//            [ad storeLastUserInformation:@"" password:@""];
-//            [wself.parentViewController dismissViewControllerAnimated:YES completion:NULL];
-//        }];
+    __weak AccountViewController* wself = self;
+    
+    [self.btlogout bk_whenTapped:^{
+        [ConfirmController confirm:wself message:@"确实要注销么？" block:^{
+            AppDelegate* ad = [AppDelegate  getInstance];
+            [ad logout:wself];
+            [ad storeLastUserInformation:@"" password:@""];
+            [wself.parentViewController dismissViewControllerAnimated:YES completion:NULL];
+        }];
+    }];
+    
+    [self.buttonMobile addTarget:self action:@selector(clickMobile) forControlEvents:UIControlEventTouchUpInside];
+    [self.buttonZfb addTarget:self action:@selector(clickZfb) forControlEvents:UIControlEventTouchUpInside];
+//    self.zfbLabel.userInteractionEnabled = YES;
+//    [self.zfbLabel bk_whenTapped:^{
+//        wself.doCash = NO;
+//        wself.doCash2 = NO;
+//        [wself performSegueWithIdentifier:@"ToALP" sender:wself.zfbLabel];
 //    }];
-//    
-//    [self.buttonMobile addTarget:self action:@selector(clickMobile) forControlEvents:UIControlEventTouchUpInside];
-//    [self.buttonZfb addTarget:self action:@selector(clickZfb) forControlEvents:UIControlEventTouchUpInside];
-////    self.zfbLabel.userInteractionEnabled = YES;
-////    [self.zfbLabel bk_whenTapped:^{
-////        wself.doCash = NO;
-////        wself.doCash2 = NO;
-////        [wself performSegueWithIdentifier:@"ToALP" sender:wself.zfbLabel];
-////    }];
-////    self.label.userInteractionEnabled = YES;
-////    [self.label bk_whenTapped:^{
-////        wself.doCash = NO;
-////        wself.doCash2 = NO;
-////        [wself performSegueWithIdentifier:@"ToMobile" sender:wself.label];
-////    }];
-//    
-//    
-//    self.imagePicture.userInteractionEnabled = YES;
-//    [self.imagePicture bk_whenTapped:^{
-//        [wself performSegueWithIdentifier:@"ToInformation" sender:nil];
+//    self.label.userInteractionEnabled = YES;
+//    [self.label bk_whenTapped:^{
+//        wself.doCash = NO;
+//        wself.doCash2 = NO;
+//        [wself performSegueWithIdentifier:@"ToMobile" sender:wself.label];
 //    }];
-//    
-//    if ([[AppDelegate getInstance].loadingState useNewCash]){
-//        [self.viewMain setContentSize:CGSizeMake(320, 630-65-25)];
-//    }else
-//        [self.viewMain setContentSize:CGSizeMake(320, 630)];
-//    self.viewMain.showsHorizontalScrollIndicator = NO;
-//    self.viewMain.showsVerticalScrollIndicator = NO;
-////    [self.viewMain setScrollEnabled:YES];
-////    double version = [[UIDevice currentDevice].systemVersion doubleValue];
-////    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    
+    self.imagePicture.userInteractionEnabled = YES;
+    [self.imagePicture bk_whenTapped:^{
+        [wself performSegueWithIdentifier:@"ToInformation" sender:nil];
+    }];
+    
+    if ([[AppDelegate getInstance].loadingState useNewCash]){
+        [self.viewMain setContentSize:CGSizeMake(320, 630-65-25)];
+    }else
+        [self.viewMain setContentSize:CGSizeMake(320, 630)];
+    self.viewMain.showsHorizontalScrollIndicator = NO;
+    self.viewMain.showsVerticalScrollIndicator = NO;
+//    [self.viewMain setScrollEnabled:YES];
+//    double version = [[UIDevice currentDevice].systemVersion doubleValue];
+//    self.automaticallyAdjustsScrollViewInsets = NO;
     
 
 }

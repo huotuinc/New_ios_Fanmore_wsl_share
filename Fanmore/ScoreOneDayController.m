@@ -4,7 +4,7 @@
 //
 //  Created by Cai Jiang on 6/14/14.
 //  Copyright (c) 2014 Cai Jiang. All rights reserved.
-//
+//  昨日收益
 
 #import "ScoreOneDayController.h"
 #import "AppDelegate.h"
@@ -99,6 +99,8 @@ NSString*(^dictdategetter)(id input) = ^(id input) {
     
     [self.view addSubview:table];
     self.tableView = table;
+    //luohaibo
+    self.tableView.contentInset = UIEdgeInsetsMake(30, 0, 0, 0);
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
