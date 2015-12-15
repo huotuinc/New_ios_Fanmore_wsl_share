@@ -13,6 +13,7 @@
 #import "LoginState.h"
 #import "FollowerListController.h"
 #import "FollowListTableViewController.h"
+#import "FMUtils.h"
 
 @interface MasterAndTudiViewController ()
 
@@ -111,6 +112,8 @@
 - (IBAction)fuzhiCode:(id)sender {
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = self.nameLable.text;
+    
+    [FMUtils alertMessage:self.view msg:@"复制成功"];
 }
 
 

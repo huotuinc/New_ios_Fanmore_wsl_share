@@ -1924,13 +1924,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="H3t-me-9IN">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="H3t-me-9IN">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="NotifyCell" id="GPf-gM-4jC" customClass="NotifyCell">
-                                        <rect key="frame" x="0.0" y="86" width="320" height="88"/>
+                                        <rect key="frame" x="0.0" y="22" width="320" height="88"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GPf-gM-4jC" id="hHl-mj-quU">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="87"/>
@@ -2158,70 +2158,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <sections>
-                            <tableViewSection headerTitle=" " id="B7B-TH-8Yg">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="I0s-JE-nnj" imageView="R5F-d4-3Pr" style="IBUITableViewCellStyleDefault" id="Hap-CX-7GH">
-                                        <rect key="frame" x="0.0" y="86" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hap-CX-7GH" id="5dy-8g-uB4">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="意见反馈" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" id="I0s-JE-nnj">
-                                                    <rect key="frame" x="62" y="0.0" width="223" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="mail" id="R5F-d4-3Pr">
-                                                    <rect key="frame" x="15" y="5" width="32" height="32"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <animations/>
-                                                </imageView>
-                                            </subviews>
-                                            <animations/>
-                                        </tableViewCellContentView>
-                                        <animations/>
-                                        <connections>
-                                            <segue destination="Czo-iD-iMw" kind="push" identifier="Feedback" id="Kw9-vd-VHi"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="ToT-ck-v51" imageView="s98-0M-EGL" style="IBUITableViewCellStyleDefault" id="Ff5-if-hvg">
-                                        <rect key="frame" x="0.0" y="130" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ff5-if-hvg" id="23w-SI-l0L">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="消息中心" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" id="ToT-ck-v51">
-                                                    <rect key="frame" x="62" y="0.0" width="223" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="xiaoxi" id="s98-0M-EGL">
-                                                    <rect key="frame" x="15" y="5" width="32" height="32"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <animations/>
-                                                </imageView>
-                                            </subviews>
-                                            <animations/>
-                                        </tableViewCellContentView>
-                                        <animations/>
-                                        <connections>
-                                            <segue destination="Z5a-bh-mgP" kind="push" id="qtD-Kp-Gnb"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                             <tableViewSection headerTitle=" " id="Vo1-Gq-efI">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="CfJ-WM-Dzb" detailTextLabel="cxr-yO-r6p" imageView="Vb4-mO-6wq" style="IBUITableViewCellStyleValue1" id="IW2-mf-Pya">
-                                        <rect key="frame" x="0.0" y="196" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IW2-mf-Pya" id="XRB-Ym-P6M">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -2254,7 +2194,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Wsn-Tq-oVI" imageView="JbG-56-xkf" style="IBUITableViewCellStyleDefault" id="e9P-xe-phS">
-                                        <rect key="frame" x="0.0" y="240" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="130" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e9P-xe-phS" id="pII-JF-jDp">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -2279,7 +2219,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="ZbW-md-CY6" detailTextLabel="WNP-qa-MWM" imageView="M6g-sp-e4i" style="IBUITableViewCellStyleValue1" id="SfJ-J0-BT8">
-                                        <rect key="frame" x="0.0" y="284" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="174" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SfJ-J0-BT8" id="fZZ-oX-afu">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -2315,36 +2255,8 @@
                             </tableViewSection>
                             <tableViewSection headerTitle=" " id="zF4-Tf-aRJ">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="3By-0b-9E6" imageView="kX3-Yj-bE7" style="IBUITableViewCellStyleDefault" id="YRE-um-kt0">
-                                        <rect key="frame" x="0.0" y="350" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YRE-um-kt0" id="bKI-jO-jf5">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="投放指南" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" id="3By-0b-9E6">
-                                                    <rect key="frame" x="62" y="0.0" width="223" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="toufang" id="kX3-Yj-bE7">
-                                                    <rect key="frame" x="15" y="5" width="32" height="32"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <animations/>
-                                                </imageView>
-                                            </subviews>
-                                            <animations/>
-                                        </tableViewCellContentView>
-                                        <animations/>
-                                        <connections>
-                                            <segue destination="Ssp-Cr-vL5" kind="push" identifier="ToPutin" id="LaD-0o-JnC"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="65x-8W-pp3" imageView="Osg-BV-bdk" style="IBUITableViewCellStyleDefault" id="B5p-7b-C8J">
-                                        <rect key="frame" x="0.0" y="394" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="240" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B5p-7b-C8J" id="w5q-pA-X5Y">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -2384,7 +2296,6 @@
                     <connections>
                         <outlet property="cellCache" destination="IW2-mf-Pya" id="yVa-Kj-p9q"/>
                         <outlet property="cellCancelSinaWeiboAuth" destination="e9P-xe-phS" id="vF0-Rl-F3R"/>
-                        <outlet property="cellFeedBack" destination="Hap-CX-7GH" id="aSM-2Z-ZS1"/>
                         <outlet property="cellVersionCheck" destination="SfJ-J0-BT8" id="yhn-Wn-pmo"/>
                         <outlet property="labelCacheDetail" destination="cxr-yO-r6p" id="XLZ-R5-Znb"/>
                         <segue destination="40i-RN-gZi" kind="push" identifier="FeedbackList" id="Ux2-qx-7Af"/>
@@ -3037,7 +2948,7 @@
                                     <constraint firstItem="7Za-L5-3J2" firstAttribute="top" secondItem="Pwd-fE-ATk" secondAttribute="top" constant="17" id="yVg-kx-s3u"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   说明：10个积分兑换人民币1元，累计达100个积分即可将积分转入钱包，钱包内的金额可立刻兑换支付宝，Q币，话费等。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="310" translatesAutoresizingMaskIntoConstraints="NO" id="635-Ko-w7W">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   说明：10个积分兑换人民币1元，累计达100个积分即可将积分转入钱包，钱包内的金额可立刻兑换支付宝，Q币，话费等。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="310" translatesAutoresizingMaskIntoConstraints="NO" id="635-Ko-w7W" userLabel="说明：10个积分兑换人民币1元，累计达100个积分即可将积分转入钱包，钱包内的金额可立刻兑换支付宝，Q币，话费等。">
                                 <rect key="frame" x="5" y="88" width="310" height="58"/>
                                 <animations/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -3148,6 +3059,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="Mydes" destination="635-Ko-w7W" id="df9-yw-M75"/>
                         <outlet property="firstRecord" destination="Qke-oW-16p" id="ooU-Ze-OjG"/>
                         <outlet property="scoreJifen" destination="R6x-wi-mlE" id="ibl-4o-iwh"/>
                         <outlet property="toMakkJifen" destination="KNb-vP-Owm" id="5y1-BD-Nes"/>
@@ -3156,7 +3068,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2tp-Hr-E7b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="832" y="1825"/>
+            <point key="canvasLocation" x="761" y="1822"/>
         </scene>
         <!--积分提现-->
         <scene sceneID="sum-za-Swx">
@@ -4471,7 +4383,6 @@
         <image name="jiantou_small2" width="16" height="16"/>
         <image name="kickagainbutton" width="117" height="32"/>
         <image name="listnA-hi" width="320" height="49"/>
-        <image name="mail" width="32" height="32"/>
         <image name="malldayuan1" width="32" height="32"/>
         <image name="malllistbottom" width="313" height="73"/>
         <image name="malllisttop" width="313" height="30"/>
@@ -4489,12 +4400,10 @@
         <image name="shitu1" width="32" height="32"/>
         <image name="shuaxin" width="35" height="35"/>
         <image name="shuxian" width="1" height="2"/>
-        <image name="toufang" width="32" height="32"/>
         <image name="trash" width="32" height="32"/>
         <image name="user" width="32" height="32"/>
         <image name="wallet_score" width="20" height="20"/>
         <image name="wodezhanghao" width="32" height="32"/>
-        <image name="xiaoxi" width="32" height="32"/>
         <image name="xjkjt" width="30" height="30"/>
         <image name="yuan_big" width="86" height="86"/>
         <image name="yugao" width="90" height="75"/>
@@ -4503,9 +4412,7 @@
         <image name="zhuxiaoicon" width="296" height="38"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="iXb-tg-kKS"/>
         <segue reference="U6R-np-1gz"/>
-        <segue reference="Kw9-vd-VHi"/>
         <segue reference="GHQ-5f-G6i"/>
         <segue reference="OXB-6h-Krx"/>
         <segue reference="Aku-fb-Dbv"/>

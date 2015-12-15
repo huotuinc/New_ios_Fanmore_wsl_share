@@ -7,10 +7,15 @@
 //
 
 #import "JiFenToMallController.h"
+#import "AppDelegate.h"
+#import "LoginState.h"
 
 @interface JiFenToMallController ()
 /**万事利积分*/
 @property (weak, nonatomic) IBOutlet UILabel *scoreJifen;
+
+@property (weak, nonatomic) IBOutlet UILabel *Mydes;
+
 
 /**转到商城积分*/
 @property (weak, nonatomic) IBOutlet UILabel *toMallJifen;
@@ -26,6 +31,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"小金库";
+    
+    
+    
+    
+    
     // Do any additional setup after loading the view.
 }
 
@@ -38,6 +48,20 @@
     if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
+    
+    LoginState * a =  [AppDelegate getInstance].loadingState.userData;
+    
+    self.scoreJifen.text = [NSString stringWithFormat:@"%ld",(long)[a.score integerValue]];
+    
+    __weak JiFenToMallController * wself = self;
+    [[[AppDelegate getInstance]  getFanOperations] TOGetGlodDate:nil block:^(NSDictionary *result, NSError *error) {
+        
+        wself.Mydes.text = result[@"desc"];
+        wself.toMakkJifen.text = [NSString stringWithFormat:@"%d",[result[@"money"] integerValue]];
+        wself.firstRecord.text = result[@"lastApply"][@"ApplyTime"];
+        wself.toMakkJifen.text = [NSString stringWithFormat:@"转入钱包%.2f元",[result[@"lastApply"][@"ApplyMoney"] doubleValue]];
+        LOG(@"---%@--------%@",result,error.description);
+    } WithParam:[NSString stringWithFormat:@"%d",[a.score integerValue]]];
     
 }
 - (void)didReceiveMemoryWarning {

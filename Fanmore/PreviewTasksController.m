@@ -88,6 +88,18 @@
     self.tableView.allowsSelection = YES;
     [self.tableView registerClass:[PreviewTaskCell class] forCellReuseIdentifier:@"PreviewTaskCell"];
     
+    
+    MJRefreshHeaderView *header = [MJRefreshHeaderView header];
+    header.scrollView = self.tableView;
+    header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView){
+        [wself.tasks removeAllObjects];
+        wself._footer.beginRefreshingBlock(refreshView);
+    };
+    
+    self._header = header;
+    [header beginRefreshing];
+    
+    
     MJRefreshFooterView *footer = [MJRefreshFooterView footer];
     footer.scrollView = self.tableView;
     footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView){
@@ -111,15 +123,7 @@
     self._footer = footer;
     
     
-    MJRefreshHeaderView *header = [MJRefreshHeaderView header];
-    header.scrollView = self.tableView;
-    header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView){
-        [wself.tasks removeAllObjects];
-        wself._footer.beginRefreshingBlock(refreshView);
-    };
     
-    self._header = header;
-    [header beginRefreshing];
     
     [self reloadItems];
     
@@ -182,6 +186,10 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [self.navigationController setNavigationBarHidden:NO];
+    if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+    
     [self.tableView selectRowAtIndexPath:Nil animated:YES scrollPosition:UITableViewScrollPositionNone];
 }
 

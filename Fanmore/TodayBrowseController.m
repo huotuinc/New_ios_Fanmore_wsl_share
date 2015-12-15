@@ -69,26 +69,6 @@
     self.tableView.allowsSelection = NO;
     [self.tableView registerClass:[BrowseTaskCell class] forCellReuseIdentifier:@"BrowseTaskCell"];
     
-    MJRefreshFooterView *footer = [MJRefreshFooterView footer];
-    footer.scrollView = self.tableView;
-    footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView){
-        id<FanOperations> fos = [[AppDelegate getInstance]getFanOperations];
-        
-        [fos TodayBrowseList:nil block:^(NSArray *list, NSError *error) {
-            if ($safe(error)) {
-                [FMUtils alertMessage:wself.view msg:[error FMDescription]];
-                [refreshView endRefreshing];
-                return;
-            }
-            if ($safe(list)) {
-                HashAddArray(wself.tasks, list);
-                [wself.tableView reloadData];
-                [refreshView endRefreshing];
-            }
-        } paging:[Paging paging:10 parameters:@{@"autoId":[wself lastTaskId]}]];
-    };
-    self._footer = footer;
-    
     
     MJRefreshHeaderView *header = [MJRefreshHeaderView header];
     header.scrollView = self.tableView;
@@ -114,6 +94,30 @@
 #else
     [header beginRefreshing];
 #endif
+    
+    
+    MJRefreshFooterView *footer = [MJRefreshFooterView footer];
+    footer.scrollView = self.tableView;
+    footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView){
+        id<FanOperations> fos = [[AppDelegate getInstance]getFanOperations];
+        
+        [fos TodayBrowseList:nil block:^(NSArray *list, NSError *error) {
+            if ($safe(error)) {
+                [FMUtils alertMessage:wself.view msg:[error FMDescription]];
+                [refreshView endRefreshing];
+                return;
+            }
+            if ($safe(list)) {
+                HashAddArray(wself.tasks, list);
+                [wself.tableView reloadData];
+                [refreshView endRefreshing];
+            }
+        } paging:[Paging paging:10 parameters:@{@"autoId":[wself lastTaskId]}]];
+    };
+    self._footer = footer;
+    
+    
+    
     
 }
 

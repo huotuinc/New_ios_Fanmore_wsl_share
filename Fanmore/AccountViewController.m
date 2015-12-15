@@ -201,11 +201,11 @@
         cell.textLabel.text = @"进入商城";
         
     }else if (indexPath.row == 1) {
-        cell.imageView.image = [UIImage imageNamed:@"my_safe"];
+        cell.imageView.image = [UIImage imageNamed:@"zh"];
         cell.textLabel.text = @"账户安全";
         
     }else if (indexPath.row == 2) {
-        cell.imageView.image = [UIImage imageNamed:@"jibenxinxiicon."];
+        cell.imageView.image = [UIImage imageNamed:@"jb"];
         cell.textLabel.text = @"基本信息";
         
     }else{

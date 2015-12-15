@@ -1154,7 +1154,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w31-Oc-g7I">
                                                 <rect key="frame" x="262" y="20" width="50" height="50"/>
                                                 <animations/>
-                                                <state key="normal" backgroundImage="left"/>
+                                                <state key="normal" title="分享"/>
                                                 <connections>
                                                     <action selector="backClick:" destination="T2A-EU-fO1" eventType="touchUpInside" id="dVu-CE-yY0"/>
                                                 </connections>

@@ -1436,7 +1436,27 @@
     } parameters:p];
 }
 
-#warning luohaibo 提交微信授权信息
+/**
+ *  小金库数据
+ *
+ *  @param delegate <#delegate description#>
+ *  @param block    <#block description#>
+ *  @param score    <#score description#>
+ */
+- (void)TOGetGlodDate:(id<FanOpertationDelegate>)delegate block:(void(^)(id result,NSError* error))block WithParam:(NSString *)score{
+    NSMutableDictionary* p = [NSMutableDictionary dictionary];
+    p[@"score"] = score;
+    [self loginCode:p];
+    [self doConnect:delegate interface:@"IntegralGoldInfo" errorBlocker:^(NSError *error) {
+        block(nil,error);
+    } resultBlocker:^(id data) {
+        block(data,nil);
+    } parameters:p];
+
+    
+}
+
+//warning luohaibo 提交微信授权信息
 - (void)toSouji:(id<FanOpertationDelegate>)delegate block:(void (^)(LoginState*,NSError*))block WithParam:(NSString *)phone withYanzhen:(NSString *)yanzhenma withYaoqingma:(NSString *)yaoqingma{
     NSMutableDictionary * parame = [NSMutableDictionary dictionary];
     parame[@"mobile"] = phone;

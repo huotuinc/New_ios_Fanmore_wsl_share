@@ -309,4 +309,16 @@
  */
 
 - (void)ToGetYaoqing:(id<FanOpertationDelegate>)delegate block:(void(^)(NSString* result,NSError* error))block WithParam:(NSString *)iphone;
+
+/**
+ *  罗海波
+ *
+ *  @param delegate <#delegate description#>
+ *  @param block    <#block description#>
+ *  @param score    <#score description#>
+ */
+- (void)TOGetGlodDate:(id<FanOpertationDelegate>)delegate block:(void(^)(id result,NSError* error))block WithParam:(NSString *)score;
+
+
+
 @end
