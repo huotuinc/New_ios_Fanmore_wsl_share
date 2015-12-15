@@ -12,6 +12,8 @@
 @interface LoginState : FanmoreModel
 
 @property (nonatomic, retain) NSString * loginCode;
+@property (nonatomic, retain) NSString * unionId;
+@property (nonatomic, retain) NSString * website;
 @property (nonatomic, retain) NSNumber * yesScore;
 @property (nonatomic, retain) NSNumber * totalTaskCount;
 @property (nonatomic, retain) NSNumber * completeTaskCount;

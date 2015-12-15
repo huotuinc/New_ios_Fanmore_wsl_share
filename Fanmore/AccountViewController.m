@@ -17,6 +17,7 @@
 #import "VerificationCodeController.h"
 #import <CoreText/CoreText.h>
 #import "MJExtension.h"
+#import "SafeController.h"
 
 #import "UIImageView+WebCache.h"
 @interface AccountViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -217,12 +218,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.row == 0) {//进入商城
-        NSLog(@"xxxxx");
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"www.baidu.com"]];
-    }else if (indexPath.row == 0){//账户安全
-        
-        NSLog(@"xxxxx");
-    }else if (indexPath.row == 0){//基本信息
+        /**luohaibo 用户个人信息*/
+        LoginState * userData = [[AppDelegate getInstance].loadingState userData];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:userData.website]];
+    }else if (indexPath.row == 1){//账户安全
+        SafeController * safe = [[UIStoryboard storyboardWithName:@"Mine" bundle:nil] instantiateViewControllerWithIdentifier:@"SafeController"];
+        [self.navigationController pushViewController:safe animated:YES];
+    }else if (indexPath.row == 2){//基本信息
         NSLog(@"xxxxx");
     }else{//积分兑换小金库
         

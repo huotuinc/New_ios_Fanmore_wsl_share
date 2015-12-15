@@ -27,9 +27,9 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if ([[AppDelegate getInstance].loadingState useNewCash]) {
-        return 3;
+        return 2;
     }
-    return 4;
+    return 3;
 }
 
 - (void)viewDidLoad
