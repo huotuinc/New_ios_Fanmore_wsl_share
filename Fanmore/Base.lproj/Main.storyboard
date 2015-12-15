@@ -940,10 +940,6 @@
                                                 <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CAn-me-La9">
-                                                <rect key="frame" x="352" y="55" width="30" height="28"/>
-                                                <animations/>
-                                            </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="30" translatesAutoresizingMaskIntoConstraints="NO" id="R8z-64-nzG">
                                                 <rect key="frame" x="274" y="2" width="38" height="38"/>
                                                 <animations/>
@@ -960,7 +956,7 @@
                                             </button>
                                         </subviews>
                                         <animations/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="flr-np-R4n" secondAttribute="bottom" id="22y-HI-EnY"/>
                                             <constraint firstItem="NDp-FD-Kqo" firstAttribute="top" secondItem="fCJ-Zi-4kJ" secondAttribute="top" constant="8" id="3oQ-Hc-3Xo"/>
@@ -982,15 +978,15 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LUA-iA-B7n">
                                         <rect key="frame" x="0.0" y="225" width="320" height="189"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sJI-ox-Fct">
-                                                <rect key="frame" x="160" y="8" width="1" height="173"/>
+                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sJI-ox-Fct">
+                                                <rect key="frame" x="160" y="12" width="1" height="169"/>
                                                 <animations/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="1" id="eUm-lY-aXP"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qx3-hi-hM2">
+                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qx3-hi-hM2">
                                                 <rect key="frame" x="8" y="94" width="304" height="1"/>
                                                 <animations/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
@@ -1074,7 +1070,7 @@
                                             </label>
                                         </subviews>
                                         <animations/>
-                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="dCA-tw-Yex" firstAttribute="top" secondItem="DEi-xq-phY" secondAttribute="bottom" constant="2" id="2eg-cU-09U"/>
                                             <constraint firstItem="DEi-xq-phY" firstAttribute="top" secondItem="LUA-iA-B7n" secondAttribute="top" constant="35" id="4dm-wx-CBB"/>
@@ -1101,7 +1097,7 @@
                                             <constraint firstItem="dCA-tw-Yex" firstAttribute="height" secondItem="DEi-xq-phY" secondAttribute="height" id="VUw-Ao-xxI"/>
                                             <constraint firstItem="oFW-TL-hGz" firstAttribute="height" secondItem="ZoU-db-Z7R" secondAttribute="height" id="WJw-Zv-zX3"/>
                                             <constraint firstItem="GZY-h3-hGP" firstAttribute="top" secondItem="qx3-hi-hM2" secondAttribute="bottom" constant="24" id="XK0-74-hNy"/>
-                                            <constraint firstItem="sJI-ox-Fct" firstAttribute="top" secondItem="LUA-iA-B7n" secondAttribute="top" constant="8" id="Y7E-VX-6DW"/>
+                                            <constraint firstItem="sJI-ox-Fct" firstAttribute="top" secondItem="LUA-iA-B7n" secondAttribute="top" constant="12" id="Y7E-VX-6DW"/>
                                             <constraint firstAttribute="trailing" secondItem="fMf-sH-O8f" secondAttribute="trailing" constant="39" id="a6S-xm-zha"/>
                                             <constraint firstItem="qx3-hi-hM2" firstAttribute="centerY" secondItem="LUA-iA-B7n" secondAttribute="centerY" id="ber-dv-QUi"/>
                                             <constraint firstItem="JKG-ti-HyO" firstAttribute="leading" secondItem="sJI-ox-Fct" secondAttribute="trailing" constant="24" id="c84-fa-uF3"/>
@@ -1112,14 +1108,6 @@
                                             <constraint firstItem="oFW-TL-hGz" firstAttribute="leading" secondItem="ZoU-db-Z7R" secondAttribute="leading" id="yo6-wG-FmD"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="       将此拜(邀)师(请)令(码)分享给好友，让其注册时输入，即可收入师门。徒弟每次提现成功后，都会贡献提现金额的10%(暂时由粉猫补贴)给师傅哦~" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="OR9-Yh-EI5">
-                                        <rect key="frame" x="0.0" y="429" width="320" height="72"/>
-                                        <animations/>
-                                        <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xOd-DE-xbQ">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
                                         <subviews>
@@ -1192,8 +1180,18 @@
                                             <constraint firstItem="Sgc-cz-p1g" firstAttribute="top" secondItem="4p7-6K-NG6" secondAttribute="bottom" constant="3" id="vyF-lc-l81"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="       将此拜(邀)师(请)令(码)分享给好友，让其注册时输入，即可收入师门。徒弟每次提现成功后，都会贡献提现金额的10%(暂时由粉猫补贴)给师傅哦~" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="OR9-Yh-EI5">
+                                        <rect key="frame" x="0.0" y="429" width="320" height="72"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="0.26666666666666666" green="0.27058823529411763" blue="0.27450980392156865" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <animations/>
+                                <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="xOd-DE-xbQ" firstAttribute="top" secondItem="NAI-7r-TQP" secondAttribute="top" id="0cx-Tm-uFi"/>
                                     <constraint firstItem="xOd-DE-xbQ" firstAttribute="leading" secondItem="NAI-7r-TQP" secondAttribute="leading" id="1HV-Md-GNt"/>

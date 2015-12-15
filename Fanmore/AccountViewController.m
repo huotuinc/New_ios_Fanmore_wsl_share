@@ -18,8 +18,9 @@
 #import <CoreText/CoreText.h>
 #import "MJExtension.h"
 #import "SafeController.h"
-
+#import "InformationController.h"
 #import "UIImageView+WebCache.h"
+#import "JiFenToMallController.h"
 @interface AccountViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(weak) TextChangeController* tccontroller;
 @property BOOL doCash;
@@ -225,9 +226,11 @@
         SafeController * safe = [[UIStoryboard storyboardWithName:@"Mine" bundle:nil] instantiateViewControllerWithIdentifier:@"SafeController"];
         [self.navigationController pushViewController:safe animated:YES];
     }else if (indexPath.row == 2){//基本信息
-        NSLog(@"xxxxx");
+        InformationController * safe = [[UIStoryboard storyboardWithName:@"Mine" bundle:nil] instantiateViewControllerWithIdentifier:@"InformationController"];
+        [self.navigationController pushViewController:safe animated:YES];
     }else{//积分兑换小金库
-        
+        JiFenToMallController * safe = [[UIStoryboard storyboardWithName:@"Mine" bundle:nil] instantiateViewControllerWithIdentifier:@"JiFenToMallController"];
+        [self.navigationController pushViewController:safe animated:YES];
         
     }
     

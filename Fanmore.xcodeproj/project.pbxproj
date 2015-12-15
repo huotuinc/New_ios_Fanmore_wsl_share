@@ -198,6 +198,7 @@
 		23FF276418C6C86900BAACF5 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 23FF275D18C6C86900BAACF5 /* MJRefreshConst.m */; };
 		23FF276518C6C86900BAACF5 /* MJRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23FF275F18C6C86900BAACF5 /* MJRefreshFooterView.m */; };
 		23FF276618C6C86900BAACF5 /* MJRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23FF276118C6C86900BAACF5 /* MJRefreshHeaderView.m */; };
+		EF2471371C1FEFF300B2D00F /* JiFenToMallController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2471361C1FEFF300B2D00F /* JiFenToMallController.m */; };
 		EF27360E1C11675C00D8C4BB /* WeiXinBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF27360D1C11675C00D8C4BB /* WeiXinBackViewController.m */; };
 		EF2736111C116F0900D8C4BB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2736101C116F0900D8C4BB /* LoginViewController.m */; };
 		EF2736331C1190CE00D8C4BB /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = EF2736131C1190CE00D8C4BB /* LICENSE */; };
@@ -668,6 +669,8 @@
 		9284ADD7AF44A735ACD16E53 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		BE9E74C74B1C403995FE1CCB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D504ED2227A45164C02E710D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		EF2471351C1FEFF300B2D00F /* JiFenToMallController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JiFenToMallController.h; sourceTree = "<group>"; };
+		EF2471361C1FEFF300B2D00F /* JiFenToMallController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JiFenToMallController.m; sourceTree = "<group>"; };
 		EF27360C1C11675C00D8C4BB /* WeiXinBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiXinBackViewController.h; sourceTree = "<group>"; };
 		EF27360D1C11675C00D8C4BB /* WeiXinBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiXinBackViewController.m; sourceTree = "<group>"; };
 		EF27360F1C116F0900D8C4BB /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -1925,6 +1928,8 @@
 				EF27E8131C1A793C00C0A65E /* FollowList.m */,
 				EF27E8151C1A7AC200C0A65E /* FollowModel.h */,
 				EF27E8161C1A7AC200C0A65E /* FollowModel.m */,
+				EF2471351C1FEFF300B2D00F /* JiFenToMallController.h */,
+				EF2471361C1FEFF300B2D00F /* JiFenToMallController.m */,
 			);
 			name = WeiChatAuthorize;
 			sourceTree = "<group>";
@@ -2253,6 +2258,7 @@
 				EF42C0B61C07F65B00602E60 /* UIAlertView+AFNetworking.m in Sources */,
 				238A453F1A43EA10009612DE /* CreditNavigationController.m in Sources */,
 				231E6ABE188A27600060BFC4 /* TaskDetailController.m in Sources */,
+				EF2471371C1FEFF300B2D00F /* JiFenToMallController.m in Sources */,
 				23049ACF19501F4B0052962E /* ParticipatesCell.m in Sources */,
 				EF42C0AE1C07F65B00602E60 /* AFURLConnectionOperation.m in Sources */,
 				EF27363A1C1190CE00D8C4BB /* SDWebImageDownloaderOperation.m in Sources */,
