@@ -94,7 +94,7 @@ extern NSString const *CWBlurViewKey;
     baseView.image = [UIImage imageNamed:imageName];
 //    [baseView addSubview:imageView];
     //    baseView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-#warning 2015年11/27 --luohaibo --- toFixit
+//warning 2015年11/27 --luohaibo --- toFixit
     
     void(^callback)(BOOL) = [baseView bk_performBlock:^(id obj) {
         if ($safe(obj) && $safe([obj superview])) {
