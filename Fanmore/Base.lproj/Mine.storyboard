@@ -1172,7 +1172,7 @@
                                     </label>
                                 </subviews>
                                 <animations/>
-                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.84705882352941175" green="0.46666666666666667" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="E97-3J-P97" firstAttribute="centerX" secondItem="U57-aD-eei" secondAttribute="centerX" id="4Yk-my-8KD"/>
                                     <constraint firstItem="ewG-bz-PrV" firstAttribute="centerX" secondItem="U57-aD-eei" secondAttribute="centerX" id="5fr-Dd-u6o"/>

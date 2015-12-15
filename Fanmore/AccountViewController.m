@@ -214,10 +214,11 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.row == 0) {//进入商城
         NSLog(@"xxxxx");
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"www.baidu.com"]];
     }else if (indexPath.row == 0){//账户安全
         
         NSLog(@"xxxxx");
