@@ -80,4 +80,6 @@
 @synthesize dayCheckIn;
 @synthesize checkInDays;
 
+@synthesize unionId;
+@synthesize website;
 @end

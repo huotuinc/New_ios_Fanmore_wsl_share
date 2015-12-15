@@ -32,6 +32,8 @@
     [super viewDidLoad];
     self.title = @"小金库";
     
+    //获取用户列表
+    [self toGetTheGlodToMallAccountList];
     
     
     
@@ -42,7 +44,6 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     
-    
     [super viewWillAppear:animated];
     
     if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
@@ -50,25 +51,30 @@
     }
     
     LoginState * a =  [AppDelegate getInstance].loadingState.userData;
-    
     self.scoreJifen.text = [NSString stringWithFormat:@"%ld",(long)[a.score integerValue]];
-    
     __weak JiFenToMallController * wself = self;
     [[[AppDelegate getInstance]  getFanOperations] TOGetGlodDate:nil block:^(NSDictionary *result, NSError *error) {
-        
-        wself.Mydes.text = result[@"desc"];
+        wself.Mydes.text = [NSString stringWithFormat:@" %@",result[@"desc"]];
         wself.toMakkJifen.text = [NSString stringWithFormat:@"%d",[result[@"money"] integerValue]];
         wself.firstRecord.text = result[@"lastApply"][@"ApplyTime"];
         wself.toMakkJifen.text = [NSString stringWithFormat:@"转入钱包%.2f元",[result[@"lastApply"][@"ApplyMoney"] doubleValue]];
         LOG(@"---%@--------%@",result,error.description);
     } WithParam:[NSString stringWithFormat:@"%d",[a.score integerValue]]];
-    
-}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
+
+
+- (void)toGetTheGlodToMallAccountList{
+    
+    LoginState * a =  [AppDelegate getInstance].loadingState.userData;
+    
+    NSLog(@"-----%@",a.unionId);
+    [[[AppDelegate getInstance]  getFanOperations] TOGetUserList:nil block:^(id result, NSError *error) {
+        
+        NSLog(@"%@",result);
+    } WithunionId:a.unionId];
+    
+}
 /*
 #pragma mark - Navigation
 

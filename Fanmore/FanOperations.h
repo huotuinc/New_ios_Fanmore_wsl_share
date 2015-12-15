@@ -319,6 +319,13 @@
  */
 - (void)TOGetGlodDate:(id<FanOpertationDelegate>)delegate block:(void(^)(id result,NSError* error))block WithParam:(NSString *)score;
 
-
+/**
+ *  获取用户列表
+ *
+ *  @param delegate <#delegate description#>
+ *  @param block    <#block description#>
+ *  @param unionId  <#unionId description#>
+ */
+- (void)TOGetUserList:(id<FanOpertationDelegate>)delegate block:(void(^)(id result,NSError* error))block WithunionId:(NSString *)unionId;
 
 @end

@@ -114,13 +114,13 @@
     UserInfo * user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
     
     NSMutableDictionary *parame = [NSMutableDictionary dictionary];
-    parame[@"sex"] = [NSString stringWithFormat:@"%ld",(long)[user.sex integerValue]];
+//    parame[@"sex"] = [NSString stringWithFormat:@"%ld",(long)[user.sex integerValue]];
     parame[@"nickname"] = user.nickname;
     parame[@"openid"] = user.openid;
-    parame[@"city"] = user.city;
-    parame[@"country"] = user.country;
-    parame[@"province"] = user.province;
-    parame[@"headimgurl"] = user.headimgurl;
+//    parame[@"city"] = user.city;
+//    parame[@"country"] = user.country;
+//    parame[@"province"] = user.province;
+    parame[@"picUrl"] = user.headimgurl;
     parame[@"unionId"] = user.unionid;
     parame[@"invitationCode"] = invitationCode;
     
@@ -146,6 +146,8 @@
     } resultBlocker:^(NSDictionary *data) {
         NSString * passwd =  data[@"loginCode"];
         NSArray * arra =  [passwd componentsSeparatedByString:@"^"];
+        LOG(@"-----Userregister--%@",data);
+        LOG(@"xxxx---%@---%@",data[@"userName"],arra[1]);
         [self login:delegate block:block userName:data[@"userName"] password:arra[1]];
     } parameters:parame];
 }
@@ -201,7 +203,7 @@
     [self doConnect:delegate interface:@"Login" errorBlocker:^(NSError *error) {
         block(nil,error);
     } resultBlocker:^(NSDictionary *data) {
-        
+        LOG(@"---%@",data);
         LoginState* ls = [LoginState modelFromDict:data];        
         AppDelegate* ad = [AppDelegate getInstance];
         [ad.loadingState loginAs:ls];
@@ -1455,6 +1457,26 @@
 
     
 }
+
+/**
+ *  获取用户列表
+ *
+ *  @param delegate <#delegate description#>
+ *  @param block    <#block description#>
+ *  @param unionId  <#unionId description#>
+ */
+- (void)TOGetUserList:(id<FanOpertationDelegate>)delegate block:(void(^)(id result,NSError* error))block WithunionId:(NSString *)unionId{
+    NSMutableDictionary* p = [NSMutableDictionary dictionary];
+    p[@"unionId"] = unionId;
+    [self loginCode:p];
+    [self doConnect:delegate interface:@"GetUserList" errorBlocker:^(NSError *error) {
+        block(nil,error);
+    } resultBlocker:^(id data) {
+        block(data,nil);
+    } parameters:p];
+}
+
+
 
 //warning luohaibo 提交微信授权信息
 - (void)toSouji:(id<FanOpertationDelegate>)delegate block:(void (^)(LoginState*,NSError*))block WithParam:(NSString *)phone withYanzhen:(NSString *)yanzhenma withYaoqingma:(NSString *)yaoqingma{
