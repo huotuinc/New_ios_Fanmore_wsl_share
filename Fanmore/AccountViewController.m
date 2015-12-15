@@ -32,21 +32,14 @@
 //luohaibo
 /**账号头像*/
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
-/**今日转发*/
-@property (weak, nonatomic) IBOutlet UILabel *todayTurn;
-/**提出申请*/
-@property (weak, nonatomic) IBOutlet UILabel *callApply;
-/**可用积分*/
-@property (weak, nonatomic) IBOutlet UILabel *canUseIntegral;
-/**进入商城*/
-- (IBAction)goToMartkeyClick:(UIButton *)sender;
+
 @property (weak, nonatomic) IBOutlet UITableView *itemTableView;
-/**绑定手机*/
-@property (weak, nonatomic) IBOutlet UIButton *bingDingIphone;
-/**绑定手机*/
-- (IBAction)bingDingIphoneBtnClick:(id)sender;
+
 /**账号信息*/
-@property (weak, nonatomic) IBOutlet UILabel *accoutInfo;
+@property (weak, nonatomic) IBOutlet UILabel *accountInfo;
+
+/**我的积分*/
+@property (weak, nonatomic) IBOutlet UILabel *myJifen;
 
 @end
 
@@ -102,16 +95,20 @@
     self.itemTableView.tableFooterView = [[UIView alloc] init];
     self.itemTableView.scrollEnabled = NO;
     
-    self.bingDingIphone.layer.cornerRadius = 2;
-    self.bingDingIphone.layer.masksToBounds = YES;
+    self.myJifen.layer.cornerRadius = 3;
+    self.myJifen.layer.masksToBounds = YES;
     
-    /**用户个人信息*/
+    /**luohaibo 用户个人信息*/
     LoginState * userData = [[AppDelegate getInstance].loadingState userData];
-    [userData.isBindMobile integerValue] == 0?[self.bingDingIphone setTitle:@"绑定手机" forState:UIControlStateNormal]:[self.bingDingIphone setTitle:userData.mobile forState:UIControlStateNormal];
-        
     
-    
+    self.accountInfo.text = userData.userName;
+    self.myJifen.text = [NSString stringWithFormat:@" 我的积分:%d ",[userData.totalScore integerValue]];
+#warning LUOHAIBO
     NSString * headUrl =  [[[AppDelegate getInstance].loadingState userData] picUrl];
+    NSArray * head = [headUrl componentsSeparatedByString:@"http"];
+   
+    NSString * aass = [NSString stringWithFormat:@"http%@",head[2]];
+     NSLog(@"%@",aass  );
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:headUrl] placeholderImage:[UIImage imageNamed:@"WeiXinIIconViewDefaule"] options:SDWebImageRetryFailed];
     
 }
@@ -186,7 +183,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -198,12 +195,20 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     if (indexPath.row == 0) {
+        cell.imageView.image = [UIImage imageNamed:@"jlsc"];
+        cell.textLabel.text = @"进入商城";
+        
+    }else if (indexPath.row == 1) {
         cell.imageView.image = [UIImage imageNamed:@"my_safe"];
         cell.textLabel.text = @"账户安全";
         
-    }else{
+    }else if (indexPath.row == 2) {
         cell.imageView.image = [UIImage imageNamed:@"jibenxinxiicon."];
         cell.textLabel.text = @"基本信息";
+        
+    }else{
+        cell.imageView.image = [UIImage imageNamed:@"xjk"];
+        cell.textLabel.text = @"积分兑换小金库";
     }
     return cell;
 }
@@ -211,14 +216,20 @@
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row == 0) {
-        
-         NSLog(@"xxxxx");
-    }else{
-        
+    if (indexPath.row == 0) {//进入商城
+        NSLog(@"xxxxx");
+    }else if (indexPath.row == 0){//账户安全
         
         NSLog(@"xxxxx");
+    }else if (indexPath.row == 0){//基本信息
+        NSLog(@"xxxxx");
+    }else{//积分兑换小金库
+        
+        
     }
+    
+    // 取消选中状态
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
 }
 
@@ -226,6 +237,9 @@
     
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
+    if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)){
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     
     
     [self.view layoutIfNeeded];
@@ -554,8 +568,9 @@
 
 
 - (IBAction)refresh:(id)sender {
-    AppDelegate* ad = [AppDelegate getInstance];
     
+    LOG(@"xxxx");
+    AppDelegate* ad = [AppDelegate getInstance];
     [[ad getFanOperations] login:Nil block:^(LoginState *ls, NSError *error) {
         if ($safe(error)) {
             [FMUtils alertMessage:self.view msg:[error FMDescription]];
@@ -564,9 +579,11 @@
         [self viewWillAppear:YES];
     } userName:[ad getLastUsername] password:[ad getLastPassword]];
 }
-- (IBAction)goToMartkeyClick:(id)sender {
-}
-- (IBAction)bingDingIphoneBtnClick:(id)sender {
-    [self performSegueWithIdentifier:@"ToMobile" sender:nil];
-}
+
+
+//- (IBAction)goToMartkeyClick:(id)sender {
+//}
+//- (IBAction)bingDingIphoneBtnClick:(id)sender {
+//    [self performSegueWithIdentifier:@"ToMobile" sender:nil];
+//}
 @end
