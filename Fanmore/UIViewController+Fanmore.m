@@ -79,7 +79,7 @@ extern NSString const *CWBlurViewKey;
                                                                 [[UIScreen mainScreen] applicationFrame].size.width,
                                                                 [[UIScreen mainScreen] applicationFrame].size.height+40)];
     //luohaibo
-    baseView.backgroundColor = [UIColor lightGrayColor];
+//    baseView.backgroundColor = [UIColor lightGrayColor];
         //self.view = baseView;
     if (!view) {
         view = self.navigationController.view;

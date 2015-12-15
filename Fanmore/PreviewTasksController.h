@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface PreviewTasksController : UIViewController
+#import "WebController.h"
+@interface PreviewTasksController : WebController
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
