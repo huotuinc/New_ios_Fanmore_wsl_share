@@ -55,7 +55,7 @@
     __weak JiFenToMallController * wself = self;
     [[[AppDelegate getInstance]  getFanOperations] TOGetGlodDate:nil block:^(NSDictionary *result, NSError *error) {
         wself.Mydes.text = [NSString stringWithFormat:@" %@",result[@"desc"]];
-        wself.toMakkJifen.text = [NSString stringWithFormat:@"%d",[result[@"money"] integerValue]];
+        wself.toMallJifen.text = [NSString stringWithFormat:@"%d",[result[@"money"] integerValue]];
         wself.firstRecord.text = result[@"lastApply"][@"ApplyTime"];
         wself.toMakkJifen.text = [NSString stringWithFormat:@"转入钱包%.2f元",[result[@"lastApply"][@"ApplyMoney"] doubleValue]];
         LOG(@"---%@--------%@",result,error.description);

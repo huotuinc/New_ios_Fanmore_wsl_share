@@ -418,6 +418,8 @@
             self.myYesterdayRewards.text = @"0";
         }
         
+        
+        LOG(@"%@",ls.userData.picUrl);
         [self.imagePicture sd_setImageWithURL:[NSURL URLWithString:ls.userData.picUrl] placeholderImage:nil];
 //        NSNumber* totalScore = ls.userData.totalScore;
         NSNumber* totalScore = ls.userData.score;

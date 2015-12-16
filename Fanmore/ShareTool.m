@@ -162,6 +162,53 @@ static ManlyWXHandler* manlyHandler;
 }
 
 
+/**
+ *  luohaibo
+ *
+ *  @param url     <#url description#>
+ *  @param options <#options description#>
+ *
+ *  @return <#return value description#>
+ */
++ (BOOL)openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options{
+    
+    LOG(@"回调URL %@",url);
+    if ([url.scheme hasPrefix:@"QQ"]) {
+        temperror = [[url.query parameterFromQuery:@"error"] intValue];
+    }
+#ifdef FMShareTool
+    NSString* scheme = url.scheme;
+    if ([scheme startWith:@"wx"]) {
+        for (ShareTool* tool in instances) {
+            if (tool.type==TShareTypeWeixiTimeline) {
+                return [WXApi handleOpenURL:url delegate:tool.wxhandler];
+            }
+        }
+    } else if ([scheme startWith:@"QQ"]) {
+        for (ShareTool* tool in instances) {
+            if (tool.type==TShareTypeQQSpace) {
+                return [QQApiInterface handleOpenURL:url delegate:tool.wxhandler];
+            }
+        }
+    }
+    return NO;
+#else
+#ifdef FMWXSELF
+    if ($safe(manlyHandler) && manlyHandler.handler!=NULL) {
+        if(![WXApi handleOpenURL:url delegate:manlyHandler]){
+            if([[AppDelegate getInstance].loadingState wxcannotSendSuccess] && [NSDate timeIntervalSinceReferenceDate]-lastSendWxTime<60){
+                lastSendWxTime = -1;
+                manlyHandler.handler(ShareTypeWeixiTimeline,SSResponseStateSuccess ,nil, nil, YES);
+            }
+        }
+    }
+#endif
+//    return [ShareSDK handleOpenURL:<#(NSURL *)#> sourceApplication:<#(NSString *)#> annotation:<#(id)#> wxDelegate:<#(id)#>];
+    return nil;
+#endif
+
+}
+
 +(BOOL)openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
     LOG(@"回调URL %@",url);
     if ([url.scheme hasPrefix:@"QQ"]) {

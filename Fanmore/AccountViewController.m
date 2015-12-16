@@ -104,20 +104,20 @@
     LoginState * userData = [[AppDelegate getInstance].loadingState userData];
     
     self.accountInfo.text = userData.userName;
-    self.myJifen.text = [NSString stringWithFormat:@" 我的积分:%d ",[userData.totalScore integerValue]];
+    self.myJifen.text = [NSString stringWithFormat:@" 我的积分:%d ",[userData.score integerValue]];
 #warning LUOHAIBO
-    NSString * headUrl =  [[[AppDelegate getInstance].loadingState userData] picUrl];
-    NSArray * head = [headUrl componentsSeparatedByString:@"http"];
-   
-    NSString * aass = [NSString stringWithFormat:@"http%@",head[2]];
-     NSLog(@"%@",aass  );
-    [self.iconView sd_setImageWithURL:[NSURL URLWithString:headUrl] placeholderImage:[UIImage imageNamed:@"WeiXinIIconViewDefaule"] options:SDWebImageRetryFailed];
+
     
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.iconView.layer.cornerRadius = self.iconView.frame.size.height * 0.5;
+    self.iconView.layer.masksToBounds = YES;
+    self.iconView.layer.borderWidth = 2;
+    self.iconView.layer.borderColor = [UIColor whiteColor].CGColor;
     [self.navigationController setNavigationBarHidden:NO];
     self.doCash = NO;
     
@@ -247,7 +247,13 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     
-    
+    NSString * headUrl =  [[[AppDelegate getInstance].loadingState userData] picUrl];
+    NSArray * head = [headUrl componentsSeparatedByString:@"http"];
+    if (head.count == 2) {
+        NSString * aass = [NSString stringWithFormat:@"http%@",head[1]];
+        LOG(@"%@",aass);
+    }
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:headUrl] placeholderImage:[UIImage imageNamed:@"WeiXinIIconViewDefaule"] options:SDWebImageRetryFailed];
     [self.view layoutIfNeeded];
     
     

@@ -225,6 +225,8 @@
     [self doConnect:delegate interface:@"TurnTask" errorBlocker:^(NSError *error) {
         block(nil,error);
     } resultBlocker:^(NSString* data) {
+        
+        LOG(@"ssss%@---",data);
         LoginState* ls = [AppDelegate getInstance].loadingState.userData;
         
 //        task.isSend = @1;
@@ -1546,9 +1548,9 @@
         
 #ifdef FM_QD
         NSString* qd = @FM_QD;
-        NSString* url = $str(@"%@/api.ashx?req=%@&locale=%@&operation=HuoTu2013IP%@&qd=%@&version=%@&imei=%@&cityCode=%ld&lat=%.9f&lng=%.9f&sign=%@",self.rootURL,interface,[[NSLocale currentLocale] localeIdentifier],jarlBreakFlag,qd,[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],self.imei,[[AppDelegate getInstance]getCurrentCityCode],c2d.latitude,c2d.longitude,signStr);
+        NSString* url = $str(@"%@/api.ashx?req=%@&operation=HuoTu2013IP%@&qd=%@&version=%@&imei=%@&sign=%@",self.rootURL,interface,,jarlBreakFlag,qd,[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],self.imei,signStr);
 #else
-        NSString* url = $str(@"%@/api.ashx?req=%@&locale=%@&operation=HuoTu2013IP%@&version=%@&imei=%@&cityCode=%ld&lat=%.9f&lng=%.9f&sign=%@",self.rootURL,interface,[[NSLocale currentLocale] localeIdentifier],jarlBreakFlag,[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],self.imei,[[AppDelegate getInstance]getCurrentCityCode],c2d.latitude,c2d.longitude,signStr);
+        NSString* url = $str(@"%@/api.ashx?req=%@&operation=HuoTu2013IP%@&version=%@&imei=%@&sign=%@",self.rootURL,interface,jarlBreakFlag,[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],self.imei,signStr);
 #endif
         
         if (!post && parameters && parameters.count>0 ) {

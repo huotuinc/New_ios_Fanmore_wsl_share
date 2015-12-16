@@ -792,11 +792,9 @@
 		EF8E69B91C1669C5004ACB5A /* WeChatConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WeChatConnection.framework; sourceTree = "<group>"; };
 		EF8E69BB1C1669C5004ACB5A /* AGCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AGCommon.framework; sourceTree = "<group>"; };
 		EF8E69BD1C1669C5004ACB5A /* en-US */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-US"; path = "en-US.lproj/ShareSDKLocalizable.strings"; sourceTree = "<group>"; };
-		EF8E69BE1C1669C5004ACB5A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ShareSDKLocalizable.strings; sourceTree = "<group>"; };
 		EF8E69BF1C1669C5004ACB5A /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
 		EF8E69C01C1669C5004ACB5A /* Resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resource.bundle; sourceTree = "<group>"; };
 		EF8E69C11C1669C5004ACB5A /* ShareSDKCoreService.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKCoreService.framework; sourceTree = "<group>"; };
-		EF8E69C21C1669C5004ACB5A /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/ShareSDKLocalizable.strings"; sourceTree = "<group>"; };
 		EF8E69C31C1669C5004ACB5A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ShareSDKLocalizable.strings"; sourceTree = "<group>"; };
 		EF8E69C61C1669C5004ACB5A /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		EF8E69C71C1669C5004ACB5A /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
@@ -2000,8 +1998,6 @@
 				Base,
 				"zh-Hans",
 				"en-US",
-				en,
-				"zh-Hans-CN",
 			);
 			mainGroup = 23374BBD187A4B7700F80A34;
 			productRefGroup = 23374BC7187A4B7700F80A34 /* Products */;
@@ -2409,8 +2405,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				EF8E69BD1C1669C5004ACB5A /* en-US */,
-				EF8E69BE1C1669C5004ACB5A /* en */,
-				EF8E69C21C1669C5004ACB5A /* zh-Hans-CN */,
 				EF8E69C31C1669C5004ACB5A /* zh-Hans */,
 			);
 			name = ShareSDKLocalizable.strings;

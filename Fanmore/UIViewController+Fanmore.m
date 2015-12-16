@@ -67,7 +67,8 @@ extern NSString const *CWBlurViewKey;
 
 -(void)showGuide:(NSString*)imageName on:(UIView*)view{
     //@"guidsgdetail"
-
+//luohaibo
+    return;
 #ifndef FanmoreDebug
     if (![[AppDelegate getInstance] checkGuide:imageName]) {
         return;

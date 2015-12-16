@@ -341,7 +341,7 @@
     
     if ([self.task isFlashMall]) {
 #warning luohaibo 2015/12/2
-//        [self showGuide:@"guidsgdetail21" on:nil];
+        [self showGuide:@"guidsgdetail21" on:nil];
     }
     
 //    self.web.translatesAutoresizingMaskIntoConstraints = YES;
@@ -387,6 +387,8 @@
     [super viewDidLoad];
     [self viewDidLoadFanmore];
     [self viewDidLoadGestureRecognizer];
+    //luohaibo
+    [self.btsend setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
     self.web.scrollView.delegate = self;
     self.web.delegate = self;
