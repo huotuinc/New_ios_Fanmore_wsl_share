@@ -100,11 +100,7 @@
     self.myJifen.layer.cornerRadius = 3;
     self.myJifen.layer.masksToBounds = YES;
     
-    /**luohaibo 用户个人信息*/
-    LoginState * userData = [[AppDelegate getInstance].loadingState userData];
-    
-    self.accountInfo.text = userData.userName;
-    self.myJifen.text = [NSString stringWithFormat:@" 我的积分:%d ",[userData.score integerValue]];
+   
 #warning LUOHAIBO
 
     
@@ -242,6 +238,15 @@
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
+    
+    
+    /**luohaibo 用户个人信息*/
+    LoginState * userData = [[AppDelegate getInstance].loadingState userData];
+    
+    self.accountInfo.text = userData.userName;
+    self.myJifen.text = [NSString stringWithFormat:@" 我的积分:%d ",[userData.score integerValue]];
+    
+    
     [self.navigationController setNavigationBarHidden:NO];
     if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)){
         self.edgesForExtendedLayout = UIRectEdgeNone;

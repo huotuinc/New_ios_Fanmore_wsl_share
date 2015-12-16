@@ -2981,16 +2981,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aN4-AY-fZD">
                                 <rect key="frame" x="0.0" y="204" width="320" height="44"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015-05-18 16:50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qke-oW-16p">
-                                        <rect key="frame" x="16" y="12" width="151" height="20"/>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="151" id="jzQ-aV-npP"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <color key="textColor" red="0.27843137254901962" green="0.29411764705882354" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(成功)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h4u-XH-tle">
                                         <rect key="frame" x="272" y="11" width="48" height="21"/>
                                         <animations/>
@@ -3012,6 +3002,16 @@
                                         <color key="textColor" red="0.20392156862745098" green="0.21568627450980393" blue="0.2196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015-05-18 16:50:13" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qke-oW-16p">
+                                        <rect key="frame" x="10" y="13" width="170" height="18"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="170" id="jzQ-aV-npP"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="0.27843137254901962" green="0.29411764705882354" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3020,7 +3020,7 @@
                                     <constraint firstAttribute="height" constant="44" id="Qlv-2B-J3y"/>
                                     <constraint firstItem="Qke-oW-16p" firstAttribute="centerY" secondItem="aN4-AY-fZD" secondAttribute="centerY" id="SmN-hY-Y7B"/>
                                     <constraint firstAttribute="trailing" secondItem="h4u-XH-tle" secondAttribute="trailing" id="Zhn-l5-Lkl"/>
-                                    <constraint firstItem="Qke-oW-16p" firstAttribute="leading" secondItem="aN4-AY-fZD" secondAttribute="leading" constant="16" id="fwg-0t-7Ki"/>
+                                    <constraint firstItem="Qke-oW-16p" firstAttribute="leading" secondItem="aN4-AY-fZD" secondAttribute="leading" constant="10" id="fwg-0t-7Ki"/>
                                     <constraint firstItem="h4u-XH-tle" firstAttribute="centerY" secondItem="aN4-AY-fZD" secondAttribute="centerY" id="gVm-UA-Wav"/>
                                     <constraint firstItem="h4u-XH-tle" firstAttribute="leading" secondItem="KNb-vP-Owm" secondAttribute="trailing" id="rB9-62-xZW"/>
                                 </constraints>
@@ -3035,6 +3035,9 @@
                                 <state key="normal" title="兑换">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="DuiHanJifen:" destination="KMG-Df-Lf2" eventType="touchUpInside" id="mu9-wA-o4K"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>
@@ -3377,20 +3380,22 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blueline" translatesAutoresizingMaskIntoConstraints="NO" id="IX2-zA-rdS">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IX2-zA-rdS">
                                 <rect key="frame" x="-33" y="123" width="333" height="1"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blueline" translatesAutoresizingMaskIntoConstraints="NO" id="1pj-RM-667">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1pj-RM-667">
                                 <rect key="frame" x="-33" y="168" width="333" height="1"/>
                                 <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blueline" translatesAutoresizingMaskIntoConstraints="NO" id="nET-mi-pAj">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nET-mi-pAj">
                                 <rect key="frame" x="-33" y="213" width="333" height="1"/>
                                 <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0ZU-iO-cNY">
                                 <rect key="frame" x="125" y="175" width="110" height="33"/>
@@ -3487,10 +3492,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="masktouxiangC" translatesAutoresizingMaskIntoConstraints="NO" id="Rgo-7f-lbs">
-                                <rect key="frame" x="16" y="36" width="77" height="77"/>
-                                <animations/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="今日预告" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6si-Ha-65a">
                                 <rect key="frame" x="186" y="289" width="73" height="21"/>
                                 <animations/>
@@ -3499,7 +3500,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="queshentu" translatesAutoresizingMaskIntoConstraints="NO" id="WmN-zV-pHM">
-                                <rect key="frame" x="16" y="36" width="76" height="78"/>
+                                <rect key="frame" x="16" y="35" width="78" height="78"/>
                                 <animations/>
                             </imageView>
                         </subviews>
@@ -4364,7 +4365,6 @@
         <image name="bangzu" width="35" height="35"/>
         <image name="biaoge3右下" width="251" height="1"/>
         <image name="bigqiandao" width="143" height="41"/>
-        <image name="blueline" width="1" height="1"/>
         <image name="btn_red_up" width="296" height="38"/>
         <image name="checkbox1_checked" width="14" height="14"/>
         <image name="checkbox1_unchecked" width="14" height="14"/>
@@ -4389,7 +4389,6 @@
         <image name="mallyuan1" width="16" height="16"/>
         <image name="mao" width="320" height="141"/>
         <image name="masktouxiangB" width="26" height="26"/>
-        <image name="masktouxiangC" width="118" height="118"/>
         <image name="my_change" width="20" height="20"/>
         <image name="newcash" width="70" height="32"/>
         <image name="phone" width="32" height="32"/>
@@ -4413,10 +4412,10 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="U6R-np-1gz"/>
+        <segue reference="dEh-C0-s9v"/>
         <segue reference="GPZ-kY-HU0"/>
         <segue reference="GHQ-5f-G6i"/>
         <segue reference="i4G-2i-Lrw"/>
-        <segue reference="OXB-6h-Krx"/>
         <segue reference="Aku-fb-Dbv"/>
         <segue reference="zGz-xS-tHy"/>
     </inferredMetricsTieBreakers>

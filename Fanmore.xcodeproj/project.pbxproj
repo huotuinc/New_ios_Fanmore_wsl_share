@@ -280,6 +280,7 @@
 		EF8E69FC1C16DA12004ACB5A /* IphoneLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8E69FB1C16DA12004ACB5A /* IphoneLoginViewController.m */; };
 		EF8E69FF1C17C138004ACB5A /* Register.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8E69FE1C17C138004ACB5A /* Register.m */; };
 		EF8E6A081C1974E7004ACB5A /* MasterAndTudiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8E6A071C1974E7004ACB5A /* MasterAndTudiViewController.m */; };
+		EFE607B31C210B5900A63867 /* GlodMallUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE607B21C210B5900A63867 /* GlodMallUserModel.m */; };
 		EFE90FE51C06DAE40058ABC1 /* WeiChatAuthorize.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE90FE41C06DAE40058ABC1 /* WeiChatAuthorize.m */; };
 		EFE910301C06E5200058ABC1 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EFE9102F1C06E5200058ABC1 /* libicucore.tbd */; };
 		EFE910321C06E5440058ABC1 /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EFE910311C06E5440058ABC1 /* libz.1.2.5.tbd */; };
@@ -824,6 +825,8 @@
 		EF8E69FE1C17C138004ACB5A /* Register.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Register.m; sourceTree = "<group>"; };
 		EF8E6A061C1974E7004ACB5A /* MasterAndTudiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterAndTudiViewController.h; sourceTree = "<group>"; };
 		EF8E6A071C1974E7004ACB5A /* MasterAndTudiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterAndTudiViewController.m; sourceTree = "<group>"; };
+		EFE607B11C210B5900A63867 /* GlodMallUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlodMallUserModel.h; sourceTree = "<group>"; };
+		EFE607B21C210B5900A63867 /* GlodMallUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlodMallUserModel.m; sourceTree = "<group>"; };
 		EFE90FE31C06DAE40058ABC1 /* WeiChatAuthorize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiChatAuthorize.h; sourceTree = "<group>"; };
 		EFE90FE41C06DAE40058ABC1 /* WeiChatAuthorize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiChatAuthorize.m; sourceTree = "<group>"; };
 		EFE9102F1C06E5200058ABC1 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
@@ -1928,6 +1931,8 @@
 				EF27E8161C1A7AC200C0A65E /* FollowModel.m */,
 				EF2471351C1FEFF300B2D00F /* JiFenToMallController.h */,
 				EF2471361C1FEFF300B2D00F /* JiFenToMallController.m */,
+				EFE607B11C210B5900A63867 /* GlodMallUserModel.h */,
+				EFE607B21C210B5900A63867 /* GlodMallUserModel.m */,
 			);
 			name = WeiChatAuthorize;
 			sourceTree = "<group>";
@@ -2310,6 +2315,7 @@
 				23FF276618C6C86900BAACF5 /* MJRefreshHeaderView.m in Sources */,
 				23A32DC31885392B003847BE /* MockDatas.m in Sources */,
 				2305230218B33DA3000C62DA /* DrawPatternLockViewController.m in Sources */,
+				EFE607B31C210B5900A63867 /* GlodMallUserModel.m in Sources */,
 				EFE90FE51C06DAE40058ABC1 /* WeiChatAuthorize.m in Sources */,
 				23843AE3194BF00500CC581F /* ScoreOneDayController.m in Sources */,
 				237880BA19EF96D8004BA417 /* ExpHistoryCell.m in Sources */,

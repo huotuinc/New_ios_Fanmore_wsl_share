@@ -911,7 +911,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCJ-Zi-4kJ">
-                                        <rect key="frame" x="0.0" y="167" width="320" height="42"/>
+                                        <rect key="frame" x="0.0" y="177" width="320" height="42"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tudi" translatesAutoresizingMaskIntoConstraints="NO" id="fmW-7o-OG2">
                                                 <rect key="frame" x="16" y="0.0" width="42" height="42"/>
@@ -973,7 +973,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LUA-iA-B7n">
-                                        <rect key="frame" x="0.0" y="225" width="320" height="189"/>
+                                        <rect key="frame" x="0.0" y="224" width="320" height="189"/>
                                         <subviews>
                                             <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sJI-ox-Fct">
                                                 <rect key="frame" x="160" y="12" width="1" height="169"/>
@@ -1108,15 +1108,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xOd-DE-xbQ">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="urK-Kd-my8">
-                                                <rect key="frame" x="123" y="30" width="74" height="74"/>
-                                                <animations/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="urK-Kd-my8" secondAttribute="height" id="i57-DQ-QwO"/>
-                                                </constraints>
-                                            </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13857560740" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4p7-6K-NG6">
-                                                <rect key="frame" x="106" y="106" width="108" height="17"/>
+                                                <rect key="frame" x="106" y="116" width="108" height="17"/>
                                                 <animations/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="ggk-av-YQi"/>
@@ -1126,7 +1119,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sgc-cz-p1g">
-                                                <rect key="frame" x="95" y="126" width="130" height="28"/>
+                                                <rect key="frame" x="95" y="136" width="130" height="18"/>
                                                 <animations/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <state key="normal" title="复制邀请码">
@@ -1151,11 +1144,19 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w31-Oc-g7I">
                                                 <rect key="frame" x="262" y="20" width="50" height="50"/>
                                                 <animations/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <state key="normal" title="分享"/>
                                                 <connections>
-                                                    <action selector="backClick:" destination="T2A-EU-fO1" eventType="touchUpInside" id="dVu-CE-yY0"/>
+                                                    <action selector="shareYaoqinMa:" destination="T2A-EU-fO1" eventType="touchUpInside" id="br1-gR-Jyd"/>
                                                 </connections>
                                             </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="urK-Kd-my8">
+                                                <rect key="frame" x="123" y="40" width="74" height="74"/>
+                                                <animations/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="urK-Kd-my8" secondAttribute="height" id="i57-DQ-QwO"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <animations/>
                                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1172,13 +1173,13 @@
                                             <constraint firstAttribute="bottom" secondItem="Sgc-cz-p1g" secondAttribute="bottom" constant="8" id="iyP-YD-mUF"/>
                                             <constraint firstItem="4p7-6K-NG6" firstAttribute="centerX" secondItem="xOd-DE-xbQ" secondAttribute="centerX" id="jEi-7H-f7N"/>
                                             <constraint firstAttribute="trailing" secondItem="w31-Oc-g7I" secondAttribute="trailing" constant="8" id="m6h-jW-NkM"/>
-                                            <constraint firstItem="urK-Kd-my8" firstAttribute="top" secondItem="xOd-DE-xbQ" secondAttribute="top" constant="30" id="o4m-N7-DIK"/>
+                                            <constraint firstItem="urK-Kd-my8" firstAttribute="top" secondItem="xOd-DE-xbQ" secondAttribute="top" constant="40" id="o4m-N7-DIK"/>
                                             <constraint firstItem="Sgc-cz-p1g" firstAttribute="leading" secondItem="xOd-DE-xbQ" secondAttribute="leading" constant="95" id="veS-nM-Ta0"/>
                                             <constraint firstItem="Sgc-cz-p1g" firstAttribute="top" secondItem="4p7-6K-NG6" secondAttribute="bottom" constant="3" id="vyF-lc-l81"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="       将此拜(邀)师(请)令(码)分享给好友，让其注册时输入，即可收入师门。徒弟每次提现成功后，都会贡献提现金额的10%(暂时由粉猫补贴)给师傅哦~" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="OR9-Yh-EI5">
-                                        <rect key="frame" x="0.0" y="429" width="320" height="72"/>
+                                        <rect key="frame" x="0.0" y="428" width="320" height="72"/>
                                         <animations/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
@@ -1193,7 +1194,7 @@
                                     <constraint firstItem="xOd-DE-xbQ" firstAttribute="top" secondItem="NAI-7r-TQP" secondAttribute="top" id="0cx-Tm-uFi"/>
                                     <constraint firstItem="xOd-DE-xbQ" firstAttribute="leading" secondItem="NAI-7r-TQP" secondAttribute="leading" id="1HV-Md-GNt"/>
                                     <constraint firstAttribute="trailing" secondItem="xOd-DE-xbQ" secondAttribute="trailing" id="1MN-5l-xrr"/>
-                                    <constraint firstItem="LUA-iA-B7n" firstAttribute="top" secondItem="fCJ-Zi-4kJ" secondAttribute="bottom" constant="16" id="2Fo-sc-Tea"/>
+                                    <constraint firstItem="LUA-iA-B7n" firstAttribute="top" secondItem="fCJ-Zi-4kJ" secondAttribute="bottom" constant="5" id="2Fo-sc-Tea"/>
                                     <constraint firstItem="LUA-iA-B7n" firstAttribute="leading" secondItem="NAI-7r-TQP" secondAttribute="leading" id="KAB-eX-tiE"/>
                                     <constraint firstItem="LUA-iA-B7n" firstAttribute="height" secondItem="NAI-7r-TQP" secondAttribute="height" multiplier="1/3" id="KmL-04-1G2"/>
                                     <constraint firstItem="OR9-Yh-EI5" firstAttribute="top" secondItem="LUA-iA-B7n" secondAttribute="bottom" constant="15" id="NWY-uX-nof"/>
@@ -1203,7 +1204,7 @@
                                     <constraint firstAttribute="trailing" secondItem="fCJ-Zi-4kJ" secondAttribute="trailing" id="gex-Ei-sfW"/>
                                     <constraint firstAttribute="trailing" secondItem="OR9-Yh-EI5" secondAttribute="trailing" id="hXM-be-eRn"/>
                                     <constraint firstItem="fCJ-Zi-4kJ" firstAttribute="height" secondItem="xOd-DE-xbQ" secondAttribute="height" multiplier="1/4" constant="1" id="n8d-8n-xVs"/>
-                                    <constraint firstItem="fCJ-Zi-4kJ" firstAttribute="top" secondItem="xOd-DE-xbQ" secondAttribute="bottom" constant="5" id="s37-Aj-2RT"/>
+                                    <constraint firstItem="fCJ-Zi-4kJ" firstAttribute="top" secondItem="xOd-DE-xbQ" secondAttribute="bottom" constant="15" id="s37-Aj-2RT"/>
                                     <constraint firstItem="xOd-DE-xbQ" firstAttribute="height" secondItem="NAI-7r-TQP" secondAttribute="height" multiplier="1/3.5" id="zRQ-zr-Uin"/>
                                 </constraints>
                             </view>
@@ -1224,6 +1225,7 @@
                         <outlet property="iconView" destination="urK-Kd-my8" id="b6f-yl-z0g"/>
                         <outlet property="nameLable" destination="4p7-6K-NG6" id="cVZ-SI-gqN"/>
                         <outlet property="secondLable" destination="ZoU-db-Z7R" id="jFi-cc-FXa"/>
+                        <outlet property="shareSdkSha" destination="w31-Oc-g7I" id="5om-Ki-jGW"/>
                         <outlet property="thirdLable" destination="GZY-h3-hGP" id="k2X-Yg-7IO"/>
                         <outlet property="tuDiCount" destination="NDp-FD-Kqo" id="WCQ-8L-VkD"/>
                         <outlet property="tuDuLieBiao" destination="fCJ-Zi-4kJ" id="6On-vX-qTs"/>

@@ -328,4 +328,13 @@
  */
 - (void)TOGetUserList:(id<FanOpertationDelegate>)delegate block:(void(^)(id result,NSError* error))block WithunionId:(NSString *)unionId;
 
+
+/**
+ *  积分兑换小金库
+ *
+ *  @param delegate <#delegate description#>
+ *  @param block    <#block description#>
+ *  @param unionId  <#unionId description#>
+ */
+- (void)ToChangeJifenToMyBackMall:(id<FanOpertationDelegate>)delegate block:(void(^)(id result,NSError* error))block WithunionId:(NSString *)score withCashpassword:(NSString *)cashpassword withMallUserId:(NSString *)mallUserId;
 @end

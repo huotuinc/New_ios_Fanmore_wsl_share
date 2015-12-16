@@ -9,8 +9,10 @@
 #import "JiFenToMallController.h"
 #import "AppDelegate.h"
 #import "LoginState.h"
-
-@interface JiFenToMallController ()
+#import "GlodMallUserModel.h"
+#import "MJExtension.h"
+#import "FMUtils.h"
+@interface JiFenToMallController ()<UIAlertViewDelegate>
 /**万事利积分*/
 @property (weak, nonatomic) IBOutlet UILabel *scoreJifen;
 
@@ -23,6 +25,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *firstRecord;
 /**xxx记录时间*/
 @property (weak, nonatomic) IBOutlet UILabel *toMakkJifen;
+
+
+/**用户列表*/
+@property (nonatomic,strong) NSArray * userList;
 
 @end
 
@@ -63,26 +69,73 @@
 }
 
 
-
+/**
+ *  获取用户列表
+ */
 - (void)toGetTheGlodToMallAccountList{
+    LoginState * a =  [AppDelegate getInstance].loadingState.userData;
+    __weak JiFenToMallController * wself = self;
+    [[[AppDelegate getInstance]  getFanOperations] TOGetUserList:nil block:^(id result, NSError *error) {
+        if (result) {
+           NSArray * UserList = [GlodMallUserModel objectArrayWithKeyValuesArray:result];
+            if (UserList.count) {
+                wself.userList = UserList;
+            }
+        }
+    } WithunionId:a.unionId];
+}
+
+/**
+ *  积分兑换
+ *
+ *  @param sender <#sender description#>
+ */
+- (IBAction)DuiHanJifen:(id)sender {
     
+    
+    if ([self.toMallJifen.text integerValue] <= 0) {
+        [FMUtils alertMessage:self.view msg:@"当前积分不足"];
+        return;
+    }
+    
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"请输入密码" message:@" " delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定",nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alert show];
+    
+    
+    
+    
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    //得到输入框
+    UITextField *tf = [alertView textFieldAtIndex:0];
+    
+    NSString *regex = @"^[0-9]";
+    
+    
+    __weak JiFenToMallController * wself = self;
+    GlodMallUserModel * usmodel = self.userList[0];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     LoginState * a =  [AppDelegate getInstance].loadingState.userData;
     
-    NSLog(@"-----%@",a.unionId);
-    [[[AppDelegate getInstance]  getFanOperations] TOGetUserList:nil block:^(id result, NSError *error) {
+    
+    if (![predicate evaluateWithObject:tf.text]) {
+        [[[AppDelegate getInstance]  getFanOperations] ToChangeJifenToMyBackMall:nil block:^(id result, NSError *error) {
+            LOG(@"xxxxxx－－%@",result);
+            if (result) {
+                wself.scoreJifen.text = @"0";
+                wself.toMallJifen.text = @"0";
+            }
+        } WithunionId:[NSString stringWithFormat:@"%@",a.score] withCashpassword:tf.text withMallUserId:[NSString stringWithFormat:@"%@",usmodel.userid]];
+        LOG(@"%@",tf.text);
+    }else{
         
-        NSLog(@"%@",result);
-    } WithunionId:a.unionId];
+        [FMUtils alertMessage:self.view msg:@"请输入正确的积分值"];
+    }
     
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

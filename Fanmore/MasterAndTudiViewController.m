@@ -43,6 +43,10 @@
 
 - (IBAction)backClick:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIButton *shareSdkSha;
+
+- (IBAction)shareYaoqinMa:(id)sender;
+
 @end
 
 @implementation MasterAndTudiViewController
@@ -59,6 +63,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    
+    self.iconView.layer.cornerRadius = self.iconView.frame.size.width * 0.5;
+    self.iconView.layer.masksToBounds = YES;
     
     self.navigationController.navigationBar.tintColor = fmMainColor;
 //    self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
@@ -125,5 +134,24 @@
 - (IBAction)backClick:(id)sender {
     
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)shareYaoqinMa:(id)sender {
+    
+    __weak MasterAndTudiViewController * wself = self;
+    ShareMessage* sm = $new(ShareMessage);
+    sm.title = @"万事利爱分享";
+    sm.smdescription = self.nameLable.text;
+//    sm.url = ls.shareContent;
+//    sm.thumbImage =  [UIImage imageNamed:@"logo"];
+//    sm.thumbImageURL = @"logo.png";
+    
+    
+    [ShareTool shareMessage:sm controller:self sentList:nil delegate:nil handler:^(TShareType type, ShareResult result, id data) {
+        if (result==ShareResultDone) {
+            [FMUtils alertMessage:wself.view msg:@"分享成功！"];
+        }
+    }];
+    
 }
 @end

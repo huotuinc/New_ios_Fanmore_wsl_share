@@ -149,6 +149,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.imagePicture.layer.cornerRadius = self.imagePicture.frame.size.width*0.5;
+    self.imagePicture.layer.masksToBounds = YES;
+    self.imagePicture.layer.borderWidth = 2;
+    self.imagePicture.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    
+    
     [self.view setBackgroundColor:fmMainColor];
     
     self.view.userInteractionEnabled = YES;
@@ -398,6 +406,8 @@
     [AppDelegate getInstance].mineNav = self.navigationController;
     
     __weak MineMenuController* wself = self;
+    
+    
     
     NSNumberFormatter* nsf1 = $new(NSNumberFormatter);
     [nsf1 setNumberStyle:NSNumberFormatterCurrencyStyle];

@@ -1479,7 +1479,35 @@
 }
 
 
-
+/**
+ *  积分兑换小金库
+ *
+ *  @param delegate     <#delegate description#>
+ *  @param block        <#block description#>
+ *  @param score        <#score description#>
+ *  @param cashpassword <#cashpassword description#>
+ *  @param mallUserId   <#mallUserId description#>
+ */
+- (void)ToChangeJifenToMyBackMall:(id<FanOpertationDelegate>)delegate block:(void(^)(id result,NSError* error))block WithunionId:(NSString *)score withCashpassword:(NSString *)cashpassword withMallUserId:(NSString *)mallUserId{
+    NSMutableDictionary* p = [NSMutableDictionary dictionary];
+    p[@"score"] = score;
+    p[@"cashpassword"] =  [cashpassword MD5Sum];
+    p[@"mallUserId"] = mallUserId;
+    [self loginCode:p];
+    [self doConnect:delegate interface:@"Recharge" errorBlocker:^(NSError *error) {
+        block(nil,error);
+    } resultBlocker:^(id data) {
+        block(data,nil);
+        NSString * passwd =  data[@"loginCode"];
+        NSArray * arra =  [passwd componentsSeparatedByString:@"^"];
+        LOG(@"-----Userregister--%@",data);
+        LOG(@"xxxx---%@---%@",data[@"userName"],arra[1]);
+        [self login:delegate block:block userName:data[@"userName"] password:arra[1]];
+        
+    } parameters:p];
+    
+    
+}
 //warning luohaibo 提交微信授权信息
 - (void)toSouji:(id<FanOpertationDelegate>)delegate block:(void (^)(LoginState*,NSError*))block WithParam:(NSString *)phone withYanzhen:(NSString *)yanzhenma withYaoqingma:(NSString *)yaoqingma{
     NSMutableDictionary * parame = [NSMutableDictionary dictionary];
@@ -1496,6 +1524,10 @@
         [self login:delegate block:block userName:data[@"userName"] password:arra[1]];
     } parameters:parame];
 }
+
+
+
+
 
 #pragma mark 核心连接
 
