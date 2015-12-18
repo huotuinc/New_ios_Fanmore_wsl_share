@@ -192,38 +192,38 @@
     [WXApi registerApp:@"wxaeda2d5603b12302" withDescription:@"wsl"];
     
     
-//    [iVersion sharedInstance].delegate = self;
-    self.launchTime = [[NSDate date] timeIntervalSince1970];
-    
-    NSString *sversion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    [MobClick setAppVersion:sversion];
-    //91ios weiphone fanmore
-    NSString* qd = nil;
-#ifdef FM_QD
-    qd = $str(@"%@ios",@FM_QD);
-#endif
-    [MobClick startWithAppkey:@"52faffcf56240bc21a023179" reportPolicy:SEND_INTERVAL   channelId:qd];
-#ifdef FanmoreDebug
-//    [MobClick setLogEnabled:YES];
-#endif
-    
-#ifndef FMShareTool
-//    [ShareSDK importWeChatClass:[WXApi class]];
-//    [ShareSDK importQQClass:[QQApiInterface class] tencentOAuthCls:[TencentOAuth class]];
-    
-    BOOL useAppTrusteeship = NO;
-    [ShareSDK registerApp:@"19b4b4d45192" useAppTrusteeship:useAppTrusteeship];
-    if (useAppTrusteeship) {
-        [self initializePlatForTrusteeship];
-        [ShareSDK waitAppSettingComplete:^{
-            NSLog(@"注册完成！");
-        }];
-    }else{
-        [AppDelegate connectAllShareManly];
-    }
-//    [ShareSDK registerApp:@"1782a62f5430" useAppTrusteeship:useAppTrusteeship];
-    
-#endif
+////    [iVersion sharedInstance].delegate = self;
+//    self.launchTime = [[NSDate date] timeIntervalSince1970];
+//    
+//    NSString *sversion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+//    [MobClick setAppVersion:sversion];
+//    //91ios weiphone fanmore
+//    NSString* qd = nil;
+//#ifdef FM_QD
+//    qd = $str(@"%@ios",@FM_QD);
+//#endif
+//    [MobClick startWithAppkey:@"52faffcf56240bc21a023179" reportPolicy:SEND_INTERVAL   channelId:qd];
+//#ifdef FanmoreDebug
+////    [MobClick setLogEnabled:YES];
+//#endif
+//    
+//#ifndef FMShareTool
+////    [ShareSDK importWeChatClass:[WXApi class]];
+////    [ShareSDK importQQClass:[QQApiInterface class] tencentOAuthCls:[TencentOAuth class]];
+//    
+//    BOOL useAppTrusteeship = NO;
+//    [ShareSDK registerApp:@"19b4b4d45192" useAppTrusteeship:useAppTrusteeship];
+//    if (useAppTrusteeship) {
+//        [self initializePlatForTrusteeship];
+//        [ShareSDK waitAppSettingComplete:^{
+//            NSLog(@"注册完成！");
+//        }];
+//    }else{
+//        [AppDelegate connectAllShareManly];
+//    }
+////    [ShareSDK registerApp:@"1782a62f5430" useAppTrusteeship:useAppTrusteeship];
+//    
+//#endif
 
     [self startLocate:[[LocatedHelper alloc] init]];
     // Override point for customization after application launch.
@@ -640,24 +640,35 @@
 
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
     LOG(@"handleOpenURL %@",url);
-    return [ShareTool handleOpenURL:url];
+    
+    if ([url.absoluteString rangeOfString:@"oauth"].location != NSNotFound) {
+        return [WXApi handleOpenURL:url delegate:self];
+    }else{
+        return [ShareTool handleOpenURL:url];
+    }
 //    return [ShareSDK handleOpenURL:url
 //                        wxDelegate:self];
 }
 
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
     LOG(@"handleOpenURL %@",url);
-    return [ShareTool openURL:url sourceApplication:sourceApplication annotation:annotation];
-//    return [ShareSDK handleOpenURL:url
-//                 sourceApplication:sourceApplication
-//                        annotation:annotation
-//                        wxDelegate:self];
+    if ([url.absoluteString rangeOfString:@"oauth"].location != NSNotFound) {
+        return [WXApi handleOpenURL:url delegate:self];
+    }else{
+        return [ShareTool openURL:url sourceApplication:sourceApplication annotation:annotation];
+        
+    }
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options{
     
+    if ([url.absoluteString rangeOfString:@"oauth"].location != NSNotFound) {
+        return [WXApi handleOpenURL:url delegate:self];
+    }else{
+        return [ShareTool handleOpenURL:url];
+    }
     LOG(@"handleOpenURL %@",url);
-    return [ShareTool handleOpenURL:url];
+//    return [ShareTool handleOpenURL:url];
 //    NSString *string =[url absoluteString];
 //    NSLog(@"%@",string);
 //

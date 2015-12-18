@@ -141,14 +141,20 @@
 //                        @"code":code,
 //                        @"invitationCode":invitationCode};
     
+    __block NSString * aaname = nil;
+    __block NSString * spassword = nil;
     [self doConnect:delegate interface:@"register" errorBlocker:^(NSError *error) {
         block(nil,error);
     } resultBlocker:^(NSDictionary *data) {
+        
+       
         NSString * passwd =  data[@"loginCode"];
         NSArray * arra =  [passwd componentsSeparatedByString:@"^"];
-        LOG(@"-----Userregister--%@",data);
+        aaname = arra[0];
+        spassword = arra[1];
         LOG(@"xxxx---%@---%@",data[@"userName"],arra[1]);
-        [self login:delegate block:block userName:data[@"userName"] password:arra[1]];
+        [self login:delegate block:block userName:aaname password:spassword];
+//        [self login:delegate block:block userName:userName password:password];
     } parameters:parame];
 }
 
@@ -1488,7 +1494,7 @@
  *  @param cashpassword <#cashpassword description#>
  *  @param mallUserId   <#mallUserId description#>
  */
-- (void)ToChangeJifenToMyBackMall:(id<FanOpertationDelegate>)delegate block:(void(^)(id result,NSError* error))block WithunionId:(NSString *)score withCashpassword:(NSString *)cashpassword withMallUserId:(NSString *)mallUserId{
+- (void)ToChangeJifenToMyBackMall:(id<FanOpertationDelegate>)delegate block:(void(^)(id result,NSError* error))block WithunionId:(NSString *)score withCashpassword:(NSString *)cashpassword withMallUserId:(NSString *)mallUserId WithUserName:(NSString *)username withPassword:(NSString *)passwd{
     NSMutableDictionary* p = [NSMutableDictionary dictionary];
     p[@"score"] = score;
     p[@"cashpassword"] =  [cashpassword MD5Sum];
@@ -1497,13 +1503,7 @@
     [self doConnect:delegate interface:@"Recharge" errorBlocker:^(NSError *error) {
         block(nil,error);
     } resultBlocker:^(id data) {
-        block(data,nil);
-        NSString * passwd =  data[@"loginCode"];
-        NSArray * arra =  [passwd componentsSeparatedByString:@"^"];
-        LOG(@"-----Userregister--%@",data);
-        LOG(@"xxxx---%@---%@",data[@"userName"],arra[1]);
-        [self login:delegate block:block userName:data[@"userName"] password:arra[1]];
-        
+        [self login:delegate block:block userName:username password:passwd];
     } parameters:p];
     
     
@@ -1551,9 +1551,15 @@
         double version = [[UIDevice currentDevice].systemVersion doubleValue];
         NSString* signStr;
         if (version>=7) {
+            
+            NSLog(@"-------%@",sign);
             signStr = [[[SecureHelper rsaEncryptString:[sign myJSONString]] base64EncodedStringWithOptions:0]encodeURL];
+            NSLog(@"-----%@",signStr);
         }else{
+            
+            
             signStr = [[[SecureHelper rsaEncryptString:[sign myJSONString]] base64Encoding]encodeURL];
+            NSLog(@"%@",signStr);
         }
         
 //        NSLog(@"1%@",[sign myJSONString]);

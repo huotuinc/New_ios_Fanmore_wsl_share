@@ -94,7 +94,6 @@
 
 - (void)clickHome{
     
-    NSLog(@"click ----首页");
     [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         CGAffineTransform trans =CGAffineTransformTranslate(CGAffineTransformMakeScale(1, 1), 0, 0);
         [self.mainImage setTransform:trans];
@@ -429,8 +428,17 @@
         }
         
         
-        LOG(@"%@",ls.userData.picUrl);
-        [self.imagePicture sd_setImageWithURL:[NSURL URLWithString:ls.userData.picUrl] placeholderImage:nil];
+        
+        NSArray * headDeal = [ls.userData.picUrl componentsSeparatedByString:@"http"];
+        if (headDeal.count == 1) {
+            [self.imagePicture sd_setImageWithURL:[NSURL URLWithString:ls.userData.picUrl] placeholderImage:[UIImage imageNamed:@"WeiXinIIconViewDefaule"]];
+        }else if(headDeal.count == 2){
+           NSString * aass = [NSString stringWithFormat:@"http%@",headDeal[1]];
+           [self.imagePicture sd_setImageWithURL:[NSURL URLWithString:aass] placeholderImage:[UIImage imageNamed:@"WeiXinIIconViewDefaule"]];
+        }else{
+            NSString * aass = [NSString stringWithFormat:@"http%@",headDeal[2]];
+            [self.imagePicture sd_setImageWithURL:[NSURL URLWithString:aass] placeholderImage:[UIImage imageNamed:@"WeiXinIIconViewDefaule"]];
+        }
 //        NSNumber* totalScore = ls.userData.totalScore;
         NSNumber* totalScore = ls.userData.score;
         if ($safe(totalScore)) {
@@ -468,33 +476,25 @@
     }else if( $eql(self.totalTaskRewards.text,@"") ){
         self.totalTaskRewards.text = @"0";
     }
-    
-//    self.redTip.autoresizingMask = 0;
-//    CGPoint lastPoint = [FMUtils pointToRightTop:self.myYesterdayRewards];
-//    [self.redTip setFrame:CGRectMake(lastPoint.x+0, lastPoint.y, self.redTip.frame.size.width, self.redTip.frame.size.height)];
-//    [self.redTip hidenme];
-//    
-//    if ([ls hasLogined] && [ls.userData hasNewFeedBack]) {
-//        self.redTip2.autoresizingMask = 0;
-//        self.redTip2.hidden = NO;
-//        lastPoint = [FMUtils pointToRightTop:self.morel];
-//        [self.redTip2 setFrame:CGRectMake(lastPoint.x+1, lastPoint.y-1, self.redTip.frame.size.width, self.redTip.frame.size.height)];
-//    }
-//    [self.redTip2 hidenme];
+ 
     if ([ls hasLogined]) {
-//        UserInformation* ui =[AppDelegate getInstance].currentUser;
-        
-        [ls.userData updateUserPicture:self.imagePicture];
-        
-//        if ($safe(ui.name) && ui.name.length>0) {
-//            [self.labelName setText:ui.name];
-//        }else
-            [self.labelName setText:ls.userData.userName];
-        
+
+        [self.labelName setText:ls.userData.userName];
+        NSArray * headDeal = [ls.userData.picUrl componentsSeparatedByString:@"http"];
+        if (headDeal.count == 1) {
+            [self.imagePicture sd_setImageWithURL:[NSURL URLWithString:ls.userData.picUrl] placeholderImage:[UIImage imageNamed:@"WeiXinIIconViewDefaule"]];
+        }else if(headDeal.count == 2){
+            NSString * aass = [NSString stringWithFormat:@"http%@",headDeal[1]];
+            [self.imagePicture sd_setImageWithURL:[NSURL URLWithString:aass] placeholderImage:[UIImage imageNamed:@"WeiXinIIconViewDefaule"]];
+        }else{
+            NSString * aass = [NSString stringWithFormat:@"http%@",headDeal[2]];
+            [self.imagePicture sd_setImageWithURL:[NSURL URLWithString:aass] placeholderImage:[UIImage imageNamed:@"WeiXinIIconViewDefaule"]];
+        }
+
         [self.labelExp setText:$str(@"Exp.%@",[ls.userData.exp currencyString:@"" fractionDigits:0])];
         
     }else{
-        [self.imagePicture setImage:[UIImage imageNamed:@"queshentu"]];
+        [self.imagePicture setImage:[UIImage imageNamed:@"WeiXinIIconViewDefaule"]];
         [self.labelName setText:@"未登录"];
         [self.labelExp setText:@""];
     }

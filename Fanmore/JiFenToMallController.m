@@ -100,7 +100,7 @@
     
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"请输入密码" message:@" " delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定",nil];
-    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    alert.alertViewStyle = UIAlertViewStyleSecureTextInput;
     [alert show];
     
     
@@ -121,6 +121,10 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     LoginState * a =  [AppDelegate getInstance].loadingState.userData;
     
+    NSString * passwd =  a.loginCode;
+    NSArray * arra =  [passwd componentsSeparatedByString:@"^"];
+    
+    
     
     if (![predicate evaluateWithObject:tf.text]) {
         [[[AppDelegate getInstance]  getFanOperations] ToChangeJifenToMyBackMall:nil block:^(id result, NSError *error) {
@@ -129,7 +133,7 @@
                 wself.scoreJifen.text = @"0";
                 wself.toMallJifen.text = @"0";
             }
-        } WithunionId:[NSString stringWithFormat:@"%@",a.score] withCashpassword:tf.text withMallUserId:[NSString stringWithFormat:@"%@",usmodel.userid]];
+        } WithunionId:[NSString stringWithFormat:@"%@",a.score] withCashpassword:tf.text withMallUserId:[NSString stringWithFormat:@"%@",usmodel.userid] WithUserName:arra[0] withPassword:arra[1]];
         LOG(@"%@",tf.text);
     }else{
         

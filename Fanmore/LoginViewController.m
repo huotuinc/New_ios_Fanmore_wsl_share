@@ -47,8 +47,10 @@
  *  @param sender <#sender description#>
  */
 - (IBAction)login:(id)sender {
-
-    [[[AppDelegate getInstance] getFanOperations] registerUser:nil block:^(LoginState * model, NSError *error) {
+    
+    
+    AppDelegate * ds =  [AppDelegate getInstance];
+    [[ds getFanOperations] registerUser:nil block:^(LoginState * model, NSError *error) {
         if (!error) {
             UIStoryboard* main = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
             UIViewController* vc = [main instantiateInitialViewController];

@@ -28,6 +28,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    
+   
+    
+    
     [self setup];
 }
 
@@ -36,7 +40,8 @@
     
     self.weiXInIconView.layer.cornerRadius = self.weiXInIconView.frame.size.height * 0.5;
     self.weiXInIconView.layer.masksToBounds = YES;
-    
+    self.weiXInIconView.layer.borderWidth = 2;
+    self.weiXInIconView.layer.borderColor = [UIColor whiteColor].CGColor;
     NSString * filePath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString * file = [filePath stringByAppendingPathComponent:WXQAuthBringBackUserInfo];
     UserInfo * user = [NSKeyedUnarchiver unarchiveObjectWithFile:file];

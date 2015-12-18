@@ -206,7 +206,7 @@
         
     }else{
         cell.imageView.image = [UIImage imageNamed:@"xjk"];
-        cell.textLabel.text = @"积分兑换小金库";
+        cell.textLabel.text = @"积分兑换至商城";
     }
     return cell;
 }
@@ -254,11 +254,14 @@
     
     NSString * headUrl =  [[[AppDelegate getInstance].loadingState userData] picUrl];
     NSArray * head = [headUrl componentsSeparatedByString:@"http"];
+    NSString * aass = nil;
     if (head.count == 2) {
-        NSString * aass = [NSString stringWithFormat:@"http%@",head[1]];
+        aass = [NSString stringWithFormat:@"http%@",head[1]];
         LOG(@"%@",aass);
+    }else{
+        aass = headUrl;
     }
-    [self.iconView sd_setImageWithURL:[NSURL URLWithString:headUrl] placeholderImage:[UIImage imageNamed:@"WeiXinIIconViewDefaule"] options:SDWebImageRetryFailed];
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:aass] placeholderImage:[UIImage imageNamed:@"WeiXinIIconViewDefaule"] options:SDWebImageRetryFailed];
     [self.view layoutIfNeeded];
     
     

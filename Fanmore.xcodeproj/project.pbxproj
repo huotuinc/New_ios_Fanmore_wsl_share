@@ -253,6 +253,7 @@
 		EF527D501C0FD51D00C9DCB7 /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = EF527D441C0FD51D00C9DCB7 /* NSObject+MJKeyValue.m */; };
 		EF527D511C0FD51D00C9DCB7 /* NSObject+MJMember.m in Sources */ = {isa = PBXBuildFile; fileRef = EF527D461C0FD51D00C9DCB7 /* NSObject+MJMember.m */; };
 		EF527D541C0FD5CE00C9DCB7 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = EF527D531C0FD5CE00C9DCB7 /* UserInfo.m */; };
+		EF7E68B81C239E4100127039 /* AccountLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7E68B71C239E4100127039 /* AccountLoginViewController.m */; };
 		EF8E69DF1C1669C5004ACB5A /* CopyConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF8E69B01C1669C5004ACB5A /* CopyConnection.framework */; };
 		EF8E69E01C1669C5004ACB5A /* FacebookConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF8E69B11C1669C5004ACB5A /* FacebookConnection.framework */; };
 		EF8E69E11C1669C5004ACB5A /* MailConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF8E69B21C1669C5004ACB5A /* MailConnection.framework */; };
@@ -781,6 +782,8 @@
 		EF527D461C0FD51D00C9DCB7 /* NSObject+MJMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJMember.m"; sourceTree = "<group>"; };
 		EF527D521C0FD5CE00C9DCB7 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
 		EF527D531C0FD5CE00C9DCB7 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
+		EF7E68B61C239E4100127039 /* AccountLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountLoginViewController.h; sourceTree = "<group>"; };
+		EF7E68B71C239E4100127039 /* AccountLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountLoginViewController.m; sourceTree = "<group>"; };
 		EF8E69B01C1669C5004ACB5A /* CopyConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CopyConnection.framework; sourceTree = "<group>"; };
 		EF8E69B11C1669C5004ACB5A /* FacebookConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookConnection.framework; sourceTree = "<group>"; };
 		EF8E69B21C1669C5004ACB5A /* MailConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MailConnection.framework; sourceTree = "<group>"; };
@@ -1933,6 +1936,8 @@
 				EF2471361C1FEFF300B2D00F /* JiFenToMallController.m */,
 				EFE607B11C210B5900A63867 /* GlodMallUserModel.h */,
 				EFE607B21C210B5900A63867 /* GlodMallUserModel.m */,
+				EF7E68B61C239E4100127039 /* AccountLoginViewController.h */,
+				EF7E68B71C239E4100127039 /* AccountLoginViewController.m */,
 			);
 			name = WeiChatAuthorize;
 			sourceTree = "<group>";
@@ -2306,6 +2311,7 @@
 				238F6C1E18838F51006BF18C /* FMUtils.m in Sources */,
 				230C45CD18A8EDBB0008ECCB /* ParticipatesController.m in Sources */,
 				2305C0DE18A9EFA70028F7CC /* InformationController.m in Sources */,
+				EF7E68B81C239E4100127039 /* AccountLoginViewController.m in Sources */,
 				237C801118BB4503004B29FC /* LoginController.m in Sources */,
 				231B503C18D2D22C004615F6 /* ScoreFlowCell.m in Sources */,
 				23049AC9194EEF6E0052962E /* MyTaskDetail.m in Sources */,

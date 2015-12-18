@@ -389,6 +389,7 @@
     [self viewDidLoadGestureRecognizer];
     //luohaibo
     [self.btsend setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    self.title = @"详情";
     
     self.web.scrollView.delegate = self;
     self.web.delegate = self;
