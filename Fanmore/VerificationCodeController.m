@@ -181,6 +181,8 @@
 }
 
 - (IBAction)okAction:(id)sender {
+    
+    NSLog(@"xxxxxx");
     __weak VerificationCodeController* wself = self;
 #ifdef FanmoreJustDone
     LoginState* ls = [AppDelegate getInstance].loadingState.userData;

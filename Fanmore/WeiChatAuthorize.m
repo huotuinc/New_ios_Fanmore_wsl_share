@@ -76,9 +76,13 @@
         [WXApi sendAuthReq:req viewController:self delegate:self];
     }else{
         
-        UIStoryboard * sto = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        IphoneLoginViewController * iphone =  [sto instantiateViewControllerWithIdentifier:@"IphoneLoginViewController"];
-        [self presentViewController:iphone animated:YES completion:nil];
+        if (self.loginType == 1) {//注册
+            UIStoryboard * sto = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            IphoneLoginViewController * iphone =  [sto instantiateViewControllerWithIdentifier:@"IphoneLoginViewController"];
+            [self presentViewController:iphone animated:YES completion:nil];
+        }else{//登录
+            
+        }
     }
     
     

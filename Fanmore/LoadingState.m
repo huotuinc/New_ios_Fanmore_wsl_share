@@ -49,6 +49,9 @@
 
 @synthesize CashType;
 @synthesize wxVersionCode;
+//luohaibo
+@synthesize website;
+@synthesize customerId;
 
 -(BOOL)wxcannotSendSuccess{    
     if ($safe(self.wxVersionCode)) {

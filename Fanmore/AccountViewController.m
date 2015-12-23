@@ -21,7 +21,12 @@
 #import "InformationController.h"
 #import "UIImageView+WebCache.h"
 #import "JiFenToMallController.h"
-@interface AccountViewController ()<UITableViewDataSource,UITableViewDelegate>
+#import "WeiChatAuthorize.h"
+#import "NSString+SSToolkitAdditions.h"
+#import "HomeViewController.h"
+#import "MallUser.h"
+
+@interface AccountViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 @property(weak) TextChangeController* tccontroller;
 @property BOOL doCash;
 @property BOOL doCash2;
@@ -43,6 +48,8 @@
 /**我的积分*/
 @property (weak, nonatomic) IBOutlet UILabel *myJifen;
 
+
+@property(nonatomic,strong) NSArray *userList;
 @end
 
 @implementation AccountViewController
@@ -137,12 +144,17 @@
     __weak AccountViewController* wself = self;
     
     [self.btlogout bk_whenTapped:^{
-        [ConfirmController confirm:wself message:@"确实要注销么？" block:^{
-            AppDelegate* ad = [AppDelegate  getInstance];
-            [ad logout:wself];
-            [ad storeLastUserInformation:@"" password:@""];
-            [wself.parentViewController dismissViewControllerAnimated:YES completion:NULL];
-        }];
+        
+//2015/12/18 luohaibo
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"账号注销" message:nil
+    delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alert show];
+//        [ConfirmController confirm:wself message:@"确实要注销么？" block:^{
+//            AppDelegate* ad = [AppDelegate  getInstance];
+//            [ad logout:wself];
+//            [ad storeLastUserInformation:@"" password:@""];
+//            [wself.parentViewController dismissViewControllerAnimated:YES completion:NULL];
+//        }];
     }];
     
     [self.buttonMobile addTarget:self action:@selector(clickMobile) forControlEvents:UIControlEventTouchUpInside];
@@ -176,12 +188,70 @@
 //    double version = [[UIDevice currentDevice].systemVersion doubleValue];
 //    self.automaticallyAdjustsScrollViewInsets = NO;
     
+    //luohaibo
+    [self toGetTheGlodToMallAccountList];
 
+}
+
+#warning 用户
+/**
+ *  获取用户列表
+ */
+- (void)toGetTheGlodToMallAccountList{
+    LoginState * a =  [AppDelegate getInstance].loadingState.userData;
+    [[[AppDelegate getInstance]  getFanOperations] TOGetUserList:nil block:^(id result, NSError *error) {
+        if (result) {//保存用户列表
+            NSArray * UserList = [MallUser objectArrayWithKeyValuesArray:result];
+            //创建归档辅助类
+            NSMutableData *data = [[NSMutableData alloc] init];
+            //创建归档辅助类
+            NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+            //编码
+            [archiver encodeObject:UserList forKey:MallUesrList];
+            //结束编码
+            [archiver finishEncoding];
+            NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:MallUesrList];
+            //写入
+            [data writeToFile:filename atomically:YES];
+        }
+    } WithunionId:a.unionId];
+}
+
+
+
+
+/**
+ *  账号注销
+ *
+ *  @param alertView   <#alertView description#>
+ *  @param buttonIndex <#buttonIndex description#>
+ */
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    
+    NSLog(@"%d",buttonIndex);
+    if (buttonIndex == 1) {
+        
+        AppDelegate* ad = [AppDelegate  getInstance];
+        [ad logout:self];
+        [ad storeLastUserInformation:@"" password:@""];
+        
+        
+        UIStoryboard * mainS = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        WeiChatAuthorize * WeiChart = [mainS instantiateViewControllerWithIdentifier:@"WeiChatAuthorize"];
+        WeiChart.loginType = 2;
+        UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:WeiChart];
+        [self presentViewController:nav animated:YES completion:nil];
+    }
+    
+    
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 4;
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -215,9 +285,27 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.row == 0) {//进入商城
-        /**luohaibo 用户个人信息*/
-        LoginState * userData = [[AppDelegate getInstance].loadingState userData];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:userData.website]];
+        
+#warning luohaibo
+        // 1.得到data
+        NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:MallUesrList];
+        NSData *data = [NSData dataWithContentsOfFile:filename];
+        // 2.创建反归档对象
+        NSKeyedUnarchiver *unArchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        // 3.解码并存到数组中
+        NSArray *namesArray = [unArchiver decodeObjectForKey:MallUesrList];
+        if (namesArray.count) {
+            MallUser * user = namesArray[0];
+            NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+            NSString * file = [path stringByAppendingPathComponent:ChoneMallAccount];
+            [NSKeyedArchiver archiveRootObject:user toFile:file];
+        }
+        
+        
+        UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        HomeViewController * home = [story instantiateViewControllerWithIdentifier:@"HomeViewController"];
+        [self.navigationController pushViewController:home animated:YES];
     }else if (indexPath.row == 1){//账户安全
         SafeController * safe = [[UIStoryboard storyboardWithName:@"Mine" bundle:nil] instantiateViewControllerWithIdentifier:@"SafeController"];
         [self.navigationController pushViewController:safe animated:YES];
@@ -234,6 +322,61 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
 }
+
+//- (NSString *)ToSignUrlWithString:(NSString *)urlStr{
+//    NSMutableString * signUrl = [NSMutableString stringWithString:urlStr]; //元素url
+//    [signUrl appendFormat:@"?"];
+//    NSDate * timestamp = [[NSDate alloc] init];
+//    NSString *timeSp = [NSString stringWithFormat:@"%lld", (long long)[timestamp timeIntervalSince1970] * 1000];  //转化为UNIX时间戳
+//    [signUrl appendFormat:@"appid=%@",HuoBanMallBuyAppId];
+//    [signUrl appendFormat:@"&timestamp=%@",timeSp];
+//    
+//    LoadingState * load =  [AppDelegate getInstance].loadingState;
+//    
+//    [signUrl appendFormat:@"&buserid=%@",load.userData.unionId];
+//    
+//    [signUrl appendFormat:@"&unionid=%@",load.userData.unionId];
+//    NSRange new = [signUrl rangeOfString:@"?"];
+//    
+//    if (new.location != NSNotFound) {
+//        
+//        NSString * newUrlStr = [signUrl substringFromIndex:new.location+1];
+//        NSArray * separeArray = [newUrlStr componentsSeparatedByString:@"&"]; //？后面的东西
+//        NSMutableArray * keys = [NSMutableArray array];
+//        for (int i = 0; i<separeArray.count; i++) {//参数的键
+//            NSString * sr =  separeArray[i];
+//            NSArray *keyArray = [sr componentsSeparatedByString:@"="];
+//            [keys addObject:keyArray[0]];
+//        }
+//        
+//        
+//        NSMutableArray * sssdasdasd = [NSMutableArray array];
+//        for (int i = 0; i<keys.count; i++) {
+//            NSString * sss =  separeArray[i];
+//            NSString * ccc =  keys[i];
+//            NSString * aaaaaaaa = [sss stringByReplacingOccurrencesOfString:keys[i] withString:[ccc lowercaseString]];
+//            [sssdasdasd addObject:aaaaaaaa];
+//        }
+//        NSArray * arr = [sssdasdasd sortedArrayUsingComparator:^NSComparisonResult(NSString* obj1, NSString* obj2) {
+//            return [obj1 compare:obj2] == NSOrderedDescending;
+//        }];
+//        NSMutableString * signCap = [[NSMutableString alloc] init];
+//        for (int i = 0; i<arr.count; i++) {
+//            if (i == 0) {
+//                [signCap appendString:arr.firstObject];
+//            }else{
+//                [signCap appendFormat:@"&%@",arr[i]];
+//            }
+//        }
+//        [signCap appendFormat:@"%@",HuoBanMallBuyAppSecrect];
+//        NSString * sign = [signCap MD5Sum];
+//        [signUrl appendFormat:@"&sign=%@",sign];
+//        return signUrl;
+//    }
+//    return nil;
+//}
+//
+
 
 - (void)viewWillAppear:(BOOL)animated{
     
@@ -253,13 +396,15 @@
     }
     
     NSString * headUrl =  [[[AppDelegate getInstance].loadingState userData] picUrl];
+    LOG(@"%@",headUrl);
     NSArray * head = [headUrl componentsSeparatedByString:@"http"];
+    
     NSString * aass = nil;
     if (head.count == 2) {
         aass = [NSString stringWithFormat:@"http%@",head[1]];
         LOG(@"%@",aass);
-    }else{
-        aass = headUrl;
+    }else if(head.count == 3){
+        aass = [NSString stringWithFormat:@"http%@",head[2]];
     }
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:aass] placeholderImage:[UIImage imageNamed:@"WeiXinIIconViewDefaule"] options:SDWebImageRetryFailed];
     [self.view layoutIfNeeded];

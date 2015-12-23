@@ -152,7 +152,7 @@
     if ($safe(wxkey) && wxkey.length>3) {
         wxsucess = [WXApi registerApp:wxkey];
     }else{
-        wxsucess = [WXApi registerApp:@"wxaeda2d5603b12302"];
+        wxsucess = [WXApi registerApp:WeiXinAppKey];
     }    
 //    NSLog(@"wxsucess %d %d",wxsucess, [WXApi isWXAppSupportApi]);
 //    [WXApi openWXApp];
@@ -163,13 +163,13 @@
     if ($safe(wxkey) && wxkey.length>3) {
         [ShareSDK connectWeChatTimelineWithAppId:wxkey wechatCls:[WXApi class]];
     }else{
-        [ShareSDK connectWeChatTimelineWithAppId:@"wxaeda2d5603b12302" wechatCls:[WXApi class]];
+        [ShareSDK connectWeChatTimelineWithAppId:WeiXinAppKey wechatCls:[WXApi class]];
     }
     
     if ($safe(wxkey) && wxkey.length>3) {
         [ShareSDK connectWeChatSessionWithAppId:wxkey wechatCls:[WXApi class]];
     }else{
-        [ShareSDK connectWeChatSessionWithAppId:@"wxaeda2d5603b12302" wechatCls:[WXApi class]];
+        [ShareSDK connectWeChatSessionWithAppId:WeiXinAppKey wechatCls:[WXApi class]];
     }
     
     
@@ -189,12 +189,11 @@
     
     
 
-    [WXApi registerApp:@"wxaeda2d5603b12302" withDescription:@"wsl"];
+    [WXApi registerApp:WeiXinAppKey withDescription:@"wsl"];
     
     
 ////    [iVersion sharedInstance].delegate = self;
 //    self.launchTime = [[NSDate date] timeIntervalSince1970];
-//    
 //    NSString *sversion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 //    [MobClick setAppVersion:sversion];
 //    //91ios weiphone fanmore
@@ -221,8 +220,8 @@
 //    }else{
 //        [AppDelegate connectAllShareManly];
 //    }
-////    [ShareSDK registerApp:@"1782a62f5430" useAppTrusteeship:useAppTrusteeship];
-//    
+//    [ShareSDK registerApp:@"1782a62f5430" useAppTrusteeship:useAppTrusteeship];
+//
 //#endif
 
     [self startLocate:[[LocatedHelper alloc] init]];
@@ -237,7 +236,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
 #ifdef FMShareTool
-    [[ShareTool toolWithType:TShareTypeWeixiTimeline identification:@"wx1424e93fb903ef33"] checkSupport:YES];
+    [[ShareTool toolWithType:TShareTypeWeixiTimeline identification:WeiXinAppKey] checkSupport:YES];
 #endif
 
 //    UIRemoteNotificationTypeBadge   = 1 << 0,

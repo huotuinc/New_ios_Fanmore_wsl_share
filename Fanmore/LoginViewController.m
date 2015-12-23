@@ -10,6 +10,8 @@
 #import "UserInfo.h"
 #import "AppDelegate.h"
 #import "MJExtension.h"
+#import "MBProgressHUD+MJ.h"
+
 @interface LoginViewController ()
 
 
@@ -50,13 +52,14 @@
     
     
     AppDelegate * ds =  [AppDelegate getInstance];
+//    [MBProgressHUD showMessage:nil];
     [[ds getFanOperations] registerUser:nil block:^(LoginState * model, NSError *error) {
         if (!error) {
             UIStoryboard* main = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
             UIViewController* vc = [main instantiateInitialViewController];
             self.view.window.rootViewController = vc;
         }
-        
+//        [MBProgressHUD hideHUD];
     } userName:nil password:nil code:nil invitationCode:@"WSL0LOVE"];
 
     

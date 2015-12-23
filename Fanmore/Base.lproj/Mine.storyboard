@@ -2876,7 +2876,7 @@
                                                 <rect key="frame" x="39" y="35" width="60" height="23"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -2917,7 +2917,7 @@
                                                     <constraint firstAttribute="height" constant="21" id="RUO-J2-OBc"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -4064,7 +4064,7 @@
                                     <action selector="textEditDone:" destination="Ole-hK-Std" eventType="editingDidEndOnExit" id="nQ5-qC-qlv"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="粉猫不会在任何地方泄露您的隐私信息" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7hp-iw-88s">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="万事利不会在任何地方泄露您的隐私信息" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7hp-iw-88s">
                                 <rect key="frame" x="60" y="227" width="200" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
@@ -4411,12 +4411,12 @@
         <image name="zhuxiaoicon" width="296" height="38"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="U6R-np-1gz"/>
         <segue reference="dEh-C0-s9v"/>
+        <segue reference="U6R-np-1gz"/>
         <segue reference="GPZ-kY-HU0"/>
-        <segue reference="GHQ-5f-G6i"/>
-        <segue reference="i4G-2i-Lrw"/>
-        <segue reference="Aku-fb-Dbv"/>
-        <segue reference="zGz-xS-tHy"/>
+        <segue reference="BR7-vQ-R7K"/>
+        <segue reference="ZTF-wr-cUi"/>
+        <segue reference="dRi-sA-oAh"/>
+        <segue reference="w78-Tg-fVP"/>
     </inferredMetricsTieBreakers>
 </document>

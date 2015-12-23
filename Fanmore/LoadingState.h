@@ -35,11 +35,12 @@
 @property (nonatomic, retain) LoginState *userData;
 //@property (atomic, retain) UIImage *image;
 
+@property (nonatomic, retain) NSNumber * customerId;
 @property (nonatomic, retain) NSString * aboutUsUrl;
 @property (nonatomic, retain) NSString * ruleUrl;
 @property (nonatomic, retain) NSString * serviceUrl;
 @property (nonatomic, retain) NSString * wxVersionCode;
-
+@property (nonatomic, retain) NSString * website;
 /**
  *  微信无法正确给出转发成功事件
  *

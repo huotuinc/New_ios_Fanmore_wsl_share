@@ -12,7 +12,9 @@
 #import "GlodMallUserModel.h"
 #import "MJExtension.h"
 #import "FMUtils.h"
-@interface JiFenToMallController ()<UIAlertViewDelegate>
+#import "MBProgressHUD+MJ.h"
+
+@interface JiFenToMallController ()<UIAlertViewDelegate,UITabBarDelegate,UITableViewDataSource,UITableViewDelegate>
 /**万事利积分*/
 @property (weak, nonatomic) IBOutlet UILabel *scoreJifen;
 
@@ -28,11 +30,23 @@
 
 
 /**用户列表*/
-@property (nonatomic,strong) NSArray * userList;
+@property (nonatomic,strong) NSMutableArray * userList;
 
+/**遮罩*/
+@property (nonatomic,strong) UIView * backView;
+/**遮罩*/
+@property (nonatomic,strong) UITableView * midtableView;
 @end
 
 @implementation JiFenToMallController
+
+
+- (NSMutableArray *)userList{
+    if (_userList == nil) {
+        _userList = [NSMutableArray array];
+    }
+    return _userList;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -76,10 +90,11 @@
     LoginState * a =  [AppDelegate getInstance].loadingState.userData;
     __weak JiFenToMallController * wself = self;
     [[[AppDelegate getInstance]  getFanOperations] TOGetUserList:nil block:^(id result, NSError *error) {
+        NSLog(@"%@",result);
         if (result) {
            NSArray * UserList = [GlodMallUserModel objectArrayWithKeyValuesArray:result];
             if (UserList.count) {
-                wself.userList = UserList;
+                wself.userList = [NSMutableArray arrayWithArray:UserList];
             }
         }
     } WithunionId:a.unionId];
@@ -98,6 +113,10 @@
         return;
     }
     
+    //多账号选择
+    if (self.userList.count>1) {
+        [self MildAlertView];
+    }
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"请输入密码" message:@" " delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定",nil];
     alert.alertViewStyle = UIAlertViewStyleSecureTextInput;
@@ -127,12 +146,16 @@
     
     
     if (![predicate evaluateWithObject:tf.text]) {
+        
+        [MBProgressHUD showMessage:nil];
         [[[AppDelegate getInstance]  getFanOperations] ToChangeJifenToMyBackMall:nil block:^(id result, NSError *error) {
             LOG(@"xxxxxx－－%@",result);
             if (result) {
                 wself.scoreJifen.text = @"0";
                 wself.toMallJifen.text = @"0";
             }
+            
+            [MBProgressHUD hideHUD];
         } WithunionId:[NSString stringWithFormat:@"%@",a.score] withCashpassword:tf.text withMallUserId:[NSString stringWithFormat:@"%@",usmodel.userid] WithUserName:arra[0] withPassword:arra[1]];
         LOG(@"%@",tf.text);
     }else{
@@ -142,4 +165,65 @@
     
 }
 
+
+/**账号提示*/
+
+- (void)MildAlertView{
+    
+    UIView * backgroundView = [[UIView alloc] init];
+    _backView = backgroundView;
+    backgroundView.userInteractionEnabled = YES;
+    backgroundView.frame = CGRectMake(0, 0,[UIScreen mainScreen].bounds.size.height,[UIScreen mainScreen].bounds.size.width);
+    backgroundView.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.800];
+    [self.view.window insertSubview:backgroundView aboveSubview:self.view];
+    
+    
+    
+    
+    CGFloat midTableH = 55 + 65 + (5>5?5:5) * 40;//
+    _midtableView = [[UITableView alloc] initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width - 200)/ 2, ([UIScreen mainScreen].bounds.size.height - midTableH) / 2, 200, midTableH) style:UITableViewStylePlain];
+    _midtableView.dataSource = self;
+    _midtableView.delegate = self;
+    _midtableView.backgroundColor = [UIColor whiteColor];
+    _midtableView.layer.cornerRadius = 10;
+    _midtableView.scrollEnabled = NO;
+    [backgroundView addSubview:_midtableView];
+}
+
+#pragma mark tableviewDatesource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return self.userList.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+   
+    if (indexPath.row == 0) {
+        static NSString * ID1 = @"ID1";
+        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:ID1];
+        if (cell == nil) {
+            
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID1];
+            cell.userInteractionEnabled = NO;
+            cell.textLabel.text = @"商城账号选择";
+        }
+        return cell;
+    }else{
+        static NSString * ID1 = @"ID2";
+        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:ID1];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID1];
+            cell.userInteractionEnabled = YES;
+                }
+        
+        
+        
+        
+        return cell;
+        
+    }
+    
+    
+}
 @end

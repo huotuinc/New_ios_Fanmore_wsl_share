@@ -682,10 +682,12 @@
     if ([NSDate timeIntervalSinceReferenceDate]-self.timeToSV<5) {
         return;
     }
-    NSMutableDictionary* p = [NSMutableDictionary dictionaryWithDictionary:@{@"type":type,@"phone":phone}];
+    LOG(@"%@",phone);
+    NSMutableDictionary* p = [NSMutableDictionary dictionary];
+    p[@"mobile"] = phone;
     [self loginCode:p];
     self.timeToSV = [NSDate timeIntervalSinceReferenceDate];
-    [self doConnect:delegate interface:@"VerificationCode" errorBlocker:^(NSError *error) {
+    [self doConnect:delegate interface:@"SMS" errorBlocker:^(NSError *error) {
         block(nil,error);
     } resultBlocker:^(id data) {
         block(nil,nil);

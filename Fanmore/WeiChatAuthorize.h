@@ -10,4 +10,9 @@
 
 @interface WeiChatAuthorize : UIViewController
 
+
+/**注册方式*/
+
+/**1 表示注册  2 表示登录*/
+@property(nonatomic,assign) int loginType;
 @end

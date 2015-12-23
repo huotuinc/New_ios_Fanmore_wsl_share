@@ -71,4 +71,11 @@ NSLog((@"%@(%d) " fmt), [file lastPathComponent], __LINE__, ##__VA_ARGS__); \
 #define WSLInterfaceAdresseUrl @"http://taskapi.fancat.cn"
 #define WeiXinAppKey @"wxaeda2d5603b12302"
 #define WeiXinAppSecret @"8c3b660de36a3b3fb678ca865e31f0f3"
+
+//luohaibo 万事利到商城
+#define HuoBanMallBuyAppId @"huotu686ad1fe2bd8a02bb"
+#define HuoBanMallBuyAppSecrect @"483686ad1fe2bd8a02bbdca24e109953a4a96c"
+
+#define MallUesrList @"MallUesrList"
+#define ChoneMallAccount @"ChoneMallAccount"
 #endif
