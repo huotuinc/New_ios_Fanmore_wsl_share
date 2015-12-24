@@ -107,6 +107,35 @@
     } parameters:p];
 }
 
+
+
+-(void)myRegisterUser:(id<FanOpertationDelegate>)delegate block:(void (^)(id,NSError*))block userName:(NSString*)userName password:(NSString*)password code:(NSString*)code invitationCode:(NSString*)invitationCode{
+    
+    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *fileName = [path stringByAppendingPathComponent:WXQAuthBringBackUserInfo];
+    UserInfo * user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+    
+    NSMutableDictionary *parame = [NSMutableDictionary dictionary];
+    //    parame[@"sex"] = [NSString stringWithFormat:@"%ld",(long)[user.sex integerValue]];
+    parame[@"nickname"] = user.nickname;
+    parame[@"openid"] = user.openid;
+    
+    parame[@"picUrl"] = user.headimgurl;
+    parame[@"unionId"] = user.unionid;
+    parame[@"invitationCode"] = invitationCode;
+    
+    __block NSString * aaname = nil;
+    __block NSString * spassword = nil;
+    [self doConnect:delegate interface:@"register" errorBlocker:^(NSError *error) {
+        block(nil,error);
+    } resultBlocker:^(NSDictionary *data) {
+        block(data,nil);
+    } parameters:parame];
+
+}
+
+
+
 -(void)registerUser:(id<FanOpertationDelegate>)delegate block:(void (^)(LoginState*,NSError*))block userName:(NSString*)userName password:(NSString*)password code:(NSString*)code invitationCode:(NSString*)invitationCode{
     
     NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -146,8 +175,6 @@
     [self doConnect:delegate interface:@"register" errorBlocker:^(NSError *error) {
         block(nil,error);
     } resultBlocker:^(NSDictionary *data) {
-        
-       
         NSString * passwd =  data[@"loginCode"];
         NSArray * arra =  [passwd componentsSeparatedByString:@"^"];
         aaname = arra[0];
@@ -1527,8 +1554,30 @@
     } parameters:parame];
 }
 
+//获取支付参数
+- (void)TOGetPayParames:(id<FanOpertationDelegate>)delegate block:(void(^)(id result,NSError* error))block{
+    NSMutableDictionary* p = [NSMutableDictionary dictionary];
+    [self loginCode:p];
+    [self doConnect:delegate interface:@"PayConfig" errorBlocker:^(NSError *error) {
+        block(nil,error);
+    } resultBlocker:^(id data) {
+        block(data,nil);
+    } parameters:p];
+}
 
-
+/*
+ *验证登录状态
+ */
+- (void)TOYanZhenRegistParames:(id<FanOpertationDelegate>)delegate block:(void(^)(id result,NSError* error))block withunoind:(NSString *)unind{
+    NSMutableDictionary* p = [NSMutableDictionary dictionary];
+    p[@"unionId"] = unind;
+    [self loginCode:p];
+    [self doConnect:delegate interface:@"VerifyRegister" errorBlocker:^(NSError *error) {
+        block(nil,error);
+    } resultBlocker:^(id data) {
+        block(data,nil);
+    } parameters:p];
+}
 
 
 #pragma mark 核心连接

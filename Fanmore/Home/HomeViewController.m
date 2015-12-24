@@ -67,7 +67,7 @@
 
 
 /**账号提升选秀*/
-@property (nonatomic,strong) UITableView * midtableView;
+//@property (nonatomic,strong) UITableView * midtableView;
 
 /**登陆后的背景遮罩*/
 @property (nonatomic,strong) UIView * backView;
@@ -89,33 +89,6 @@
 @implementation HomeViewController
 
 
-- (NSMutableString *)debugInfo{
-    
-    if (_debugInfo == nil) {
-        
-        _debugInfo = [NSMutableString string];
-    }
-    return _debugInfo;
-}
-
-
-
-- (NSArray *)LocalAccounts{
-    _LocalAccounts = nil;
-    if (_LocalAccounts == nil) {
-//        NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//        NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:AccountList];
-//        NSData *data = [NSData dataWithContentsOfFile:filename];
-//        // 2.创建反归档对象
-//        NSKeyedUnarchiver *unArchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-//        // 3.解码并存到数组中
-//        NSArray *namesArray = [unArchiver decodeObjectForKey:AccountList];
-//        _LocalAccounts = namesArray;
-    }
-    return _LocalAccounts;
-}
-
-
 - (UIButton *)backArrow{
     if (_backArrow == nil) {
         _backArrow = [[UIButton alloc] init];
@@ -132,23 +105,15 @@
     if (_leftOption == nil) {
         _leftOption = [[UIButton alloc] init];
         _leftOption.frame = CGRectMake(0, 0, 25, 25);
-//        [_leftOption addTarget:self action:@selector(GoToLeft) forControlEvents:UIControlEventTouchUpInside];
-        [_leftOption setBackgroundImage:[UIImage imageNamed:@"main_title_left_sideslip"] forState:UIControlStateNormal];
+        [_leftOption addTarget:self action:@selector(GoToLeft) forControlEvents:UIControlEventTouchUpInside];
+        [_leftOption setBackgroundImage:[UIImage imageNamed:nil] forState:UIControlStateNormal];
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_leftOption];
     }
     return _leftOption;
 }
 
-
-- (UIButton *)shareBtn{
-    if (_shareBtn == nil) {
-        _shareBtn = [[UIButton alloc] init];
-        _shareBtn.frame = CGRectMake(0, 0, 25, 25);
-        _shareBtn.userInteractionEnabled = NO;
-        [_shareBtn addTarget:self action:@selector(shareBtnClicks) forControlEvents:UIControlEventTouchUpInside];
-        [_shareBtn setBackgroundImage:[UIImage imageNamed:@"home_title_right_share"] forState:UIControlStateNormal];
-    }
-    return _shareBtn;
+- (void)GoToLeft{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
@@ -319,11 +284,12 @@
         //                                }
         //                            }];
 }
+
+
 - (void)viewDidLoad{
     [super viewDidLoad];
     
-//    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
-    
+    //商品
     LoadingState * loInit = [AppDelegate getInstance].loadingState;
     NSString * ddd = [NSString stringWithFormat:@"%@/%@/index.aspx?back=1",loInit.website,loInit.customerId];
     NSURL * urlStr = [NSURL URLWithString:[NSDictionary ToSignUrlWithString:ddd]];
@@ -331,37 +297,29 @@
     self.homeWebView.scalesPageToFit = YES;
     self.homeWebView.tag = 100;
     self.homeWebView.delegate = self;
-//    self.homeWebView.scrollView.bounces = NO;
     [self.homeWebView loadRequest:req];
     
     
     
-    
+    //tarbar
     NSString * cc = [NSString stringWithFormat:@"%@%@%@",loInit.website,@"/bottom.aspx?customerid=",loInit.customerId];
-    LOG(@"%@",cc);
     NSURLRequest * Bottomreq = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:cc]];
-//    self.homeBottonWebView.scalesPageToFit = YES;
+    self.homeBottonWebView.scalesPageToFit = YES;
     self.homeBottonWebView.delegate = self;
     self.homeBottonWebView.tag = 20;
-//    self.homeBottonWebView.hidden = YES;
     self.homeBottonWebView.scrollView.bounces = YES;
-//    self.homeBottonWebView.scrollView setContentOffset:CGPointMake(0, self.)
     self.homeBottonWebView.scrollView.scrollEnabled = NO;
     [self.homeBottonWebView loadRequest:Bottomreq];
 
 
-//    self.navigationController.navigationBar.alpha = 0;
-//    self.navigationController.navigationBar.barTintColor = HuoBanMallBuyNavColor;
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.leftOption];
+
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.leftOption];
     
     //集成刷新控件
     [self AddMjRefresh];
+
     
-//    [UIBarButtonItem alloc] initWithCustomView:self.refreshBtn],
-    self.navigationItem.rightBarButtonItems = @[[[UIBarButtonItem alloc] initWithCustomView:self.shareBtn]];
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self ReturnNavPictureWithName:@"home_title_right_search"]];
-    
-   }
+}
 
 
 
@@ -437,11 +395,10 @@
             
         }else if([url rangeOfString:@"AppAlipay.aspx"].location != NSNotFound){
          
-                
                 self.ServerPayUrl = [url copy];
                 NSRange trade_no = [url rangeOfString:@"trade_no="];
                 NSRange customerID = [url rangeOfString:@"customerID="];
-                //            NSRange paymentType = [url rangeOfString:@"paymentType="];
+                NSRange paymentType = [url rangeOfString:@"paymentType="];
                 NSRange trade_noRange = {trade_no.location + 9,customerID.location-trade_no.location-10};
                 NSString * trade_noss = [url substringWithRange:trade_noRange];//订单号
                 self.orderNo = trade_noss;
@@ -455,43 +412,43 @@
                 // 3.解码并存到数组中
                 NSArray *namesArray = [unArchiver decodeObjectForKey:@"xxx"];
                 
+                LoadingState * loInit = [AppDelegate getInstance].loadingState;
+                NSMutableString * url = [NSMutableString stringWithString:loInit.website];
+                [url appendFormat:@"%@?orderid=%@",@"/order/GetOrderInfo",trade_noss];
                 
-//                NSMutableString * url = [NSMutableString stringWithString:AppOriginUrl];
-//                [url appendFormat:@"%@?orderid=%@",@"/order/GetOrderInfo",trade_noss];
-//                
-//                AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
-//                NSString * to = [NSDictionary ToSignUrlWithString:url];
-//                [manager GET:to parameters:nil success:^void(AFHTTPRequestOperation * requset, id json) {
-//                    if ([json[@"code"] integerValue] == 200) {
-//                        self.priceNumber = json[@"data"][@"Final_Amount"];
-//                        NSString * des =  json[@"data"][@"ToStr"]; //商品描述
-//                        self.proDes = des;
-//                        
-//                        if(namesArray.count == 1){
-//                            PayModel * pay =  namesArray.firstObject;  //300微信  400支付宝
-//                            self.paymodel = pay;
-//                            if ([pay.payType integerValue] == 300) {//300微信
-//                                UIActionSheet * aa =  [[UIActionSheet alloc] initWithTitle:@"支付方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"微信", nil];
-//                                aa.tag = 500;//单个微信支付
-//                                [aa showInView:self.view];
-//                            }
-//                            if ([pay.payType integerValue] == 400) {//400支付宝
-//                                UIActionSheet * aa =  [[UIActionSheet alloc] initWithTitle:@"支付方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"支付宝", nil];
-//                                aa.tag = 700;//单个支付宝支付
-//                                [aa showInView:self.view];
-//                            }
-//                        }else if(namesArray.count == 2){
-//                            UIActionSheet * aa =  [[UIActionSheet alloc] initWithTitle:@"支付方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"支付宝",@"微信", nil];
-//                            aa.tag = 900;//两个都有的支付
-//                            [aa showInView:self.view];
-//                        }
-//                        
-//                    }
-//                    
-//                    
-//                } failure:^void(AFHTTPRequestOperation * reponse, NSError * error) {
-//                    NSLog(@"%@",error.description);
-//                }];
+                AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
+                NSString * to = [NSDictionary ToSignUrlWithString:url];
+                [manager GET:to parameters:nil success:^void(AFHTTPRequestOperation * requset, id json) {
+                    if ([json[@"code"] integerValue] == 200) {
+                        self.priceNumber = json[@"data"][@"Final_Amount"];
+                        NSString * des =  json[@"data"][@"ToStr"]; //商品描述
+                        self.proDes = des;
+                        
+                        if(namesArray.count == 1){
+                            PayModel * pay =  namesArray.firstObject;  //300微信  400支付宝
+                            self.paymodel = pay;
+                            if ([pay.payType integerValue] == 300) {//300微信
+                                UIActionSheet * aa =  [[UIActionSheet alloc] initWithTitle:@"支付方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"微信", nil];
+                                aa.tag = 500;//单个微信支付
+                                [aa showInView:self.view];
+                            }
+                            if ([pay.payType integerValue] == 400) {//400支付宝
+                                UIActionSheet * aa =  [[UIActionSheet alloc] initWithTitle:@"支付方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"支付宝", nil];
+                                aa.tag = 700;//单个支付宝支付
+                                [aa showInView:self.view];
+                            }
+                        }else if(namesArray.count == 2){
+                            UIActionSheet * aa =  [[UIActionSheet alloc] initWithTitle:@"支付方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"支付宝",@"微信", nil];
+                            aa.tag = 900;//两个都有的支付
+                            [aa showInView:self.view];
+                        }
+                        
+                    }
+                    
+                    
+                } failure:^void(AFHTTPRequestOperation * reponse, NSError * error) {
+                    NSLog(@"%@",error.description);
+                }];
             
                 return NO;
          

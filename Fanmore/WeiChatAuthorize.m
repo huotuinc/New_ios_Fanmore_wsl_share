@@ -123,14 +123,10 @@
     parame[@"access_token"] = aquth.access_token;
     parame[@"openid"] = aquth.openid;
     [UserLoginTool loginRequestGet:@"https://api.weixin.qq.com/sns/userinfo" parame:parame success:^(id json) {
-        NSLog(@"getUserInfo%@",json);
         UserInfo * userInfo = [UserInfo objectWithKeyValues:json];
-        
-        NSLog(@"%@-----%@",userInfo.nickname,userInfo.headimgurl);
         NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
         NSString *fileName = [path stringByAppendingPathComponent:WXQAuthBringBackUserInfo];
         [NSKeyedArchiver archiveRootObject:userInfo toFile:fileName];
-        
         /**控制器跳转*/
         [wself WeiXinQAuthSuccess:userInfo];
         
@@ -147,39 +143,41 @@
  *  @param user <#user description#>
  */
 - (void)WeiXinQAuthSuccess:(UserInfo *)user{
-    
-    UIStoryboard * main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    WeiXinBackViewController  *next = [main instantiateViewControllerWithIdentifier:@"WeiXinBackViewController"];
-    [self.navigationController pushViewController:next animated:YES];
+    __weak WeiChatAuthorize * wself = self;
+    AppDelegate * ds =  [AppDelegate getInstance];
+    [[ds getFanOperations] TOYanZhenRegistParames:nil block:^(id result, NSError *error) {
+        if (error) {
+            NSString * se = error.description;
+            NSRange ran = [se rangeOfString:@"90005"];
+            if (ran.location != NSNotFound) {//没注册
+                [wself login];
+            }else{//注册
+                [wself todoTheLaterThing];
+            }
+        }
+        
+    } withunoind:user.unionid];
+}
+
+- (void)login{
+    AppDelegate * ds =  [AppDelegate getInstance];
+    [[ds getFanOperations] registerUser:nil block:^(LoginState * model, NSError *error) {
+        NSLog(@"%@",model);
+        if (model) {
+            UIStoryboard* main = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+            UIViewController* vc = [main instantiateInitialViewController];
+            self.view.window.rootViewController = vc;
+        }
+        //        [MBProgressHUD hideHUD];
+    } userName:nil password:nil code:nil invitationCode:SpecialYaoQingMa];
     
 }
 
-//
-//- (void)toPostWeiXinMessageToServerForLogin:(UserInfo *)userInfo{
-//    
-//    NSMutableDictionary * parame = [NSMutableDictionary dictionary];
-//    parame[@"sex"] = [NSString stringWithFormat:@"%ld",(long)[userInfo.sex integerValue]];
-//    parame[@"nickname"] = userInfo.nickname;
-//    parame[@"openid"] = userInfo.openid;
-//    parame[@"city"] = userInfo.city;
-//    parame[@"country"] = userInfo.country;
-//    parame[@"province"] = userInfo.province;
-//    parame[@"headimgurl"] = userInfo.headimgurl;
-//    parame[@"unionid"] = userInfo.unionid;
-//    id<FanOperations> fos = [[AppDelegate getInstance] getFanOperations];
-//    [fos toWeiChatLogin:nil block:^(NSString *result, NSError *error) {
-//        if (result.length) {
-//            NSLog(@"%@--",result);
-//        }else{
-//            
-//            NSLog(@"%@--",error.description);
-//        }
-//        
-//    } WithParam:parame];
-//    
-//    
-//}
-
+- (void)todoTheLaterThing{
+    UIStoryboard * main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    WeiXinBackViewController  *next = [main instantiateViewControllerWithIdentifier:@"WeiXinBackViewController"];
+    [self.navigationController pushViewController:next animated:YES];
+}
 
 /**
  *  去掉

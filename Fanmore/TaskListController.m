@@ -20,6 +20,8 @@
 #import "LayoutContext.h"
 #import "ToSendTaskController.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import "PayModel.h"
+#import "MJExtension.h"
 
 @interface PopupMenuManager : NSObject<UITableViewDataSource,UITableViewDelegate>
 @property uint type;
@@ -311,6 +313,26 @@
 //        [self showGuide:@"guidelist" on:nil];
     
     [self changeSelection:1];
+    
+    
+    //luohaibo 获取支付参数
+    [[[AppDelegate getInstance] getFanOperations] TOGetPayParames:nil block:^(id result, NSError *error) {
+        if (!error) {
+            NSArray * payType = [PayModel objectArrayWithKeyValuesArray:result];
+            NSMutableData *data = [[NSMutableData alloc] init];
+            //创建归档辅助类
+            NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+            //编码
+            [archiver encodeObject:payType forKey:PayTypeflat];
+            //结束编码
+            [archiver finishEncoding];
+            NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:PayTypeflat];
+            //写入
+            [data writeToFile:filename atomically:YES];
+        }
+
+    }];
     
 }
 

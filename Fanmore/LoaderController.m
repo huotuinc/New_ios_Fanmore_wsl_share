@@ -136,6 +136,9 @@
         
         LOG(@"frame: %f,%f size %f,%f  scale:%f",self.backgroundImage.frame.size.width,self.backgroundImage.frame.size.height,self.backgroundImage.image.size.width,self.backgroundImage.image.size.height,self.backgroundImage.image.scale);
     }
+    
+    
+   
 }
 
 - (void)didReceiveMemoryWarning

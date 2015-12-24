@@ -42,6 +42,8 @@
 
 -(void)register:(id<FanOpertationDelegate>)delegate block:(void (^)(LoginState*,NSError*))block userName:(NSString*)userName password:(NSString*)password code:(NSString*)code;
 
+-(void)myRegisterUser:(id<FanOpertationDelegate>)delegate block:(void (^)(id,NSError*))block userName:(NSString*)userName password:(NSString*)password code:(NSString*)code invitationCode:(NSString*)invitationCode;
+
 -(void)registerUser:(id<FanOpertationDelegate>)delegate block:(void (^)(LoginState *,NSError*))block userName:(NSString*)userName password:(NSString*)password code:(NSString*)code invitationCode:(NSString*)invitationCode;
 -(void)login:(id<FanOpertationDelegate>)delegate block:(void (^)(LoginState*,NSError*))block userName:(NSString*)userName password:(NSString*)password;
 
@@ -337,4 +339,22 @@
  *  @param unionId  <#unionId description#>
  */
 - (void)ToChangeJifenToMyBackMall:(id<FanOpertationDelegate>)delegate block:(void(^)(id result,NSError* error))block WithunionId:(NSString *)score withCashpassword:(NSString *)cashpassword withMallUserId:(NSString *)mallUserId WithUserName:(NSString *)username withPassword:(NSString *)passwd;
+
+/**
+ *  获取支付接口
+ *
+ *  @param delegate <#delegate description#>
+ *  @param block    <#block description#>
+ *  @param unionId  <#unionId description#>
+ */
+- (void)TOGetPayParames:(id<FanOpertationDelegate>)delegate block:(void(^)(id result,NSError* error))block;
+
+/**
+ *  获取支付接口
+ *
+ *  @param delegate <#delegate description#>
+ *  @param block    <#block description#>
+ *  @param unionId  <#unionId description#>
+ */
+- (void)TOYanZhenRegistParames:(id<FanOpertationDelegate>)delegate block:(void(^)(id result,NSError* error))block withunoind:(NSString *)unind;
 @end
