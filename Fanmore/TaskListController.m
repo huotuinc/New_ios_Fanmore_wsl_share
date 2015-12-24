@@ -314,7 +314,6 @@
     
     [self changeSelection:1];
     
-    
     //luohaibo 获取支付参数
     [[[AppDelegate getInstance] getFanOperations] TOGetPayParames:nil block:^(id result, NSError *error) {
         if (!error) {
