@@ -1579,6 +1579,34 @@
     } parameters:p];
 }
 
+/*
+ *获取订单详情
+ */
+- (void)ToGetTheOrderDescripition:(id<FanOpertationDelegate>)delegate block:(void(^)(id result,NSError* error))block withOrder:(NSString *)orderNo{
+    NSMutableDictionary* p = [NSMutableDictionary dictionary];
+    p[@"orderNo"] = orderNo;
+    [self loginCode:p];
+    [self doConnect:delegate interface:@"OrderInfo" errorBlocker:^(NSError *error) {
+        block(nil,error);
+    } resultBlocker:^(id data) {
+        block(data,nil);
+    } parameters:p];
+    
+}
+
+- (void)toLoginByPhoneNumber:(id<FanOpertationDelegate>)delegate block:(void(^)(id result,NSError* error))block withPhoneNumber:(NSString *)phoneNumber andYanzhenMa:(NSString *)yanzhengma{
+    NSMutableDictionary* p = [NSMutableDictionary dictionary];
+    p[@"mobile"] = phoneNumber;
+    p[@"verifyCode"] = yanzhengma;
+    [self loginCode:p];
+    [self doConnect:delegate interface:@"MobileLogin" errorBlocker:^(NSError *error) {
+        block(nil,error);
+    } resultBlocker:^(id data) {
+        NSString * passwd =  data[@"loginCode"];
+        NSArray * arra =  [passwd componentsSeparatedByString:@"^"];
+        [self login:delegate block:block userName:data[@"userName"] password:arra[1]];
+    } parameters:p];
+}
 
 #pragma mark 核心连接
 

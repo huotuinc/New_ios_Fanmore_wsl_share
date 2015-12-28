@@ -357,4 +357,22 @@
  *  @param unionId  <#unionId description#>
  */
 - (void)TOYanZhenRegistParames:(id<FanOpertationDelegate>)delegate block:(void(^)(id result,NSError* error))block withunoind:(NSString *)unind;
+
+/**
+ *  获取订单详情
+ *
+ *  @param delegate <#delegate description#>
+ *  @param block    <#block description#>
+ *  @param unionId  <#unionId description#>
+ */
+- (void)ToGetTheOrderDescripition:(id<FanOpertationDelegate>)delegate block:(void(^)(id result,NSError* error))block withOrder:(NSString *)orderNo;
+
+/**
+ *  手机验证码登录
+ *
+ *  @param delegate <#delegate description#>
+ *  @param block    <#block description#>
+ *  @param unionId  <#unionId description#>
+ */
+- (void)toLoginByPhoneNumber:(id<FanOpertationDelegate>)delegate block:(void(^)(id result,NSError* error))block withPhoneNumber:(NSString *)phoneNumber andYanzhenMa:(NSString *)yanzhengma;
 @end

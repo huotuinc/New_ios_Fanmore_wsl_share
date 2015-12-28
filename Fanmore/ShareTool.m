@@ -436,7 +436,7 @@ static __weak id<ISSShareActionSheet> lastShareSheet;
     }
     __weak AppDelegate* ad = [AppDelegate getInstance];
     id<ISSContent> content = [ShareSDK content:message.smdescription
-                                defaultContent:@""
+                                defaultContent:message.title
                                          image:imageInfo
                                          title:message.title
                                            url:message.url

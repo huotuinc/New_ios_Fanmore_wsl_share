@@ -93,7 +93,7 @@
     if (_backArrow == nil) {
         _backArrow = [[UIButton alloc] init];
         _backArrow.frame = CGRectMake(0, 0, 25, 25);
-//        [_backArrow addTarget:self action:@selector(BackToWebView) forControlEvents:UIControlEventTouchUpInside];
+        [_backArrow addTarget:self action:@selector(BackToWebView) forControlEvents:UIControlEventTouchUpInside];
         [_backArrow setBackgroundImage:[UIImage imageNamed:@"main_title_left_back"] forState:UIControlStateNormal];
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backArrow];
     }
@@ -104,9 +104,9 @@
     
     if (_leftOption == nil) {
         _leftOption = [[UIButton alloc] init];
-        _leftOption.frame = CGRectMake(0, 0, 25, 25);
+        _leftOption.frame = CGRectMake(0, 0, 35, 25);
         [_leftOption addTarget:self action:@selector(GoToLeft) forControlEvents:UIControlEventTouchUpInside];
-        [_leftOption setBackgroundImage:[UIImage imageNamed:nil] forState:UIControlStateNormal];
+        [_leftOption setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_leftOption];
     }
     return _leftOption;
@@ -114,6 +114,16 @@
 
 - (void)GoToLeft{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+/**
+ *  网页
+ */
+- (void)BackToWebView{
+    if ([self.homeWebView canGoBack]) {
+        [self.homeWebView goBack];
+    }
 }
 
 
@@ -387,69 +397,67 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     NSString *url = request.URL.absoluteString;
-    
+    NSLog(@"xxxxxx===========%@",url);
     if (webView.tag == 100) {
         
         if ([url rangeOfString:@"/UserCenter/Login.aspx"].location !=  NSNotFound) {
-            LOG(@"xxxxxxxxxx");
+            UIStoryboard * main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            LoginViewController * login =  [main instantiateViewControllerWithIdentifier:@"WeiChatAuthorize"];
+            [self presentViewController:login animated:YES completion:nil];
             
         }else if([url rangeOfString:@"AppAlipay.aspx"].location != NSNotFound){
          
                 self.ServerPayUrl = [url copy];
                 NSRange trade_no = [url rangeOfString:@"trade_no="];
                 NSRange customerID = [url rangeOfString:@"customerID="];
-                NSRange paymentType = [url rangeOfString:@"paymentType="];
+//                NSRange paymentType = [url rangeOfString:@"paymentType="];
                 NSRange trade_noRange = {trade_no.location + 9,customerID.location-trade_no.location-10};
                 NSString * trade_noss = [url substringWithRange:trade_noRange];//订单号
                 self.orderNo = trade_noss;
                 //            NSString * payType = [url substringFromIndex:paymentType.location+paymentType.length];
                 // 1.得到data
                 NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-                NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:@"xxx"];
+                NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:PayTypeflat];
                 NSData *data = [NSData dataWithContentsOfFile:filename];
                 // 2.创建反归档对象
                 NSKeyedUnarchiver *unArchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
                 // 3.解码并存到数组中
-                NSArray *namesArray = [unArchiver decodeObjectForKey:@"xxx"];
+                NSArray *namesArray = [unArchiver decodeObjectForKey:PayTypeflat];
                 
                 LoadingState * loInit = [AppDelegate getInstance].loadingState;
                 NSMutableString * url = [NSMutableString stringWithString:loInit.website];
                 [url appendFormat:@"%@?orderid=%@",@"/order/GetOrderInfo",trade_noss];
                 
-                AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
-                NSString * to = [NSDictionary ToSignUrlWithString:url];
-                [manager GET:to parameters:nil success:^void(AFHTTPRequestOperation * requset, id json) {
-                    if ([json[@"code"] integerValue] == 200) {
-                        self.priceNumber = json[@"data"][@"Final_Amount"];
-                        NSString * des =  json[@"data"][@"ToStr"]; //商品描述
-                        self.proDes = des;
-                        
-                        if(namesArray.count == 1){
-                            PayModel * pay =  namesArray.firstObject;  //300微信  400支付宝
-                            self.paymodel = pay;
-                            if ([pay.payType integerValue] == 300) {//300微信
-                                UIActionSheet * aa =  [[UIActionSheet alloc] initWithTitle:@"支付方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"微信", nil];
-                                aa.tag = 500;//单个微信支付
-                                [aa showInView:self.view];
-                            }
-                            if ([pay.payType integerValue] == 400) {//400支付宝
-                                UIActionSheet * aa =  [[UIActionSheet alloc] initWithTitle:@"支付方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"支付宝", nil];
-                                aa.tag = 700;//单个支付宝支付
-                                [aa showInView:self.view];
-                            }
-                        }else if(namesArray.count == 2){
-                            UIActionSheet * aa =  [[UIActionSheet alloc] initWithTitle:@"支付方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"支付宝",@"微信", nil];
-                            aa.tag = 900;//两个都有的支付
+                [[[AppDelegate getInstance] getFanOperations] ToGetTheOrderDescripition:nil block:^(id json, NSError *error) {
+                if (json) {
+                    self.priceNumber = json[@"Final_Amount"];
+                    //                    NSLog(@"%@",self.priceNumber);
+                    NSString * des =  json[@"ToStr"]; //商品描述
+                    //                    NSLog(@"%@",json[@"data"][@"ToStr"]);
+                    self.proDes = [des copy];
+                    //                    NSLog(@"%@",self.proDes);
+                    if(namesArray.count == 1){
+                        PayModel * pay =  namesArray.firstObject;  //300微信  400支付宝
+                        self.paymodel = pay;
+                        if ([pay.payType integerValue] == 300) {//300微信
+                            UIActionSheet * aa =  [[UIActionSheet alloc] initWithTitle:@"支付方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"微信", nil];
+                            aa.tag = 500;//单个微信支付
                             [aa showInView:self.view];
                         }
-                        
+                        if ([pay.payType integerValue] == 400) {//400支付宝
+                            UIActionSheet * aa =  [[UIActionSheet alloc] initWithTitle:@"支付方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"支付宝", nil];
+                            aa.tag = 700;//单个支付宝支付
+                            [aa showInView:self.view];
+                        }
+                    }else if(namesArray.count == 2){
+                        UIActionSheet * aa =  [[UIActionSheet alloc] initWithTitle:@"支付方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"支付宝",@"微信", nil];
+                        aa.tag = 900;//两个都有的支付
+                        [aa showInView:self.view];
                     }
                     
-                    
-                } failure:^void(AFHTTPRequestOperation * reponse, NSError * error) {
-                    NSLog(@"%@",error.description);
-                }];
-            
+                }
+                
+            } withOrder:trade_noss];
                 return NO;
          
 
@@ -463,7 +471,6 @@
                 [self.navigationController pushViewController:funWeb animated:YES];
                 return NO;
             }else{
-                
                 NSRange range = [url rangeOfString:@"back"];
                 if (range.location != NSNotFound) {
                     self.showBackArrows = YES;
@@ -522,6 +529,69 @@
 
 
 
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (actionSheet.tag == 500) {//单个微信支付
+        NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:PayTypeflat];
+        NSData *data = [NSData dataWithContentsOfFile:filename];
+        // 2.创建反归档对象
+        NSKeyedUnarchiver *unArchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        // 3.解码并存到数组中
+        NSArray *namesArray = [unArchiver decodeObjectForKey:PayTypeflat];
+        [self WeiChatPay:namesArray[0]];
+    }else if (actionSheet.tag == 700){// 单个支付宝支付
+        //NSLog(@"支付宝%ld",(long)buttonIndex);
+        //        [self MallAliPay:self.paymodel];
+    }else if(actionSheet.tag == 900){//两个都有的支付
+        //0
+        //1
+        NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:PayTypeflat];
+        NSData *data = [NSData dataWithContentsOfFile:filename];
+        // 2.创建反归档对象
+        NSKeyedUnarchiver *unArchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        // 3.解码并存到数组中
+        NSArray *namesArray = [unArchiver decodeObjectForKey:PayTypeflat];
+        if (buttonIndex==0) {//支付宝
+            PayModel * paymodel =  namesArray[0];
+            PayModel *cc =  [paymodel.payType integerValue] == 400?namesArray[0]:namesArray[1];
+            if (cc.webPagePay) {//网页支付
+                NSRange parameRange = [self.ServerPayUrl rangeOfString:@"?"];
+                NSString * par = [self.ServerPayUrl substringFromIndex:(parameRange.location+parameRange.length)];
+                NSArray * arr = [par componentsSeparatedByString:@"&"];
+                __block NSMutableDictionary * dict = [NSMutableDictionary dictionary];
+                [arr enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL *stop) {
+                    NSArray * aa = [obj componentsSeparatedByString:@"="];
+                    NSDictionary * dt = [NSDictionary dictionaryWithObject:aa[1] forKey:aa[0]];
+                    [dict addEntriesFromDictionary:dt];
+                }];
+                NSString * js = [NSString stringWithFormat:@"utils.Go2Payment(%@, %@, 1, false)",dict[@"customerID"],dict[@"trade_no"]];
+                [self.homeWebView stringByEvaluatingJavaScriptFromString:js];
+            }else{
+                [self MallAliPay:cc];
+            }
+        }
+        if (buttonIndex==1) {//微信
+            PayModel * paymodel =  namesArray[0];
+            if ([paymodel.payType integerValue] == 300) {
+                [self WeiChatPay:namesArray[0]];
+            }else{
+                [self WeiChatPay:namesArray[1]];//微信
+            }
+            
+        }
+        
+    }
+    
+}
+
+//支付宝
+- (void)MallAliPay:(PayModel*)cc{
+    
+    
+}
+
 /**
  *  微信支付
  */
@@ -561,17 +631,16 @@
         params[@"mch_id"] = paymodel.partnerId;     //微信支付分配的商户号
         params[@"nonce_str"] = noncestr; //随机字符串，不长于32位。推荐随机数生成算法
         params[@"trade_type"] = @"APP";   //取值如下：JSAPI，NATIVE，APP，WAP,详细说明见参数规定
-//        params[@"body"] = MallName; //商品或支付单简要描述
-//        NSMutableString * urls = [NSMutableString stringWithString:MainUrl];
-//        [urls appendString:paymodel.notify];
-//        params[@"notify_url"] = urls;  //接收微信支付异步通知回调地址
-        
-//        NSString * order = [NSString stringWithFormat:@"%@_%@_%d",self.orderNo,HuoBanMallBuyApp_Merchant_Id,(arc4random() % 900 + 100)];
-//        params[@"out_trade_no"] = order; //订单号
+        params[@"body"] = @"万事利商城"; //商品或支付单简要描述
+        NSMutableString * urls = [NSMutableString stringWithString:[AppDelegate getInstance].loadingState.website];
+        [urls appendString:paymodel.notify];
+        params[@"notify_url"] = urls;  //接收微信支付异步通知回调地址
+        NSString * order = [NSString stringWithFormat:@"%@_%@_%d",self.orderNo,[AppDelegate getInstance].loadingState.customerId ,(arc4random() % 900 + 100)];
+        params[@"out_trade_no"] = order; //订单号
         params[@"spbill_create_ip"] = @"192.168.1.1"; //APP和网页支付提交用户端ip，Native支付填调用微信支付API的机器IP。
         params[@"total_fee"] = [NSString stringWithFormat:@"%.f",[self.priceNumber floatValue] * 100];  //订单总金额，只能为整数，详见支付金额
         params[@"device_info"] = ([[UIDevice currentDevice].identifierForVendor UUIDString]);
-//        params[@"attach"] = [NSString stringWithFormat:@"%@_0",HuoBanMallBuyApp_Merchant_Id];
+        params[@"attach"] = [NSString stringWithFormat:@"%@_0",[AppDelegate getInstance].loadingState.customerId];
         //获取prepayId（预支付交易会话标识）
         NSString * prePayid = nil;
         prePayid  = [payManager sendPrepay:params];

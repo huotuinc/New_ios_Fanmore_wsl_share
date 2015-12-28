@@ -25,6 +25,8 @@
 #import "NSString+SSToolkitAdditions.h"
 #import "HomeViewController.h"
 #import "MallUser.h"
+#import "WXApi.h"
+#import "AccountLoginViewController.h"
 
 @interface AccountViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 @property(weak) TextChangeController* tccontroller;
@@ -237,12 +239,21 @@
         [ad logout:self];
         [ad storeLastUserInformation:@"" password:@""];
         
-        
-        UIStoryboard * mainS = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        WeiChatAuthorize * WeiChart = [mainS instantiateViewControllerWithIdentifier:@"WeiChatAuthorize"];
-        WeiChart.loginType = 2;
-        UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:WeiChart];
-        [self presentViewController:nav animated:YES completion:nil];
+        if ([WXApi isWXAppInstalled]) {
+            UIStoryboard * mainS = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            WeiChatAuthorize * WeiChart = [mainS instantiateViewControllerWithIdentifier:@"WeiChatAuthorize"];
+            WeiChart.loginType = 2;
+            UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:WeiChart];
+            [self presentViewController:nav animated:YES completion:nil];
+        }else{
+            
+            UIStoryboard * story =  [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            AccountLoginViewController * lo = [story instantiateViewControllerWithIdentifier:@"AccountLoginViewController"];
+            
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:lo];
+            [self presentViewController:nav animated:YES completion:nil];
+            
+        }
     }
     
     

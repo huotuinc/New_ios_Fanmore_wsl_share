@@ -7,7 +7,8 @@
 //
 
 #import "AccountLoginViewController.h"
-
+#import <UIView+BlocksKit.h>
+#import "AppDelegate.h"
 @interface AccountLoginViewController ()
 
 /**邀请码*/
@@ -22,6 +23,8 @@
 /**登录点击*/
 - (IBAction)LoginButtonClick:(id)sender;
 
+/**邀请码*/
+@property (weak, nonatomic) IBOutlet UITextField *yaoqingText;
 
 
 @end
@@ -30,13 +33,80 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"手机验证登录";
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     // Do any additional setup after loading the view.
+    
+    self.yaoQingMa.layer.borderWidth = 2;
+    self.yaoQingMa.layer.borderColor = [UIColor orangeColor].CGColor;
+    
+    self.yaoQingMa.userInteractionEnabled = YES;
+    __weak AccountLoginViewController * wself = self;
+    [self.yaoQingMa bk_whenTapped:^{
+        [wself yanzhengma];
+    }];
+    
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+- (void)yanzhengma{
+    
+    
+    if (self.iphoneNumber.text.length) {
+        
+        [[[AppDelegate getInstance] getFanOperations] ToGetYaoqing:nil block:^(NSString *result, NSError *error) {
+            NSLog(@"%@----%@",result,error.description);
+        } WithParam:self.iphoneNumber.text];
+        
+        [self settime];
+    }else{
+        
+        UIAlertView * aaa = [[UIAlertView alloc] initWithTitle:@"手机号不能为空" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [aaa show];
+    }
+    
 }
+
+
+- (void)settime{
+    
+    
+    __weak AccountLoginViewController * wself = self;
+    /*************倒计时************/
+    __block int timeout=59; //倒计时时间
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
+    dispatch_source_set_event_handler(_timer, ^{
+        if(timeout<=0){ //倒计时结束，关闭
+            dispatch_source_cancel(_timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                wself.yaoQingMa.text = @"验证码";
+                
+                //                [captchaBtn setTitle:@"" forState:UIControlStateNormal];
+                //                [captchaBtn setBackgroundImage:[UIImage imageNamed:@"resent_icon"] forState:UIControlStateNormal];
+                wself.yaoQingMa.userInteractionEnabled = YES;
+            });
+        }else{
+            //            int minutes = timeout / 60;
+            int seconds = timeout % 60;
+            NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                //                NSLog(@"____%@",strTime);
+                wself.yaoQingMa.text = [NSString stringWithFormat:@"%@s",strTime];
+                wself.yaoQingMa.userInteractionEnabled = NO;
+                
+            });
+            timeout--;
+        }
+    });
+    dispatch_resume(_timer);
+}
+
 
 /*
 #pragma mark - Navigation
@@ -49,5 +119,24 @@
 */
 
 - (IBAction)LoginButtonClick:(id)sender {
+    
+    
+    if(self.yaoqingText.text.length == 0){
+        return;
+    }else{
+        __weak AccountLoginViewController * wself = self;
+        [[[AppDelegate getInstance] getFanOperations] toLoginByPhoneNumber:nil block:^(id result, NSError *error) {
+            
+            UIStoryboard* main = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+            UIViewController* vc = [main instantiateInitialViewController];
+            [wself presentViewController:vc animated:YES completion:^{
+                [wself removeFromParentViewController];
+            }];
+        } withPhoneNumber:self.iphoneNumber.text andYanzhenMa:self.yaoqingText.text];
+        
+        
+    }
+    
+    
 }
 @end

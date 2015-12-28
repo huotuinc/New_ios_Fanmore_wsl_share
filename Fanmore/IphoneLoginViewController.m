@@ -21,6 +21,14 @@
 @property (weak, nonatomic) IBOutlet UITextField *yaoqingma;
 
 
+@property (weak, nonatomic) IBOutlet UILabel *des;
+@property (weak, nonatomic) IBOutlet UIView *view1;
+@property (weak, nonatomic) IBOutlet UIView *view2;
+@property (weak, nonatomic) IBOutlet UIView *view3;
+
+/**注册按钮*/
+@property (weak, nonatomic) IBOutlet UIButton *regerstBtn;
+
 @end
 
 @implementation IphoneLoginViewController
@@ -32,7 +40,25 @@
 
 - (void)setup{
    
+    self.title = @"注册登录";
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
+    self.regerstBtn.layer.cornerRadius = 5;
+    self.regerstBtn.layer.masksToBounds = YES;
+    
+    self.yanZhen.layer.borderWidth = 1;
+    self.yanZhen.layer.borderColor = [UIColor colorWithRed:0.929 green:0.184 blue:0.098 alpha:1.000].CGColor;
+    self.view1.layer.cornerRadius = 5;
+    self.view1.layer.masksToBounds = YES;
+    
+    self.view2.layer.cornerRadius = 5;
+    self.view2.layer.masksToBounds = YES;
+    
+    self.view3.layer.cornerRadius = 5;
+    self.view3.layer.masksToBounds = YES;
+    
+    self.des.hidden = YES;
 }
 
 /**
@@ -42,6 +68,11 @@
  */
 - (IBAction)CodeYanZhenClick:(id)sender {
     
+    
+    self.des.hidden = NO;
+    
+    self.des.text = [NSString stringWithFormat:@"验证码将已发送，60S后可重新发送"];
+    self.des.textColor = [UIColor colorWithWhite:0.325 alpha:1.000];
     
     if (self.PhoneNumber.text.length) {
         
@@ -80,6 +111,12 @@
         
     }
     
+}
+
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    
+    [self.view endEditing:YES];
 }
 
 - (void)settime{

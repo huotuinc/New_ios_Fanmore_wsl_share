@@ -142,6 +142,9 @@
     ShareMessage* sm = $new(ShareMessage);
     sm.title = @"万事利爱分享";
     sm.smdescription = self.nameLable.text;
+    
+    
+    LOG(@"%@",self.nameLable.text);
 //    sm.url = ls.shareContent;
 //    sm.thumbImage =  [UIImage imageNamed:@"logo"];
 //    sm.thumbImageURL = @"logo.png";
