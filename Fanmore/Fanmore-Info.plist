@@ -33,7 +33,7 @@
 			<string>weixin</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wxaeda2d5603b12302</string>
+				<string>wx369cdeb338051de5</string>
 				<string>wxadee5477e854a778</string>
 				<string>wxc76c2ee4d24ed6dd</string>
 				<string>wx8d67a497534c2098</string>
@@ -58,7 +58,7 @@
 			<string>com.huotu.fanmore</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fanmore</string>
+				<string>wsl2015fanmoreOEM</string>
 			</array>
 		</dict>
 	</array>

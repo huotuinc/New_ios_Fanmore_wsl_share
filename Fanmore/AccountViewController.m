@@ -123,7 +123,7 @@
     self.iconView.layer.masksToBounds = YES;
     self.iconView.layer.borderWidth = 2;
     self.iconView.layer.borderColor = [UIColor whiteColor].CGColor;
-    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.doCash = NO;
     
     self.navigationItem.leftBarButtonItems = @[[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(doBack)]];

@@ -401,7 +401,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     [AppDelegate getInstance].mineNav = self.navigationController;
     
     __weak MineMenuController* wself = self;

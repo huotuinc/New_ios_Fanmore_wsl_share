@@ -2106,7 +2106,7 @@
 						TestTargetID = 23374BC5187A4B7700F80A34;
 					};
 					23374BC5187A4B7700F80A34 = {
-						DevelopmentTeam = Q3B3AD6JJH;
+						DevelopmentTeam = K7FU393EUA;
 					};
 				};
 			};
@@ -2697,7 +2697,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fanmore/Fanmore-Prefix.pch";
 				INFOPLIST_FILE = "Fanmore/Fanmore-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					./Fanmore,
@@ -2707,8 +2707,8 @@
 					"$(PROJECT_DIR)/Fanmore/libraries/extends/SinaWeiboSDK",
 					"$(PROJECT_DIR)/Fanmore/libraries/extends/WeChatSDK",
 				);
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.huotu.fanmore---";
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wsl.loveshare;
 				PRODUCT_NAME = "粉木耳";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2738,7 +2738,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fanmore/Fanmore-Prefix.pch";
 				INFOPLIST_FILE = "Fanmore/Fanmore-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					./Fanmore,
@@ -2748,8 +2748,8 @@
 					"$(PROJECT_DIR)/Fanmore/libraries/extends/SinaWeiboSDK",
 					"$(PROJECT_DIR)/Fanmore/libraries/extends/WeChatSDK",
 				);
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.huotu.fanmore---";
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wsl.loveshare;
 				PRODUCT_NAME = "粉木耳";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

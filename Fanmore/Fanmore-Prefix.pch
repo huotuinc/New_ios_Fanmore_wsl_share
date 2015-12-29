@@ -73,8 +73,8 @@ NSLog((@"%@(%d) " fmt), [file lastPathComponent], __LINE__, ##__VA_ARGS__); \
 
 #define WXQAuthBringBackUserInfo @"WXQAuthBringBackUserInfo"
 #define WSLInterfaceAdresseUrl @"http://taskapi.fancat.cn"
-#define WeiXinAppKey @"wxaeda2d5603b12302"
-#define WeiXinAppSecret @"8c3b660de36a3b3fb678ca865e31f0f3"
+#define WeiXinAppKey @"wx369cdeb338051de5"
+#define WeiXinAppSecret @"0dcbc62b9a4724e89097bb00a0bd0ae2"
 #define QQAPPKET @"1104949609"
 #define QQAPPSecret @"kNy5OIffTR66fnvu"
 

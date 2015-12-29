@@ -1086,13 +1086,7 @@
                             <constraint firstItem="U57-aD-eei" firstAttribute="top" secondItem="yer-Ul-175" secondAttribute="bottom" constant="-20" id="yFb-ue-TuM"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="我的账号" id="eR6-Aw-j4S">
-                        <barButtonItem key="rightBarButtonItem" image="shuaxin" id="IF2-Y4-N3J">
-                            <connections>
-                                <action selector="refresh:" destination="Scl-87-SEU" id="xY9-Tw-7pA"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="我的账号" id="eR6-Aw-j4S"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="accountInfo" destination="0Nz-Ih-z4T" id="rXr-yC-T6E"/>
@@ -3067,10 +3061,13 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IX2-zA-rdS">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IX2-zA-rdS">
                                 <rect key="frame" x="-33" y="123" width="333" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="333" id="1iD-cE-92F"/>
+                                </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1pj-RM-667">
                                 <rect key="frame" x="-33" y="168" width="333" height="1"/>
@@ -3170,6 +3167,9 @@
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="IX2-zA-rdS" secondAttribute="trailing" constant="20" id="8Of-Dy-SuP"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="TlL-AV-3ec"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -3994,7 +3994,6 @@
         <image name="question" width="35" height="35"/>
         <image name="redbackground" width="593" height="76"/>
         <image name="shitu1" width="32" height="32"/>
-        <image name="shuaxin" width="35" height="35"/>
         <image name="shuxian" width="1" height="2"/>
         <image name="trash" width="32" height="32"/>
         <image name="user" width="32" height="32"/>
@@ -4008,12 +4007,12 @@
         <image name="zhuxiaoicon" width="296" height="38"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dEh-C0-s9v"/>
         <segue reference="U6R-np-1gz"/>
+        <segue reference="i4G-2i-Lrw"/>
+        <segue reference="GHQ-5f-G6i"/>
+        <segue reference="OXB-6h-Krx"/>
         <segue reference="GPZ-kY-HU0"/>
-        <segue reference="BR7-vQ-R7K"/>
         <segue reference="ZTF-wr-cUi"/>
-        <segue reference="dRi-sA-oAh"/>
         <segue reference="w78-Tg-fVP"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -69,22 +69,24 @@
     self.iconView.layer.cornerRadius = self.iconView.frame.size.width * 0.5;
     self.iconView.layer.masksToBounds = YES;
     
-    self.navigationController.navigationBar.tintColor = fmMainColor;
+//    self.navigationController.navigationBar.tintColor = fmMainColor;
 //    self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     
-    self.navigationController.navigationBarHidden = NO;
+//    self.navigationController.navigationBarHidden = NO;
     [self setup];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = YES;
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     
 }
+
+
 
 - (void) setup{
     
@@ -134,6 +136,7 @@
 - (IBAction)backClick:(id)sender {
     
     [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (IBAction)shareYaoqinMa:(id)sender {

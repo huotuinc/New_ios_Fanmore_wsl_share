@@ -125,6 +125,7 @@
     parame[@"access_token"] = aquth.access_token;
     parame[@"openid"] = aquth.openid;
     [UserLoginTool loginRequestGet:@"https://api.weixin.qq.com/sns/userinfo" parame:parame success:^(id json) {
+        LOG(@"%@",json);
         UserInfo * userInfo = [UserInfo objectWithKeyValues:json];
         NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
         NSString *fileName = [path stringByAppendingPathComponent:WXQAuthBringBackUserInfo];
