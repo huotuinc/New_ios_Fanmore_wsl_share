@@ -73,7 +73,7 @@
 @synthesize shareDes;
 @synthesize totalScore;
 @synthesize todayBrowseCount;
-
+@synthesize userHead;
 @synthesize exp;
 @synthesize picUrl;
 @synthesize completeInfo;

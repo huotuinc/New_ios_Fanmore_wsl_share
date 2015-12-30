@@ -29,6 +29,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *toMakkJifen;
 
 
+/**记录展示的view*/
+@property (weak, nonatomic) IBOutlet UIView *Record;
+
 /**用户列表*/
 @property (nonatomic,strong) NSMutableArray * userList;
 
@@ -73,11 +76,23 @@
     LoginState * a =  [AppDelegate getInstance].loadingState.userData;
     self.scoreJifen.text = [NSString stringWithFormat:@"%ld",(long)[a.score integerValue]];
     __weak JiFenToMallController * wself = self;
-    [[[AppDelegate getInstance]  getFanOperations] TOGetGlodDate:nil block:^(NSDictionary *result, NSError *error) {
-        wself.Mydes.text = [NSString stringWithFormat:@" %@",result[@"desc"]];
-        wself.toMallJifen.text = [NSString stringWithFormat:@"%d",[result[@"money"] integerValue]];
-        wself.firstRecord.text = result[@"lastApply"][@"ApplyTime"];
-        wself.toMakkJifen.text = [NSString stringWithFormat:@"转入钱包%.2f元",[result[@"lastApply"][@"ApplyMoney"] doubleValue]];
+    [[[AppDelegate getInstance]  getFanOperations] TOGetGlodDate:nil block:^(id result, NSError *error) {
+        
+        LOG(@"xxxxxxxx%@",result);
+        if(result[@"desc"]){
+            wself.Mydes.text = [NSString stringWithFormat:@" 说明：%@",result[@"desc"]];
+        }
+        if(result[@"desc"]){
+            LOG(@"000000000000%@",result[@"desc"]);
+            wself.toMallJifen.text = [NSString stringWithFormat:@"%d",[result[@"money"] integerValue]];
+        }
+        if(result[@"lastApply"][@"ApplyTime"]){
+            wself.firstRecord.text = result[@"lastApply"][@"ApplyTime"];
+            wself.toMakkJifen.text = [NSString stringWithFormat:@"转入钱包%.2f元",[result[@"lastApply"][@"ApplyMoney"] doubleValue]];
+            wself.Record.hidden = NO;
+        }else{
+           wself.Record.hidden = YES;
+        }
         LOG(@"---%@--------%@",result,error.description);
     } WithParam:[NSString stringWithFormat:@"%d",[a.score integerValue]]];
 }

@@ -39,7 +39,7 @@
 
 @property (nonatomic, retain) NSNumber *exp;
 @property (nonatomic, retain) NSString *picUrl;
-
+@property (nonatomic, retain) NSString *userHead;
 @property (nonatomic, retain) NSNumber *completeInfo;
 -(void)updateUserPicture:(UIImageView*)view;
 

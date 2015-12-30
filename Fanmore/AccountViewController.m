@@ -139,7 +139,6 @@
     }
     
     
-    
     //luohaibo
     [self setUp];
     
@@ -417,6 +416,8 @@
     }else if(head.count == 3){
         aass = [NSString stringWithFormat:@"http%@",head[2]];
     }
+    
+    aass = [[[AppDelegate getInstance].loadingState userData] userHead];
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:aass] placeholderImage:[UIImage imageNamed:@"WeiXinIIconViewDefaule"] options:SDWebImageRetryFailed];
     [self.view layoutIfNeeded];
     

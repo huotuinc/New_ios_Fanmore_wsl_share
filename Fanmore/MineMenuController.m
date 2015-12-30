@@ -429,16 +429,9 @@
         
         
         
-        NSArray * headDeal = [ls.userData.picUrl componentsSeparatedByString:@"http"];
-        if (headDeal.count == 1) {
-            [self.imagePicture sd_setImageWithURL:[NSURL URLWithString:ls.userData.picUrl] placeholderImage:[UIImage imageNamed:@"WeiXinIIconViewDefaule"]];
-        }else if(headDeal.count == 2){
-           NSString * aass = [NSString stringWithFormat:@"http%@",headDeal[1]];
-           [self.imagePicture sd_setImageWithURL:[NSURL URLWithString:aass] placeholderImage:[UIImage imageNamed:@"WeiXinIIconViewDefaule"]];
-        }else{
-            NSString * aass = [NSString stringWithFormat:@"http%@",headDeal[2]];
-            [self.imagePicture sd_setImageWithURL:[NSURL URLWithString:aass] placeholderImage:[UIImage imageNamed:@"WeiXinIIconViewDefaule"]];
-        }
+        NSString *  headUrl = [[[AppDelegate getInstance].loadingState userData] userHead];
+        [self.imagePicture sd_setImageWithURL:[NSURL URLWithString:headUrl] placeholderImage:[UIImage imageNamed:@"WeiXinIIconViewDefaule"]];
+    
 //        NSNumber* totalScore = ls.userData.totalScore;
         NSNumber* totalScore = ls.userData.score;
         if ($safe(totalScore)) {
@@ -480,16 +473,8 @@
     if ([ls hasLogined]) {
 
         [self.labelName setText:ls.userData.userName];
-        NSArray * headDeal = [ls.userData.picUrl componentsSeparatedByString:@"http"];
-        if (headDeal.count == 1) {
-            [self.imagePicture sd_setImageWithURL:[NSURL URLWithString:ls.userData.picUrl] placeholderImage:[UIImage imageNamed:@"WeiXinIIconViewDefaule"]];
-        }else if(headDeal.count == 2){
-            NSString * aass = [NSString stringWithFormat:@"http%@",headDeal[1]];
-            [self.imagePicture sd_setImageWithURL:[NSURL URLWithString:aass] placeholderImage:[UIImage imageNamed:@"WeiXinIIconViewDefaule"]];
-        }else{
-            NSString * aass = [NSString stringWithFormat:@"http%@",headDeal[2]];
-            [self.imagePicture sd_setImageWithURL:[NSURL URLWithString:aass] placeholderImage:[UIImage imageNamed:@"WeiXinIIconViewDefaule"]];
-        }
+        NSString *  headUrl = [[[AppDelegate getInstance].loadingState userData] userHead];
+        [self.imagePicture sd_setImageWithURL:[NSURL URLWithString:headUrl] placeholderImage:[UIImage imageNamed:@"WeiXinIIconViewDefaule"]];
 
         [self.labelExp setText:$str(@"Exp.%@",[ls.userData.exp currencyString:@"" fractionDigits:0])];
         

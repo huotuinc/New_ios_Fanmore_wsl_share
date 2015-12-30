@@ -69,9 +69,11 @@
         [[ad getFanOperations] login:nil block:^(LoginState *login, NSError *error) {
             if ($safe(error)) {
                 NSLog(@"error on updateuser %@",error);
+                [FMUtils alertMessage:self.view msg:@"服务器繁忙，请稍后再试！"];
                 return;
             }
             [wself displayValues];
+            [FMUtils alertMessage:self.view msg:@"修改成功！"];
         } userName:[ad getLastUsername] password:[ad getLastPassword]];
     } user:self.user];
     

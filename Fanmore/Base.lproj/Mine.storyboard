@@ -2667,8 +2667,8 @@
                                     <constraint firstItem="7Za-L5-3J2" firstAttribute="top" secondItem="Pwd-fE-ATk" secondAttribute="top" constant="17" id="yVg-kx-s3u"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   说明：10个积分兑换人民币1元，累计达100个积分即可将积分转入钱包，钱包内的金额可立刻兑换支付宝，Q币，话费等。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="310" translatesAutoresizingMaskIntoConstraints="NO" id="635-Ko-w7W" userLabel="说明：10个积分兑换人民币1元，累计达100个积分即可将积分转入钱包，钱包内的金额可立刻兑换支付宝，Q币，话费等。">
-                                <rect key="frame" x="5" y="88" width="310" height="58"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   说明：10个积分兑换人民币1元，累计达100个积分即可将积分转入钱包，钱包内的金额可立刻兑换支付宝，Q币，话费等。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="635-Ko-w7W" userLabel="说明：10个积分兑换人民币1元，累计达100个积分即可将积分转入钱包，钱包内的金额可立刻兑换支付宝，Q币，话费等。">
+                                <rect key="frame" x="0.0" y="88" width="320" height="58"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="0.33333333333333331" green="0.34901960784313724" blue="0.35294117647058826" alpha="1" colorSpace="calibratedRGB"/>
@@ -2755,7 +2755,7 @@
                         <constraints>
                             <constraint firstItem="90L-Wh-kqZ" firstAttribute="top" secondItem="635-Ko-w7W" secondAttribute="bottom" constant="13" id="EhY-JY-nvJ"/>
                             <constraint firstAttribute="trailing" secondItem="Pwd-fE-ATk" secondAttribute="trailing" id="GQu-HN-aCf"/>
-                            <constraint firstItem="635-Ko-w7W" firstAttribute="leading" secondItem="gRc-b4-Hom" secondAttribute="leading" constant="5" id="IvV-ae-XIg"/>
+                            <constraint firstItem="635-Ko-w7W" firstAttribute="leading" secondItem="gRc-b4-Hom" secondAttribute="leading" id="IvV-ae-XIg"/>
                             <constraint firstItem="90L-Wh-kqZ" firstAttribute="leading" secondItem="gRc-b4-Hom" secondAttribute="leading" id="JNf-yK-3WZ"/>
                             <constraint firstItem="Pwd-fE-ATk" firstAttribute="height" secondItem="gRc-b4-Hom" secondAttribute="height" multiplier="10:65" id="Nr3-eu-aBz"/>
                             <constraint firstItem="635-Ko-w7W" firstAttribute="top" secondItem="Pwd-fE-ATk" secondAttribute="bottom" constant="1" id="P1X-Nm-U7s"/>
@@ -2768,11 +2768,12 @@
                             <constraint firstItem="Qar-oS-1rK" firstAttribute="top" secondItem="dli-38-rdD" secondAttribute="bottom" constant="14" id="l7C-6x-2yQ"/>
                             <constraint firstItem="aN4-AY-fZD" firstAttribute="top" secondItem="90L-Wh-kqZ" secondAttribute="bottom" constant="1" id="nhU-qP-3Kx"/>
                             <constraint firstItem="Pwd-fE-ATk" firstAttribute="top" secondItem="gRc-b4-Hom" secondAttribute="top" id="p4g-3v-PlH"/>
-                            <constraint firstAttribute="trailing" secondItem="635-Ko-w7W" secondAttribute="trailing" constant="5" id="ufe-id-bdC"/>
+                            <constraint firstAttribute="trailing" secondItem="635-Ko-w7W" secondAttribute="trailing" id="ufe-id-bdC"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="Mydes" destination="635-Ko-w7W" id="df9-yw-M75"/>
+                        <outlet property="Record" destination="aN4-AY-fZD" id="jKF-xA-l7L"/>
                         <outlet property="firstRecord" destination="Qke-oW-16p" id="ooU-Ze-OjG"/>
                         <outlet property="scoreJifen" destination="R6x-wi-mlE" id="ibl-4o-iwh"/>
                         <outlet property="toMakkJifen" destination="KNb-vP-Owm" id="5y1-BD-Nes"/>
@@ -2781,7 +2782,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2tp-Hr-E7b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="761" y="1822"/>
+            <point key="canvasLocation" x="724" y="1858"/>
         </scene>
         <!--积分提现-->
         <scene sceneID="sum-za-Swx">
@@ -4008,9 +4009,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="U6R-np-1gz"/>
+        <segue reference="dEh-C0-s9v"/>
         <segue reference="i4G-2i-Lrw"/>
         <segue reference="GHQ-5f-G6i"/>
-        <segue reference="OXB-6h-Krx"/>
         <segue reference="GPZ-kY-HU0"/>
         <segue reference="ZTF-wr-cUi"/>
         <segue reference="w78-Tg-fVP"/>
