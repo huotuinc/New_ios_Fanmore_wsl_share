@@ -19,7 +19,9 @@
 
 //#define FMROOT "http://192.168.0.208:100"
 //#define FMROOT "http://192.168.1.58:99"
-#define FMROOT  "http://192.168.1.56:8050"
+#define FMROOT "http://192.168.1.56:8050"
+//"http://taskapi.silk08.com"
+
 //"http://taskapi.silk08.com"
 //"http://taskapi.fancat.cn"
 //"http://api.fanmore.cn"
@@ -66,5 +68,7 @@
 
 
 //#define FanmoreMock 1
+
+
 
 #endif
