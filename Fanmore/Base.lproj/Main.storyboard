@@ -1346,6 +1346,7 @@
                         <outlet property="firstLable" destination="DEi-xq-phY" id="aiu-r1-3ds"/>
                         <outlet property="fourthLable" destination="fMf-sH-O8f" id="4Af-br-PdY"/>
                         <outlet property="iconView" destination="urK-Kd-my8" id="b6f-yl-z0g"/>
+                        <outlet property="masterRuleDes" destination="OR9-Yh-EI5" id="Ygk-47-mz7"/>
                         <outlet property="nameLable" destination="4p7-6K-NG6" id="cVZ-SI-gqN"/>
                         <outlet property="secondLable" destination="ZoU-db-Z7R" id="jFi-cc-FXa"/>
                         <outlet property="shareSdkSha" destination="w31-Oc-g7I" id="5om-Ki-jGW"/>

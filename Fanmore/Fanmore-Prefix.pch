@@ -82,8 +82,8 @@ NSLog((@"%@(%d) " fmt), [file lastPathComponent], __LINE__, ##__VA_ARGS__); \
 #define ShareSDKKey @"dc6acbc29fe8"
 
 //luohaibo 万事利到商城
-#define HuoBanMallBuyAppId @"huotu686ad1fe2bd8a02bb"
-#define HuoBanMallBuyAppSecrect @"483686ad1fe2bd8a02bbdca24e109953a4a96c"
+#define HuoBanMallBuyAppId @"huotuacf89c9231848c9f49"
+#define HuoBanMallBuyAppSecrect @"0ad8abe244331aacf89c9231848c9f49"
 
 #define MallUesrList @"MallUesrList"
 #define ChoneMallAccount @"ChoneMallAccount"

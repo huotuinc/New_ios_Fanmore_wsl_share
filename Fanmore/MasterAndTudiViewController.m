@@ -47,6 +47,8 @@
 
 - (IBAction)shareYaoqinMa:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UILabel *masterRuleDes;
+
 @end
 
 @implementation MasterAndTudiViewController
@@ -65,7 +67,7 @@
     [super viewDidLoad];
     
     
-    
+    self.masterRuleDes.hidden = YES;
     self.iconView.layer.cornerRadius = self.iconView.frame.size.width * 0.5;
     self.iconView.layer.masksToBounds = YES;
     
