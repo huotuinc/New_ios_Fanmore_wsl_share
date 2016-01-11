@@ -187,6 +187,18 @@
     wself.table.sectionHeaderHeight = 49;
     wself.table.sectionFooterHeight = 7;
     
+    
+    MJRefreshHeaderView *header = [MJRefreshHeaderView header];
+    header.scrollView = self.table;
+    header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView){
+        [wself.days removeAllObjects];
+        wself._footer.beginRefreshingBlock(refreshView);
+    };
+    
+    self._header = header;
+    
+    
+    
     MJRefreshFooterView *footer = [MJRefreshFooterView footer];
     footer.scrollView = self.table;
     footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView){
@@ -272,15 +284,6 @@
     };
     self._footer = footer;
     
-    
-    MJRefreshHeaderView *header = [MJRefreshHeaderView header];
-    header.scrollView = self.table;
-    header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView){
-        [wself.days removeAllObjects];
-        wself._footer.beginRefreshingBlock(refreshView);
-    };
-    
-    self._header = header;
     
     [header beginRefreshing];
        

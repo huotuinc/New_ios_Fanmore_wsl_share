@@ -127,6 +127,14 @@
         [self.view addGestureRecognizer:swipeRecognizer];
     }
     
+    MJRefreshHeaderView *header = [MJRefreshHeaderView header];
+    header.scrollView = self.tableView;
+    header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView){
+        [wself.tasks removeAllObjects];
+        wself._footer.beginRefreshingBlock(refreshView);
+    };
+    self._header = header;
+    
     MJRefreshFooterView *footer = [MJRefreshFooterView footer];
     footer.scrollView = self.tableView;
     footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView){
@@ -165,14 +173,7 @@
     };
     self._footer = footer;
     
-    MJRefreshHeaderView *header = [MJRefreshHeaderView header];
-    header.scrollView = self.tableView;
-    header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView){
-        [wself.tasks removeAllObjects];
-        wself._footer.beginRefreshingBlock(refreshView);
-    };
     
-    self._header = header;
     
     self.titleLabel.userInteractionEnabled = YES;
     self.pmm = $new(PopupMenuManager);
