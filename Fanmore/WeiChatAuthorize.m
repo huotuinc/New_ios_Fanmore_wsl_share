@@ -24,6 +24,7 @@
 @interface WeiChatAuthorize ()<WXApiDelegate>
 
 
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
 
 
 @end
@@ -43,6 +44,13 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    
+    self.loginButton.layer.cornerRadius = 4;
+    self.loginButton.layer.masksToBounds = YES;
+    self.loginButton.layer.borderWidth = 1;
+    self.loginButton.layer.borderColor = [UIColor whiteColor].CGColor;
+//    self.loginButton.backgroundColor = [UIColor colorWithRed:0.000 green:0.000 blue:0.004 alpha:1.000];
     
     //微信授权登录code返回
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(accessTokenWithCode:) name:@"ToGetUserInfo" object:nil];
