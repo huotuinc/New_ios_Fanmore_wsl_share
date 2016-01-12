@@ -154,7 +154,7 @@
     self.imagePicture.layer.borderWidth = 2;
     self.imagePicture.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    
+    self.labelExp.hidden = YES;
     
     [self.view setBackgroundColor:fmMainColor];
     

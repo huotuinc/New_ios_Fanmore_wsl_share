@@ -162,5 +162,7 @@
 }
 
 - (IBAction)visitorLogin:(id)sender {
+    
+    LOG(@"游客登录");
 }
 @end
