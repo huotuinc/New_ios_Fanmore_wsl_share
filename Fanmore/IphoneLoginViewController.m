@@ -8,7 +8,7 @@
 
 #import "IphoneLoginViewController.h"
 #import "LoginViewController.h"
-
+#import "FMUtils.h"
 #import "AppDelegate.h"
 @interface IphoneLoginViewController ()<UIAlertViewDelegate>
 /**手机号*/
@@ -19,6 +19,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *yanZhen;
 /**获取邀请码*/
 @property (weak, nonatomic) IBOutlet UITextField *yaoqingma;
+
+/**游客登录*/
+- (IBAction)visitorLogin:(id)sender;
 
 
 @property (weak, nonatomic) IBOutlet UILabel *des;
@@ -105,6 +108,8 @@
                 [wself presentViewController:vc animated:YES completion:^{
                     [wself removeFromParentViewController];
                 }];
+            }else{
+                [FMUtils alertMessage:wself.view msg:[error FMDescription]];
             }
         } WithParam:self.PhoneNumber.text withYanzhen:self.codeNumber.text withYaoqingma:self.yaoqingma.text];
 
@@ -156,4 +161,6 @@
     dispatch_resume(_timer);
 }
 
+- (IBAction)visitorLogin:(id)sender {
+}
 @end
