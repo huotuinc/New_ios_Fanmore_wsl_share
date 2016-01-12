@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 #import "MJExtension.h"
 #import "MBProgressHUD+MJ.h"
-
+#import "FMUtils.h"
 @interface LoginViewController ()
 
 
@@ -51,6 +51,7 @@
 - (IBAction)login:(id)sender {
     
     
+    __weak LoginViewController * wself = self;
     AppDelegate * ds =  [AppDelegate getInstance];
 //    [MBProgressHUD showMessage:nil];
     [[ds getFanOperations] registerUser:nil block:^(LoginState * model, NSError *error) {
@@ -58,9 +59,11 @@
             UIStoryboard* main = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
             UIViewController* vc = [main instantiateInitialViewController];
             self.view.window.rootViewController = vc;
+        }else{
+            [FMUtils alertMessage:wself.view msg:[error FMDescription]];
         }
 //        [MBProgressHUD hideHUD];
-    } userName:nil password:nil code:nil invitationCode:@"WSL0LOVE"];
+    } userName:nil password:nil code:nil invitationCode:self.InviteCode.text];
 
     
 }

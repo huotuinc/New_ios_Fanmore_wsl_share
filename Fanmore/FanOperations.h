@@ -375,4 +375,13 @@
  *  @param unionId  <#unionId description#>
  */
 - (void)toLoginByPhoneNumber:(id<FanOpertationDelegate>)delegate block:(void(^)(id result,NSError* error))block withPhoneNumber:(NSString *)phoneNumber andYanzhenMa:(NSString *)yanzhengma;
+
+
+/**
+ *  游客登录
+ *
+ *  @param delegate <#delegate description#>
+ *  @param block    <#block description#>
+ */
+- (void)visitorToLogin:(id<FanOpertationDelegate>)delegate block:(void(^)(id result,NSError* error))block;
 @end

@@ -34,8 +34,9 @@
 #import "NSObject+JSON.h"
 #import "ExpReceiveView.h"
 #import "UserInfo.h"
+#import "MD5Encryption.h"
 
-
+#import "WXUtil.h"
 @interface HttpFanOperations ()
 
 @property NSTimeInterval timeToSV;
@@ -1607,6 +1608,29 @@
         [self login:delegate block:block userName:data[@"userName"] password:arra[1]];
     } parameters:p];
 }
+
+/**
+ *  游客登录
+ *
+ *  @param delegate <#delegate description#>
+ *  @param block    <#block description#>
+ */
+- (void)visitorToLogin:(id<FanOpertationDelegate>)delegate block:(void(^)(id result,NSError* error))block{
+    NSMutableDictionary* p = [NSMutableDictionary dictionary];
+    p[@"code"] = [MD5Encryption md5:([[UIDevice currentDevice].identifierForVendor UUIDString])];
+    LOG(@"%@",p);
+    [self loginCode:p];
+    [self doConnect:delegate interface:@"GuestLogin" errorBlocker:^(NSError *error) {
+        block(nil,error);
+    } resultBlocker:^(id data) {
+        NSLog(@"%@",data);
+        NSString * passwd =  data[@"loginCode"];
+        NSArray * arra =  [passwd componentsSeparatedByString:@"^"];
+        [self login:delegate block:block userName:data[@"userName"] password:arra[1]];
+    } parameters:p];
+}
+
+
 
 #pragma mark 核心连接
 

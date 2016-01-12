@@ -11,4 +11,5 @@
 @interface MD5Encryption : NSObject
 + (NSString *)md5by32:(NSString*)input;
 - (NSString *)md5:(NSString *)str;
++ (NSString *)md5:(NSString *)str;
 @end

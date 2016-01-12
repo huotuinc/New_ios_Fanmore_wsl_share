@@ -163,6 +163,13 @@
 
 - (IBAction)visitorLogin:(id)sender {
     
-    LOG(@"游客登录");
+    AppDelegate * ad = [AppDelegate getInstance];
+    [[ad getFanOperations] visitorToLogin:nil block:^(id result, NSError *error) {
+        if (!error) {
+            LOG(@"%@",result);
+        }else {
+           LOG(@"%@",error);
+        }
+    }];
 }
 @end
