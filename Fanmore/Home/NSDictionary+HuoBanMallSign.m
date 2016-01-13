@@ -12,7 +12,7 @@
 #import "MallUser.h"
 #import "AppDelegate.h"
 #import "LoadingState.h"
-
+#import "WXApi.h"
 @implementation NSDictionary (HuoBanMallSign)
 
 + (NSMutableDictionary *)asignWithMutableDictionary:(NSMutableDictionary *)dict{
@@ -62,11 +62,19 @@
     [signUrl appendFormat:@"&appid=%@",HuoBanMallBuyAppId];
     [signUrl appendFormat:@"&timestamp=%@",timeSp];
     
+    NSString * bu = nil;
+    if ([WXApi isWXAppInstalled]) {
+        NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        NSString * file = [path stringByAppendingPathComponent:ChoneMallAccount];
+        MallUser * user =  [NSKeyedUnarchiver unarchiveObjectWithFile:file];
+        bu = [NSString stringWithFormat:@"%@",user.userid];
+    }else{
+        
+        bu = [NSString stringWithFormat:@"%@",[AppDelegate getInstance].loadingState.userData.mallUserId];
+    }
     
-    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString * file = [path stringByAppendingPathComponent:ChoneMallAccount];
-    MallUser * user =  [NSKeyedUnarchiver unarchiveObjectWithFile:file];
-    [signUrl appendFormat:@"&buserid=%@",user.userid];
+    LOG(@"%@",bu);
+    [signUrl appendFormat:@"&buserid=%@",bu];
     [signUrl appendFormat:@"&unionid=%@",[AppDelegate getInstance].loadingState.userData.unionId];
     NSRange new = [signUrl rangeOfString:@"?"];
     

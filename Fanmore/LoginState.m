@@ -82,4 +82,5 @@
 
 @synthesize unionId;
 @synthesize website;
+@synthesize mallUserId;
 @end

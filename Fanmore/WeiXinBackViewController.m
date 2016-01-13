@@ -47,7 +47,7 @@
     UserInfo * user = [NSKeyedUnarchiver unarchiveObjectWithFile:file];
 
     NSLog(@"%@-----%@",user.headimgurl,user.nickname);
-    [self.weiXInIconView sd_setImageWithURL:[NSURL URLWithString:user.headimgurl] placeholderImage:nil options:SDWebImageRetryFailed];
+    [self.weiXInIconView sd_setImageWithURL:[NSURL URLWithString:user.headimgurl] placeholderImage:[UIImage imageNamed:@"WeiXinIIconViewDefaule"] options:SDWebImageRetryFailed];
     
     self.WeiXinUserName.text = user.nickname;
 }
@@ -59,6 +59,8 @@
  */
 - (IBAction)NetActionStep:(id)sender {
     LoginViewController * Register = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    Register.PhoneNumber = _PhoneNumber;
+    Register.codeNumber = _codeNumber;
     [self.navigationController pushViewController:Register animated:YES];
    
 }

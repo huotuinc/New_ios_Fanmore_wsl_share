@@ -20,7 +20,8 @@
 #import "Paging.h"
 #import "WeiXinBackViewController.h"
 #import "IphoneLoginViewController.h"
-
+#import "AccountLoginViewController.h"
+#import "WXApi.h"
 @interface WeiChatAuthorize ()<WXApiDelegate>
 
 
@@ -86,7 +87,7 @@
         
         if (self.loginType == 1) {//注册
             UIStoryboard * sto = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            IphoneLoginViewController * iphone =  [sto instantiateViewControllerWithIdentifier:@"IphoneLoginViewController"];
+            AccountLoginViewController * iphone =  [sto instantiateViewControllerWithIdentifier:@"AccountLoginViewController"];
             UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:iphone];
            
             [self presentViewController:nav animated:YES completion:nil];

@@ -9,6 +9,9 @@
 #import "AccountLoginViewController.h"
 #import <UIView+BlocksKit.h>
 #import "AppDelegate.h"
+#import "WeiXinBackViewController.h"
+#import "FMUtils.h"
+
 @interface AccountLoginViewController ()
 
 /**邀请码*/
@@ -53,16 +56,15 @@
 
 - (void)yanzhengma{
     
-    
+    __weak AccountLoginViewController * wself = self;
     if (self.iphoneNumber.text.length) {
-        
         [[[AppDelegate getInstance] getFanOperations] ToGetYaoqing:nil block:^(NSString *result, NSError *error) {
-            NSLog(@"%@----%@",result,error.description);
+            if(error){
+                [FMUtils alertMessage:wself.view msg:[error FMDescription]];
+            }
         } WithParam:self.iphoneNumber.text];
-        
         [self settime];
     }else{
-        
         UIAlertView * aaa = [[UIAlertView alloc] initWithTitle:@"手机号不能为空" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
         [aaa show];
     }
@@ -119,24 +121,38 @@
 */
 
 - (IBAction)LoginButtonClick:(id)sender {
-    
-    
     if(self.yaoqingText.text.length == 0){
         return;
     }else{
         __weak AccountLoginViewController * wself = self;
         [[[AppDelegate getInstance] getFanOperations] toLoginByPhoneNumber:nil block:^(id result, NSError *error) {
+            //luohaibo
+            LOG(@"%@",error);
+            if (!error) {
+                UIStoryboard* main = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+                UIViewController* vc = [main instantiateInitialViewController];
+                [wself presentViewController:vc animated:YES completion:^{
+                    [wself removeFromParentViewController];
+                }];
+            }else{
+                UIStoryboard * main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                WeiXinBackViewController  *next = [main instantiateViewControllerWithIdentifier:@"WeiXinBackViewController"];
+                next.PhoneNumber= self.iphoneNumber.text;
+                next.codeNumber = self.yaoqingText.text;
+                [self.navigationController pushViewController:next animated:YES];
+            }
             
-            UIStoryboard* main = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-            UIViewController* vc = [main instantiateInitialViewController];
-            [wself presentViewController:vc animated:YES completion:^{
-                [wself removeFromParentViewController];
-            }];
         } withPhoneNumber:self.iphoneNumber.text andYanzhenMa:self.yaoqingText.text];
         
         
     }
     
     
+}
+
+- (void)todoTheLaterThing{
+    UIStoryboard * main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    WeiXinBackViewController  *next = [main instantiateViewControllerWithIdentifier:@"WeiXinBackViewController"];
+    [self.navigationController pushViewController:next animated:YES];
 }
 @end

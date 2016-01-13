@@ -34,7 +34,7 @@
 @property (nonatomic, retain) NSNumber * totalScore;
 @property (nonatomic, retain) NSNumber * todayBrowseCount;
 @property (nonatomic, retain) NSArray * msgs;
-
+@property (nonatomic, retain) NSNumber * mallUserId;
 -(BOOL)hasNewFeedBack;
 
 @property (nonatomic, retain) NSNumber *exp;
