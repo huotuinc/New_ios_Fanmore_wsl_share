@@ -237,12 +237,13 @@
     [self doConnect:delegate interface:@"Login" errorBlocker:^(NSError *error) {
         block(nil,error);
     } resultBlocker:^(NSDictionary *data) {
-        LOG(@"---%@",data);
+        NSLog(@"%@",data);
         LoginState* ls = [LoginState modelFromDict:data];        
         AppDelegate* ad = [AppDelegate getInstance];
         [ad.loadingState loginAs:ls];
         [ad storeLastUserInformation:userName password:password];
         [self userInfo:Nil block:^(UserInformation *ui, NSError *error) {
+            LOG(@"%@--%@",ui,error.description);
             block(ls,error);
         }];
     } parameters:p];
@@ -1623,7 +1624,6 @@
     [self doConnect:delegate interface:@"GuestLogin" errorBlocker:^(NSError *error) {
         block(nil,error);
     } resultBlocker:^(id data) {
-        NSLog(@"%@",data);
         NSString * passwd =  data[@"loginCode"];
         NSArray * arra =  [passwd componentsSeparatedByString:@"^"];
         [self login:delegate block:block userName:data[@"userName"] password:arra[1]];
