@@ -163,12 +163,17 @@
 
 - (IBAction)visitorLogin:(id)sender {
     
+    __weak IphoneLoginViewController * wself = self;
     AppDelegate * ad = [AppDelegate getInstance];
     [[ad getFanOperations] visitorToLogin:nil block:^(id result, NSError *error) {
         if (!error) {
-            LOG(@"%@",result);
+            UIStoryboard* main = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+            UIViewController* vc = [main instantiateInitialViewController];
+            [wself presentViewController:vc animated:YES completion:^{
+                [wself removeFromParentViewController];
+            }];
         }else {
-           LOG(@"%@",error);
+           [FMUtils alertMessage:wself.view msg:[error FMDescription]];
         }
     }];
 }

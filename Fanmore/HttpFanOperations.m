@@ -237,13 +237,11 @@
     [self doConnect:delegate interface:@"Login" errorBlocker:^(NSError *error) {
         block(nil,error);
     } resultBlocker:^(NSDictionary *data) {
-        NSLog(@"%@",data);
         LoginState* ls = [LoginState modelFromDict:data];        
         AppDelegate* ad = [AppDelegate getInstance];
         [ad.loadingState loginAs:ls];
         [ad storeLastUserInformation:userName password:password];
         [self userInfo:Nil block:^(UserInformation *ui, NSError *error) {
-            LOG(@"%@--%@",ui,error.description);
             block(ls,error);
         }];
     } parameters:p];

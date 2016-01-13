@@ -12,7 +12,7 @@
 #import "MJRefresh.h"
 #import "BrowseTaskCell.h"
 #import "FMTableView.h"
-
+#import "UITableView+SetNoDateBackImage.h"
 @interface TodayBrowseController ()
 
 
@@ -144,6 +144,12 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     @try {
+        
+        if ([FMUtils sectionsByTaskTime:self.tasks]) {
+            [tableView setClearBackground];
+        }else{
+            tableView.backgroundColor = [UIColor whiteColor];
+        }
         return [FMUtils sectionsByTaskTime:self.tasks];
     }
     @catch (NSException *exception) {

@@ -12,7 +12,7 @@
 #import "ScoreOneDayCell.h"
 #import "MyTaskDetail.h"
 #import "FMTableView.h"
-
+#import "UITableView+SetNoDateBackImage.h"
 NSString*(^dictdategetter)(id input) = ^(id input) {
     NSString* date = input[@"date"];
     if (!$safe(date)){
@@ -136,6 +136,11 @@ NSString*(^dictdategetter)(id input) = ^(id input) {
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    if ([FMUtils sectionsByTaskTime:self.list timeGetter:dictdategetter]) {
+        [tableView setClearBackground];
+    }else{
+        tableView.backgroundColor = [UIColor whiteColor];
+    }
     return [FMUtils sectionsByTaskTime:self.list timeGetter:dictdategetter];
 //    return 1;
 }

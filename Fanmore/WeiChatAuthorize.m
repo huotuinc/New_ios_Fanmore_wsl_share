@@ -92,6 +92,7 @@
             [self presentViewController:nav animated:YES completion:nil];
         }else{//登录
             
+            LOG(@"账号推出注册");
         }
     }
     
@@ -116,7 +117,14 @@
     [UserLoginTool loginRequestGet:url parame:nil success:^(id json) {
        NSLog(@"%@",json);
         AccessCodeModel * access_mode = [AccessCodeModel objectWithKeyValues:json];
-        [wself getUserInfo:access_mode];
+        if (wself.loginType == 2) {
+            UserInfo * user = [[UserInfo alloc] init];
+            user.unionid = access_mode.unionid;
+            [wself WeiXinQAuthSuccess:user];
+        }else{
+           [wself getUserInfo:access_mode];
+        }
+        
     } failure:^(NSError *error) {
         NSLog(@"%@",error.description);
     }];
@@ -157,6 +165,9 @@
     __weak WeiChatAuthorize * wself = self;
     AppDelegate * ds =  [AppDelegate getInstance];
     [[ds getFanOperations] TOYanZhenRegistParames:nil block:^(id result, NSError *error) {
+        
+        
+        LOG(@"%@----%@",result,[error FMDescription]);
         if (error) {
             NSString * se = error.description;
             NSRange ran = [se rangeOfString:@"90005"];

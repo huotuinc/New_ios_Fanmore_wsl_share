@@ -22,6 +22,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import "PayModel.h"
 #import "MJExtension.h"
+#import "UITableView+SetNoDateBackImage.h"
 
 @interface PopupMenuManager : NSObject<UITableViewDataSource,UITableViewDelegate>
 @property uint type;
@@ -494,37 +495,42 @@
     }];
 }
 
-- (void) motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
-{
-    //检测到摇动
-    self.shaking = YES;
-}
-
-- (void) motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event
-{
-    //摇动取消
-    self.shaking = NO;
-}
-
-
-- (void) motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
-{
-    //摇动结束
-    if (event.subtype == UIEventSubtypeMotionShake) {
-        //something happens
-        if (self.shaking) {
-            self.shaking = NO;
-            //
-            LOG(@"shaking!!!");
-            [self shake];
-        }
-    }
-}
+//- (void) motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
+//{
+//    //检测到摇动
+//    self.shaking = YES;
+//}
+//
+//- (void) motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event
+//{
+//    //摇动取消
+//    self.shaking = NO;
+//}
+//
+//
+//- (void) motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+//{
+//    //摇动结束
+//    if (event.subtype == UIEventSubtypeMotionShake) {
+//        //something happens
+//        if (self.shaking) {
+//            self.shaking = NO;
+//            //
+//            LOG(@"shaking!!!");
+//            [self shake];
+//        }
+//    }
+//}
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    if ([FMUtils sectionsByTaskTime:self.tasks]) {
+        [tableView setClearBackground];
+    }else{
+        tableView.backgroundColor = [UIColor whiteColor];
+    }
     return [FMUtils sectionsByTaskTime:self.tasks];
 }
 

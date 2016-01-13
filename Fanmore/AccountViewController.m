@@ -27,7 +27,7 @@
 #import "MallUser.h"
 #import "WXApi.h"
 #import "AccountLoginViewController.h"
-
+#import "FMUtils.h"
 @interface AccountViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 @property(weak) TextChangeController* tccontroller;
 @property BOOL doCash;
@@ -296,7 +296,13 @@
     
     if (indexPath.row == 0) {//进入商城
         
-#warning luohaibo
+        LoadingState* ls = [AppDelegate getInstance].loadingState;
+        NSString *username = ls.userData.userName;
+        if ([username rangeOfString:@"guest"].location != NSNotFound) {
+            [FMUtils alertMessage:self.view msg:@"游客账号，无法进入"];
+            return;
+        }
+// luohaibo
         // 1.得到data
         NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:MallUesrList];
@@ -313,6 +319,7 @@
         }
         
         
+        
         UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         HomeViewController * home = [story instantiateViewControllerWithIdentifier:@"HomeViewController"];
         [self.navigationController pushViewController:home animated:YES];
@@ -323,6 +330,12 @@
         InformationController * safe = [[UIStoryboard storyboardWithName:@"Mine" bundle:nil] instantiateViewControllerWithIdentifier:@"InformationController"];
         [self.navigationController pushViewController:safe animated:YES];
     }else{//积分兑换小金库
+        LoadingState* ls = [AppDelegate getInstance].loadingState;
+        NSString *username = ls.userData.userName;
+        if ([username rangeOfString:@"guest"].location != NSNotFound) {
+            [FMUtils alertMessage:self.view msg:@"游客账号，无法进入"];
+            return;
+        }
         JiFenToMallController * safe = [[UIStoryboard storyboardWithName:@"Mine" bundle:nil] instantiateViewControllerWithIdentifier:@"JiFenToMallController"];
         [self.navigationController pushViewController:safe animated:YES];
         

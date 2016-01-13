@@ -14,6 +14,7 @@
 #import "ToSendTaskController.h"
 #import "ItemCell.h"
 #import "BugItemView.h"
+#import "UITableView+SetNoDateBackImage.h"
 
 @interface PreviewTasksController ()<UITableViewDataSource,UITableViewDelegate,BuyItemHandler,ItemsKnowlege,TableReloadAble>
 
@@ -146,6 +147,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (self.tasks.count) {
+        tableView.backgroundColor = [UIColor whiteColor];
+    }else{
+        [tableView setClearBackground];
+    }
     return self.tasks.count;
 }
 

@@ -295,6 +295,7 @@
 		EFA486A91C2A3A020088FE4A /* Base64Util.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA486A31C2A3A020088FE4A /* Base64Util.m */; };
 		EFA486AA1C2A3A020088FE4A /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA486A51C2A3A020088FE4A /* GTMBase64.m */; };
 		EFA486AB1C2A3A020088FE4A /* MD5Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA486A81C2A3A020088FE4A /* MD5Encryption.m */; };
+		EFC8AC061C45E8A900B065B2 /* UITableView+SetNoDateBackImage.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC8AC051C45E8A900B065B2 /* UITableView+SetNoDateBackImage.m */; };
 		EFE607B31C210B5900A63867 /* GlodMallUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE607B21C210B5900A63867 /* GlodMallUserModel.m */; };
 		EFE90FE51C06DAE40058ABC1 /* WeiChatAuthorize.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE90FE41C06DAE40058ABC1 /* WeiChatAuthorize.m */; };
 		EFE910301C06E5200058ABC1 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EFE9102F1C06E5200058ABC1 /* libicucore.tbd */; };
@@ -870,6 +871,8 @@
 		EFA486A61C2A3A020088FE4A /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
 		EFA486A71C2A3A020088FE4A /* MD5Encryption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5Encryption.h; sourceTree = "<group>"; };
 		EFA486A81C2A3A020088FE4A /* MD5Encryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5Encryption.m; sourceTree = "<group>"; };
+		EFC8AC041C45E8A900B065B2 /* UITableView+SetNoDateBackImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+SetNoDateBackImage.h"; sourceTree = "<group>"; };
+		EFC8AC051C45E8A900B065B2 /* UITableView+SetNoDateBackImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+SetNoDateBackImage.m"; sourceTree = "<group>"; };
 		EFE607B11C210B5900A63867 /* GlodMallUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlodMallUserModel.h; sourceTree = "<group>"; };
 		EFE607B21C210B5900A63867 /* GlodMallUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlodMallUserModel.m; sourceTree = "<group>"; };
 		EFE90FE31C06DAE40058ABC1 /* WeiChatAuthorize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiChatAuthorize.h; sourceTree = "<group>"; };
@@ -2005,9 +2008,19 @@
 			path = Encryption;
 			sourceTree = "<group>";
 		};
+		EFC8AC031C45E81B00B065B2 /* Categray */ = {
+			isa = PBXGroup;
+			children = (
+				EFC8AC041C45E8A900B065B2 /* UITableView+SetNoDateBackImage.h */,
+				EFC8AC051C45E8A900B065B2 /* UITableView+SetNoDateBackImage.m */,
+			);
+			name = Categray;
+			sourceTree = "<group>";
+		};
 		EFE90FE21C06D9A90058ABC1 /* WeiChatAuthorize */ = {
 			isa = PBXGroup;
 			children = (
+				EFC8AC031C45E81B00B065B2 /* Categray */,
 				EFA486A11C2A3A020088FE4A /* Encryption */,
 				EFA486911C2A37B70088FE4A /* lib */,
 				EFA4868D1C2A36C60088FE4A /* pushWeb */,
@@ -2304,6 +2317,7 @@
 				232AA20618BC78A0001F5557 /* ConfirmController.m in Sources */,
 				EFA486A01C2A39C90088FE4A /* NSDictionary+HuoBanMallSign.m in Sources */,
 				2310096819B71C7B007420F3 /* NSDictionary+RemotePush.m in Sources */,
+				EFC8AC061C45E8A900B065B2 /* UITableView+SetNoDateBackImage.m in Sources */,
 				2314C8D6187E8A5E00F8D8F9 /* NSString+Fanmore.m in Sources */,
 				2305C0E118AA27F60028F7CC /* UIView+Fanmore.m in Sources */,
 				EFA486A91C2A3A020088FE4A /* Base64Util.m in Sources */,
