@@ -494,50 +494,50 @@
 
 #pragma mark yaoyao
 
-- (void)shake{
-    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-    LoginState* data = [[[AppDelegate getInstance] loadingState] userData];
-    if ([data.dayCheckIn intValue]==1) {
-        [FMUtils alertMessage:self.view msg:@"您今日已签到"];
-        return;
-    }
-    __weak MineMenuController* wself = self;
-    [[[AppDelegate getInstance] getFanOperations] checkIn:nil block:^(NSString *tip, NSError *error) {
-        //noop
-        if ($safe(error)) {
-            [FMUtils alertMessage:wself.view msg:[error FMDescription]];
-            return;
-        }
-        [wself viewWillAppear:NO];
-    }];
-}
-
-- (void) motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
-{
-    //检测到摇动
-    self.shaking = YES;
-}
-
-- (void) motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event
-{
-    //摇动取消
-    self.shaking = NO;
-}
-
-
-- (void) motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
-{
-    //摇动结束
-    if (event.subtype == UIEventSubtypeMotionShake) {
-        //something happens
-        if (self.shaking) {
-            self.shaking = NO;
-            //
-            LOG(@"shaking!!!");
-            [self shake];
-        }
-    }
-}
+//- (void)shake{
+//    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+//    LoginState* data = [[[AppDelegate getInstance] loadingState] userData];
+//    if ([data.dayCheckIn intValue]==1) {
+//        [FMUtils alertMessage:self.view msg:@"您今日已签到"];
+//        return;
+//    }
+//    __weak MineMenuController* wself = self;
+//    [[[AppDelegate getInstance] getFanOperations] checkIn:nil block:^(NSString *tip, NSError *error) {
+//        //noop
+//        if ($safe(error)) {
+//            [FMUtils alertMessage:wself.view msg:[error FMDescription]];
+//            return;
+//        }
+//        [wself viewWillAppear:NO];
+//    }];
+//}
+//
+//- (void) motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
+//{
+//    //检测到摇动
+//    self.shaking = YES;
+//}
+//
+//- (void) motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event
+//{
+//    //摇动取消
+//    self.shaking = NO;
+//}
+//
+//
+//- (void) motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+//{
+//    //摇动结束
+//    if (event.subtype == UIEventSubtypeMotionShake) {
+//        //something happens
+//        if (self.shaking) {
+//            self.shaking = NO;
+//            //
+//            LOG(@"shaking!!!");
+//            [self shake];
+//        }
+//    }
+//}
 
 
 
