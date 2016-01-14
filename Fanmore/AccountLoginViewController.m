@@ -12,6 +12,9 @@
 #import "WeiXinBackViewController.h"
 #import "FMUtils.h"
 #import <UIView+BlocksKit.h>
+#import "WXApi.h"
+#import "FMUtils.h"
+
 @interface AccountLoginViewController ()
 
 /**邀请码*/
@@ -40,12 +43,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"手机验证登录";
+    self.title = @"手机注册登录";
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     // Do any additional setup after loading the view.
     
     self.yaoQingMa.layer.borderWidth = 2;
+    self.yaoQingMa.layer.cornerRadius = 2;
+    self.yaoQingMa.layer.masksToBounds = YES;
     self.yaoQingMa.layer.borderColor = [UIColor orangeColor].CGColor;
     
     self.yaoQingMa.userInteractionEnabled = YES;
@@ -55,11 +60,13 @@
     }];
     
     
+    self.weixinAuth.userInteractionEnabled = YES;
     //微信授权
     [self.weixinAuth bk_whenTapped:^{
-        
+        [wself WeiSouquan];
     }];
     
+    self.youke.userInteractionEnabled = YES;
     //游客
     [self.youke bk_whenTapped:^{
         AppDelegate * ad = [AppDelegate getInstance];
@@ -78,6 +85,14 @@
     
     
 }
+
+- (void)WeiSouquan{
+    
+    if (![WXApi isWXAppInstalled]) {
+        [FMUtils alertMessage:self.view msg:@"请先安装微信"];
+    }
+}
+
 
 
 - (void)yanzhengma{

@@ -15,10 +15,10 @@
     //A connection failtrue occurred
     //A connection failure occurred
     if ($eql(@"The request timed out",msg)) {
-        return @"网络不佳，小粉正在继续努力加载";
+        return @"网络不佳，万事利正在继续努力加载";
     }
     if ([msg rangeOfString:@"connection failure occurred"].location!=NSNotFound) {
-        return @"尚未接入网络，小粉有力难施";
+        return @"尚未接入网络，万事利有力难施";
     }
     return msg;
 }

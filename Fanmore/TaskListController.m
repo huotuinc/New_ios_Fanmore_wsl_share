@@ -250,7 +250,7 @@
 //        header2;
 //    });
     
-//    [__header beginRefreshing];
+    [__header beginRefreshing];
     
     [self.nselectionLabel1 setUserInteractionEnabled:YES];
     [self.nselectionLabel2 setUserInteractionEnabled:YES];

@@ -13,7 +13,7 @@
 #import "FMUtils.h"
 #import "LoadingState+Ext.h"
 #import "WeiChatAuthorize.h"
-
+#import "NavController.h"
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
 
@@ -85,7 +85,7 @@
             UIStoryboard * mainS = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             WeiChatAuthorize * WeiChart = [mainS instantiateViewControllerWithIdentifier:@"WeiChatAuthorize"];
             WeiChart.loginType = 1;
-            UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:WeiChart];
+            NavController * nav = [[NavController alloc] initWithRootViewController:WeiChart];
             [wself presentViewController:nav animated:YES completion:nil];
             
         }

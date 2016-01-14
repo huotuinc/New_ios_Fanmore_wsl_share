@@ -55,9 +55,15 @@
     
     //微信授权登录code返回
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(accessTokenWithCode:) name:@"ToGetUserInfo" object:nil];
+    //微信授权登录code返回
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(xxxxaccessTokenWithCode) name:@"weixinauthfailure" object:nil];
     
 }
 
+- (void)xxxxaccessTokenWithCode{
+    
+    LOG(@"xxx");
+}
 
 /**
  *  微信授权点击

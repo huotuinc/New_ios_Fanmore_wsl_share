@@ -83,7 +83,7 @@
 
 -(void)userDidnotUpdateVersion:(NSString *)version{
     if (self.forceUpdate) {
-        [FMUtils alertMessage:self.window msg:@"小粉已经切换到赚钱更快的模式，请尽快更新。" block:^{
+        [FMUtils alertMessage:self.window msg:@"万事利已经切换到赚钱更快的模式，请尽快更新。" block:^{
             [[iVersion sharedInstance] openAppPageInAppStore];
         }];
     }
@@ -294,12 +294,12 @@
         SendAuthResp *aresp = (SendAuthResp *)resp;
         if (aresp.errCode== 0) {
             NSString *code = aresp.code;
-            NSLog(@"----%@",code);
-           
             //授权成功的code
             NSDictionary * dict = @{@"code":code};
             [[NSNotificationCenter defaultCenter] postNotificationName:@"ToGetUserInfo" object:nil userInfo:dict];
             return;
+        }else if(aresp.errCode == -4 || aresp.errCode == -2){
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"weixinauthfailure" object:nil];
         }
     }
     NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
