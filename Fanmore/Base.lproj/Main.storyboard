@@ -646,7 +646,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GH6-4Q-PcX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1660" y="-61"/>
+            <point key="canvasLocation" x="1559" y="-56"/>
         </scene>
         <!--Account Login View Controller-->
         <scene sceneID="ETP-KB-0HK">
@@ -756,6 +756,34 @@
                                     <action selector="LoginButtonClick:" destination="ZI5-mu-CQw" eventType="touchUpInside" id="ATF-ui-QoA"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s73-vZ-fqN">
+                                <rect key="frame" x="95" y="256" width="130" height="60"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="youke" translatesAutoresizingMaskIntoConstraints="NO" id="F2b-Bv-mTf">
+                                        <rect key="frame" x="70" y="0.0" width="50" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="2Fe-O0-bKq"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weixin" translatesAutoresizingMaskIntoConstraints="NO" id="TS6-Qj-WvR">
+                                        <rect key="frame" x="10" y="0.0" width="50" height="59"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="Glq-U0-Lsb"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="11z-jO-kOw"/>
+                                    <constraint firstAttribute="height" constant="60" id="4qC-pD-dg9"/>
+                                    <constraint firstAttribute="bottom" secondItem="TS6-Qj-WvR" secondAttribute="bottom" constant="1" id="OJP-fT-tMt"/>
+                                    <constraint firstAttribute="trailing" secondItem="F2b-Bv-mTf" secondAttribute="trailing" constant="10" id="VDV-wu-xU6"/>
+                                    <constraint firstItem="TS6-Qj-WvR" firstAttribute="top" secondItem="s73-vZ-fqN" secondAttribute="top" id="VUl-hT-ocW"/>
+                                    <constraint firstAttribute="bottom" secondItem="F2b-Bv-mTf" secondAttribute="bottom" id="fIv-J3-k8s"/>
+                                    <constraint firstItem="TS6-Qj-WvR" firstAttribute="leading" secondItem="s73-vZ-fqN" secondAttribute="leading" constant="10" id="ilO-CY-Fc2"/>
+                                    <constraint firstItem="F2b-Bv-mTf" firstAttribute="top" secondItem="s73-vZ-fqN" secondAttribute="top" id="v2m-Kx-dLu"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -764,25 +792,29 @@
                             <constraint firstItem="Ard-aj-hdw" firstAttribute="leading" secondItem="Qbs-Ab-Dpt" secondAttribute="leading" constant="5" id="7Vb-0G-6p9"/>
                             <constraint firstItem="XwJ-LO-fKU" firstAttribute="top" secondItem="4pu-ih-ZSs" secondAttribute="bottom" constant="20" id="MHb-gK-BBZ"/>
                             <constraint firstItem="XwJ-LO-fKU" firstAttribute="leading" secondItem="Qbs-Ab-Dpt" secondAttribute="leading" constant="5" id="OCv-dV-pMP"/>
+                            <constraint firstItem="s73-vZ-fqN" firstAttribute="top" secondItem="XwJ-LO-fKU" secondAttribute="bottom" constant="14" id="Q4s-Zh-2JI"/>
                             <constraint firstAttribute="trailing" secondItem="MGb-Zu-TRh" secondAttribute="trailing" constant="5" id="Wnv-0L-Ifi"/>
                             <constraint firstItem="4pu-ih-ZSs" firstAttribute="leading" secondItem="Qbs-Ab-Dpt" secondAttribute="leading" constant="5" id="af2-gG-82M"/>
                             <constraint firstItem="Ard-aj-hdw" firstAttribute="top" secondItem="G7Y-aL-r0p" secondAttribute="bottom" constant="36" id="h9E-Wh-y9t"/>
                             <constraint firstAttribute="trailing" secondItem="Ard-aj-hdw" secondAttribute="trailing" constant="5" id="kro-ws-OEG"/>
                             <constraint firstAttribute="trailing" secondItem="XwJ-LO-fKU" secondAttribute="trailing" constant="5" id="sQ8-av-DMc"/>
                             <constraint firstItem="4pu-ih-ZSs" firstAttribute="top" secondItem="MGb-Zu-TRh" secondAttribute="bottom" constant="8" id="u0J-25-0Cl"/>
+                            <constraint firstItem="s73-vZ-fqN" firstAttribute="centerX" secondItem="Qbs-Ab-Dpt" secondAttribute="centerX" id="xH4-Dv-FKg"/>
                             <constraint firstItem="MGb-Zu-TRh" firstAttribute="top" secondItem="Ard-aj-hdw" secondAttribute="bottom" constant="5" id="z6b-zT-7AW"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="des" destination="MGb-Zu-TRh" id="bvt-7U-oeo"/>
                         <outlet property="iphoneNumber" destination="p1D-Ix-Xn8" id="9Om-03-BxG"/>
+                        <outlet property="weixinAuth" destination="TS6-Qj-WvR" id="wKa-QL-5MS"/>
                         <outlet property="yaoQingMa" destination="6nt-RR-gKZ" id="UCY-f3-UBL"/>
                         <outlet property="yaoqingText" destination="wvF-29-1hV" id="WAd-8S-SiQ"/>
+                        <outlet property="youke" destination="F2b-Bv-mTf" id="pAz-Do-nEk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KUs-p7-nkP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2121" y="-61"/>
+            <point key="canvasLocation" x="1950" y="-56"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="On7-Rz-x2p">
@@ -1554,7 +1586,9 @@
         <image name="more" width="35" height="35"/>
         <image name="shuxian" width="1" height="2"/>
         <image name="tudi" width="30" height="30"/>
+        <image name="weixin" width="50" height="60"/>
         <image name="wuchangzhuanfa" width="301" height="38"/>
+        <image name="youke" width="50" height="60"/>
         <image name="zainan" width="35" height="35"/>
         <image name="zhuanfabutton" width="300" height="38"/>
         <image name="zhuanfabutton_down" width="300" height="38"/>

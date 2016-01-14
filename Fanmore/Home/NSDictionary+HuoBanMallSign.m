@@ -63,19 +63,21 @@
     [signUrl appendFormat:@"&timestamp=%@",timeSp];
     
     NSString * bu = nil;
+    NSString * un = nil;
     if ([WXApi isWXAppInstalled]) {
         NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
         NSString * file = [path stringByAppendingPathComponent:ChoneMallAccount];
         MallUser * user =  [NSKeyedUnarchiver unarchiveObjectWithFile:file];
         bu = [NSString stringWithFormat:@"%@",user.userid];
+        un = [NSString stringWithFormat:@"%@",[AppDelegate getInstance].loadingState.userData.unionId];
     }else{
-        
-        bu = [NSString stringWithFormat:@"%@",[AppDelegate getInstance].loadingState.userData.mallUserId];
+        bu = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"mallUserId"]];
+        un = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"unionId"]];
     }
     
-    LOG(@"%@",bu);
+    LOG(@"%@--------%@----%@",bu,un,[[NSUserDefaults standardUserDefaults] objectForKey:@"unionid"]);
     [signUrl appendFormat:@"&buserid=%@",bu];
-    [signUrl appendFormat:@"&unionid=%@",[AppDelegate getInstance].loadingState.userData.unionId];
+    [signUrl appendFormat:@"&unionid=%@",un];
     NSRange new = [signUrl rangeOfString:@"?"];
     
     if (new.location != NSNotFound) {

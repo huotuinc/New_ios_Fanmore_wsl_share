@@ -1601,7 +1601,14 @@
     [self loginCode:p];
     [self doConnect:delegate interface:@"MobileLogin" errorBlocker:^(NSError *error) {
         block(nil,error);
-    } resultBlocker:^(id data) {
+    } resultBlocker:^(NSDictionary* data) {
+        [[data allKeys] enumerateObjectsUsingBlock:^(NSString* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj isEqualToString:@"mallUserId"]) {
+                [[NSUserDefaults standardUserDefaults] setObject:data[obj] forKey:@"mallUserId"];
+            }else if([obj isEqualToString:@"unionId"]) {
+                [[NSUserDefaults standardUserDefaults] setObject:data[obj] forKey:@"unionId"];
+            }
+        }];
         NSString * passwd =  data[@"loginCode"];
         NSArray * arra =  [passwd componentsSeparatedByString:@"^"];
         [self login:delegate block:block userName:data[@"userName"] password:arra[1]];

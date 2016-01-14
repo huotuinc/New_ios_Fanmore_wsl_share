@@ -148,7 +148,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    NSLog(@"%@",[AppDelegate getInstance].loadingState.userData.mallUserId);
     self.imagePicture.layer.cornerRadius = self.imagePicture.frame.size.width*0.5;
     self.imagePicture.layer.masksToBounds = YES;
     self.imagePicture.layer.borderWidth = 2;

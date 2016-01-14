@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 #import "WeiXinBackViewController.h"
 #import "FMUtils.h"
-
+#import <UIView+BlocksKit.h>
 @interface AccountLoginViewController ()
 
 /**邀请码*/
@@ -29,6 +29,10 @@
 /**邀请码*/
 @property (weak, nonatomic) IBOutlet UITextField *yaoqingText;
 
+/**微信授权*/
+@property (weak, nonatomic) IBOutlet UIImageView *weixinAuth;
+/**游客授权*/
+@property (weak, nonatomic) IBOutlet UIImageView *youke;
 
 @end
 
@@ -48,6 +52,28 @@
     __weak AccountLoginViewController * wself = self;
     [self.yaoQingMa bk_whenTapped:^{
         [wself yanzhengma];
+    }];
+    
+    
+    //微信授权
+    [self.weixinAuth bk_whenTapped:^{
+        
+    }];
+    
+    //游客
+    [self.youke bk_whenTapped:^{
+        AppDelegate * ad = [AppDelegate getInstance];
+        [[ad getFanOperations] visitorToLogin:nil block:^(id result, NSError *error) {
+            if (!error) {
+                UIStoryboard* main = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+                UIViewController* vc = [main instantiateInitialViewController];
+                [wself presentViewController:vc animated:YES completion:^{
+                    [wself removeFromParentViewController];
+                }];
+            }else {
+                [FMUtils alertMessage:wself.view msg:[error FMDescription]];
+            }
+        }];
     }];
     
     
