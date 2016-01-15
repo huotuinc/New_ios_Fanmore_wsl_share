@@ -9,7 +9,7 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--万事利-->
+        <!--分红-->
         <scene sceneID="C0r-ZY-9w8">
             <objects>
                 <viewController id="p5r-Xt-6OJ" customClass="TaskListController" sceneMemberID="viewController">
@@ -84,7 +84,7 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="万事利" id="VIU-kd-2Mv">
+                    <navigationItem key="navigationItem" title="分红" id="VIU-kd-2Mv">
                         <barButtonItem key="leftBarButtonItem" image="more" id="iHm-Jx-xzw">
                             <connections>
                                 <action selector="clickMenu:" destination="p5r-Xt-6OJ" id="Ef1-ak-tDe"/>

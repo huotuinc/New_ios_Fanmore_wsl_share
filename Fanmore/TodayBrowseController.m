@@ -158,6 +158,7 @@
     @finally {
         
     }
+    tableView.backgroundColor = [UIColor whiteColor];
     return 1;
 }
 

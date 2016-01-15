@@ -83,7 +83,7 @@
 
 -(void)userDidnotUpdateVersion:(NSString *)version{
     if (self.forceUpdate) {
-        [FMUtils alertMessage:self.window msg:@"万事利已经切换到赚钱更快的模式，请尽快更新。" block:^{
+        [FMUtils alertMessage:self.window msg:@"分红已经切换到赚钱更快的模式，请尽快更新。" block:^{
             [[iVersion sharedInstance] openAppPageInAppStore];
         }];
     }

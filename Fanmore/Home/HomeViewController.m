@@ -34,7 +34,9 @@
 //#import "SISHomeViewController.h"
 #import "UserInfo.h"
 #import "AppDelegate.h"
-
+#import "NavController.h"
+#import "AccountLoginViewController.h"
+#import "WeiChatAuthorize.h"
 
 
 @interface HomeViewController()<UIWebViewDelegate,UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate>
@@ -401,9 +403,19 @@
     if (webView.tag == 100) {
         
         if ([url rangeOfString:@"/UserCenter/Login.aspx"].location !=  NSNotFound) {
-            UIStoryboard * main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            LoginViewController * login =  [main instantiateViewControllerWithIdentifier:@"WeiChatAuthorize"];
-            [self presentViewController:login animated:YES completion:nil];
+            if ([WXApi isWXAppInstalled]) {
+                UIStoryboard * main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                WeiChatAuthorize * login =  [main instantiateViewControllerWithIdentifier:@"WeiChatAuthorize"];
+                [self presentViewController:login animated:YES completion:nil];
+                
+            }else{
+                UIStoryboard * sto = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                AccountLoginViewController * iphone =  [sto instantiateViewControllerWithIdentifier:@"AccountLoginViewController"];
+                NavController * nav = [[NavController alloc] initWithRootViewController:iphone];
+                
+                [self presentViewController:nav animated:YES completion:nil];
+                
+            }
             
         }else if([url rangeOfString:@"AppAlipay.aspx"].location != NSNotFound){
          

@@ -16,7 +16,11 @@
 #import "AFNetworking.h"
 #import "NSDictionary+HuoBanMallSign.h"
 #import "AppDelegate.h"
-
+#import "FMUtils.h"
+#import "WXApi.h"
+#import "WeiChatAuthorize.h"
+#import "NavController.h"
+#import "AccountLoginViewController.h"
 //#import "UIViewController+MonitorNetWork.h"
 //#import "MallMessage.h"
 //#import "MMDrawerController.h"
@@ -373,9 +377,20 @@
     
     NSString *url = request.URL.absoluteString;
     if ([url rangeOfString:@"/UserCenter/Login.aspx"].location != NSNotFound) {
-        UIStoryboard * main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        LoginViewController * login =  [main instantiateViewControllerWithIdentifier:@"WeiChatAuthorize"];
-        [self presentViewController:login animated:YES completion:nil];
+        if ([WXApi isWXAppInstalled]) {
+            UIStoryboard * main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            WeiChatAuthorize * login =  [main instantiateViewControllerWithIdentifier:@"WeiChatAuthorize"];
+            [self presentViewController:login animated:YES completion:nil];
+            
+        }else{
+            UIStoryboard * sto = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            AccountLoginViewController * iphone =  [sto instantiateViewControllerWithIdentifier:@"AccountLoginViewController"];
+            NavController * nav = [[NavController alloc] initWithRootViewController:iphone];
+            
+            [self presentViewController:nav animated:YES completion:nil];
+            
+        }
+        
     }else{
         NSRange range = [url rangeOfString:@"AppAlipay.aspx"];
         if (range.location != NSNotFound) {
@@ -398,6 +413,7 @@
             NSMutableString * url = [NSMutableString stringWithString:[AppDelegate getInstance].loadingState.website];
             [url appendFormat:@"%@?orderid=%@",@"/order/GetOrderInfo",trade_noss];
             [[[AppDelegate getInstance] getFanOperations] ToGetTheOrderDescripition:nil block:^(id json, NSError *error) {
+                LOG(@"%@",json);
                 if (json) {
                     self.priceNumber = json[@"Final_Amount"];
                     //                    NSLog(@"%@",self.priceNumber);
@@ -424,6 +440,9 @@
                         [aa showInView:self.view];
                     }
                     
+                }else{
+                    
+                    [FMUtils alertMessage:self.view msg:[error FMDescription]];
                 }
 
             } withOrder:trade_noss];

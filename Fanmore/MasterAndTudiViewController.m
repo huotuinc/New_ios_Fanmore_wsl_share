@@ -145,7 +145,7 @@
     
     __weak MasterAndTudiViewController * wself = self;
     ShareMessage* sm = $new(ShareMessage);
-    sm.title = @"万事利爱分享";
+    sm.title = @"分红";
     sm.smdescription = self.nameLable.text;
     
     

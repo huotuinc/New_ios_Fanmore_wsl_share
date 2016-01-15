@@ -96,9 +96,9 @@
 		<true/>
 	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>地理信息会帮助万事利提供更多任务</string>
+	<string>地理信息会帮助分红提供更多任务</string>
 	<key>NSLocationWhenInUseDescription</key>
-	<string>地理信息会帮助万事利提供更多任务</string>
+	<string>地理信息会帮助分红提供更多任务</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

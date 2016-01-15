@@ -22,6 +22,7 @@
 #import "IphoneLoginViewController.h"
 #import "AccountLoginViewController.h"
 #import "WXApi.h"
+#import "NavController.h"
 @interface WeiChatAuthorize ()<WXApiDelegate>
 
 
@@ -90,17 +91,12 @@
         //第三方向微信终端发送一个SendAuthReq消息结构
         [WXApi sendAuthReq:req viewController:self delegate:self];
     }else{
-        
-        if (self.loginType == 1) {//注册
             UIStoryboard * sto = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             AccountLoginViewController * iphone =  [sto instantiateViewControllerWithIdentifier:@"AccountLoginViewController"];
-            UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:iphone];
+            NavController * nav = [[NavController alloc] initWithRootViewController:iphone];
            
             [self presentViewController:nav animated:YES completion:nil];
-        }else{//登录
-            
-            LOG(@"账号推出注册");
-        }
+       
     }
     
     

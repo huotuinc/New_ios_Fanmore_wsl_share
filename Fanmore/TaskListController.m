@@ -110,7 +110,7 @@
     
     [self.upperView setBackgroundColor:fmMainColor];
     
-    self.title = @"万事利";
+    self.title = @"分红";
     [self.titleLabel setText:self.title];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
@@ -360,7 +360,7 @@
             
             [self.selectImage1 showme];
             [self.selectLabel1 setTextColor:fmMainColor];
-            self.title = @"万事利";
+            self.title = @"分红";
             [self.titleLabel setText:self.title];
             break;
         case 2:
@@ -370,7 +370,7 @@
                 [self.popupMenu hide];
             }
             self.pmm.type = 0;
-            self.title = @"万事利";
+            self.title = @"分红";
             [self.titleLabel setText:self.title];
             [self.selectImage2 showme];
             [self.selectLabel2 setTextColor:fmMainColor];
