@@ -70,13 +70,13 @@ NSLog((@"%@(%d) " fmt), [file lastPathComponent], __LINE__, ##__VA_ARGS__); \
 
 #define SpecialYaoQingMa @"LOGINOAUTHOR"
 
-
+#define ShareSdkAppID @"dc6acbc29fe8"
 #define WXQAuthBringBackUserInfo @"WXQAuthBringBackUserInfo"
 #define WSLInterfaceAdresseUrl @"http://taskapi.fancat.cn"
 #define WeiXinAppKey @"wx369cdeb338051de5"
 #define WeiXinAppSecret @"0dcbc62b9a4724e89097bb00a0bd0ae2"
-#define QQAPPKET @"1104949609"
-#define QQAPPSecret @"kNy5OIffTR66fnvu"
+#define QQAPPKET @"1105113260"  //
+#define QQAPPSecret @"HLV7bKucOehpTff8"
 
 
 #define ShareSDKKey @"dc6acbc29fe8"

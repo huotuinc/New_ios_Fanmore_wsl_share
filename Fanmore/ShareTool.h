@@ -12,7 +12,7 @@
 
 #ifndef FMShareTool
 #import <ShareSDK/ShareSDK.h>
-#import "ShareSDK/Extend/SinaWeiboSDK/WeiboSDK.h"
+//#import "ShareSDK/Extend/SinaWeiboSDK/WeiboSDK.h"
 #endif
 
 typedef enum{

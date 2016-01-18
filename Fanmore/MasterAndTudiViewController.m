@@ -145,7 +145,7 @@
     
     __weak MasterAndTudiViewController * wself = self;
     ShareMessage* sm = $new(ShareMessage);
-    sm.title = @"分红";
+    sm.title = [NSString stringWithFormat:@"分红邀请码%@",self.nameLable.text];
     sm.smdescription = self.nameLable.text;
     
     

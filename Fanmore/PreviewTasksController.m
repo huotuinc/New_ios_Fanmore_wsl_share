@@ -114,6 +114,11 @@
             }
             if ($safe(list)) {
                 HashAddArray(wself.tasks, list);
+                if (wself.tasks.count) {
+                    [wself.tableView setClearBackground];
+                 }else{
+                    wself.tableView.backgroundColor = [UIColor whiteColor];
+                }
                 [wself.tableView reloadData];
                 [wself._header checkInset:0];
                 
@@ -147,11 +152,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.tasks.count) {
-        tableView.backgroundColor = [UIColor whiteColor];
-    }else{
-        [tableView setClearBackground];
-    }
+    
     return self.tasks.count;
 }
 

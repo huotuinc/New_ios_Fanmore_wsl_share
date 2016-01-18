@@ -315,7 +315,7 @@
     id<ISSContent> publishContent = [ShareSDK content:self.shareDesc
                                        defaultContent:self.shareDesc
                                                 image:[ShareSDK pngImageWithImage:[UIImage imageNamed:@"logo"]]
-                                                title:@"粉猫全民网赚"
+                                                title:@"万事利分红"
                                                   url:self.shareURL
                                           description:self.shareDesc
                                             mediaType:SSPublishContentMediaTypeNews];

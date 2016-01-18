@@ -140,7 +140,9 @@
 
 +(void)connectAllShareManly{
 //    [ShareSDK connectSinaWeiboWithAppKey:@"3653231385" appSecret:@"4ecff164368e17c8a417ef49a6e755ad" redirectUri:@"https://api.weibo.com/oauth2/default.html"];
-    [ShareSDK connectSinaWeiboWithAppKey:@"1994677353" appSecret:@"0783d8dd1f0eb5a45687cde79aa10108" redirectUri:@"https://api.weibo.com/oauth2/default.html"];
+    
+    //luohaibo
+//    [ShareSDK connectSinaWeiboWithAppKey:@"56985861" appSecret:@"a2cf67a9f6666f09dfa4c69202ebfabb" redirectUri:@"https://api.weibo.com/oauth2/default.html"];
     //        [ShareSDK connectWeChatTimelineWithAppId:@"wx1424e93fb903ef33" wechatCls:[WXApi class]];
     
     //self.preferences[@"newWeixinKey"]
@@ -174,13 +176,13 @@
     
     
 //    [ShareSDK connectQZoneWithAppKey:@"101051996" appSecret:@"535b920eebcf192cb0da960996ff72d2" qqApiInterfaceCls:[QQApiInterface class] tencentOAuthCls:[TencentOAuth class]];
-    [ShareSDK connectQZoneWithAppKey:@"101066212" appSecret:@"09ef5bfed097b682a83b147d46e46a5a" qqApiInterfaceCls:[QQApiInterface class] tencentOAuthCls:[TencentOAuth class]];
+    [ShareSDK connectQZoneWithAppKey:QQAPPKET appSecret:QQAPPSecret qqApiInterfaceCls:[QQApiInterface class] tencentOAuthCls:[TencentOAuth class]];
     
     //连接其他
     [ShareSDK connectSMS];
     [ShareSDK connectMail];
     
-    [ShareSDK connectQQWithQZoneAppKey:@"101066212" qqApiInterfaceCls:[QQApiInterface class] tencentOAuthCls:[TencentOAuth class]];
+    [ShareSDK connectQQWithQZoneAppKey:QQAPPKET qqApiInterfaceCls:[QQApiInterface class] tencentOAuthCls:[TencentOAuth class]];
 }
 
 
@@ -192,37 +194,29 @@
     [WXApi registerApp:WeiXinAppKey withDescription:@"wsl"];
     
     
-////    [iVersion sharedInstance].delegate = self;
-//    self.launchTime = [[NSDate date] timeIntervalSince1970];
-//    NSString *sversion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-//    [MobClick setAppVersion:sversion];
-//    //91ios weiphone fanmore
-//    NSString* qd = nil;
-//#ifdef FM_QD
-//    qd = $str(@"%@ios",@FM_QD);
-//#endif
-//    [MobClick startWithAppkey:@"52faffcf56240bc21a023179" reportPolicy:SEND_INTERVAL   channelId:qd];
-//#ifdef FanmoreDebug
-////    [MobClick setLogEnabled:YES];
-//#endif
-//    
-//#ifndef FMShareTool
-////    [ShareSDK importWeChatClass:[WXApi class]];
-////    [ShareSDK importQQClass:[QQApiInterface class] tencentOAuthCls:[TencentOAuth class]];
-//    
-//    BOOL useAppTrusteeship = NO;
-//    [ShareSDK registerApp:@"19b4b4d45192" useAppTrusteeship:useAppTrusteeship];
-//    if (useAppTrusteeship) {
-//        [self initializePlatForTrusteeship];
-//        [ShareSDK waitAppSettingComplete:^{
-//            NSLog(@"注册完成！");
-//        }];
-//    }else{
-//        [AppDelegate connectAllShareManly];
-//    }
-//    [ShareSDK registerApp:@"1782a62f5430" useAppTrusteeship:useAppTrusteeship];
-//
-//#endif
+//    [iVersion sharedInstance].delegate = self;
+    self.launchTime = [[NSDate date] timeIntervalSince1970];
+    NSString *sversion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    [MobClick setAppVersion:sversion];
+    //91ios weiphone fanmore
+   
+#ifndef FMShareTool
+//    [ShareSDK importWeChatClass:[WXApi class]];
+//    [ShareSDK importQQClass:[QQApiInterface class] tencentOAuthCls:[TencentOAuth class]];
+    
+    BOOL useAppTrusteeship = NO;
+    [ShareSDK registerApp:ShareSdkAppID useAppTrusteeship:useAppTrusteeship];
+    if (useAppTrusteeship) {
+        [self initializePlatForTrusteeship];
+        [ShareSDK waitAppSettingComplete:^{
+            NSLog(@"注册完成！");
+        }];
+    }else{
+        [AppDelegate connectAllShareManly];
+    }
+    [ShareSDK registerApp:ShareSdkAppID useAppTrusteeship:useAppTrusteeship];
+
+#endif
 
     [self startLocate:[[LocatedHelper alloc] init]];
     // Override point for customization after application launch.
@@ -259,20 +253,7 @@
         //处理本地通知
         NSLog(@"localnotif");
     }
-    
-#ifdef FanmoreDebugMockRemoteURL
-    NSMutableDictionary* myo = [NSMutableDictionary dictionary];
-    [myo setRemotePushURL:FanmoreDebugMockRemoteURL];
-    
-    launchOptions = @{UIApplicationLaunchOptionsRemoteNotificationKey: myo};
-#endif
-    
-#ifdef FanmoreDebugMockRemoteTask
-    NSMutableDictionary* myo = [NSMutableDictionary dictionary];
-    [myo setRemotePushTaskId:FanmoreDebugMockRemoteTask];
-    
-    launchOptions = @{UIApplicationLaunchOptionsRemoteNotificationKey: myo};
-#endif
+
     
     self.launchOptions = launchOptions;
     application.applicationIconBadgeNumber = 0;

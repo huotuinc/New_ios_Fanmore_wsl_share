@@ -1660,14 +1660,14 @@
         NSString* signStr;
         if (version>=7) {
             
-            NSLog(@"-------%@",sign);
+            LOG(@"-------%@",sign);
             signStr = [[[SecureHelper rsaEncryptString:[sign myJSONString]] base64EncodedStringWithOptions:0]encodeURL];
-            NSLog(@"-----%@",signStr);
+            LOG(@"-----%@",signStr);
         }else{
             
             
             signStr = [[[SecureHelper rsaEncryptString:[sign myJSONString]] base64Encoding]encodeURL];
-            NSLog(@"%@",signStr);
+            LOG(@"%@",signStr);
         }
         
 //        NSLog(@"1%@",[sign myJSONString]);

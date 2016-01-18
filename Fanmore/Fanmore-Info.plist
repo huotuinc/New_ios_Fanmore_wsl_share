@@ -21,7 +21,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>4.3</string>
+	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -47,15 +47,16 @@
 				<string>QQ060625E4</string>
 				<string>tencent101051996</string>
 				<string>tencent101066212</string>
-				<string>wb3653231385</string>
-				<string>wb1994677353</string>
+				<string>QQ41DEB0AC</string>
+				<string>tencent1105113260</string>
+				<string>weibo56985861</string>
 			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.huotu.fanmore</string>
+			<string>com.wsl.loveshare</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>wsl2015fanmoreOEM</string>

@@ -150,6 +150,12 @@
                 }
                 if ($safe(task)) {
                     HashAddArray(wself.tasks, task)
+                    //luohiabo
+                    if (wself.tasks) {
+                        wself.tableView.backgroundColor = [UIColor whiteColor];
+                    }else{
+                        [wself.tableView setClearBackground];
+                    }
                     [wself.tableView reloadData];
                     [refreshView endRefreshing];
                     LOG(@"fetch data refresh table n:%d newtasks:%d",wself.tasks.count,task.count);
@@ -164,6 +170,12 @@
                 }
                 if ($safe(task)) {
                     HashAddArray(wself.tasks, task)
+                    //luohiabo
+                    if (task) {
+                        wself.tableView.backgroundColor = [UIColor whiteColor];
+                    }else{
+                        [wself.tableView setClearBackground];
+                    }
                     [wself.tableView reloadData];
                     [refreshView endRefreshing];
                     LOG(@"fetch data refresh table n:%d newtasks:%d",wself.tasks.count,task.count);
@@ -526,11 +538,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if ([FMUtils sectionsByTaskTime:self.tasks]) {
-        [tableView setClearBackground];
-    }else{
-        tableView.backgroundColor = [UIColor whiteColor];
-    }
     return [FMUtils sectionsByTaskTime:self.tasks];
 }
 

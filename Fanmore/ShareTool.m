@@ -553,7 +553,6 @@ static __weak id<ISSShareActionSheet> lastShareSheet;
         [FMUtils alertMessage:wcontroller.view msg:@"亲，您已经转发过了"];
         return nil;
     }
-    
     lastShareSheet = [ShareSDK showShareActionSheet:[ShareSDK container] shareList:types content:nil statusBarTips:YES authOptions:nil shareOptions:nil result:NULL];
     return lastShareSheet;
 }

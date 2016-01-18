@@ -3445,28 +3445,8 @@
                                             <segue destination="Ole-hK-Std" kind="push" identifier="ToMobile" id="f9z-G5-X0b"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="zBL-DY-4B6" style="IBUITableViewCellStyleDefault" id="ECn-5r-vOH">
-                                        <rect key="frame" x="0.0" y="44" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ECn-5r-vOH" id="4Ce-Eh-c0K">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="修改登录密码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" id="zBL-DY-4B6">
-                                                    <rect key="frame" x="15" y="0.0" width="270" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="atm-9R-AAZ" kind="push" id="64G-yw-79Q"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="SMQ-OI-Bpd" style="IBUITableViewCellStyleDefault" id="tUh-5C-JwN">
-                                        <rect key="frame" x="0.0" y="88" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="44" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tUh-5C-JwN" id="cnc-Hy-956">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -4009,11 +3989,11 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="U6R-np-1gz"/>
-        <segue reference="dEh-C0-s9v"/>
-        <segue reference="i4G-2i-Lrw"/>
         <segue reference="GHQ-5f-G6i"/>
-        <segue reference="GPZ-kY-HU0"/>
+        <segue reference="OXB-6h-Krx"/>
+        <segue reference="9oS-vR-n2V"/>
+        <segue reference="zGz-xS-tHy"/>
+        <segue reference="f9z-G5-X0b"/>
         <segue reference="ZTF-wr-cUi"/>
-        <segue reference="w78-Tg-fVP"/>
     </inferredMetricsTieBreakers>
 </document>

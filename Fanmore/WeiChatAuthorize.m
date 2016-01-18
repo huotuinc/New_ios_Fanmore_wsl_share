@@ -23,11 +23,14 @@
 #import "AccountLoginViewController.h"
 #import "WXApi.h"
 #import "NavController.h"
+#import <MBProgressHUD.h>
+#import "FMUtils.h"
 @interface WeiChatAuthorize ()<WXApiDelegate>
 
 
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 
+@property (weak, nonatomic) MBProgressHUD * hud;
 
 @end
 
@@ -35,6 +38,18 @@
 
 @implementation WeiChatAuthorize
 
+
+
+- (MBProgressHUD *)hud{
+    if (_hud == nil) {
+        _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        // 隐藏时候从父控件中移除
+        _hud.removeFromSuperViewOnHide = YES;
+        // YES代表需要蒙版效果
+        _hud.dimBackground = YES;
+    }
+    return _hud;
+}
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -115,10 +130,13 @@
 - (void)accessTokenWithCode:(NSNotification *) note
 {
     //进行授权
+    
+    [self.hud show:YES];
+
     __weak WeiChatAuthorize * wself = self;
     NSString *url =[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=%@&secret=%@&code=%@&grant_type=authorization_code",WeiXinAppKey,WeiXinAppSecret,note.userInfo[@"code"]];
     [UserLoginTool loginRequestGet:url parame:nil success:^(id json) {
-       NSLog(@"%@",json);
+       LOG(@"%@",json);
         AccessCodeModel * access_mode = [AccessCodeModel objectWithKeyValues:json];
         if (wself.loginType == 2) {
             UserInfo * user = [[UserInfo alloc] init];
@@ -168,38 +186,46 @@
     __weak WeiChatAuthorize * wself = self;
     AppDelegate * ds =  [AppDelegate getInstance];
     [[ds getFanOperations] TOYanZhenRegistParames:nil block:^(id result, NSError *error) {
-        
-        
         LOG(@"%@----%@",result,[error FMDescription]);
         if (error) {
             NSString * se = error.description;
             NSRange ran = [se rangeOfString:@"90005"];
-            if (ran.location != NSNotFound) {//没注册
+            if (ran.location != NSNotFound) {//不用注册
                 [wself login];
-            }else{//注册
-                [wself todoTheLaterThing];
+            }else{//要注册
+                 [wself todoTheLaterThing];
             }
+            [self.hud hide:YES];
         }
-        
     } withunoind:user.unionid];
 }
 
 - (void)login{
+    
+    
+    
+    __weak WeiChatAuthorize * wself = self;
     AppDelegate * ds =  [AppDelegate getInstance];
     [[ds getFanOperations] registerUser:nil block:^(LoginState * model, NSError *error) {
-        NSLog(@"%@",model);
+        LOG(@"%@",model);
+        
         if (model) {
+
             UIStoryboard* main = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
             UIViewController* vc = [main instantiateInitialViewController];
             self.view.window.rootViewController = vc;
+        }else{
+ 
+            [FMUtils alertMessage:wself.view msg:[error FMDescription]];
+            [self.hud hide:YES];
         }
-        //        [MBProgressHUD hideHUD];
+
     } userName:nil password:nil code:nil invitationCode:SpecialYaoQingMa];
     
 }
 
 - (void)todoTheLaterThing{
-    UIStoryboard * main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+       UIStoryboard * main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     WeiXinBackViewController  *next = [main instantiateViewControllerWithIdentifier:@"WeiXinBackViewController"];
     [self.navigationController pushViewController:next animated:YES];
 }
@@ -209,6 +235,14 @@
  */
 - (void)dealloc{
     
+    
     [[NSNotificationCenter defaultCenter]  removeObserver:self];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    [self.hud hide:YES];
+    
 }
 @end

@@ -82,6 +82,11 @@ NSString*(^dictdategetter)(id input) = ^(id input) {
 //            title = "\U7cbe\U54c1";
             wself.list = list;
 //            LOG(@"%@",list);
+            if (list) {
+                [wself.tableView setClearBackground];
+            }else{
+                wself.tableView.backgroundColor = [UIColor whiteColor];
+            }
             [wself.tableView reloadData];
         }
         
@@ -136,11 +141,7 @@ NSString*(^dictdategetter)(id input) = ^(id input) {
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if ([FMUtils sectionsByTaskTime:self.list timeGetter:dictdategetter]) {
-        [tableView setClearBackground];
-    }else{
-        tableView.backgroundColor = [UIColor whiteColor];
-    }
+    
     return [FMUtils sectionsByTaskTime:self.list timeGetter:dictdategetter];
 //    return 1;
 }

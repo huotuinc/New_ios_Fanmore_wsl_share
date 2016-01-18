@@ -465,8 +465,30 @@
         NSArray *namesArray = [unArchiver decodeObjectForKey:PayTypeflat];
         [self WeiChatPay:namesArray[0]];
     }else if (actionSheet.tag == 700){// 单个支付宝支付
-        //NSLog(@"支付宝%ld",(long)buttonIndex);
-        //        [self MallAliPay:self.paymodel];
+        NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:PayTypeflat];
+        NSData *data = [NSData dataWithContentsOfFile:filename];
+        // 2.创建反归档对象
+        NSKeyedUnarchiver *unArchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        // 3.解码并存到数组中
+        NSArray *namesArray = [unArchiver decodeObjectForKey:PayTypeflat];
+        PayModel * paymodel =  namesArray[0];
+        PayModel *cc =  [paymodel.payType integerValue] == 400?namesArray[0]:namesArray[1];
+        if (cc.webPagePay) {//网页支付
+            NSRange parameRange = [self.ServerPayUrl rangeOfString:@"?"];
+            NSString * par = [self.ServerPayUrl substringFromIndex:(parameRange.location+parameRange.length)];
+            NSArray * arr = [par componentsSeparatedByString:@"&"];
+            __block NSMutableDictionary * dict = [NSMutableDictionary dictionary];
+            [arr enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL *stop) {
+                NSArray * aa = [obj componentsSeparatedByString:@"="];
+                NSDictionary * dt = [NSDictionary dictionaryWithObject:aa[1] forKey:aa[0]];
+                [dict addEntriesFromDictionary:dt];
+            }];
+            NSString * js = [NSString stringWithFormat:@"utils.Go2Payment(%@, %@, 1, false)",dict[@"customerID"],dict[@"trade_no"]];
+            [self.webView stringByEvaluatingJavaScriptFromString:js];
+        }else{
+            [self MallAliPay:cc];
+        }
     }else if(actionSheet.tag == 900){//两个都有的支付
         //0
         //1
