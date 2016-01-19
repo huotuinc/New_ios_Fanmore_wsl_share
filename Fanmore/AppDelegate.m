@@ -142,7 +142,8 @@
 //    [ShareSDK connectSinaWeiboWithAppKey:@"3653231385" appSecret:@"4ecff164368e17c8a417ef49a6e755ad" redirectUri:@"https://api.weibo.com/oauth2/default.html"];
     
     //luohaibo
-//    [ShareSDK connectSinaWeiboWithAppKey:@"56985861" appSecret:@"a2cf67a9f6666f09dfa4c69202ebfabb" redirectUri:@"https://api.weibo.com/oauth2/default.html"];
+    
+    [ShareSDK connectSinaWeiboWithAppKey:@"56985861" appSecret:@"a2cf67a9f6666f09dfa4c69202ebfabb" redirectUri:@"http://www.baidu.com"];
     //        [ShareSDK connectWeChatTimelineWithAppId:@"wx1424e93fb903ef33" wechatCls:[WXApi class]];
     
     //self.preferences[@"newWeixinKey"]
@@ -624,7 +625,8 @@
     if ([url.absoluteString rangeOfString:@"oauth"].location != NSNotFound) {
         return [WXApi handleOpenURL:url delegate:self];
     }else{
-        return [ShareTool handleOpenURL:url];
+//        return [ShareTool handleOpenURL:url];
+        return [ShareSDK handleOpenURL:url wxDelegate:self];
     }
 //    return [ShareSDK handleOpenURL:url
 //                        wxDelegate:self];
@@ -635,8 +637,8 @@
     if ([url.absoluteString rangeOfString:@"oauth"].location != NSNotFound) {
         return [WXApi handleOpenURL:url delegate:self];
     }else{
-        return [ShareTool openURL:url sourceApplication:sourceApplication annotation:annotation];
-        
+//        return [ShareTool openURL:url sourceApplication:sourceApplication annotation:annotation];
+        return [ShareSDK handleOpenURL:url sourceApplication:sourceApplication annotation:annotation wxDelegate:self];
     }
 }
 
@@ -645,7 +647,9 @@
     if ([url.absoluteString rangeOfString:@"oauth"].location != NSNotFound) {
         return [WXApi handleOpenURL:url delegate:self];
     }else{
-        return [ShareTool handleOpenURL:url];
+//        return [ShareTool handleOpenURL:url];
+        return [ShareSDK handleOpenURL:url
+                            wxDelegate:self];
     }
     LOG(@"handleOpenURL %@",url);
 //    return [ShareTool handleOpenURL:url];
