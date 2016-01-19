@@ -2086,9 +2086,9 @@
 			productReference = 2314A94618C0A5A900D326F3 /* FanmoreTests2.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		23374BC5187A4B7700F80A34 /* Fanmore */ = {
+		23374BC5187A4B7700F80A34 /* fenhong */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 23374BF8187A4B7700F80A34 /* Build configuration list for PBXNativeTarget "Fanmore" */;
+			buildConfigurationList = 23374BF8187A4B7700F80A34 /* Build configuration list for PBXNativeTarget "fenhong" */;
 			buildPhases = (
 				BF7BCB4E6D81494C971B2CE0 /* Check Pods Manifest.lock */,
 				23374BC2187A4B7700F80A34 /* Sources */,
@@ -2101,7 +2101,7 @@
 			);
 			dependencies = (
 			);
-			name = Fanmore;
+			name = fenhong;
 			productName = Fanmore;
 			productReference = 23374BC6187A4B7700F80A34 /* 粉木耳.app */;
 			productType = "com.apple.product-type.application";
@@ -2137,7 +2137,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				23374BC5187A4B7700F80A34 /* Fanmore */,
+				23374BC5187A4B7700F80A34 /* fenhong */,
 				2314A94518C0A5A800D326F3 /* FanmoreTests2 */,
 			);
 		};
@@ -2481,7 +2481,7 @@
 /* Begin PBXTargetDependency section */
 		2314A95418C0A5A900D326F3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 23374BC5187A4B7700F80A34 /* Fanmore */;
+			target = 23374BC5187A4B7700F80A34 /* fenhong */;
 			targetProxy = 2314A95318C0A5A900D326F3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -2711,7 +2711,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fanmore/Fanmore-Prefix.pch";
 				INFOPLIST_FILE = "Fanmore/Fanmore-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					./Fanmore,
@@ -2721,12 +2721,12 @@
 					"$(PROJECT_DIR)/Fanmore/libraries/extends/SinaWeiboSDK",
 					"$(PROJECT_DIR)/Fanmore/libraries/extends/WeChatSDK",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wsl.loveshare;
 				PRODUCT_NAME = "粉木耳";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "armv7 armv7s i386 armv6";
+				VALID_ARCHS = "armv7 armv7s i386 armv6 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2752,7 +2752,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fanmore/Fanmore-Prefix.pch";
 				INFOPLIST_FILE = "Fanmore/Fanmore-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					./Fanmore,
@@ -2762,12 +2762,12 @@
 					"$(PROJECT_DIR)/Fanmore/libraries/extends/SinaWeiboSDK",
 					"$(PROJECT_DIR)/Fanmore/libraries/extends/WeChatSDK",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wsl.loveshare;
 				PRODUCT_NAME = "粉木耳";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "armv7 armv7s i386 armv6";
+				VALID_ARCHS = "armv7 armv7s i386 armv6 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -2793,7 +2793,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		23374BF8187A4B7700F80A34 /* Build configuration list for PBXNativeTarget "Fanmore" */ = {
+		23374BF8187A4B7700F80A34 /* Build configuration list for PBXNativeTarget "fenhong" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				23374BF9187A4B7700F80A34 /* Debug */,
