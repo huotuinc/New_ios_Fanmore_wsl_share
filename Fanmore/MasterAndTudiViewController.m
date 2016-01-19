@@ -145,9 +145,9 @@
     
     __weak MasterAndTudiViewController * wself = self;
     ShareMessage* sm = $new(ShareMessage);
-    sm.title = [NSString stringWithFormat:@"分红邀请码%@",self.nameLable.text];
+    sm.title = [NSString stringWithFormat:@"万事利分红邀请码%@",self.nameLable.text];
     sm.smdescription = self.nameLable.text;
-    
+    sm.thumbImageURL = @"http://task.silk08.com/images/104X104.jpg";
     
     LOG(@"%@",self.nameLable.text);
 //    sm.url = ls.shareContent;
