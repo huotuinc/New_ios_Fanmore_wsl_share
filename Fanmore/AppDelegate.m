@@ -332,13 +332,13 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    LOG(@"will be active");
-    __weak AppDelegate* wself = self;
-#ifndef FanmoreDebug
-    if ([[NSDate date] timeIntervalSince1970]-self.launchTime>300){
-#endif
-        [self.fanOperations loading:nil block:^(UIImage *state, NSError *error) {
-            
+//    LOG(@"will be active");
+//    __weak AppDelegate* wself = self;
+//#ifndef FanmoreDebug
+//    if ([[NSDate date] timeIntervalSince1970]-self.launchTime>300){
+//#endif
+//        [self.fanOperations loading:nil block:^(UIImage *state, NSError *error) {
+//            
 //            if ([wself.loadingState.loginStatus integerValue] == 0) {
 //                UIStoryboard * mainS = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 //                WeiChatAuthorize * WeiChart = [mainS instantiateViewControllerWithIdentifier:@"WeiChatAuthorize"];
@@ -351,15 +351,15 @@
 //                wself.window.rootViewController = vc;
 //                
 //            }
-            
-            
-            if ($safe(error)) {
-                [FMUtils alertMessage:wself.window.viewForBaselineLayout msg:error.FMDescription];
-            }
-        } userName:[self getLastUsername] password:[self getLastPassword]];
-#ifndef FanmoreDebug
-    }
-#endif
+//            
+//            
+//            if ($safe(error)) {
+//                [FMUtils alertMessage:wself.window.viewForBaselineLayout msg:error.FMDescription];
+//            }
+//        } userName:[self getLastUsername] password:[self getLastPassword]];
+//#ifndef FanmoreDebug
+//    }
+//#endif
     
     [self userDidnotUpdateVersion:nil];
 //    [self.fanOperations load]

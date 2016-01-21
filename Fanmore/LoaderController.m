@@ -74,19 +74,26 @@
         if ([ad.loadingState.loginStatus integerValue]) {
             UIStoryboard* main = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
             UIViewController* vc = [main instantiateInitialViewController];
-            [wself presentViewController:vc animated:YES completion:^(){
-                [wself removeFromParentViewController];
-                [wself.backgroundImage removeFromSuperview];
-                wself.backgroundImage = nil;
-                [wself.view removeFromSuperview];
-                wself.view = nil;
-            }];
+            
+            UIWindow * wind = [UIApplication sharedApplication].keyWindow;
+            wind.rootViewController = vc;
+            [wind makeKeyAndVisible];
+//            [wself presentViewController:vc animated:YES completion:^(){
+//                [wself removeFromParentViewController];
+//                [wself.backgroundImage removeFromSuperview];
+//                wself.backgroundImage = nil;
+//                [wself.view removeFromSuperview];
+//                wself.view = nil;
+//            }];
         }else{
             UIStoryboard * mainS = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             WeiChatAuthorize * WeiChart = [mainS instantiateViewControllerWithIdentifier:@"WeiChatAuthorize"];
             WeiChart.loginType = 1;
-            NavController * nav = [[NavController alloc] initWithRootViewController:WeiChart];
-            [wself presentViewController:nav animated:YES completion:nil];
+//            NavController * nav = [[NavController alloc] initWithRootViewController:WeiChart];
+//            [wself presentViewController:nav animated:YES completion:nil];
+            UIWindow * wind = [UIApplication sharedApplication].keyWindow;
+            wind.rootViewController = WeiChart;
+            [wind makeKeyAndVisible];
             
         }
         
@@ -101,6 +108,9 @@
     LOG(@"start loading");
 //    [self.view setBackgroundColor:fmMainColor];
     [self doLoad:@1];
+    
+    
+    NSLog(@"xxxxxxxxx-------");
     
     LoadingImg* li  = $new(LoadingImg);
     li.showTime = [[AppDelegate getInstance] getLastImageShowtime];
