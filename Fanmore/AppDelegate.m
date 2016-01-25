@@ -197,8 +197,6 @@
     
 //    [iVersion sharedInstance].delegate = self;
     self.launchTime = [[NSDate date] timeIntervalSince1970];
-    NSString *sversion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    [MobClick setAppVersion:sversion];
     //91ios weiphone fanmore
    
 #ifndef FMShareTool

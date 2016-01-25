@@ -13,7 +13,7 @@
 #import "InputController.h"
 #import "RegexKitLite.h"
 #import "FMUtils.h"
-#import "ImagePicker/ImagePicker.h"
+#import "ImagePicker.h"
 
 @interface PickManager : NSObject<UIPickerViewDelegate,UIPickerViewDataSource>
 
