@@ -3157,7 +3157,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="今日预告" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6si-Ha-65a">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="最新预告" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6si-Ha-65a">
                                 <rect key="frame" x="186" y="289" width="73" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3989,8 +3989,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="U6R-np-1gz"/>
+        <segue reference="dEh-C0-s9v"/>
         <segue reference="GHQ-5f-G6i"/>
-        <segue reference="OXB-6h-Krx"/>
         <segue reference="9oS-vR-n2V"/>
         <segue reference="zGz-xS-tHy"/>
         <segue reference="f9z-G5-X0b"/>

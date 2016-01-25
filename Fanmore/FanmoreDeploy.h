@@ -26,7 +26,7 @@
 //"http://api.fanmore.cn"
 
 //
-//#define FanmoreDebug 1
+#define FanmoreDebug 1
 
 //#define FanmoreMockLocalDate 1
 // 模拟 存在今日预告任务

@@ -11,9 +11,10 @@
 #import "FMUtils.h"
 #import "UIImage+Fanmore.h"
 
-#import "ShareSDK/Extend/WeChatSDK/WXApi.h"
-#import "ShareSDK/Extend/QQConnectSDK/TencentOpenAPI.framework/Headers/QQApiInterface.h"
-#import "ShareSDK/Extend/QQConnectSDK/TencentOpenAPI.framework/Headers/TencentOAuth.h"
+#import "WXApi.h"
+#import <ShareSDK/ShareSDK.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+#import <TencentOpenAPI/TencentOAuth.h>
 
 static NSTimeInterval lastSendWxTime = -1;
 
