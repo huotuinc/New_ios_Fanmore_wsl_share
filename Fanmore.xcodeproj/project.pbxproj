@@ -237,6 +237,7 @@
 		EF20497D1C55B04000F7E187 /* MockASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2049771C55B04000F7E187 /* MockASIHTTPRequest.m */; };
 		EF20497E1C55B04000F7E187 /* MockFanOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2049791C55B04000F7E187 /* MockFanOperations.m */; };
 		EF2049821C55B29E00F7E187 /* LoaderController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2049811C55B29E00F7E187 /* LoaderController.m */; };
+		EF3CA3521C5858730003833F /* NSString+EXTERN.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3CA3511C5858730003833F /* NSString+EXTERN.m */; };
 		EF3F084F1C4C8A37004F35E7 /* CopyConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3F08201C4C8A37004F35E7 /* CopyConnection.framework */; };
 		EF3F08501C4C8A37004F35E7 /* FacebookConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3F08211C4C8A37004F35E7 /* FacebookConnection.framework */; };
 		EF3F08511C4C8A37004F35E7 /* MailConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3F08221C4C8A37004F35E7 /* MailConnection.framework */; };
@@ -762,6 +763,8 @@
 		EF2049791C55B04000F7E187 /* MockFanOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockFanOperations.m; sourceTree = "<group>"; };
 		EF2049801C55B29E00F7E187 /* LoaderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoaderController.h; sourceTree = "<group>"; };
 		EF2049811C55B29E00F7E187 /* LoaderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoaderController.m; sourceTree = "<group>"; };
+		EF3CA3501C5858730003833F /* NSString+EXTERN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+EXTERN.h"; sourceTree = "<group>"; };
+		EF3CA3511C5858730003833F /* NSString+EXTERN.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+EXTERN.m"; sourceTree = "<group>"; };
 		EF3F08201C4C8A37004F35E7 /* CopyConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CopyConnection.framework; sourceTree = "<group>"; };
 		EF3F08211C4C8A37004F35E7 /* FacebookConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookConnection.framework; sourceTree = "<group>"; };
 		EF3F08221C4C8A37004F35E7 /* MailConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MailConnection.framework; sourceTree = "<group>"; };
@@ -1663,6 +1666,8 @@
 		EF089DD71C55F0CC00D9BB53 /* WeiChatAuthorize */ = {
 			isa = PBXGroup;
 			children = (
+				EF3CA3501C5858730003833F /* NSString+EXTERN.h */,
+				EF3CA3511C5858730003833F /* NSString+EXTERN.m */,
 				EF089DD81C55F0CC00D9BB53 /* AccessCodeModel.h */,
 				EF089DD91C55F0CC00D9BB53 /* AccessCodeModel.m */,
 				EF089DDA1C55F0CC00D9BB53 /* AccountLoginViewController.h */,
@@ -2444,6 +2449,7 @@
 				EF089B251C55CE0C00D9BB53 /* MJArgument.m in Sources */,
 				EF089CED1C55ED8D00D9BB53 /* DIYView.m in Sources */,
 				EFE9695D1C57131600D7E41E /* UIButton+AFNetworking.m in Sources */,
+				EF3CA3521C5858730003833F /* NSString+EXTERN.m in Sources */,
 				EF089CFA1C55ED8D00D9BB53 /* ExpHistoryController.m in Sources */,
 				EF089D571C55EF1800D9BB53 /* FmTableCell.m in Sources */,
 				EFE969871C57136C00D7E41E /* SDWebImageCompat.m in Sources */,

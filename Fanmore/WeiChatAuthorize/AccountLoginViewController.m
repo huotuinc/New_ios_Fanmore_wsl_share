@@ -58,6 +58,17 @@
     [self.yaoQingMa bk_whenTapped:^{
         [wself yanzhengma];
     }];
+   
+    
+    //设置返回按钮
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(0, 20, 50, 30);
+    [button setTitle:@"取消" forState:UIControlStateNormal];
+    button.backgroundColor = [UIColor clearColor];
+    [button addTarget:self action:@selector(buttonAction) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithCustomView:button];
+    self.navigationItem.leftBarButtonItem = left;
+    
     
     
     self.weixinAuth.userInteractionEnabled = YES;
@@ -84,6 +95,12 @@
     }];
     
     
+}
+
+
+- (void)buttonAction{
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)WeiSouquan{

@@ -28,6 +28,8 @@
 #import "WXApi.h"
 #import "AccountLoginViewController.h"
 #import "FMUtils.h"
+#import "NSString+EXTERN.h"
+
 @interface AccountViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 @property(weak) TextChangeController* tccontroller;
 @property BOOL doCash;
@@ -404,13 +406,16 @@
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-    
+  
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navgationColor"] forBarMetrics:UIBarMetricsDefault];
+//    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
+   
     
     /**luohaibo 用户个人信息*/
     LoginState * userData = [[AppDelegate getInstance].loadingState userData];
     
     self.accountInfo.text = userData.userName;
-    self.myJifen.text = [NSString stringWithFormat:@" 我的积分:%d ",[userData.score integerValue]];
+    self.myJifen.text = [NSString stringWithFormat:@" 我的积分:%@ ",[NSString xiaoshudianweishudeal:[userData.score floatValue]]];
     
     
     [self.navigationController setNavigationBarHidden:NO];

@@ -13,7 +13,7 @@
 #import "MJExtension.h"
 #import "FMUtils.h"
 #import "MBProgressHUD+MJ.h"
-
+#import "NSString+EXTERN.h"
 @interface JiFenToMallController ()<UIAlertViewDelegate,UITabBarDelegate,UITableViewDataSource,UITableViewDelegate>
 /**万事利积分*/
 @property (weak, nonatomic) IBOutlet UILabel *scoreJifen;
@@ -74,7 +74,8 @@
     }
     
     LoginState * a =  [AppDelegate getInstance].loadingState.userData;
-    self.scoreJifen.text = [NSString stringWithFormat:@"%ld",(long)[a.score integerValue]];
+    
+    self.scoreJifen.text = [NSString stringWithFormat:@"%@",[NSString xiaoshudianweishudeal:[a.score floatValue]]];
     __weak JiFenToMallController * wself = self;
     [[[AppDelegate getInstance]  getFanOperations] TOGetGlodDate:nil block:^(id result, NSError *error) {
         
@@ -84,17 +85,23 @@
         }
         if(result[@"desc"]){
             LOG(@"000000000000%@",result[@"desc"]);
-            wself.toMallJifen.text = [NSString stringWithFormat:@"%d",[result[@"money"] integerValue]];
+            wself.toMallJifen.text = [NSString stringWithFormat:@"%ld",[result[@"money"] integerValue]];
         }
-        if(result[@"lastApply"][@"ApplyTime"]){
-            wself.firstRecord.text = result[@"lastApply"][@"ApplyTime"];
-            wself.toMakkJifen.text = [NSString stringWithFormat:@"转入钱包%.2f元",[result[@"lastApply"][@"ApplyMoney"] doubleValue]];
-            wself.Record.hidden = NO;
+        
+        
+        if (![result[@"lastApply"] isKindOfClass:[NSNull class]]) {
+            if(result[@"lastApply"][@"ApplyTime"]){
+                wself.firstRecord.text = result[@"lastApply"][@"ApplyTime"];
+                wself.toMakkJifen.text = [NSString stringWithFormat:@"转入钱包%.2f元",[result[@"lastApply"][@"ApplyMoney"] doubleValue]];
+                wself.Record.hidden = NO;
+            }else{
+                wself.Record.hidden = YES;
+            }
         }else{
-           wself.Record.hidden = YES;
+            wself.Record.hidden = YES;
         }
         LOG(@"---%@--------%@",result,error.description);
-    } WithParam:[NSString stringWithFormat:@"%d",[a.score integerValue]]];
+    } WithParam:[NSString stringWithFormat:@"%ld",(long)[a.score integerValue]]];
 }
 
 

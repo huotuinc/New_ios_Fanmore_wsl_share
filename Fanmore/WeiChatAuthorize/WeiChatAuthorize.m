@@ -28,7 +28,11 @@
 @interface WeiChatAuthorize ()<WXApiDelegate>
 
 
+/**手机登录*/
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
+
+/**微信授权登录*/
+@property (weak, nonatomic) IBOutlet UIButton *WeiXinLongGIn;
 
 @property (weak, nonatomic) MBProgressHUD * hud;
 
@@ -67,6 +71,11 @@
     self.loginButton.layer.masksToBounds = YES;
     self.loginButton.layer.borderWidth = 1;
     self.loginButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    self.WeiXinLongGIn.layer.cornerRadius = 4;
+    self.WeiXinLongGIn.layer.masksToBounds = YES;
+    self.WeiXinLongGIn.layer.borderWidth = 1;
+    self.WeiXinLongGIn.layer.borderColor = [UIColor whiteColor].CGColor;
 //    self.loginButton.backgroundColor = [UIColor colorWithRed:0.000 green:0.000 blue:0.004 alpha:1.000];
     
     //微信授权登录code返回
@@ -81,6 +90,8 @@
     LOG(@"xxx");
 }
 
+
+#warning weixin
 /**
  *  微信授权点击
  *
@@ -88,8 +99,17 @@
  */
 - (IBAction)WeiChatAQuthLogin:(id)sender {
     
-    [self WeiXinLog];
+    UIStoryboard * sto = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    AccountLoginViewController * iphone =  [sto instantiateViewControllerWithIdentifier:@"AccountLoginViewController"];
+    NavController * nav = [[NavController alloc] initWithRootViewController:iphone];
+    
+    [self presentViewController:nav animated:YES completion:nil];
 
+}
+
+
+- (IBAction)secondWeiXinLogin:(id)sender {
+    [self WeiXinLog];
 }
 
 
@@ -106,12 +126,7 @@
         //第三方向微信终端发送一个SendAuthReq消息结构
         [WXApi sendAuthReq:req viewController:self delegate:self];
     }else{
-            UIStoryboard * sto = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            AccountLoginViewController * iphone =  [sto instantiateViewControllerWithIdentifier:@"AccountLoginViewController"];
-            NavController * nav = [[NavController alloc] initWithRootViewController:iphone];
-           
-            [self presentViewController:nav animated:YES completion:nil];
-       
+        [FMUtils alertMessage:self.view msg:@"请安装微信"];
     }
     
     
