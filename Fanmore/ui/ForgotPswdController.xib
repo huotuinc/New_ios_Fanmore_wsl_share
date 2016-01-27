@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ForgotPswdController">
+            <connections>
+                <outlet property="barBtDone" destination="smE-P7-8sb" id="dwK-72-YfP"/>
+                <outlet property="btGetCode" destination="mbx-ou-nuT" id="LXk-Ah-3HJ"/>
+                <outlet property="helpWebView" destination="MBN-gZ-ucX" id="cu8-xy-U6e"/>
+                <outlet property="labelAuto" destination="zOz-aU-rZV" id="M6l-js-eM6"/>
+                <outlet property="labelMan" destination="Jos-jM-k6f" id="L8P-ab-UtN"/>
+                <outlet property="labelPocily" destination="qFL-6n-m8K" id="Ngi-Z2-CHc"/>
+                <outlet property="textCode" destination="Nzy-aF-p6h" id="UqK-V7-yKV"/>
+                <outlet property="textMobile" destination="4oa-Vo-4fv" id="bb7-hy-Lvl"/>
+                <outlet property="textPswd" destination="YNx-kA-fhX" id="i5m-0h-ow1"/>
+                <outlet property="textPswd2" destination="Hhl-jA-Rve" id="Ldx-ew-HnY"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewAuto" destination="bGe-9J-nHS" id="KOP-cA-Vc3"/>
+                <outlet property="viewMan" destination="q3c-1d-n4i" id="bFP-9j-ELo"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q3c-1d-n4i">
+                    <rect key="frame" x="0.0" y="117" width="320" height="451"/>
+                    <subviews>
+                        <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MBN-gZ-ucX">
+                            <rect key="frame" x="0.0" y="-27" width="320" height="505"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </webView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bGe-9J-nHS" customClass="TPKeyboardAvoidingScrollView">
+                    <rect key="frame" x="0.0" y="117" width="320" height="451"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ApE-Ni-mwF" customClass="WangliTextfieldView">
+                            <rect key="frame" x="0.0" y="18" width="320" height="90"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="手机号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPA-4Z-Yo1">
+                                    <rect key="frame" x="17" y="0.0" width="54" height="45"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="验证码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vj4-qR-iIR">
+                                    <rect key="frame" x="17" y="45" width="54" height="45"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4oa-Vo-4fv">
+                                    <rect key="frame" x="88" y="8" width="175" height="30"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="phonePad" returnKeyType="done"/>
+                                    <connections>
+                                        <action selector="textEditDone:" destination="-1" eventType="editingDidEndOnExit" id="qXk-dB-o2s"/>
+                                    </connections>
+                                </textField>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="右侧验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nzy-aF-p6h">
+                                    <rect key="frame" x="88" y="53" width="118" height="30"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="alphabet" returnKeyType="done"/>
+                                    <connections>
+                                        <action selector="textEditDone:" destination="-1" eventType="editingDidEndOnExit" id="PqP-9Z-01k"/>
+                                    </connections>
+                                </textField>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbx-ou-nuT">
+                                    <rect key="frame" x="209" y="53" width="103" height="30"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <state key="normal" title="获取验证码" backgroundImage="zhuxiaoicon">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="lines">
+                                    <integer key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="puL-QY-Udf" customClass="WangliTextfieldView">
+                            <rect key="frame" x="0.0" y="118" width="320" height="90"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="新密码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9iX-Oa-PAp">
+                                    <rect key="frame" x="17" y="0.0" width="54" height="45"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="新密码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJN-Bx-yYv">
+                                    <rect key="frame" x="17" y="45" width="54" height="45"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码(6-12位)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YNx-kA-fhX">
+                                    <rect key="frame" x="88" y="8" width="280" height="30"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" secureTextEntry="YES"/>
+                                    <connections>
+                                        <action selector="textEditDone:" destination="-1" eventType="editingDidEndOnExit" id="uVb-OD-LqZ"/>
+                                    </connections>
+                                </textField>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码(6-12位)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hhl-jA-Rve">
+                                    <rect key="frame" x="88" y="53" width="280" height="30"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" secureTextEntry="YES"/>
+                                    <connections>
+                                        <action selector="textEditDone:" destination="-1" eventType="editingDidEndOnExit" id="2zS-Ef-jEf"/>
+                                    </connections>
+                                </textField>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="lines">
+                                    <integer key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="使用条款和隐私政策" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFL-6n-m8K" customClass="ServicePolicyLabel">
+                            <rect key="frame" x="11" y="221" width="127" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="自动找回" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zOz-aU-rZV" customClass="ScoreFlowSelection">
+                    <rect key="frame" x="0.0" y="64" width="160" height="45"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="手工找回" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jos-jM-k6f" customClass="ScoreFlowSelection">
+                    <rect key="frame" x="160" y="64" width="160" height="45"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+        </view>
+        <barButtonItem title="找回" id="smE-P7-8sb">
+            <connections>
+                <action selector="doSelector:" destination="-1" id="3Kt-jQ-z7R"/>
+            </connections>
+        </barButtonItem>
+    </objects>
+    <resources>
+        <image name="zhuxiaoicon" width="296" height="38"/>
+    </resources>
+</document>
