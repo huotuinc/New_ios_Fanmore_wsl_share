@@ -179,9 +179,7 @@
 //    [ShareSDK connectQZoneWithAppKey:@"101051996" appSecret:@"535b920eebcf192cb0da960996ff72d2" qqApiInterfaceCls:[QQApiInterface class] tencentOAuthCls:[TencentOAuth class]];
     [ShareSDK connectQZoneWithAppKey:QQAPPKET appSecret:QQAPPSecret qqApiInterfaceCls:[QQApiInterface class] tencentOAuthCls:[TencentOAuth class]];
     
-    //连接其他
-    [ShareSDK connectSMS];
-    [ShareSDK connectMail];
+    
     
     [ShareSDK connectQQWithQZoneAppKey:QQAPPKET qqApiInterfaceCls:[QQApiInterface class] tencentOAuthCls:[TencentOAuth class]];
 }
@@ -564,8 +562,12 @@
     [self savePreferences];
 }
 
+
+//控制隐藏新浪微博 罗海波
 -(void)setupShareTypes:(NSArray*)types toShare:(NSDictionary*)info{
-    NSDictionary* defalutInfo = @{@"1": @23,@"2":@1,@"3":@6};
+    NSDictionary* defalutInfo = @{@"1": @23
+                                  //,@"2":@1
+                                  ,@"3":@6};
     NSMutableDictionary* tmpts = $mdictnew;
     for (NSString* type in types) {
         id target = info[type];

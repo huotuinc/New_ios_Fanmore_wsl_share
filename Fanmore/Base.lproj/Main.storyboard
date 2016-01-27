@@ -319,13 +319,6 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_bg_414x736" translatesAutoresizingMaskIntoConstraints="NO" id="Wam-g2-t1c">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zb-iA-w7p">
-                                <rect key="frame" x="59" y="314" width="203" height="34"/>
-                                <state key="normal" title="微信授权登录"/>
-                                <connections>
-                                    <action selector="secondWeiXinLogin:" destination="MtT-xd-3ty" eventType="touchUpInside" id="0zS-JK-hkd"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mHs-8K-EZQ">
                                 <rect key="frame" x="59" y="270" width="203" height="34"/>
                                 <state key="normal" title="手机登录"/>
@@ -333,12 +326,28 @@
                                     <action selector="WeiChatAQuthLogin:" destination="MtT-xd-3ty" eventType="touchUpInside" id="xLr-eT-JKJ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zb-iA-w7p">
+                                <rect key="frame" x="59" y="314" width="203" height="34"/>
+                                <state key="normal" title="微信授权登录"/>
+                                <connections>
+                                    <action selector="secondWeiXinLogin:" destination="MtT-xd-3ty" eventType="touchUpInside" id="0zS-JK-hkd"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="youke" translatesAutoresizingMaskIntoConstraints="NO" id="h4c-Qn-T6g">
+                                <rect key="frame" x="135" y="358" width="50" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="FJi-gz-jep"/>
+                                    <constraint firstAttribute="width" secondItem="h4c-Qn-T6g" secondAttribute="height" multiplier="66:59" id="UqQ-Hy-gh6"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="9zb-iA-w7p" firstAttribute="trailing" secondItem="mHs-8K-EZQ" secondAttribute="trailing" id="0kP-0i-ZFR"/>
                             <constraint firstAttribute="trailing" secondItem="mHs-8K-EZQ" secondAttribute="trailing" constant="58" id="3yT-F2-pxc"/>
                             <constraint firstAttribute="trailing" secondItem="Wam-g2-t1c" secondAttribute="trailing" id="470-lq-yAD"/>
+                            <constraint firstItem="h4c-Qn-T6g" firstAttribute="centerX" secondItem="6vE-Ne-lrU" secondAttribute="centerX" id="5a1-D3-3nR"/>
+                            <constraint firstItem="h4c-Qn-T6g" firstAttribute="top" secondItem="9zb-iA-w7p" secondAttribute="bottom" constant="10" id="Gv1-Zq-uXH"/>
                             <constraint firstItem="Wam-g2-t1c" firstAttribute="top" secondItem="qaP-GW-CJV" secondAttribute="bottom" constant="-20" id="Ibm-ky-kNM"/>
                             <constraint firstItem="mHs-8K-EZQ" firstAttribute="top" secondItem="qaP-GW-CJV" secondAttribute="bottom" constant="250" id="Jhq-uf-jDv"/>
                             <constraint firstItem="Fnv-6j-a34" firstAttribute="top" secondItem="Wam-g2-t1c" secondAttribute="bottom" id="Mpp-Oa-447"/>
@@ -353,6 +362,7 @@
                     <connections>
                         <outlet property="WeiXinLongGIn" destination="9zb-iA-w7p" id="nP1-jR-VDo"/>
                         <outlet property="loginButton" destination="mHs-8K-EZQ" id="XIC-Sb-xR8"/>
+                        <outlet property="youkeLongin" destination="h4c-Qn-T6g" id="frz-uh-2cm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F9z-3q-905" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -371,6 +381,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WeiXinIIconViewDefaule" translatesAutoresizingMaskIntoConstraints="NO" id="mdJ-Qg-0g5">
+                                <rect key="frame" x="120" y="80" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="XBu-jc-1Jy"/>
+                                    <constraint firstAttribute="height" constant="80" id="rnq-aX-dcQ"/>
+                                </constraints>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pl6-mt-Rxb">
                                 <rect key="frame" x="14" y="204" width="292" height="44"/>
                                 <color key="backgroundColor" red="0.9137254901960784" green="0.29803921568627451" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
@@ -420,17 +437,10 @@
                                 <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WeiXinIIconViewDefaule" translatesAutoresizingMaskIntoConstraints="NO" id="mdJ-Qg-0g5">
-                                <rect key="frame" x="120" y="80" width="80" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="XBu-jc-1Jy"/>
-                                    <constraint firstAttribute="height" constant="80" id="rnq-aX-dcQ"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="RJj-n0-dmi" firstAttribute="leading" secondItem="3Ea-Np-7Mp" secondAttribute="trailing" constant="10" id="1VJ-fa-o8p"/>
+                            <constraint firstItem="RJj-n0-dmi" firstAttribute="leading" secondItem="3Ea-Np-7Mp" secondAttribute="trailing" id="1VJ-fa-o8p"/>
                             <constraint firstItem="mdJ-Qg-0g5" firstAttribute="top" secondItem="F7L-96-BTW" secondAttribute="bottom" constant="60" id="2TO-Y0-jv2"/>
                             <constraint firstItem="RJj-n0-dmi" firstAttribute="width" secondItem="3Ea-Np-7Mp" secondAttribute="width" id="GTb-5J-j6K"/>
                             <constraint firstItem="Pl6-mt-Rxb" firstAttribute="top" secondItem="Dsm-MC-QIT" secondAttribute="bottom" constant="3" id="K3m-mM-kyr"/>

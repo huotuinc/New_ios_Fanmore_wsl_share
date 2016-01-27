@@ -103,11 +103,11 @@
     [fos masterIndex:nil block:^(NSString *code, NSString *desc, NSString *shareDesc, NSString *shareURL, NSNumber *numbersOfFollowers, NSNumber *totalDevoteYes, NSNumber *totalDevote, NSNumber *todaySafe,NSNumber *lisiSafe,NSNumber *todayShare,NSNumber *lisiShare,NSArray *list, NSError *error) {
         LOG(@"%@------%@---%@-----%@----%@---%@--%@--%@---%@---%@----%@----%@",code,desc,shareDesc,shareURL,numbersOfFollowers,totalDevoteYes,totalDevote,todaySafe,lisiSafe,todayShare,lisiShare,list);
         wself.nameLable.text = code;
-        wself.firstLable.text = [NSString stringWithFormat:@"%d",[totalDevote integerValue]];
-        wself.secondLable.text = [NSString stringWithFormat:@"%d",[totalDevoteYes integerValue]];
-        wself.tuDiCount.text =  [NSString stringWithFormat:@"%d",[numbersOfFollowers integerValue]];
-        wself.thirdLable.text = [NSString stringWithFormat:@"%d/%d",[todaySafe integerValue] ,[lisiSafe integerValue]];
-        wself.fourthLable.text = [NSString stringWithFormat:@"%d/%d",[todayShare integerValue],[lisiShare integerValue]];
+        wself.firstLable.text = [NSString stringWithFormat:@"%ld",(long)[totalDevote integerValue]];
+        wself.secondLable.text = [NSString stringWithFormat:@"%ld",(long)[totalDevoteYes integerValue]];
+        wself.tuDiCount.text =  [NSString stringWithFormat:@"%ld",(long)[numbersOfFollowers integerValue]];
+        wself.thirdLable.text = [NSString stringWithFormat:@"%ld/%ld",(long)[todaySafe integerValue] ,(long)[lisiSafe integerValue]];
+        wself.fourthLable.text = [NSString stringWithFormat:@"%ld/%ld",(long)[todayShare integerValue],(long)[lisiShare integerValue]];
         
     } paging:[Paging paging:5 parameters:@{@"pageTag": @0}]];
 

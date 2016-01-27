@@ -25,6 +25,8 @@
 #import "NavController.h"
 #import <MBProgressHUD.h>
 #import "FMUtils.h"
+
+
 @interface WeiChatAuthorize ()<WXApiDelegate>
 
 
@@ -33,6 +35,10 @@
 
 /**微信授权登录*/
 @property (weak, nonatomic) IBOutlet UIButton *WeiXinLongGIn;
+
+/**游客登录*/
+@property (weak, nonatomic) IBOutlet UIImageView *youkeLongin;
+
 
 @property (weak, nonatomic) MBProgressHUD * hud;
 
@@ -63,10 +69,31 @@
 }
 
 
+- (void)youkeTologin{
+    __weak WeiChatAuthorize * wself = self;
+    AppDelegate * ad = [AppDelegate getInstance];
+    [[ad getFanOperations] visitorToLogin:nil block:^(id result, NSError *error) {
+        if (!error) {
+            UIStoryboard* main = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+            UIViewController* vc = [main instantiateInitialViewController];
+            [wself presentViewController:vc animated:YES completion:^{
+                [wself removeFromParentViewController];
+            }];
+        }else {
+            [FMUtils alertMessage:wself.view msg:[error FMDescription]];
+        }
+    }];
+    
+    
+}
+
 - (void)viewDidLoad{
     [super viewDidLoad];
     
     
+    UITapGestureRecognizer * ges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(youkeTologin)];
+    [self.youkeLongin addGestureRecognizer:ges];
+    self.youkeLongin.userInteractionEnabled = YES;
     self.loginButton.layer.cornerRadius = 4;
     self.loginButton.layer.masksToBounds = YES;
     self.loginButton.layer.borderWidth = 1;
