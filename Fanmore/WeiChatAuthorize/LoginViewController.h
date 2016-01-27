@@ -10,6 +10,15 @@
 
 @interface LoginViewController : UIViewController
 
+/**
+ *  1、  手机
+    2、  微信
+ */
+@property(nonatomic,assign) int callType;
+
+
 @property(nonatomic,copy)NSString *PhoneNumber;
+
+
 @property(nonatomic,copy)NSString *codeNumber;
 @end

@@ -10,6 +10,7 @@
 
 @interface WeiXinBackViewController : UIViewController
 
+@property(nonatomic,assign) int callType;
 @property(nonatomic,copy)NSString *PhoneNumber;
 @property(nonatomic,copy)NSString *codeNumber;
 @end

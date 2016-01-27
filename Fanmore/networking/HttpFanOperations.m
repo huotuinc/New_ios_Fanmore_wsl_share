@@ -1703,169 +1703,109 @@
         
         
         LOG(@"%@",url);
-        AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
-        [manager GET:url parameters:nil progress:nil success:^(NSURLSessionTask *task, NSDictionary * result) {
+    ASIHTTPRequest* request;
+    if (post) {
+        ASIFormDataRequest *requestForm = [[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:url]];
+        if(parameters && parameters.count>0)
+            [requestForm setPostValue:[[parameters myJSONString] encodeURL] forKey:@"p"];
+        request = requestForm;
+    }else{
+        request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
+    }
+    
+    __block HTTPRequestMoniter* moniter = [[HTTPRequestMoniter alloc]initWithASIHTTPRequest:request];
+    __weak __block ASIHTTPRequest* _request = request;
+    [request setCompletionBlock:^{
+        if ([moniter isCancelled]) {
+            return;
+        }
+        @try {
+#ifdef FanmoreDebug
+            //                    NSString* rs = [[NSString alloc]initWithData:[_request responseData] encoding:[_request responseEncoding]];
+            //                    LOG(@"%d %@",[_request responseEncoding],rs);
+#endif
+            //            NSDictionary* result = [self.decoder objectWithData:[_request responseData]];
+            NSDictionary* result = [NSJSONSerialization JSONObjectWithData:[_request responseData] options:0 error:NULL];
+            
 #ifdef FanmoreDebugMock
-                if ($eql(@"UserInfo",interface) && $eql(@"http://api.fanmore.cn",self.rootURL)) {
-                    NSString* tmpstr = @"{\"resultCode\":1,\"description\":\"成功\",\"status\":1,\"resultData\":{\"phone\":\"15088659764\",\"name\":\"爸爸\",\"sex\":2,\"birth\":\"1960-01-01 00-00-00\",\"industryId\":0,\"industry\":\"未知\",\"favoriteId\":\"0\",\"favorite\":\"\",\"incomeId\":0,\"income\":\"未知\",\"areaId\":0,\"area\":\"未知\",\"industryList\":[{\"value\":\"1\",\"name\":\"计算机软件/硬件\"},{\"value\":\"2\",\"name\":\"互联网/电子商务\"},{\"value\":\"3\",\"name\":\"服务行业\"},{\"value\":\"4\",\"name\":\"服务行业\"},{\"value\":\"5\",\"name\":\"医疗\"},{\"value\":\"6\",\"name\":\"市场推广\"},{\"value\":\"7\",\"name\":\"房产\"},{\"value\":\"9\",\"name\":\"外包服务\"},{\"value\":\"10\",\"name\":\"酒店\"},{\"value\":\"11\",\"name\":\"美容\"},{\"value\":\"12\",\"name\":\"电力\"},{\"value\":\"13\",\"name\":\"农业\"},{\"value\":\"13\",\"name\":\"其他\"}],\"favoriteList\":[{\"value\":\"1\",\"name\":\"阅读\"},{\"value\":\"2\",\"name\":\"运动\"},{\"value\":\"3\",\"name\":\"购物\"},{\"value\":\"4\",\"name\":\"饮食\"},{\"value\":\"5\",\"name\":\"旅游\"},{\"value\":\"6\",\"name\":\"音乐\"},{\"value\":\"7\",\"name\":\"饮茶\"},{\"value\":\"8\",\"name\":\"影视\"}],\"incomeList\":[{\"value\":\"1\",\"name\":\"2000以下\"},{\"value\":\"2\",\"name\":\"2000-4000\"},{\"value\":\"3\",\"name\":\"4000-6000\"},{\"value\":\"4\",\"name\":\"6000-8000\"},{\"value\":\"5\",\"name\":\"8000-10000\"},{\"value\":\"6\",\"name\":\"10000-20000\"},{\"value\":\"7\",\"name\":\"20000以上\"}]},\"tip\":\"操作成功\"}";
-                    const char * cstr= [tmpstr cStringUsingEncoding:NSUTF8StringEncoding];
+            if ($eql(@"UserInfo",interface) && $eql(@"http://api.fanmore.cn",self.rootURL)) {
+                NSString* tmpstr = @"{\"resultCode\":1,\"description\":\"成功\",\"status\":1,\"resultData\":{\"phone\":\"15088659764\",\"name\":\"爸爸\",\"sex\":2,\"birth\":\"1960-01-01 00-00-00\",\"industryId\":0,\"industry\":\"未知\",\"favoriteId\":\"0\",\"favorite\":\"\",\"incomeId\":0,\"income\":\"未知\",\"areaId\":0,\"area\":\"未知\",\"industryList\":[{\"value\":\"1\",\"name\":\"计算机软件/硬件\"},{\"value\":\"2\",\"name\":\"互联网/电子商务\"},{\"value\":\"3\",\"name\":\"服务行业\"},{\"value\":\"4\",\"name\":\"服务行业\"},{\"value\":\"5\",\"name\":\"医疗\"},{\"value\":\"6\",\"name\":\"市场推广\"},{\"value\":\"7\",\"name\":\"房产\"},{\"value\":\"9\",\"name\":\"外包服务\"},{\"value\":\"10\",\"name\":\"酒店\"},{\"value\":\"11\",\"name\":\"美容\"},{\"value\":\"12\",\"name\":\"电力\"},{\"value\":\"13\",\"name\":\"农业\"},{\"value\":\"13\",\"name\":\"其他\"}],\"favoriteList\":[{\"value\":\"1\",\"name\":\"阅读\"},{\"value\":\"2\",\"name\":\"运动\"},{\"value\":\"3\",\"name\":\"购物\"},{\"value\":\"4\",\"name\":\"饮食\"},{\"value\":\"5\",\"name\":\"旅游\"},{\"value\":\"6\",\"name\":\"音乐\"},{\"value\":\"7\",\"name\":\"饮茶\"},{\"value\":\"8\",\"name\":\"影视\"}],\"incomeList\":[{\"value\":\"1\",\"name\":\"2000以下\"},{\"value\":\"2\",\"name\":\"2000-4000\"},{\"value\":\"3\",\"name\":\"4000-6000\"},{\"value\":\"4\",\"name\":\"6000-8000\"},{\"value\":\"5\",\"name\":\"8000-10000\"},{\"value\":\"6\",\"name\":\"10000-20000\"},{\"value\":\"7\",\"name\":\"20000以上\"}]},\"tip\":\"操作成功\"}";
+                const char * cstr= [tmpstr cStringUsingEncoding:NSUTF8StringEncoding];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wpointer-sign"
-                    result =  [self.decoder objectWithUTF8String:cstr length:[tmpstr lengthOfBytesUsingEncoding:NSUTF8StringEncoding]];
+                result =  [self.decoder objectWithUTF8String:cstr length:[tmpstr lengthOfBytesUsingEncoding:NSUTF8StringEncoding]];
 #pragma clang diagnostic pop
-                }
+            }
 #endif
+            
+            if (!$safe(result)) {
                 
-                if (!$safe(result)) {
-                    
-                    errorBlocker([NSError errorWithDomain:@"com.fanmore" code:500 userInfo:@{NSLocalizedDescriptionKey:@"网络故障"}]);
-                    return;
-                }
-                
-                // 如果发现exp 则弹出exp窗口
-                NSNumber* exp = result[@"exp"];
-                if ($safe(exp) && [exp intValue]>0) {
-                    [ExpReceiveView showView:exp];
-                    LoginState* llss = [AppDelegate getInstance].loadingState.userData;
-                    llss.exp = $int([llss.exp intValue]+[exp intValue]);
-                }
-                
-                
-                if ([[result $for:@"resultCode"]intValue]!=1) {
-                    errorBlocker(
-                                 [NSError errorWithDomain:@"com.fanmore" code:[[result $for:@"resultCode"]intValue] userInfo:@{NSLocalizedDescriptionKey:[result $for:@"description"]}]
-                                 );
-                    return;
-                }
-                
-                if ([[result $for:@"status"]intValue]!=1) {
-                    errorBlocker(
-                                 [NSError errorWithDomain:@"com.fanmore" code:[[result $for:@"status"]intValue] userInfo:@{NSLocalizedDescriptionKey:[result $for:@"tip"]}]
-                                 );
-                    return;
-                }
-                id rd = result[@"resultData"];
-                if ($safe(rd) && !$eql(@"",rd)) {
-                    resultBlocker(rd);
-                }else if($safe(result[@"url"])){
-                    resultBlocker(result[@"url"]);
-                }else{
-                    resultBlocker(result[@"tip"]);
-                }
+                errorBlocker([NSError errorWithDomain:@"com.fanmore" code:500 userInfo:@{NSLocalizedDescriptionKey:@"网络故障"}]);
+                return;
             }
             
-         failure:^(NSURLSessionTask *operation, NSError *error) {
-             
-             errorBlocker(error);
-             
-         }];
+            // 如果发现exp 则弹出exp窗口
+            NSNumber* exp = result[@"exp"];
+            if ($safe(exp) && [exp intValue]>0) {
+                [ExpReceiveView showView:exp];
+                LoginState* llss = [AppDelegate getInstance].loadingState.userData;
+                llss.exp = $int([llss.exp intValue]+[exp intValue]);
+            }
+            
+            
+            if ([[result $for:@"resultCode"]intValue]!=1) {
+                errorBlocker(
+                             [NSError errorWithDomain:@"com.fanmore" code:[[result $for:@"resultCode"]intValue] userInfo:@{NSLocalizedDescriptionKey:[result $for:@"description"]}]
+                             );
+                return;
+            }
+            
+            if ([[result $for:@"status"]intValue]!=1) {
+                errorBlocker(
+                             [NSError errorWithDomain:@"com.fanmore" code:[[result $for:@"status"]intValue] userInfo:@{NSLocalizedDescriptionKey:[result $for:@"tip"]}]
+                             );
+                return;
+            }
+            id rd = result[@"resultData"];
+            if ($safe(rd) && !$eql(@"",rd)) {
+                resultBlocker(rd);
+            }else if($safe(result[@"url"])){
+                resultBlocker(result[@"url"]);
+            }else{
+                resultBlocker(result[@"tip"]);
+            }
+        }
+        @catch (NSException *exception) {
+            NSLog(@"执行完成BLOCK时异常%@",exception);
+            errorBlocker([NSError errorWithDomain:@"com.fanmore" code:600 userInfo:exception.userInfo]);
+        }
+        @finally {
+        }
+    }];
+    
+    
+    
+    
+    
+    
+    [request setFailedBlock:^{
+        if ([moniter isCancelled]) {
+            return;
+        }
+        errorBlocker([_request error]);
+    }];
+    [request setRequestMethod:@"GET"];
+    //        [request startAsynchronous];
+#ifdef FanmoreDebug
+    [request startAsynchronous];
+#else
+    [request startAsynchronous];
+#endif
+    //    return moniter;
+    
 }
-    
-- (void)xxxxxx{
-    
-    //        ASIHTTPRequest* request;
-    //        if (post) {
-    //            ASIFormDataRequest *requestForm = [[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:url]];
-    //            if(parameters && parameters.count>0)
-    //                [requestForm setPostValue:[[parameters myJSONString] encodeURL] forKey:@"p"];
-    //            request = requestForm;
-    //        }else{
-    //            request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
-    //        }
-    //
-    //        __block HTTPRequestMoniter* moniter = [[HTTPRequestMoniter alloc]initWithASIHTTPRequest:request];
-    //        __weak __block ASIHTTPRequest* _request = request;
-    //        [request setCompletionBlock:^{
-    //            if ([moniter isCancelled]) {
-    //                return;
-    //            }
-    //            @try {
-    //#ifdef FanmoreDebug
-    ////                    NSString* rs = [[NSString alloc]initWithData:[_request responseData] encoding:[_request responseEncoding]];
-    ////                    LOG(@"%d %@",[_request responseEncoding],rs);
-    //#endif
-    ////            NSDictionary* result = [self.decoder objectWithData:[_request responseData]];
-    //                NSDictionary* result = [NSJSONSerialization JSONObjectWithData:[_request responseData] options:0 error:NULL];
-    //
-    //#ifdef FanmoreDebugMock
-    //            if ($eql(@"UserInfo",interface) && $eql(@"http://api.fanmore.cn",self.rootURL)) {
-    //                NSString* tmpstr = @"{\"resultCode\":1,\"description\":\"成功\",\"status\":1,\"resultData\":{\"phone\":\"15088659764\",\"name\":\"爸爸\",\"sex\":2,\"birth\":\"1960-01-01 00-00-00\",\"industryId\":0,\"industry\":\"未知\",\"favoriteId\":\"0\",\"favorite\":\"\",\"incomeId\":0,\"income\":\"未知\",\"areaId\":0,\"area\":\"未知\",\"industryList\":[{\"value\":\"1\",\"name\":\"计算机软件/硬件\"},{\"value\":\"2\",\"name\":\"互联网/电子商务\"},{\"value\":\"3\",\"name\":\"服务行业\"},{\"value\":\"4\",\"name\":\"服务行业\"},{\"value\":\"5\",\"name\":\"医疗\"},{\"value\":\"6\",\"name\":\"市场推广\"},{\"value\":\"7\",\"name\":\"房产\"},{\"value\":\"9\",\"name\":\"外包服务\"},{\"value\":\"10\",\"name\":\"酒店\"},{\"value\":\"11\",\"name\":\"美容\"},{\"value\":\"12\",\"name\":\"电力\"},{\"value\":\"13\",\"name\":\"农业\"},{\"value\":\"13\",\"name\":\"其他\"}],\"favoriteList\":[{\"value\":\"1\",\"name\":\"阅读\"},{\"value\":\"2\",\"name\":\"运动\"},{\"value\":\"3\",\"name\":\"购物\"},{\"value\":\"4\",\"name\":\"饮食\"},{\"value\":\"5\",\"name\":\"旅游\"},{\"value\":\"6\",\"name\":\"音乐\"},{\"value\":\"7\",\"name\":\"饮茶\"},{\"value\":\"8\",\"name\":\"影视\"}],\"incomeList\":[{\"value\":\"1\",\"name\":\"2000以下\"},{\"value\":\"2\",\"name\":\"2000-4000\"},{\"value\":\"3\",\"name\":\"4000-6000\"},{\"value\":\"4\",\"name\":\"6000-8000\"},{\"value\":\"5\",\"name\":\"8000-10000\"},{\"value\":\"6\",\"name\":\"10000-20000\"},{\"value\":\"7\",\"name\":\"20000以上\"}]},\"tip\":\"操作成功\"}";
-    //                const char * cstr= [tmpstr cStringUsingEncoding:NSUTF8StringEncoding];
-    //#pragma clang diagnostic push
-    //#pragma clang diagnostic ignored "-Wpointer-sign"
-    //                result =  [self.decoder objectWithUTF8String:cstr length:[tmpstr lengthOfBytesUsingEncoding:NSUTF8StringEncoding]];
-    //#pragma clang diagnostic pop
-    //            }
-    //#endif
-    //
-    //            if (!$safe(result)) {
-    //
-    //                errorBlocker([NSError errorWithDomain:@"com.fanmore" code:500 userInfo:@{NSLocalizedDescriptionKey:@"网络故障"}]);
-    //                return;
-    //            }
-    //
-    //                // 如果发现exp 则弹出exp窗口
-    //                NSNumber* exp = result[@"exp"];
-    //                if ($safe(exp) && [exp intValue]>0) {
-    //                    [ExpReceiveView showView:exp];
-    //                    LoginState* llss = [AppDelegate getInstance].loadingState.userData;
-    //                    llss.exp = $int([llss.exp intValue]+[exp intValue]);
-    //                }
-    //
-    //
-    //            if ([[result $for:@"resultCode"]intValue]!=1) {
-    //                errorBlocker(
-    //                             [NSError errorWithDomain:@"com.fanmore" code:[[result $for:@"resultCode"]intValue] userInfo:@{NSLocalizedDescriptionKey:[result $for:@"description"]}]
-    //                             );
-    //                return;
-    //            }
-    //
-    //            if ([[result $for:@"status"]intValue]!=1) {
-    //                errorBlocker(
-    //                             [NSError errorWithDomain:@"com.fanmore" code:[[result $for:@"status"]intValue] userInfo:@{NSLocalizedDescriptionKey:[result $for:@"tip"]}]
-    //                             );
-    //                return;
-    //            }
-    //            id rd = result[@"resultData"];
-    //            if ($safe(rd) && !$eql(@"",rd)) {
-    //                resultBlocker(rd);
-    //            }else if($safe(result[@"url"])){
-    //                resultBlocker(result[@"url"]);
-    //            }else{
-    //                resultBlocker(result[@"tip"]);
-    //            }
-    //            }
-    //            @catch (NSException *exception) {
-    //                NSLog(@"执行完成BLOCK时异常%@",exception);
-    //                errorBlocker([NSError errorWithDomain:@"com.fanmore" code:600 userInfo:exception.userInfo]);
-    //            }
-    //            @finally {
-    //            }
-    //        }];
-    //
-    //
-    //
-    //
-    //
-    //
-    //        [request setFailedBlock:^{
-    //            if ([moniter isCancelled]) {
-    //                return;
-    //            }
-    //            errorBlocker([_request error]);
-    //        }];
-    //        [request setRequestMethod:@"GET"];
-    ////        [request startAsynchronous];
-    //#ifdef FanmoreDebug
-    //                [request startAsynchronous];
-    //#else
-    //                [request startAsynchronous];
-    //#endif
-    //        //    return moniter;
-    //
-    //    }
-}
-    
+
+
 -(void)doConnect:(id<FanOpertationDelegate>)delegate interface:(NSString*)interface errorBlocker:(void (^)(NSError*))errorBlocker resultBlocker:(void (^)(id))resultBlocker parameters:(NSDictionary*)parameters urlBlocker:(void (^)(NSMutableString*))urlBlocker{
     [self doConnect:delegate interface:interface errorBlocker:errorBlocker resultBlocker:resultBlocker parameters:parameters urlBlocker:urlBlocker post:NO];
 }

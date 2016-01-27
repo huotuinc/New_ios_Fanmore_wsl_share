@@ -734,7 +734,7 @@
                                             <constraint firstAttribute="height" constant="30" id="jju-vk-u9g"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 手机验证码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="su8-pr-tSl">
                                         <rect key="frame" x="0.0" y="11" width="80" height="21"/>
@@ -1585,7 +1585,7 @@
         <image name="lefttab" width="93" height="28"/>
         <image name="list" width="311" height="49"/>
         <image name="login_bg_414x736" width="414" height="736"/>
-        <image name="more" width="35" height="35"/>
+        <image name="more" width="22" height="22"/>
         <image name="shuxian" width="1" height="2"/>
         <image name="tudi" width="30" height="30"/>
         <image name="wuchangzhuanfa" width="301" height="38"/>

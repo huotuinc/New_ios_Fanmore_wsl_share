@@ -216,9 +216,6 @@
 }
 
 - (void)login{
-    
-    
-    
     __weak WeiChatAuthorize * wself = self;
     AppDelegate * ds =  [AppDelegate getInstance];
     [[ds getFanOperations] registerUser:nil block:^(LoginState * model, NSError *error) {

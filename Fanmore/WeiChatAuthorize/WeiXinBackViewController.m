@@ -26,12 +26,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    
-   
-    
-    
     [self setup];
 }
 
@@ -59,6 +53,7 @@
  */
 - (IBAction)NetActionStep:(id)sender {
     LoginViewController * Register = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    Register.callType = _callType;
     Register.PhoneNumber = _PhoneNumber;
     Register.codeNumber = _codeNumber;
     [self.navigationController pushViewController:Register animated:YES];

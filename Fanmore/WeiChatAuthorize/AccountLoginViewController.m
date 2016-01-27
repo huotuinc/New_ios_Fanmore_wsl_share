@@ -195,6 +195,7 @@
             }else{
                 UIStoryboard * main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 WeiXinBackViewController  *next = [main instantiateViewControllerWithIdentifier:@"WeiXinBackViewController"];
+                next.callType =  1;
                 next.PhoneNumber= self.iphoneNumber.text;
                 next.codeNumber = self.yaoqingText.text;
                 [self.navigationController pushViewController:next animated:YES];

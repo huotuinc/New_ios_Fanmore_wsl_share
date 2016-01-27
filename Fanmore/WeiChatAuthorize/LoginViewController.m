@@ -63,19 +63,13 @@
     __weak LoginViewController * wself = self;
     AppDelegate * ds =  [AppDelegate getInstance];
     
-    if ([WXApi isWXAppInstalled]) {
-        //    [MBProgressHUD showMessage:nil];
-        [[ds getFanOperations] registerUser:nil block:^(LoginState * model, NSError *error) {
-            if (!error) {
-                UIStoryboard* main = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-                UIViewController* vc = [main instantiateInitialViewController];
-                self.view.window.rootViewController = vc;
-            }else{
-                [FMUtils alertMessage:wself.view msg:[error FMDescription]];
-            }
-            //        [MBProgressHUD hideHUD];
-        } userName:nil password:nil code:nil invitationCode:self.InviteCode.text];
-    }else{
+    /**
+     *  1、  手机
+     2、  微信
+     */
+    
+    [self.view endEditing:YES];
+    if(self.callType == 1){
         AppDelegate * ad = [AppDelegate getInstance];
         [[ad getFanOperations] toSouji:nil block:^(LoginState * ss, NSError *error) {
             if (!error) {
@@ -88,10 +82,22 @@
                 [FMUtils alertMessage:wself.view msg:[error FMDescription]];
             }
         } WithParam:_PhoneNumber withYanzhen:_codeNumber withYaoqingma:self.InviteCode.text];
+    }else{
+        if ([WXApi isWXAppInstalled]) {
+            [[ds getFanOperations] registerUser:nil block:^(LoginState * model, NSError *error) {
+                if (!error) {
+                    UIStoryboard* main = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+                    UIViewController* vc = [main instantiateInitialViewController];
+                    self.view.window.rootViewController = vc;
+                }else{
+                    [FMUtils alertMessage:wself.view msg:[error FMDescription]];
+                }
+            } userName:nil password:nil code:nil invitationCode:self.InviteCode.text];
+        }else{
+            [FMUtils alertMessage:wself.view msg:@"请安装微信"];
+        }
         
     }
-
-
     
 }
 
