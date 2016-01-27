@@ -53,7 +53,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"小金库";
+    self.title = @"积分兑换";
     
     //获取用户列表
     [self toGetTheGlodToMallAccountList];
@@ -92,7 +92,8 @@
         if (![result[@"lastApply"] isKindOfClass:[NSNull class]]) {
             if(result[@"lastApply"][@"ApplyTime"]){
                 wself.firstRecord.text = result[@"lastApply"][@"ApplyTime"];
-                wself.toMakkJifen.text = [NSString stringWithFormat:@"转入钱包%.2f元",[result[@"lastApply"][@"ApplyMoney"] doubleValue]];
+                
+                wself.toMakkJifen.text = [NSString stringWithFormat:@"转入钱包%@元",[NSString xiaoshudianweishudeal:[result[@"lastApply"][@"ApplyMoney"] doubleValue]]];
                 wself.Record.hidden = NO;
             }else{
                 wself.Record.hidden = YES;
@@ -101,7 +102,7 @@
             wself.Record.hidden = YES;
         }
         LOG(@"---%@--------%@",result,error.description);
-    } WithParam:[NSString stringWithFormat:@"%ld",(long)[a.score integerValue]]];
+    } WithParam:self.scoreJifen.text];
 }
 
 
@@ -140,7 +141,7 @@
         [self MildAlertView];
     }
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"请输入密码" message:@" " delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定",nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"请输入兑换密码" message:@" " delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定",nil];
     alert.alertViewStyle = UIAlertViewStyleSecureTextInput;
     [alert show];
     
@@ -175,14 +176,19 @@
             if (result) {
                 wself.scoreJifen.text = @"0";
                 wself.toMallJifen.text = @"0";
+            }else{
+                [FMUtils alertMessage:self.view msg:[error FMDescription]];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [FMUtils alertMessage:self.view msg:@"请去账号安全设置密码"];
+                });
             }
             
             [MBProgressHUD hideHUD];
         } WithunionId:[NSString stringWithFormat:@"%@",a.score] withCashpassword:tf.text withMallUserId:[NSString stringWithFormat:@"%@",usmodel.userid] WithUserName:arra[0] withPassword:arra[1]];
         LOG(@"%@",tf.text);
     }else{
-        
         [FMUtils alertMessage:self.view msg:@"请输入正确的积分值"];
+        
     }
     
 }
