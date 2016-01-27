@@ -48,6 +48,7 @@ static UIImage* AbstracyTaskCellDefalutImage;
     label.textColor = [UIColor whiteColor];
     label.font = [UIFont boldSystemFontOfSize:9.0f];
     label.text = @"活动";
+//    label.hidden = YES;
     [self addSubview:label];
     label.hidden = YES;
     self.huodongLabel = label;
@@ -82,8 +83,8 @@ static UIImage* AbstracyTaskCellDefalutImage;
         self.huodongImage.hidden = YES;
         self.huodongLabel.hidden = YES;
     }else{
-        self.huodongImage.hidden = NO;
-        self.huodongLabel.hidden = NO;
+        self.huodongImage.hidden = YES;
+        self.huodongLabel.hidden = YES;
         self.huodongLabel.text = @"活动";
     }
 

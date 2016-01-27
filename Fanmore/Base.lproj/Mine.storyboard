@@ -1877,7 +1877,7 @@
             </objects>
             <point key="canvasLocation" x="-2188" y="947"/>
         </scene>
-        <!--今日预告-->
+        <!--最新预告-->
         <scene sceneID="2D4-sP-arI">
             <objects>
                 <viewController id="gZ9-eg-4gK" customClass="PreviewTasksController" sceneMemberID="viewController">
@@ -1902,7 +1902,7 @@
                             <constraint firstItem="XWF-HM-k4q" firstAttribute="top" secondItem="8gI-pW-Klx" secondAttribute="bottom" id="vTB-Hi-GaR"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="今日预告" id="I9O-yZ-Ehc"/>
+                    <navigationItem key="navigationItem" title="最新预告" id="I9O-yZ-Ehc"/>
                     <connections>
                         <outlet property="tableView" destination="XWF-HM-k4q" id="HgV-mj-NCC"/>
                     </connections>

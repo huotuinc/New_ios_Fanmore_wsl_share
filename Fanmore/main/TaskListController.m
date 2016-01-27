@@ -156,7 +156,7 @@
                     }
                     [wself.tableView reloadData];
                     [refreshView endRefreshing];
-                    LOG(@"fetch data refresh table n:%d newtasks:%d",wself.tasks.count,task.count);
+                    LOG(@"fetch data refresh table n:%lu newtasks:%lu",(unsigned long)wself.tasks.count,(unsigned long)task.count);
                 }
             } screenType:wself.pmm.type paging:[Paging paging:10 parameters:@{@"oldTaskId":[wself lastTaskId]}]];
         }else if (wself.selection==2){
