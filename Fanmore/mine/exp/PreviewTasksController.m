@@ -152,7 +152,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
+    if (self.tasks.count == 0) {
+        [tableView setClearBackground];
+    }else{
+        tableView.backgroundColor = [UIColor whiteColor];
+    }
     return self.tasks.count;
 }
 

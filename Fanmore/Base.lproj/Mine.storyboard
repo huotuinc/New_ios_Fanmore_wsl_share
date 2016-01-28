@@ -1102,7 +1102,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MK3-Xn-MY6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-24" y="313"/>
+            <point key="canvasLocation" x="85" y="391"/>
         </scene>
         <!--闪购-->
         <scene sceneID="Sst-gg-Qew">
@@ -3936,11 +3936,11 @@
         <image name="zhuxiaoicon" width="296" height="38"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="dEh-C0-s9v"/>
         <segue reference="U6R-np-1gz"/>
+        <segue reference="GPZ-kY-HU0"/>
         <segue reference="i4G-2i-Lrw"/>
         <segue reference="GHQ-5f-G6i"/>
-        <segue reference="OXB-6h-Krx"/>
-        <segue reference="GPZ-kY-HU0"/>
         <segue reference="ZTF-wr-cUi"/>
         <segue reference="zGz-xS-tHy"/>
     </inferredMetricsTieBreakers>

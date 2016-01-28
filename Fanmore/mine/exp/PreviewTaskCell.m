@@ -66,7 +66,7 @@
     
 //    [self.labelAbleSendTime setText:$str(@"你可以在 %@ 提前转发",[task.advancedseconds fmStandString])];
     [self.labelAbleSendTime setText:@"拥有火眼金睛 可以提前转发"];
-    
+    self.labelAbleSendTime.hidden = YES;
     BOOL isSend = $safe(task.sendList) && task.sendList.length>0;
     if (isSend) {
         [self updateTuzhang:0 hidden:NO image:[UIImage imageNamed:@"task_send_tag"]];

@@ -320,26 +320,29 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mHs-8K-EZQ">
-                                <rect key="frame" x="59" y="270" width="203" height="34"/>
+                                <rect key="frame" x="59" y="270" width="203" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="6fN-VZ-nYk"/>
+                                </constraints>
                                 <state key="normal" title="手机登录"/>
                                 <connections>
                                     <action selector="WeiChatAQuthLogin:" destination="MtT-xd-3ty" eventType="touchUpInside" id="xLr-eT-JKJ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zb-iA-w7p">
-                                <rect key="frame" x="59" y="314" width="203" height="34"/>
-                                <state key="normal" title="微信授权登录"/>
-                                <connections>
-                                    <action selector="secondWeiXinLogin:" destination="MtT-xd-3ty" eventType="touchUpInside" id="0zS-JK-hkd"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="youke" translatesAutoresizingMaskIntoConstraints="NO" id="h4c-Qn-T6g">
-                                <rect key="frame" x="135" y="358" width="50" height="45"/>
+                                <rect key="frame" x="135" y="378" width="50" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="FJi-gz-jep"/>
                                     <constraint firstAttribute="width" secondItem="h4c-Qn-T6g" secondAttribute="height" multiplier="66:59" id="UqQ-Hy-gh6"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zb-iA-w7p">
+                                <rect key="frame" x="59" y="324" width="203" height="44"/>
+                                <state key="normal" title="微信授权登录"/>
+                                <connections>
+                                    <action selector="secondWeiXinLogin:" destination="MtT-xd-3ty" eventType="touchUpInside" id="0zS-JK-hkd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -352,7 +355,6 @@
                             <constraint firstItem="mHs-8K-EZQ" firstAttribute="top" secondItem="qaP-GW-CJV" secondAttribute="bottom" constant="250" id="Jhq-uf-jDv"/>
                             <constraint firstItem="Fnv-6j-a34" firstAttribute="top" secondItem="Wam-g2-t1c" secondAttribute="bottom" id="Mpp-Oa-447"/>
                             <constraint firstItem="Wam-g2-t1c" firstAttribute="leading" secondItem="6vE-Ne-lrU" secondAttribute="leading" id="Tj7-91-slS"/>
-                            <constraint firstItem="Fnv-6j-a34" firstAttribute="top" secondItem="mHs-8K-EZQ" secondAttribute="bottom" constant="264" id="YdA-DU-nTb"/>
                             <constraint firstItem="9zb-iA-w7p" firstAttribute="leading" secondItem="mHs-8K-EZQ" secondAttribute="leading" id="dm2-Sp-RDw"/>
                             <constraint firstItem="9zb-iA-w7p" firstAttribute="top" secondItem="mHs-8K-EZQ" secondAttribute="bottom" constant="10" id="dtR-XK-4kj"/>
                             <constraint firstItem="9zb-iA-w7p" firstAttribute="height" secondItem="mHs-8K-EZQ" secondAttribute="height" id="f1a-I9-ASZ"/>

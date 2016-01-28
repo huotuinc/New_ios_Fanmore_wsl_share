@@ -35,6 +35,21 @@
 
 + (void)loginRequestGet:(NSString *)urlStr parame:(NSMutableDictionary *)params success:(void (^)(id json))success failure:(void (^)(NSError *error))failure{
     AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
+    [manager POST:@"www.baidu.com" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+    
+    
+    
     [manager GET:urlStr parameters:params progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         success(responseObject);
     } failure:^(NSURLSessionTask *operation, NSError *error) {

@@ -100,7 +100,7 @@ NSString*(^dictdategetter)(id input) = ^(id input) {
     self.navigationItem.leftBarButtonItems = @[[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(doBack)]];
     
     CGFloat y = -23.0f;
-    UITableView* table = [[FMTableView alloc] initWithFrame:CGRectMake(0, y, 320, [UIScreen mainScreen].bounds.size.height-y) style:UITableViewStylePlain];
+    UITableView* table = [[FMTableView alloc] initWithFrame:CGRectMake(0, y, self.view.frame.size.width, [UIScreen mainScreen].bounds.size.height-y) style:UITableViewStylePlain];
     
     [self.view addSubview:table];
     self.tableView = table;
@@ -141,7 +141,12 @@ NSString*(^dictdategetter)(id input) = ^(id input) {
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    
+    if ([FMUtils sectionsByTaskTime:self.list timeGetter:dictdategetter]>0) {
+        tableView.backgroundColor = [UIColor whiteColor];
+        
+    }else{
+        [tableView setClearBackground];
+    }
     return [FMUtils sectionsByTaskTime:self.list timeGetter:dictdategetter];
 //    return 1;
 }
