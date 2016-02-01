@@ -234,22 +234,22 @@
 //    UIRemoteNotificationTypeSound   = 1 << 1,
 //    UIRemoteNotificationTypeAlert   = 1 << 2,
 //    UIRemoteNotificationTypeNewsstandContentAvailability = 1 << 3,
-    if (version>=8) {
-#if __IPHONE_8_0
-        [application registerForRemoteNotifications];
-//        [application currentUserNotificationSettings].types
-        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:
-                                                       (UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeAlert)  categories:nil]];
-#endif
-    }else
-        [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert];
-    
-    UILocalNotification *localNotif =
-    [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
-    if (localNotif) {
-        //处理本地通知
-        NSLog(@"localnotif");
-    }
+//    if (version>=8) {
+//#if __IPHONE_8_0
+//        [application registerForRemoteNotifications];
+////        [application currentUserNotificationSettings].types
+//        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:
+//                                                       (UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeAlert)  categories:nil]];
+//#endif
+//    }else
+//        [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert];
+//    
+//    UILocalNotification *localNotif =
+//    [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+//    if (localNotif) {
+//        //处理本地通知
+//        NSLog(@"localnotif");
+//    }
 
     
     self.launchOptions = launchOptions;
