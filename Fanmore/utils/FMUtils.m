@@ -332,7 +332,7 @@
 }
 
 +(id)dataBy:(NSArray*)tasks section:(NSInteger)section andRow:(NSInteger)row{
-    NSString* date = [[[tasks $first] publishTime]fmStandStringDateOnly];
+    NSString* date = [[[tasks $first] publishTime] fmStandStringDateOnly];
     NSInteger nowSection=0;
     NSInteger nowRows=-1;
     for (Task* task in tasks) {

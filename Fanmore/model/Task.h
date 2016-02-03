@@ -172,6 +172,7 @@
  */
 -(NSString*)getRebateMsg;
 
+
 @property (nonatomic, retain) NSDate * advancedseconds;
 
 @end

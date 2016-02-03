@@ -165,6 +165,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+
     LoginState* ls = [AppDelegate getInstance].loadingState.userData;
     __weak VerificationCodeController* wself = self;
     if (!([ls.isBindMobile boolValue] && $safe(ls.mobile) && [ls.mobile isMobileNumber])) {
@@ -314,6 +316,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+
     LoginState* ls = [AppDelegate getInstance].loadingState.userData;
     __weak VerificationCodeController* wself = self;
     if ([ls.isBindMobile boolValue] && $safe(ls.mobile) && [ls.mobile isMobileNumber]) {

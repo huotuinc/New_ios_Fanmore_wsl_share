@@ -53,6 +53,8 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+
     @try {
         NSIndexPath* selected = self.tableView.indexPathForSelectedRow;
         if ($safe(selected)) {

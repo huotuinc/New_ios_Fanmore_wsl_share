@@ -14,26 +14,26 @@
 @property NSMutableArray* addBigRewardsViews;
 @property NSMutableArray* rewards;
 
-@property(weak) UIImageView* image;
-@property(weak) UILabel* sendReward;
-@property(weak) UILabel* browseReward;
-@property(weak) UILabel* linkReward;
+@property(nonatomic,strong) UIImageView* image;
+@property(nonatomic,strong) UILabel* sendReward;
+@property(nonatomic,strong) UILabel* browseReward;
+@property(nonatomic,strong) UILabel* linkReward;
 
-@property(weak) UILabel* sendRewardYes;
-@property(weak) UILabel* browseRewardYes;
-@property(weak) UILabel* linkRewardYes;
+@property(nonatomic,strong) UILabel* sendRewardYes;
+@property(nonatomic,strong) UILabel* browseRewardYes;
+@property(nonatomic,strong) UILabel* linkRewardYes;
 
-@property(weak) UILabel* sendCount;
-@property(weak) UIImageView* imgSendPic;
+@property(nonatomic,strong) UILabel* sendCount;
+@property(nonatomic,strong) UIImageView* imgSendPic;
 
-@property(weak) UIImageView* tuzhang;
+@property(nonatomic,strong) UIImageView* tuzhang;
 @property NSMutableDictionary* shareTypeImages;
 
-@property(weak) UILabel* title;
-@property(weak) UILabel* info;
-@property(weak) UILabel* humanTime;
-@property(weak) UILabel* totalScore;
-@property(weak) UILabel* lastScore;
+@property(nonatomic,strong) UILabel* title;
+@property(nonatomic,strong) UILabel* info;
+@property(nonatomic,strong) UILabel* humanTime;
+@property(nonatomic,strong) UILabel* totalScore;
+@property(nonatomic,strong) UILabel* lastScore;
 
 /**
  *  增加活动信息包括Label和Image

@@ -89,10 +89,10 @@
             UIStoryboard * mainS = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             WeiChatAuthorize * WeiChart = [mainS instantiateViewControllerWithIdentifier:@"WeiChatAuthorize"];
             WeiChart.loginType = 1;
-//            NavController * nav = [[NavController alloc] initWithRootViewController:WeiChart];
+            NavController * nav = [[NavController alloc] initWithRootViewController:WeiChart];
 //            [wself presentViewController:nav animated:YES completion:nil];
             UIWindow * wind = [UIApplication sharedApplication].keyWindow;
-            wind.rootViewController = WeiChart;
+            wind.rootViewController = nav;
             [wind makeKeyAndVisible];
             
         }

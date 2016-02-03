@@ -81,6 +81,8 @@ static UINavigationController *navController;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+
     self.webView.frame=self.view.bounds;
     if(self.needRefreshUrl!=nil){
         [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.needRefreshUrl]]];

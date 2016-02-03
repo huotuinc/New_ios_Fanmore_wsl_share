@@ -230,9 +230,8 @@
     [[ds getFanOperations] TOYanZhenRegistParames:nil block:^(id result, NSError *error) {
         LOG(@"%@----%@",result,[error FMDescription]);
         if (error) {
-            NSString * se = error.description;
-            NSRange ran = [se rangeOfString:@"90005"];
-            if (ran.location != NSNotFound) {//不用注册
+            NSString * se = error.FMDescription;
+            if (![se isEqualToString:@"未注册"]) {//不用注册
                 [wself login];
             }else{//要注册
                  [wself todoTheLaterThing];
@@ -264,7 +263,8 @@
 }
 
 - (void)todoTheLaterThing{
-       UIStoryboard * main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    UIStoryboard * main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     WeiXinBackViewController  *next = [main instantiateViewControllerWithIdentifier:@"WeiXinBackViewController"];
     [self.navigationController pushViewController:next animated:YES];
 }

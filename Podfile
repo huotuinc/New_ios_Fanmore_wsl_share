@@ -10,5 +10,5 @@ pod 'MBProgressHUD'
 pod 'CWPopup'
 pod 'iRate'
 pod 'iVersion'
-#pod 'TPKeyboardAvoiding','1.2.3'
-#pod 'SVProgressHUD', :head
+#pod 'TPKeyboardAvoiding'
+#pod 'SVProgressHUD'

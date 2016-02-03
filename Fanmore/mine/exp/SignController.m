@@ -183,6 +183,8 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+
     __weak SignController* wself = self;
     [UIView animateWithDuration:0.5 animations:^{
         [wself.viewBottom offset:0 y:-349];

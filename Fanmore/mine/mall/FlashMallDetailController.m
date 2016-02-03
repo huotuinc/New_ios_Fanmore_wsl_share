@@ -79,6 +79,8 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+
     [self.navigationController setNavigationBarHidden:NO];
     [self.table selectRowAtIndexPath:Nil animated:YES scrollPosition:UITableViewScrollPositionNone];
 }

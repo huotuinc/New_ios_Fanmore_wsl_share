@@ -110,6 +110,7 @@
     
     [self.upperView setBackgroundColor:fmMainColor];
     [self.titleLabel setText:self.title];
+//    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"TaskCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
     if (self.tasks==Nil) {
@@ -141,6 +142,11 @@
         id<FanOperations> fos = [[AppDelegate getInstance]getFanOperations];
         if (wself.selection==1) {
             [fos listTask:Nil block:^(NSArray *task, NSError *error) {
+                
+                LOG(@"luohaibo test 1 wself.selection==1");
+                
+                
+                
                 if ($safe(error)) {
                     [FMUtils alertMessage:wself.view msg:[error FMDescription]];
                     [refreshView endRefreshing];
@@ -148,19 +154,17 @@
                 }
                 if ($safe(task)) {
                     HashAddArray(wself.tasks, task)
-                    //luohiabo
-                    if (wself.tasks) {
-                        wself.tableView.backgroundColor = [UIColor whiteColor];
-                    }else{
-                        [wself.tableView setClearBackground];
-                    }
                     [wself.tableView reloadData];
                     [refreshView endRefreshing];
                     LOG(@"fetch data refresh table n:%lu newtasks:%lu",(unsigned long)wself.tasks.count,(unsigned long)task.count);
                 }
             } screenType:wself.pmm.type paging:[Paging paging:10 parameters:@{@"oldTaskId":[wself lastTaskId]}]];
         }else if (wself.selection==2){
+            LOG(@"luohaibo test 1 wself.selection==2");
             [fos listFlashMallTask:nil block:^(NSArray *task, NSError *error) {
+                
+                
+                
                 if ($safe(error)) {
                     [FMUtils alertMessage:wself.view msg:[error FMDescription]];
                     [refreshView endRefreshing];
@@ -176,7 +180,7 @@
                     }
                     [wself.tableView reloadData];
                     [refreshView endRefreshing];
-                    LOG(@"fetch data refresh table n:%d newtasks:%d",wself.tasks.count,task.count);
+                    LOG(@"fetch data refresh table n:%lu newtasks:%lu",(unsigned long)wself.tasks.count,(unsigned long)task.count);
                 }
             } paging:[Paging paging:10 parameters:@{@"oldTaskId":[wself lastTaskId]}]];
         }
@@ -259,7 +263,7 @@
 //        [header2 setBounds:CGRectMake(0, 0, 320, 19)];
 //        header2;
 //    });
-    
+    //luohaibo
     [__header beginRefreshing];
     
     [self.nselectionLabel1 setUserInteractionEnabled:YES];
@@ -317,13 +321,7 @@
             [wself changeSelection:2];
     }]];
     
-    if ([UIScreen mainScreen].bounds.size.height!=568.0f){
-#warning luohaibo 2015/12/2
-//        [self showGuide:@"guidelist35" on:nil];
-    }else
-#warning luohaibo 2015/12/2
-//        [self showGuide:@"guidelist" on:nil];
-    
+
     [self changeSelection:1];
     
     //luohaibo 获取支付参数
@@ -400,43 +398,44 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    
+    [super viewWillAppear:animated];
+
     self.navigationController.navigationBarHidden = NO;
     
-    @try {
-        NSIndexPath* selected = self.tableView.indexPathForSelectedRow;
-        if ($safe(selected)) {
-            TaskListCell *cell = (TaskListCell*)[self.tableView cellForRowAtIndexPath:selected];
-            Task* task = [FMUtils dataBy:self.tasks section:selected.section andRow:selected.row];
-            if ($safe(cell) && $safe(task)) {
-                [cell configureTask:task];
-            }
-            
-            // 应小郭要求 剩余积分为0时 刷新任务列表
-            if ([[task lastScore] floatValue]==0) {
-                [self._header beginRefreshing];
-            }
-        }
-    }
-    @catch (NSException *exception) {
-//        [self.tasks removeAllObjects];
-//        [self.tableView reloadData];
-    }
-    @finally {
-    }
-    
-    [self.tableView selectRowAtIndexPath:Nil animated:YES scrollPosition:UITableViewScrollPositionNone];
-        
-    if (self.doCash && self.doCash2) {
-        [self bk_performBlock:^(id obj) {
-            [obj clickCash:nil];
-        } afterDelay:0.5f];
-    }
-    
-    self.doCash = NO;
-    self.doCash2 = NO;
-    [self showNoshadowNavigationBar];
-    [self becomeFirstResponder];
+//    @try {
+//        NSIndexPath* selected = self.tableView.indexPathForSelectedRow;
+//        if ($safe(selected)) {
+//            TaskListCell *cell = (TaskListCell*)[self.tableView cellForRowAtIndexPath:selected];
+//            Task* task = [FMUtils dataBy:self.tasks section:selected.section andRow:selected.row];
+//            if ($safe(cell) && $safe(task)) {
+//                [cell configureTask:task];
+//            }
+//            
+//            // 应小郭要求 剩余积分为0时 刷新任务列表
+//            if ([[task lastScore] floatValue]==0) {
+//                [self._header beginRefreshing];
+//            }
+//        }
+//    }
+//    @catch (NSException *exception) {
+////        [self.tasks removeAllObjects];
+////        [self.tableView reloadData];
+//    }
+//    @finally {
+//    }
+//    
+//    [self.tableView selectRowAtIndexPath:Nil animated:YES scrollPosition:UITableViewScrollPositionNone];
+//        
+//    if (self.doCash && self.doCash2) {
+//        [self bk_performBlock:^(id obj) {
+//            [obj clickCash:nil];
+//        } afterDelay:0.5f];
+//    }
+//    
+//    self.doCash = NO;
+//    self.doCash2 = NO;
+//    [self showNoshadowNavigationBar];
+//    [self becomeFirstResponder];
 }
 
 - (BOOL)canBecomeFirstResponder {
@@ -484,61 +483,17 @@
     return 163.0f;
 }
 
-#pragma mark yaoyao
-
-- (void)shake{
-    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-    LoginState* data = [[[AppDelegate getInstance] loadingState] userData];
-    __weak TaskListController* wself = self;
-    if ([data.dayCheckIn intValue]==1) {
-        [FMUtils alertMessage:self.view msg:@"您今日已签到"];
-        return;
-    }
-    [[[AppDelegate getInstance] getFanOperations] checkIn:nil block:^(NSString *tip, NSError *error) {
-        if ($safe(error)) {
-            [FMUtils alertMessage:wself.view msg:[error FMDescription]];
-            return;
-        }
-        //noop
-    }];
-}
-
-//- (void) motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
-//{
-//    //检测到摇动
-//    self.shaking = YES;
-//}
-//
-//- (void) motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event
-//{
-//    //摇动取消
-//    self.shaking = NO;
-//}
-//
-//
-//- (void) motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
-//{
-//    //摇动结束
-//    if (event.subtype == UIEventSubtypeMotionShake) {
-//        //something happens
-//        if (self.shaking) {
-//            self.shaking = NO;
-//            //
-//            LOG(@"shaking!!!");
-//            [self shake];
-//        }
-//    }
-//}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    LOG(@"numberOfSectionsInTableView %ld ",(long)[FMUtils sectionsByTaskTime:self.tasks]);
     return [FMUtils sectionsByTaskTime:self.tasks];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    LOG(@"numberOfSectionsInTableView %ld ",(long)[FMUtils rowsBy:self.tasks section:section]);
     return [FMUtils rowsBy:self.tasks section:section];
 }
 
@@ -546,17 +501,24 @@
 {
     static NSString *CellIdentifier = @"TaskCell";
     TaskListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    if (cell == nil) {
+        
+        cell = [[TaskListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     @try {
+        LOG(@"tableView  Exception ");
+        Task * test = [FMUtils dataBy:self.tasks section:indexPath.section andRow:indexPath.row];
+         LOG(@"tableView  cell model %@",test);
         [cell configureTask:[FMUtils dataBy:self.tasks section:indexPath.section andRow:indexPath.row]];
     }
     @catch (NSException *exception) {
-        LOG(@"Exception %@",exception);
+        LOG(@"tableView  Exception %@",exception);
         [self.tasks removeAllObjects];
         [self.tableView reloadData];
     }
     @finally {
     }
-    
+     LOG(@"cellForRowAtIndexPath %@ ",indexPath);
     return cell;
 }
 
@@ -779,7 +741,7 @@
     
     self.type = [[AppDelegate getInstance].loadingState.groups[indexPath.row][@"type"] intValue];
     if (self.type==0) {
-        self.controller.title = @"粉猫↓";
+        self.controller.title = @"分红↓";
     }else{
         self.controller.title = [AppDelegate getInstance].loadingState.groups[indexPath.row][@"name"];
     }

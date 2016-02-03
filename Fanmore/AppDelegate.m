@@ -733,56 +733,56 @@
     }
 }
 
--(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
-    //Error Domain=kCLErrorDomain Code=0 "The operation couldn’t be completed. (kCLErrorDomain error 0.)"
-    NSLog(@"%@",error);
-}
+//-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+//    //Error Domain=kCLErrorDomain Code=0 "The operation couldn’t be completed. (kCLErrorDomain error 0.)"
+//    NSLog(@"%@",error);
+//}
 
-- (void)locationManager:(CLLocationManager *)manager
-     didUpdateLocations:(NSArray *)locations {
-    // If it's a relatively recent event, turn off updates to save power.
-    CLLocation* location = [locations lastObject];
-    NSDate* eventDate = location.timestamp;
-    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-    __weak AppDelegate* wself = self;
-    if (fabs(howRecent) < 15.0) {
-        [self.locating stopUpdatingLocation];
-        // If the event is recent, do something with it.
-        LOG(@"latitude %+.6f, longitude %+.6f\n",
-              location.coordinate.latitude,
-              location.coordinate.longitude);
-        
-        NSString* urlBuffer = $str(@"http://api.map.baidu.com/geocoder/v2/?output=json&ak=lRfC2kF5DwU8i6QWRiEqPikn&coordtype=wgs84ll&location=%.6f,%.6f&pois=0",location.coordinate.latitude,location.coordinate.longitude);
-        
-        __unsafe_unretained ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlBuffer]];
-//        __weak ASIHTTPRequest* wrequest = request;
-//        __weak CLLocation* wlocation = location;
-        [request addRequestHeader:@"Referer" value:@"http://www.fanmore.com/"];
-        [request setCompletionBlock:^{
-//            JSONDecoder *jd=[[JSONDecoder alloc] init];
-//            NSDictionary* obj = [jd objectWithData:[request responseData]];
-            NSDictionary* obj = [NSJSONSerialization JSONObjectWithData:[request responseData] options:0 error:NULL];
-            if ([[obj $for:@"status"] isEqual:@0]){
-                NSDictionary* cityrs = [obj $for:@"result"];
-                LOG(@"%@",cityrs);
-                NSNumber* nscityCode =(NSNumber*)[cityrs $for:@"cityCode"];
-                [wself.preferences $obj:nscityCode for:@"CurrentCityCode"];
-                [wself.citycodeHandler handleCitycode:location citycode:[nscityCode longValue]];
-            }else{
-                [wself.citycodeHandler handleCitycode:location citycode:-1];
-            }
-            
-        }];
-        [request startAsynchronous];
-        
-//        CLGeocoder* coder =  $new(CLGeocoder);
-//        [coder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
-//            for (CLPlacemark * placemark in placemarks) {
-//                LOG(@"%@",placemark);
+//- (void)locationManager:(CLLocationManager *)manager
+//     didUpdateLocations:(NSArray *)locations {
+//    // If it's a relatively recent event, turn off updates to save power.
+//    CLLocation* location = [locations lastObject];
+//    NSDate* eventDate = location.timestamp;
+//    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
+//    __weak AppDelegate* wself = self;
+//    if (fabs(howRecent) < 15.0) {
+//        [self.locating stopUpdatingLocation];
+//        // If the event is recent, do something with it.
+//        LOG(@"latitude %+.6f, longitude %+.6f\n",
+//              location.coordinate.latitude,
+//              location.coordinate.longitude);
+//        
+//        NSString* urlBuffer = $str(@"http://api.map.baidu.com/geocoder/v2/?output=json&ak=lRfC2kF5DwU8i6QWRiEqPikn&coordtype=wgs84ll&location=%.6f,%.6f&pois=0",location.coordinate.latitude,location.coordinate.longitude);
+//        
+//        __unsafe_unretained ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlBuffer]];
+////        __weak ASIHTTPRequest* wrequest = request;
+////        __weak CLLocation* wlocation = location;
+//        [request addRequestHeader:@"Referer" value:@"http://www.fanmore.com/"];
+//        [request setCompletionBlock:^{
+////            JSONDecoder *jd=[[JSONDecoder alloc] init];
+////            NSDictionary* obj = [jd objectWithData:[request responseData]];
+//            NSDictionary* obj = [NSJSONSerialization JSONObjectWithData:[request responseData] options:0 error:NULL];
+//            if ([[obj $for:@"status"] isEqual:@0]){
+//                NSDictionary* cityrs = [obj $for:@"result"];
+//                LOG(@"%@",cityrs);
+//                NSNumber* nscityCode =(NSNumber*)[cityrs $for:@"cityCode"];
+//                [wself.preferences $obj:nscityCode for:@"CurrentCityCode"];
+//                [wself.citycodeHandler handleCitycode:location citycode:[nscityCode longValue]];
+//            }else{
+//                [wself.citycodeHandler handleCitycode:location citycode:-1];
 //            }
+//            
 //        }];
-    }
-}
+//        [request startAsynchronous];
+//        
+////        CLGeocoder* coder =  $new(CLGeocoder);
+////        [coder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+////            for (CLPlacemark * placemark in placemarks) {
+////                LOG(@"%@",placemark);
+////            }
+////        }];
+//    }
+//}
 
 #pragma mark push 
 

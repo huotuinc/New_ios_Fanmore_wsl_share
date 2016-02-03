@@ -52,7 +52,7 @@
     self.labelRelate = label;
     y = [self addScoreInfo:y];
     
-    y = [self endWithSendInfoAndTime:y addRewards:NO sendInfo:YES];
+    [self endWithSendInfoAndTime:y addRewards:NO sendInfo:YES];
     
     [self appendTuzhang:0];
     
@@ -156,33 +156,33 @@
         UIView* sv = subviews[0];
         subviews = sv.subviews;
     }
-    
+    LOG(@"159");
     // 还原
     [self restoreForUnitTask];
     [self hideImageLeftTop];
-    
+    LOG(@"163");
     NSUInteger index = [subviews indexOfObject:self.lastScore];
     NSRange range = NSMakeRange(index-3, 4);
     NSArray* scoreLabels = [subviews subarrayWithRange:range];
     
     NSArray* sendInfos = [self uisendWithSendInfos];
-    
+    LOG(@"169");
     if(self.onlyHideLastScore && !self.hideScore){
         self.onlyHideLastScore = NO;
         [scoreLabels[2] showme];
         [scoreLabels[3] showme];
     }
-    
+    LOG(@"175");
     if (self.hideScore) {
         self.hideScore = NO;
         [self workingWithScoreLabels:0 op:@selector(showme)];
     }
-    
+    LOG(@"180");
     if(self.offset30){
         self.offset30 = NO;
         [self workingWithUnderUIS:30.0f op:NULL];
     }
-    
+    LOG(@"185");
     if(self.sendInfoMoved!=0){
         CGFloat xx = -1*self.sendInfoMoved;
         self.sendInfoMoved = 0;
@@ -190,7 +190,7 @@
             [tomove offset:xx y:0];
         }
     }
-    
+    LOG(@"193");
     if(self.manyInformationMoved!=0){
         CGFloat xx = -1*self.manyInformationMoved;
         self.manyInformationMoved = 0;
@@ -201,8 +201,8 @@
     [self.labelRelate hidenme];
     
     // 还原  结束
-    
-    self.image.image = [self.class DefaultImage];
+    LOG(@"204");
+    self.image.image = [UIImage imageNamed:@"imgloding-full"];
     [self updateHeaderInfo:task.store.name info:task.taskName];
     [self updateTime:task.publishTime andSendCount:task.sendCount];
     [self updateScoreInfo:task.totalScore last:task.lastScore];
@@ -215,7 +215,7 @@
     }
     
     [self updateHuodongInformation:task];
-    
+    LOG(@"218");
     if ([task zeroReward]) {
         self.hideScore = YES;
         [self workingWithScoreLabels:0 op:@selector(hidenme)];
@@ -234,7 +234,7 @@
 //        [self workingWithScoreLabels:0 op:scoreOP];
 //        [self workingWithUnderUIS:offset op:NULL];
 //    }
-    
+    LOG(@"237");
     if ([task notbeAbletoSend]) {
         //对于一些无法转发的任务 自然也没有已转发或者已抢完的盖章
         [self updateTuzhang:0 hidden:YES image:nil];
@@ -246,9 +246,9 @@
     // 新版本 联盟任务和闪购任务处理方式几乎一模一样
     // 区别在于 原来显示 返利说明的地方 显示浏览奖励 Done
     //         剩余积分应该不显示                Done
-    
+    LOG(@"249");
     if ([task isFlashMall]) {
-        CGFloat xx = 320.0f-self.imgSendPic.frame.origin.x-3;
+        CGFloat xx = self.frame.size.width-self.imgSendPic.frame.origin.x-3;
         self.sendInfoMoved = xx;
         for (id tomove in sendInfos) {
             [tomove offset:xx y:0];
@@ -257,7 +257,7 @@
     
     // 开始处理返利信息
     NSString* relateMsg = [task getRebateMsg];
-    
+    LOG(@"260");
     if ($safe(relateMsg) && relateMsg.length>0) {
         //存在返利
         LOG(@"TaskCell %@ %@ %@",[task taskName],[task totalScore],[task lastScore]);
@@ -281,7 +281,7 @@
             [self workingWithUnderUIS:30 op:NULL];
         }
     }
-    
+    LOG(@"284");
     //已转发和已抢完的 2个章
     BOOL isSend = $safe(task.sendList) && task.sendList.length>0;
     if (isSend) {
@@ -291,7 +291,7 @@
     }else{
         [self updateTuzhang:0 hidden:YES image:nil];
     }
-    
+     LOG(@"294");
     if ([task.status intValue]==8){
         // 联盟任务下架
         [self updateImageLeftTop:[UIImage imageNamed:@"yijieshu"]];

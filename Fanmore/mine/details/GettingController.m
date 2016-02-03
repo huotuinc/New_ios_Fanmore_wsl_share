@@ -293,6 +293,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+
     [self.navigationController setNavigationBarHidden:YES];
     self.table.delegate = self;
     [self.table selectRowAtIndexPath:Nil animated:YES scrollPosition:UITableViewScrollPositionNone];
