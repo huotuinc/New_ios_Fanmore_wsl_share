@@ -203,17 +203,23 @@
     // 还原  结束
     LOG(@"204");
     self.image.image = [UIImage imageNamed:@"imgloding-full"];
+    LOG(@"205");
     [self updateHeaderInfo:task.store.name info:task.taskName];
+    LOG(@"206");
     [self updateTime:task.publishTime andSendCount:task.sendCount];
+    LOG(@"207");
     [self updateScoreInfo:task.totalScore last:task.lastScore];
+    LOG(@"208");
     [self updateSendList:task.sendList];
+    LOG(@"209");
+    LOG(@"%@",task.taskSmallImgUrl);
     [self updateImage:task.taskSmallImgUrl];
-    
+    LOG(@"210");
     //是否置顶
     if (self.imageTop) {
         self.imageTop.hidden = ![[AppDelegate getInstance] taskIsTop:task.taskId];
     }
-    
+    LOG(@"211");
     [self updateHuodongInformation:task];
     LOG(@"218");
     if ([task zeroReward]) {

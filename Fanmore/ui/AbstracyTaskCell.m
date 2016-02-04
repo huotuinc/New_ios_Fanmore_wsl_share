@@ -8,7 +8,7 @@
 
 #import "AbstracyTaskCell.h"
 #import "AppDelegate.h"
-
+#import "UIImageView+WebCache.h"
 static UIImage* AbstracyTaskCellDefalutImage;
 
 @interface AbstracyTaskCell ()
@@ -307,17 +307,25 @@ static UIImage* AbstracyTaskCellDefalutImage;
 }
 
 
+/**
+ *  图片更新
+ *
+ *  @param url <#url description#>
+ */
 -(void)updateImage:(NSString*)url{
-    if (self.lastRequest) {
-        [self.lastRequest cancel];
-        self.lastRequest = nil;
-    }
     
-    self.lastRequest =
-    [[AppDelegate getInstance]downloadImage:url handler:^(UIImage *image, NSError *error) {
-        self.image.image = image;
-        self.lastRequest = nil;
-    } asyn:YES];
+    
+    [self.image sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil options:SDWebImageRetryFailed];
+//    if (self.lastRequest) {
+//        [self.lastRequest cancel];
+//        self.lastRequest = nil;
+//    }
+//    
+//    self.lastRequest =
+//    [[AppDelegate getInstance]downloadImage:url handler:^(UIImage *image, NSError *error) {
+//        self.image.image = image;
+//        self.lastRequest = nil;
+//    } asyn:YES];
 }
 
 -(void)updateHeaderInfo:(NSString*)title info:(NSString*)info{
