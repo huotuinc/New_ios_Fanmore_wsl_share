@@ -997,13 +997,19 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hengxian" translatesAutoresizingMaskIntoConstraints="NO" id="3aT-T6-OQg">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hengxian" translatesAutoresizingMaskIntoConstraints="NO" id="3aT-T6-OQg">
                                         <rect key="frame" x="0.0" y="29" width="320" height="1"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="JCg-Ey-bCU"/>
+                                        </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="3aT-T6-OQg" secondAttribute="trailing" id="CzD-ZH-Ade"/>
                                     <constraint firstAttribute="height" constant="30" id="PFD-ST-N3v"/>
+                                    <constraint firstAttribute="bottom" secondItem="3aT-T6-OQg" secondAttribute="bottom" id="gmj-2K-qAa"/>
+                                    <constraint firstItem="3aT-T6-OQg" firstAttribute="leading" secondItem="vac-zK-1it" secondAttribute="leading" id="weV-PE-h8G"/>
                                 </constraints>
                             </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLJ-Jl-9Do">

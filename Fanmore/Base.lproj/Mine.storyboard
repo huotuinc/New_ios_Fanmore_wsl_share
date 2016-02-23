@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cwZ-7d-Tio">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cwZ-7d-Tio">
     <dependencies>
         <deployment identifier="iOS"/>
         <development version="5100" identifier="xcode"/>
@@ -3936,11 +3936,11 @@
         <image name="zhuxiaoicon" width="296" height="38"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dEh-C0-s9v"/>
         <segue reference="U6R-np-1gz"/>
-        <segue reference="GPZ-kY-HU0"/>
         <segue reference="i4G-2i-Lrw"/>
         <segue reference="GHQ-5f-G6i"/>
+        <segue reference="OXB-6h-Krx"/>
+        <segue reference="GPZ-kY-HU0"/>
         <segue reference="ZTF-wr-cUi"/>
         <segue reference="zGz-xS-tHy"/>
     </inferredMetricsTieBreakers>

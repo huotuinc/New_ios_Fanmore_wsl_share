@@ -352,8 +352,11 @@
 }
 +(void)sendTask:(UIViewController<SendTask,ShareToolDelegate>*)controller{
     
+    NSLog(@"xxxxxxxx");
     AppDelegate* ad = [AppDelegate getInstance];
+    NSLog(@"sendTaskxxxxxxxx");
     if (![ad hasSwitchUser]) {
+        NSLog(@"hasSwitchUser");
         [FMUtils _sendTask:controller];
         return;
     }
@@ -367,7 +370,7 @@
     HUD.mode = MBProgressHUDModeCustomView;
     
     HUD.labelText = @"一个小问题@-@";
-    
+    NSLog(@"MBProgressHUD");
     UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 80)];
 //    view.backgroundColor = [UIColor redColor];
     
@@ -381,8 +384,9 @@
         }
     }
     int answer = int1+int2;
-    
+    NSLog(@"xxxxxxxxxx");
     PooCodeView* pcv = [[PooCodeView alloc] initWithFrame:CGRectMake(0, 0, 140, 40)];
+    NSLog(@"PooCodeView");
     [pcv changeString:$str(@"%d+%d=",int1,int2)];
     
     [view addSubview:pcv];
@@ -403,7 +407,7 @@
         [wHUD hide:YES];
     } forControlEvents:UIControlEventEditingDidEndOnExit];
     [view addSubview:text];
-    
+ 
     UIButton* button = [[UIButton alloc] initWithFrame:CGRectMake(10, 50, 180, 30)];
     button.backgroundColor = [UIColor lightGrayColor];
     [button setTitle:@"答好了" forState:UIControlStateNormal];
@@ -427,11 +431,12 @@
 }
 
 +(void)_sendTask:(UIViewController<SendTask,ShareToolDelegate>*)controller{
+    NSLog(@"_sendTask:(UIViewController<SendTask,ShareToolDelegate>*)controller");
     [self _sendTask:controller ignore4:NO ignore3:NO];
 }
 
 +(void)_sendTask:(UIViewController<SendTask,ShareToolDelegate>*)controller ignore4:(BOOL)ignore4 ignore3:(BOOL)ignore3{
-    
+    NSLog(@"_sendTask:(UIViewController<SendTask,ShareToolDelegate>*)controller ignore4:(BOOL)ignore4 ignore3:(BOOL)ignore3");
     __weak AppDelegate* ad = [AppDelegate getInstance];
     __weak UIViewController<SendTask,ShareToolDelegate>* wself = controller;
     if (![ad.loadingState hasLogined]) {
